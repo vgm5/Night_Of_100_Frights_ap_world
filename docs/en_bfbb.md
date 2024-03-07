@@ -1,4 +1,4 @@
-# SpongeBob SquarePants: Battle for Bikini Bottom
+# Scooby Doo: Night of 100 Frights
 
 ## Where is the settings page?
 
@@ -13,20 +13,8 @@ would in the vanilla game.
 
 ## What items and locations get shuffled?
 
-Golden Spatulas will always be shuffled. Optionally you can also shuffle lost socks, golden underwear, level items (see
-below) and purple shiny objects. Level items include:
+Upgrades like the Springs/Umbrella as well as Gum and Soap Ammo upgrades will always be shuffled. Optionally you can also shuffle keys(WIP) and scooby snacks(unimplemented).
 
-- the King Jellyfish Jelly from Jellyfish Fields,
-- the Steering Wheels from Downtown Bikini Bottom,
-- the Balloon Kids from Goo Lagoon,
-- the Museum Art from Rock Bottom,
-- the Security Override Buttons from Mermalair,
-- the Sandmans from Sand Mountain,
-- the Lost Campers from Kelp Forest,
-- the Power Crystals from Kelp Forest,
-- the Ship Cannons from Flying Dutchman's Graveyard
+## What is the goal of Scooby Doo: Night of 100 Frights?
 
-
-## What is the goal of SpongeBob SquarePants: Battle for Bikini Bottom?
-
-Same as vanilla, beat Robo-Spongebob.
+Same as vanilla, beat Tim Curry in a brawl to the death.

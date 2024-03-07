@@ -7,15 +7,6 @@ from . import BfBBOptions
 from .names import ConnectionNames, ItemNames, LocationNames, RegionNames
 from worlds.generic.Rules import set_rule, add_rule, CollectionRule
 
-
-def can_farm_so(state: CollectionState, player: int) -> bool:
-    return not state.multiworld.worlds[player].options.death_link and (
-            state.can_reach(RegionNames.gl01, "Region", player) and
-            state.has(ItemNames.cruise_bubble, player) or
-            state.can_reach(RegionNames.db02, "Region", player)
-    )
-
-
 class BfBBLogic(LogicMixin):
     values = {
         ItemNames.so_100: 0,
@@ -24,16 +15,6 @@ class BfBBLogic(LogicMixin):
         ItemNames.so_750: 750,
         ItemNames.so_1000: 1000,
     }
-
-    def has_so_amount(self, player: int, amount: int):
-        return self.get_so_amount(player) >= amount
-
-    def get_so_amount(self, player: int):
-        if can_farm_so(self, player):
-            # ToDo: maybe return some lower number?
-            return 999999
-        return sum(self.count(item_name, player) * amount for item_name, amount in self.values.items())
-
 
 spat_rules = [
     # connections
