@@ -1,37 +1,43 @@
-# spats
-spat = "Golden Spatula"
-# socks
-sock = "Lost Sock"
-# skills
-bubble_bowl = "Bubble Bowl"
-cruise_bubble = "Cruise Bubble"
-# golden underwear
-golden_underwear = "Golden Underwear"
-# level pickups
-lvl_itm = "Level Items"
-lvl_itm_jf = "King Jellyfish Jelly"
-lvl_itm_bb = "Steering Wheel"
-lvl_itm_gl = "Balloon Kid"
-lvl_itm_rb = "Museum Art"
-lvl_itm_bc = "Security Override Button"
-lvl_itm_sm = "Sandman"
-lvl_itm_kf1 = "Lost Camper"
-lvl_itm_kf2 = "Power Crystal"
-lvl_itm_gy = "Ship Cannon"
-# shiny object names (used for location names)
-so_red = "Red Shiny Object"
-so_yellow = "Yellow Shiny Object"
-so_green = "Green Shiny Object"
-so_blue = "Blue Shiny Object"
-so_purple = "Purple Shiny Object"
-# shiny objects (AP items)
-so_100 = "100 Shiny Objects"
-so_250 = "250 Shiny Objects"
-so_500 = "500 Shiny Objects"
-so_750 = "750 Shiny Objects"
-so_1000 = "1000 Shiny Objects"
-# characters
-char_pat = "Patrick"
-char_sandy = "Sandy"
+#Upgrades
+GumPower = "Bubble Gum Power"
+SoapPower = "Soap Bubble Power"
+SpringPower = "Spring Power"
+PoundPower = "Ground Pound Power"
+HelmetPower = "Helmet Power"
+UmbrellaPower = "Umbrella Power"
+ShockwavePower = "Shockwave Power"
+BootsPower = "Boots Powerup"
+PlungerPower = "Plungers Power"
+SlipperPower = "Slippers Power"
+LampshadePower = "Lampshade Power"
+BlackknightPower = "Black Knight Power"
+ShovelPower = "Shovel Power"
+
+#Ammo Upgrades
+GumAmmoUpgrade = "Max Gum Ammo"
+SoapAmmoUpgrade = "Max Soap Ammo"
+
+#Monster Tokens
+MT_BLACKKNIGHT = "Monster Token: Black Knight"
+MT_MOODY = "Monster Token: Capt. Moody"
+MT_CAVEMAN = "Monster Token: Caveman"
+MT_CREEPER = "Monster Token: Creeper"
+MT_GARGOYLE = "Monster Token: Gargoyle"
+MT_GERONIMO = "Monster Token: Geronimo"
+MT_GHOST = "Monster Token: Ghost"
+MT_GHOSTDIVER = "Monster Token: Ghost Diver"
+MT_GREENGHOST = "Monster Token: Green Ghost"
+MT_HEADLESS = "Monster Token: Headless Spectre"
+MT_MASTERMIND = "Monster Token: Mastermind"
+MT_ROBOT = "Monster Token: Robot"
+MT_REDBEARD = "Monster Token: Redbeard"
+MT_SCARECROW = "Monster Token: Scarecrow"
+MT_SEACREATURE = "Monster Token: Sea Creature"
+MT_SPACEKOOK = "Monster Token: Space Kook"
+MT_TARMONSTER = "Monster Token: Tar Monster"
+MT_WITCH = "Monster Token: Witch"
+MT_WITCHDOC = "Monster Token: Witchdoctor"
+MT_WOLFMAN = "Monster Token: Wolfman"
+MT_ZOMBIE = "Monster Token: Zombie"
 
 victory = "Victory"

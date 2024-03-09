@@ -1,9 +1,9 @@
 from typing import List, Dict
 
-from . import BfBBOptions
-from .Locations import BfBBLocation, location_table, \
-    sock_location_table, spat_location_table, level_item_location_table, golden_underwear_location_table, \
-    skill_location_table, purple_so_location_table
+from . import NO100FOptions
+from .Locations import NO100FLocation, location_table, \
+    upgrade_location_table, monstertoken_location_table, \
+    key_location_table, purple_so_location_table
 from .names import ConnectionNames, LevelNames, RegionNames, LocationNames
 
 from BaseClasses import MultiWorld, Region, Entrance
@@ -14,7 +14,7 @@ def create_region(world: MultiWorld, player: int, name: str, locations=None, exi
     if locations:
         for location in locations:
             loc_id = location_table[location]
-            location = BfBBLocation(player, location, loc_id, ret)
+            location = NO100FLocation(player, location, loc_id, ret)
             ret.locations.append(location)
     if exits:
         for _exit in exits:
@@ -32,12 +32,6 @@ def _get_locations_for_region(options: BfBBOptions, name: str) -> List[str]:
         result += [k for k in sock_location_table if f"{name}:" in k]
     if options.include_skills.value:
         result += [k for k in skill_location_table if f"{name}:" in k]
-    if options.include_golden_underwear.value and "Hub" in name:
-        result += [k for k in golden_underwear_location_table if f"{name}:" in k]
-    if options.include_level_items.value:
-        result += [k for k in level_item_location_table if f"{name}:" in k]
-    if options.include_purple_so.value:
-        result += [k for k in purple_so_location_table if f"{name}:" in k]
     return result
 
 

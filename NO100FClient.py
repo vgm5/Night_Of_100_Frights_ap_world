@@ -2389,27 +2389,27 @@ UPGRADES_PICKUP_IDS = {
 }
 
 MONSTERTOKENS_PICKUP_IDS = {
-    (base_id + 100 + 0): (b'b001', MonsterTokens.MT_SPACEKOOK.value),
-    (base_id + 100 + 1): (b'c005', MonsterTokens.MT_GREENGHOST.value),
-    (base_id + 100 + 2): (b'e001', MonsterTokens.MT_WOLFMAN.value),
-    (base_id + 100 + 3): (b'e003', MonsterTokens.MT_WITCH.value),
-    (base_id + 100 + 4): (b'f004', MonsterTokens.MT_TARMONSTER.value),
-    (base_id + 100 + 5): (b'f007', MonsterTokens.MT_GHOSTDIVER.value),
-    (base_id + 100 + 6): (b'g002', MonsterTokens.MT_ZOMBIE.value),
-    (base_id + 100 + 7): (b'g005', MonsterTokens.MT_GHOST.value),
-    (base_id + 100 + 8): (b'g008', MonsterTokens.MT_SCARECROW.value),
-    (base_id + 100 + 9): (b'h002', MonsterTokens.MT_GARGOYLE.value),
-    (base_id + 100 + 10): (b'i001', MonsterTokens.MT_HEADLESS.value),
-    (base_id + 100 + 11): (b'i005', MonsterTokens.MT_GERONIMO.value),
-    (base_id + 100 + 12): (b'l013', MonsterTokens.MT_CAVEMAN.value),
-    (base_id + 100 + 13): (b'l014', MonsterTokens.MT_SEACREATURE.value),
-    (base_id + 100 + 14): (b'o001', MonsterTokens.MT_BLACKKNIGHT.value),
-    (base_id + 100 + 15): (b'o002', MonsterTokens.MT_CREEPER.value),
-    (base_id + 100 + 16): (b'r020', MonsterTokens.MT_WITCHDOC.value),
-    (base_id + 100 + 17): (b's002', MonsterTokens.MT_ROBOT.value),
-    (base_id + 100 + 18): (b's003', MonsterTokens.MT_MASTERMIND.value),
-    (base_id + 100 + 19): (b'w022', MonsterTokens.MT_MOODY.value),
-    (base_id + 100 + 20): (b'w025', MonsterTokens.MT_REDBEARD.value),
+    (base_id + 100 + 0): (b'o001', MonsterTokens.MT_BLACKKNIGHT.value),
+    (base_id + 100 + 1): (b'w022', MonsterTokens.MT_MOODY.value),
+    (base_id + 100 + 2): (b'l013', MonsterTokens.MT_CAVEMAN.value),
+    (base_id + 100 + 3): (b'o002', MonsterTokens.MT_CREEPER.value),
+    (base_id + 100 + 4): (b'h002', MonsterTokens.MT_GARGOYLE.value),
+    (base_id + 100 + 5): (b'i005', MonsterTokens.MT_GERONIMO.value),
+    (base_id + 100 + 6): (b'g005', MonsterTokens.MT_GHOST.value),
+    (base_id + 100 + 7): (b'f007', MonsterTokens.MT_GHOSTDIVER.value),
+    (base_id + 100 + 8): (b'c005', MonsterTokens.MT_GREENGHOST.value),
+    (base_id + 100 + 9): (b'i001', MonsterTokens.MT_HEADLESS.value),
+    (base_id + 100 + 10): (b's003', MonsterTokens.MT_MASTERMIND.value),
+    (base_id + 100 + 11): (b's002', MonsterTokens.MT_ROBOT.value),
+    (base_id + 100 + 12): (b'w025', MonsterTokens.MT_REDBEARD.value),
+    (base_id + 100 + 13): (b'g008', MonsterTokens.MT_SCARECROW.value),
+    (base_id + 100 + 14): (b'l014', MonsterTokens.MT_SEACREATURE.value),
+    (base_id + 100 + 15): (b'b001', MonsterTokens.MT_SPACEKOOK.value),
+    (base_id + 100 + 16): (b'f004', MonsterTokens.MT_TARMONSTER.value),
+    (base_id + 100 + 17): (b'e003', MonsterTokens.MT_WITCH.value),
+    (base_id + 100 + 18): (b'r020', MonsterTokens.MT_WITCHDOC.value),
+    (base_id + 100 + 19): (b'e001', MonsterTokens.MT_WOLFMAN.value),
+    (base_id + 100 + 20): (b'g002', MonsterTokens.MT_ZOMBIE.value),
 }
 
 KEYS_PICKUP_IDS = {
@@ -2792,7 +2792,7 @@ def _give_item(ctx: NO100FContext, item_id: int):
             logger.warning(f"Received unknown item with id {item_id}")
 
     if(true_id < 121 and true_id > 100):
-        _give_monstertoken(ctx, true_id)
+        _give_monstertoken(ctx, true_id - 100)
 
     else:
         logger.warning(f"Received unknown item with id {item_id}")
