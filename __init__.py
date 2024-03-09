@@ -8,7 +8,7 @@ from BaseClasses import Item, Tutorial, ItemClassification
 from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import Component, components, Type, SuffixIdentifier
 from .Events import create_events
-from .Items import item_table, BfBBItem
+from .Items import item_table, NO100FItem
 from .Locations import location_table, BfBBLocation
 from .Regions import create_regions
 from .Rom import BfBBDeltaPatch
