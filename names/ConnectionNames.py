@@ -2,175 +2,304 @@ from . import RegionNames
 
 start_game = "Start Game"
 
-# Hub1
-pineapple_hub1 = f"{RegionNames.pineapple}->{RegionNames.hub1}"
+# Hub
+hub1_i001 = f"{RegionNames.hub1}->{RegionNames.i001}"
+hub1_hub2 = f"{RegionNames.hub1}->{RegionNames.hub2}"
+hub1_hub3 = f"{RegionNames.hub1}->{RegionNames.hub2}"
+hub1_e001 = f"{RegionNames.hub1}->{RegionNames.e001}"
+hub1_f001 = f"{RegionNames.hub1}->{RegionNames.f001}"
 
-hub1_pineapple = f"{RegionNames.hub1}->{RegionNames.pineapple}"
-hub1_squid = f"{RegionNames.hub1}->{RegionNames.squid}"
-hub1_pat = f"{RegionNames.hub1}->{RegionNames.pat}"
-hub1_jf01 = f"{RegionNames.hub1}->{RegionNames.jf01}"
-hub1_bb01 = f"{RegionNames.hub1}->{RegionNames.bb01}"
-hub1_gl01 = f"{RegionNames.hub1}->{RegionNames.gl01}"
-hub1_b1 = f"{RegionNames.hub1}->{RegionNames.b1}"
-
-squid_hub1 = f"{RegionNames.squid}->{RegionNames.hub1}"
-
-pat_hub1 = f"{RegionNames.pat}->{RegionNames.hub1}"
-
-# JF
-jf01_hub1 = f"{RegionNames.jf01}->{RegionNames.hub1}"
-jf01_jf02 = f"{RegionNames.jf01}->{RegionNames.jf02}"
-
-jf02_jf01 = f"{RegionNames.jf02}->{RegionNames.jf01}"
-jf02_jf03 = f"{RegionNames.jf02}->{RegionNames.jf03}"
-
-jf03_jf02 = f"{RegionNames.jf03}->{RegionNames.jf02}"
-jf03_jf04 = f"{RegionNames.jf03}->{RegionNames.jf04}"
-
-jf04_jf03 = f"{RegionNames.jf04}->{RegionNames.jf03}"
-jf04_jf01 = f"{RegionNames.jf04}->{RegionNames.jf01}"
-
-# BB
-bb01_hub1 = f"{RegionNames.bb01}->{RegionNames.hub1}"
-bb01_bb02 = f"{RegionNames.bb01}->{RegionNames.bb02}"
-bb01_bb04 = f"{RegionNames.bb01}->{RegionNames.bb04}"
-
-bb02_bb01 = f"{RegionNames.bb02}->{RegionNames.bb01}"
-bb02_bb03 = f"{RegionNames.bb02}->{RegionNames.bb03}"
-
-bb03_bb02 = f"{RegionNames.bb03}->{RegionNames.bb02}"
-bb03_bb01 = f"{RegionNames.bb03}->{RegionNames.bb01}"
-
-bb04_bb01 = f"{RegionNames.bb04}->{RegionNames.bb01}"
-
-# GL
-gl01_hub1 = f"{RegionNames.gl01}->{RegionNames.hub1}"
-gl01_gl02 = f"{RegionNames.gl01}->{RegionNames.gl02}"
-
-gl02_gl01 = f"{RegionNames.gl02}->{RegionNames.gl01}"
-gl02_gl03 = f"{RegionNames.gl02}->{RegionNames.gl03}"
-
-gl03_gl02 = f"{RegionNames.gl03}->{RegionNames.gl02}"
-gl03_gl01 = f"{RegionNames.gl03}->{RegionNames.gl01}"
-
-# B1
-b1_hub1 = f"{RegionNames.b1}->{RegionNames.hub1}"
-b1_hub2 = f"{RegionNames.b1}->{RegionNames.hub2}"
-
-# Hub2
 hub2_hub1 = f"{RegionNames.hub2}->{RegionNames.hub1}"
-hub2_b2 = f"{RegionNames.hub2}->{RegionNames.b2}"
-hub2_tree = f"{RegionNames.hub2}->{RegionNames.tree}"
-hub2_shoals = f"{RegionNames.hub2}->{RegionNames.shoals}"
-hub2_police = f"{RegionNames.hub2}->{RegionNames.police}"
-hub2_rb01 = f"{RegionNames.hub2}->{RegionNames.rb01}"
-hub2_sm01 = f"{RegionNames.hub2}->{RegionNames.sm01}"
 
-tree_hub2 = f"{RegionNames.tree}->{RegionNames.hub2}"
+hub3_hub1 = f"{RegionNames.hub3}->{RegionNames.hub1}"
 
-shoals_hub2 = f"{RegionNames.shoals}->{RegionNames.hub2}"
-shoals_bc01 = f"{RegionNames.shoals}->{RegionNames.bc01}"
+# (B)asement
+b001_p005 = f"{RegionNames.b001}->{RegionNames.p005}"
+b001_b002 = f"{RegionNames.b001}->{RegionNames.b002}"
+b001_b003 = f"{RegionNames.b001}->{RegionNames.b003}"
 
-police_hub2 = f"{RegionNames.police}->{RegionNames.hub2}"
+b002_b001 = f"{RegionNames.b002}->{RegionNames.b001}"
+b002_b003 = f"{RegionNames.b002}->{RegionNames.b003}"
 
-# RB
-rb01_hub2 = f"{RegionNames.rb01}->{RegionNames.hub2}"
-rb01_rb02 = f"{RegionNames.rb01}->{RegionNames.rb02}"
-rb01_rb03 = f"{RegionNames.rb01}->{RegionNames.rb03}"
+b003_b001 = f"{RegionNames.b003}->{RegionNames.b001}"
+b003_b002 = f"{RegionNames.b003}->{RegionNames.b002}"
+b003_b004 = f"{RegionNames.b003}->{RegionNames.b004}"
+b003_p004 = f"{RegionNames.b003}->{RegionNames.p004}"
 
-rb02_rb01 = f"{RegionNames.rb02}->{RegionNames.rb01}"
-rb02_rb03 = f"{RegionNames.rb02}->{RegionNames.rb03}"
+b004_b003 = f"{RegionNames.b004}->{RegionNames.b003}"
+b004_i003 = f"{RegionNames.b004}->{RegionNames.i003}"
 
-rb03_rb01 = f"{RegionNames.rb03}->{RegionNames.rb01}"
+# (C)liff
+c001_c002 = f"{RegionNames.c001}->{RegionNames.c002}"
+c001_e009 = f"{RegionNames.b003}->{RegionNames.b002}"
 
-# BC
-bc01_shoals = f"{RegionNames.bc01}->{RegionNames.hub2}"
-bc01_bc02 = f"{RegionNames.bc01}->{RegionNames.bc02}"
+c002_c001 = f"{RegionNames.c002}->{RegionNames.c001}"
+c002_c003 = f"{RegionNames.c002}->{RegionNames.c003}"
 
-bc02_bc01 = f"{RegionNames.bc02}->{RegionNames.bc01}"
-bc02_bc03 = f"{RegionNames.bc02}->{RegionNames.bc03}"
-bc02_bc05 = f"{RegionNames.bc02}->{RegionNames.bc05}"
+c003_c002 = f"{RegionNames.c003}->{RegionNames.c002}"
+c003_c004 = f"{RegionNames.c003}->{RegionNames.c004}"
 
-bc03_bc02 = f"{RegionNames.bc03}->{RegionNames.bc02}"
-bc03_bc04 = f"{RegionNames.bc03}->{RegionNames.bc04}"
+c004_c003 = f"{RegionNames.c004}->{RegionNames.c003}"
+c004_c005 = f"{RegionNames.c004}->{RegionNames.c005}"
 
-bc04_bc03 = f"{RegionNames.bc04}->{RegionNames.bc03}"
-bc04_bc02 = f"{RegionNames.bc04}->{RegionNames.bc02}"
+c005_c004 = f"{RegionNames.c002}->{RegionNames.c001}"
+c005_c006 = f"{RegionNames.c002}->{RegionNames.c003}"
+c005_e003 = f"{RegionNames.c002}->{RegionNames.c001}"
 
-bc05_bc02 = f"{RegionNames.bc05}->{RegionNames.bc02}"
+c006_c005 = f"{RegionNames.c006}->{RegionNames.c005}"
+c006_c007 = f"{RegionNames.c006}->{RegionNames.c007}"
 
-# SM
-sm01_hub2 = f"{RegionNames.sm01}->{RegionNames.hub2}"
-sm01_sm02 = f"{RegionNames.sm01}->{RegionNames.sm02}"
-sm01_sm03 = f"{RegionNames.sm01}->{RegionNames.sm03}"
-sm01_sm04 = f"{RegionNames.sm01}->{RegionNames.sm04}"
+c007_c006 = f"{RegionNames.c007}->{RegionNames.c006}"
+c007_g001 = f"{RegionNames.c007}->{RegionNames.g001}"
 
-sm02_sm01 = f"{RegionNames.sm02}->{RegionNames.sm01}"
+# H(e)dge Maze
+e001_hub1 = f"{RegionNames.e001}->{RegionNames.hub1}"
+e001_e002 = f"{RegionNames.e001}->{RegionNames.e002}"
+e001_e009 = f"{RegionNames.e001}->{RegionNames.e009}"
 
-sm03_sm01 = f"{RegionNames.sm03}->{RegionNames.sm01}"
+e002_e001 = f"{RegionNames.e002}->{RegionNames.e001}"
+e002_e003 = f"{RegionNames.e002}->{RegionNames.e003}"
 
-sm04_sm01 = f"{RegionNames.sm04}->{RegionNames.sm01}"
+e003_e002 = f"{RegionNames.e003}->{RegionNames.e002}"
+e003_e004 = f"{RegionNames.e003}->{RegionNames.e004}"
+e003_c005 = f"{RegionNames.e003}->{RegionNames.c005}"
 
-# B2
-b2_hub2 = f"{RegionNames.b2}->{RegionNames.hub2}"
-b2_hub3 = f"{RegionNames.b2}->{RegionNames.hub3}"
+e004_e003 = f"{RegionNames.e004}->{RegionNames.e003}"
+e004_e005 = f"{RegionNames.e004}->{RegionNames.e005}"
 
-# Hub3
-hub3_hub2 = f"{RegionNames.hub3}->{RegionNames.hub2}"
-hub3_cb = f"{RegionNames.hub3}->{RegionNames.cb}"
-hub3_kk = f"{RegionNames.hub3}->{RegionNames.kk}"
-hub3_kf01 = f"{RegionNames.hub3}->{RegionNames.kf01}"
-hub3_gy01 = f"{RegionNames.hub3}->{RegionNames.gy01}"
-hub3_db01 = f"{RegionNames.hub3}->{RegionNames.db01}"
+e005_e004 = f"{RegionNames.e005}->{RegionNames.e004}"
+e005_e006 = f"{RegionNames.e005}->{RegionNames.e006}"
 
-# KK
-kk_hub3 = f"{RegionNames.kk}->{RegionNames.hub3}"
+e006_e005 = f"{RegionNames.e006}->{RegionNames.e005}"
+e006_e007 = f"{RegionNames.e006}->{RegionNames.e007}"
 
-# CB
-cb_hub3 = f"{RegionNames.cb}->{RegionNames.hub3}"
-cb_b3 = f"{RegionNames.cb}->{RegionNames.b3}"
+e007_e006 = f"{RegionNames.e007}->{RegionNames.e006}"
+e007_e008 = f"{RegionNames.e007}->{RegionNames.e008}"
 
-# KF
-kf01_hub3 = f"{RegionNames.kf01}->{RegionNames.hub3}"
-kf01_kf02 = f"{RegionNames.kf01}->{RegionNames.kf02}"
-kf01_kf05 = f"{RegionNames.kf01}->{RegionNames.kf05}"
+e008_e007 = f"{RegionNames.e008}->{RegionNames.e007}"
+e008_e009 = f"{RegionNames.e008}->{RegionNames.e009}"
 
-kf02_kf01 = f"{RegionNames.kf02}->{RegionNames.kf01}"
-kf02_kf04 = f"{RegionNames.kf02}->{RegionNames.kf04}"
+e009_e001 = f"{RegionNames.e009}->{RegionNames.e001}"
+e009_e008 = f"{RegionNames.e009}->{RegionNames.e008}"
+e009_c001 = f"{RegionNames.e009}->{RegionNames.c001}"
 
-kf04_kf05 = f"{RegionNames.kf04}->{RegionNames.kf05}"
-kf04_kf02 = f"{RegionNames.kf04}->{RegionNames.kf02}"
+# Fishing Village
+f001_hub1 = f"{RegionNames.f001}->{RegionNames.hub1}"
+f001_f003 = f"{RegionNames.f001}->{RegionNames.f003}"
 
-kf05_kf04 = f"{RegionNames.kf05}->{RegionNames.kf04}"
-kf05_kf01 = f"{RegionNames.kf05}->{RegionNames.kf01}"
+f003_f001 = f"{RegionNames.f003}->{RegionNames.f001}"
+f003_f004 = f"{RegionNames.f003}->{RegionNames.f004}"
+f003_f009 = f"{RegionNames.f003}->{RegionNames.f009}"
+f003_p001 = f"{RegionNames.f003}->{RegionNames.p001}"
 
-# GY
-gy01_hub3 = f"{RegionNames.gy01}->{RegionNames.hub3}"
-gy01_gy02 = f"{RegionNames.gy01}->{RegionNames.gy02}"
+f004_f003 = f"{RegionNames.f004}->{RegionNames.f003}"
+f004_f005 = f"{RegionNames.f004}->{RegionNames.f005}"
 
-gy02_gy01 = f"{RegionNames.gy02}->{RegionNames.gy01}"
-gy02_gy03 = f"{RegionNames.gy02}->{RegionNames.gy03}"
+f005_f004 = f"{RegionNames.f005}->{RegionNames.f004}"
+f005_f006 = f"{RegionNames.f005}->{RegionNames.f006}"
 
-gy03_gy02 = f"{RegionNames.gy03}->{RegionNames.gy02}"
-gy03_gy04 = f"{RegionNames.gy03}->{RegionNames.gy04}"
+f006_f005 = f"{RegionNames.f006}->{RegionNames.f005}"
+f006_f007 = f"{RegionNames.f006}->{RegionNames.f007}"
 
-gy04_gy03 = f"{RegionNames.gy04}->{RegionNames.gy03}"
-gy04_gy01 = f"{RegionNames.gy04}->{RegionNames.gy01}"
+f007_f006 = f"{RegionNames.f007}->{RegionNames.f006}"
+f007_f008 = f"{RegionNames.f007}->{RegionNames.f008}"
 
-# DB
-db01_hub3 = f"{RegionNames.db01}->{RegionNames.hub3}"
-db01_db02 = f"{RegionNames.db01}->{RegionNames.db02}"
-db01_db03 = f"{RegionNames.db01}->{RegionNames.db03}"
-db01_db04 = f"{RegionNames.db01}->{RegionNames.db04}"
-db01_db05 = f"{RegionNames.db01}->{RegionNames.db05}"
+f008_f007 = f"{RegionNames.f008}->{RegionNames.f007}"
+f008_f009 = f"{RegionNames.f008}->{RegionNames.f009}"
 
-db02_db01 = f"{RegionNames.db02}->{RegionNames.db01}"
+f009_f003 = f"{RegionNames.f009}->{RegionNames.f003}"
+f009_f008 = f"{RegionNames.f009}->{RegionNames.f008}"
+f009_f010 = f"{RegionNames.f009}->{RegionNames.f010}"
 
-db03_db01 = f"{RegionNames.db03}->{RegionNames.db01}"
+f0010_f009 = f"{RegionNames.f010}->{RegionNames.f009}"
 
-db04_db01 = f"{RegionNames.db04}->{RegionNames.db01}"
+# Graveyard
+g001_g002 = f"{RegionNames.g001}->{RegionNames.g002}"
 
-db05_db01 = f"{RegionNames.db05}->{RegionNames.db01}"
+g002_g001 = f"{RegionNames.g001}->{RegionNames.g002}"
+g002_g003 = f"{RegionNames.g001}->{RegionNames.g002}"
 
-# B3
-b3_cb = f"{RegionNames.b3}->{RegionNames.cb}"
+g003_g002 = f"{RegionNames.g003}->{RegionNames.g002}"
+g003_g004 = f"{RegionNames.g003}->{RegionNames.g004}"
+g003_g005 = f"{RegionNames.g003}->{RegionNames.g005}"
+g003_g006 = f"{RegionNames.g003}->{RegionNames.g006}"
+g003_g008 = f"{RegionNames.g003}->{RegionNames.g008}"
+
+g004_g003 = f"{RegionNames.g004}->{RegionNames.g003}"
+
+g005_g003 = f"{RegionNames.g005}->{RegionNames.g003}"
+g005_g006 = f"{RegionNames.g005}->{RegionNames.g006}"
+g005_g007 = f"{RegionNames.g005}->{RegionNames.g007}"
+
+g006_g005 = f"{RegionNames.g006}->{RegionNames.g005}"
+g006_g003 = f"{RegionNames.g006}->{RegionNames.g003}"
+
+g007_g005 = f"{RegionNames.g007}->{RegionNames.g005}"
+g007_g008 = f"{RegionNames.g007}->{RegionNames.g008}"
+
+g008_g003 = f"{RegionNames.g008}->{RegionNames.g003}"
+g008_g007 = f"{RegionNames.g008}->{RegionNames.g007}"
+g008_g009 = f"{RegionNames.g008}->{RegionNames.g009}"
+
+g009_hub1 = f"{RegionNames.g009}->{RegionNames.hub1}"
+g009_g009 = f"{RegionNames.g009}->{RegionNames.g009}"
+
+# Myst(i)c Manor
+i001_i020 = f"{RegionNames.i001}->{RegionNames.i020}"
+i001_r001 = f"{RegionNames.i001}->{RegionNames.r001}"
+i001_hub1 = f"{RegionNames.i001}->{RegionNames.hub1}"
+
+i003_b004 = f"{RegionNames.i003}->{RegionNames.b004}"
+i003_i021 = f"{RegionNames.i003}->{RegionNames.i021}"
+i003_i004 = f"{RegionNames.i003}->{RegionNames.i004}"
+
+i004_o001 = f"{RegionNames.i004}->{RegionNames.o001}"
+i004_i003 = f"{RegionNames.i004}->{RegionNames.i003}"
+i004_i005 = f"{RegionNames.i004}->{RegionNames.i005}"
+
+i005_i004 = f"{RegionNames.i005}->{RegionNames.i004}"
+i005_i006 = f"{RegionNames.i005}->{RegionNames.i006}"
+
+i006_r001 = f"{RegionNames.i006}->{RegionNames.r001}"
+i006_i005 = f"{RegionNames.i006}->{RegionNames.i005}"
+
+i020_i001 = f"{RegionNames.i020}->{RegionNames.i001}"
+i020_i021 = f"{RegionNames.i020}->{RegionNames.i021}"
+
+i021_i020 = f"{RegionNames.i021}->{RegionNames.i020}"
+i021_i003 = f"{RegionNames.i021}->{RegionNames.i003}"
+
+# Lighthouse
+l011_f008 = f"{RegionNames.l011}->{RegionNames.f008}"
+l011_1013 = f"{RegionNames.l011}->{RegionNames.l013}"
+
+l013_l011 = f"{RegionNames.l013}->{RegionNames.l011}"
+l013_1014 = f"{RegionNames.l013}->{RegionNames.l014}"
+
+l014_l013 = f"{RegionNames.l014}->{RegionNames.l013}"
+l014_1015 = f"{RegionNames.l014}->{RegionNames.l015}"
+
+l015_l014 = f"{RegionNames.l015}->{RegionNames.l014}"
+l015_1017 = f"{RegionNames.l015}->{RegionNames.l017}"
+l015_l018 = f"{RegionNames.l015}->{RegionNames.l018}"
+l015_1019 = f"{RegionNames.l015}->{RegionNames.l019}"
+
+l017_l015 = f"{RegionNames.l017}->{RegionNames.l015}"
+l017_1018 = f"{RegionNames.l017}->{RegionNames.l018}"
+
+l018_l019 = f"{RegionNames.l018}->{RegionNames.l019}"
+l018_p001 = f"{RegionNames.l018}->{RegionNames.p001}"
+l018_l015 = f"{RegionNames.l018}->{RegionNames.l015}"
+
+l019_l015 = f"{RegionNames.l019}->{RegionNames.l015}"
+l019_1018 = f"{RegionNames.l019}->{RegionNames.l018}"
+
+# R(O)oftops
+o001_r005 = f"{RegionNames.o001}->{RegionNames.r005}"
+o001_o002 = f"{RegionNames.o001}->{RegionNames.o002}"
+o001_o008 = f"{RegionNames.o001}->{RegionNames.o008}"
+
+o002_o001 = f"{RegionNames.o002}->{RegionNames.o001}"
+o002_o003 = f"{RegionNames.o002}->{RegionNames.o003}"
+
+o003_o002 = f"{RegionNames.o003}->{RegionNames.o002}"
+o003_o004 = f"{RegionNames.o003}->{RegionNames.o004}"
+
+o004_o003 = f"{RegionNames.o004}->{RegionNames.o003}"
+o004_o005 = f"{RegionNames.o004}->{RegionNames.o005}"
+
+o005_o004 = f"{RegionNames.o005}->{RegionNames.o004}"
+o005_o006 = f"{RegionNames.o005}->{RegionNames.o006}"
+
+o006_o005 = f"{RegionNames.o006}->{RegionNames.o005}"
+o006_o008 = f"{RegionNames.o006}->{RegionNames.o008}"
+
+o008_o001 = f"{RegionNames.o008}->{RegionNames.o001}"
+o008_o006 = f"{RegionNames.o008}->{RegionNames.o006}"
+
+# Secret (P)assage
+p001_f003 = f"{RegionNames.p001}->{RegionNames.f003}"
+p001_p002 = f"{RegionNames.p001}->{RegionNames.p002}"
+p001_p005 = f"{RegionNames.p001}->{RegionNames.p005}"
+p001_l018 = f"{RegionNames.p001}->{RegionNames.l018}"
+
+p002_p001 = f"{RegionNames.p002}->{RegionNames.p001}"
+p002_p003 = f"{RegionNames.p002}->{RegionNames.p003}"
+p002_s001 = f"{RegionNames.p002}->{RegionNames.s001}"
+
+p003_p002 = f"{RegionNames.p003}->{RegionNames.p002}"
+p003_p004 = f"{RegionNames.p003}->{RegionNames.p004}"
+
+p004_p003 = f"{RegionNames.p004}->{RegionNames.p003}"
+p004_p005 = f"{RegionNames.p004}->{RegionNames.p005}"
+p004_b003 = f"{RegionNames.p004}->{RegionNames.b003}"
+
+p005_p001 = f"{RegionNames.p005}->{RegionNames.p001}"
+p005_p004 = f"{RegionNames.p005}->{RegionNames.p004}"
+p005_b001 = f"{RegionNames.p005}->{RegionNames.b001}"
+
+# Balcony (R)
+r001_i001 = f"{RegionNames.r001}->{RegionNames.i001}"
+r001_i006 = f"{RegionNames.r001}->{RegionNames.i006}"
+r001_r020 = f"{RegionNames.r001}->{RegionNames.r020}"
+
+r003_r021 = f"{RegionNames.r003}->{RegionNames.r021}"
+r003_r004 = f"{RegionNames.r003}->{RegionNames.r004}"
+
+r004_r003 = f"{RegionNames.r004}->{RegionNames.r003}"
+r004_r005 = f"{RegionNames.r004}->{RegionNames.r005}"
+
+r005_o001 = f"{RegionNames.r005}->{RegionNames.o001}"
+r005_r004 = f"{RegionNames.r005}->{RegionNames.r004}"
+
+r020_r001 = f"{RegionNames.r020}->{RegionNames.r001}"
+r020_r021 = f"{RegionNames.r020}->{RegionNames.r021}"
+
+r021_r020 = f"{RegionNames.r021}->{RegionNames.r020}"
+r021_r003 = f"{RegionNames.r021}->{RegionNames.r003}"
+
+# Super Secret Lab
+s001_p002 = f"{RegionNames.s001}->{RegionNames.p002}"
+s001_s002 = f"{RegionNames.s001}->{RegionNames.s002}"
+
+s002_s001 = f"{RegionNames.s002}->{RegionNames.s001}"
+s002_s003 = f"{RegionNames.s002}->{RegionNames.s003}"
+s002_s004 = f"{RegionNames.s002}->{RegionNames.s004}"
+
+s003_s002 = f"{RegionNames.s003}->{RegionNames.s002}"
+s003_s004 = f"{RegionNames.s003}->{RegionNames.s004}"
+
+s004_s003 = f"{RegionNames.s004}->{RegionNames.s003}"
+s004_s005 = f"{RegionNames.s004}->{RegionNames.s005}"
+
+s005_s004 = f"{RegionNames.s005}->{RegionNames.s004}"
+s005_s006 = f"{RegionNames.s005}->{RegionNames.s006}"
+s005_i001 = f"{RegionNames.s005}->{RegionNames.i001}"
+s005_hub1 = f"{RegionNames.s005}->{RegionNames.hub1}"
+
+# Wrecked Ships
+w020_w021 = f"{RegionNames.w020}->{RegionNames.w021}"
+w020_w026 = f"{RegionNames.w020}->{RegionNames.w026}"
+w020_l015 = f"{RegionNames.w020}->{RegionNames.l015}"
+
+w021_w020 = f"{RegionNames.w021}->{RegionNames.w020}"
+w021_w022 = f"{RegionNames.w021}->{RegionNames.w022}"
+
+w022_w021 = f"{RegionNames.w022}->{RegionNames.w021}"
+w022_w023 = f"{RegionNames.w022}->{RegionNames.w023}"
+
+w023_w022 = f"{RegionNames.w023}->{RegionNames.w022}"
+w023_w025 = f"{RegionNames.w023}->{RegionNames.w025}"
+
+w025_w023 = f"{RegionNames.w025}->{RegionNames.w023}"
+w025_w026 = f"{RegionNames.w025}->{RegionNames.w026}"
+
+w026_w020 = f"{RegionNames.w026}->{RegionNames.w020}"
+w026_w025 = f"{RegionNames.w026}->{RegionNames.w025}"
+w026_w027 = f"{RegionNames.w026}->{RegionNames.w027}"
+w026_w028 = f"{RegionNames.w026}->{RegionNames.w028}"
+
+w027_w026 = f"{RegionNames.w027}->{RegionNames.w026}"
+w027_w028 = f"{RegionNames.w027}->{RegionNames.w028}"
+
+w028_w026 = f"{RegionNames.w028}->{RegionNames.w026}"

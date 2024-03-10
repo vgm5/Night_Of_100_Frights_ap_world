@@ -107,7 +107,7 @@ s005 = f"{LevelNames.s_short}05"
 s006 = f"{LevelNames.s_short}06"
 
 # W
-w001 = f"{LevelNames.w_short}01"
+w020 = f"{LevelNames.w_short}01"
 w021 = f"{LevelNames.w_short}02"
 w022 = f"{LevelNames.w_short}03"
 w023 = f"{LevelNames.w_short}04"
