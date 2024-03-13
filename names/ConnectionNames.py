@@ -5,7 +5,7 @@ start_game = "Start Game"
 # Hub
 hub1_i001 = f"{RegionNames.hub1}->{RegionNames.i001}"
 hub1_hub2 = f"{RegionNames.hub1}->{RegionNames.hub2}"
-hub1_hub3 = f"{RegionNames.hub1}->{RegionNames.hub2}"
+hub1_hub3 = f"{RegionNames.hub1}->{RegionNames.hub3}"
 hub1_e001 = f"{RegionNames.hub1}->{RegionNames.e001}"
 hub1_f001 = f"{RegionNames.hub1}->{RegionNames.f001}"
 
@@ -31,7 +31,7 @@ b004_i003 = f"{RegionNames.b004}->{RegionNames.i003}"
 
 # (C)liff
 c001_c002 = f"{RegionNames.c001}->{RegionNames.c002}"
-c001_e009 = f"{RegionNames.b003}->{RegionNames.b002}"
+c001_e009 = f"{RegionNames.c001}->{RegionNames.e009}"
 
 c002_c001 = f"{RegionNames.c002}->{RegionNames.c001}"
 c002_c003 = f"{RegionNames.c002}->{RegionNames.c003}"
@@ -42,9 +42,9 @@ c003_c004 = f"{RegionNames.c003}->{RegionNames.c004}"
 c004_c003 = f"{RegionNames.c004}->{RegionNames.c003}"
 c004_c005 = f"{RegionNames.c004}->{RegionNames.c005}"
 
-c005_c004 = f"{RegionNames.c002}->{RegionNames.c001}"
-c005_c006 = f"{RegionNames.c002}->{RegionNames.c003}"
-c005_e003 = f"{RegionNames.c002}->{RegionNames.c001}"
+c005_c004 = f"{RegionNames.c005}->{RegionNames.c004}"
+c005_c006 = f"{RegionNames.c005}->{RegionNames.c006}"
+c005_e003 = f"{RegionNames.c005}->{RegionNames.e003}"
 
 c006_c005 = f"{RegionNames.c006}->{RegionNames.c005}"
 c006_c007 = f"{RegionNames.c006}->{RegionNames.c007}"
@@ -106,18 +106,21 @@ f007_f008 = f"{RegionNames.f007}->{RegionNames.f008}"
 
 f008_f007 = f"{RegionNames.f008}->{RegionNames.f007}"
 f008_f009 = f"{RegionNames.f008}->{RegionNames.f009}"
+f008_l011 = f"{RegionNames.f008}->{RegionNames.l011}"
+f008_hub1 = f"{RegionNames.f008}->{RegionNames.hub1}"
 
 f009_f003 = f"{RegionNames.f009}->{RegionNames.f003}"
 f009_f008 = f"{RegionNames.f009}->{RegionNames.f008}"
 f009_f010 = f"{RegionNames.f009}->{RegionNames.f010}"
 
-f0010_f009 = f"{RegionNames.f010}->{RegionNames.f009}"
+f010_f009 = f"{RegionNames.f010}->{RegionNames.f009}"
 
 # Graveyard
 g001_g002 = f"{RegionNames.g001}->{RegionNames.g002}"
+g001_c007 = f"{RegionNames.g001}->{RegionNames.c007}"
 
-g002_g001 = f"{RegionNames.g001}->{RegionNames.g002}"
-g002_g003 = f"{RegionNames.g001}->{RegionNames.g002}"
+g002_g001 = f"{RegionNames.g002}->{RegionNames.g001}"
+g002_g003 = f"{RegionNames.g002}->{RegionNames.g003}"
 
 g003_g002 = f"{RegionNames.g003}->{RegionNames.g002}"
 g003_g004 = f"{RegionNames.g003}->{RegionNames.g004}"
@@ -142,7 +145,7 @@ g008_g007 = f"{RegionNames.g008}->{RegionNames.g007}"
 g008_g009 = f"{RegionNames.g008}->{RegionNames.g009}"
 
 g009_hub1 = f"{RegionNames.g009}->{RegionNames.hub1}"
-g009_g009 = f"{RegionNames.g009}->{RegionNames.g009}"
+g009_g008 = f"{RegionNames.g009}->{RegionNames.g008}"
 
 # Myst(i)c Manor
 i001_i020 = f"{RegionNames.i001}->{RegionNames.i020}"
@@ -171,28 +174,28 @@ i021_i003 = f"{RegionNames.i021}->{RegionNames.i003}"
 
 # Lighthouse
 l011_f008 = f"{RegionNames.l011}->{RegionNames.f008}"
-l011_1013 = f"{RegionNames.l011}->{RegionNames.l013}"
+l011_l013 = f"{RegionNames.l011}->{RegionNames.l013}"
 
 l013_l011 = f"{RegionNames.l013}->{RegionNames.l011}"
-l013_1014 = f"{RegionNames.l013}->{RegionNames.l014}"
+l013_l014 = f"{RegionNames.l013}->{RegionNames.l014}"
 
 l014_l013 = f"{RegionNames.l014}->{RegionNames.l013}"
-l014_1015 = f"{RegionNames.l014}->{RegionNames.l015}"
+l014_l015 = f"{RegionNames.l014}->{RegionNames.l015}"
 
 l015_l014 = f"{RegionNames.l015}->{RegionNames.l014}"
-l015_1017 = f"{RegionNames.l015}->{RegionNames.l017}"
+l015_l017 = f"{RegionNames.l015}->{RegionNames.l017}"
 l015_l018 = f"{RegionNames.l015}->{RegionNames.l018}"
-l015_1019 = f"{RegionNames.l015}->{RegionNames.l019}"
+l015_l019 = f"{RegionNames.l015}->{RegionNames.l019}"
 
 l017_l015 = f"{RegionNames.l017}->{RegionNames.l015}"
-l017_1018 = f"{RegionNames.l017}->{RegionNames.l018}"
+l017_l018 = f"{RegionNames.l017}->{RegionNames.l018}"
 
 l018_l019 = f"{RegionNames.l018}->{RegionNames.l019}"
 l018_p001 = f"{RegionNames.l018}->{RegionNames.p001}"
 l018_l015 = f"{RegionNames.l018}->{RegionNames.l015}"
 
 l019_l015 = f"{RegionNames.l019}->{RegionNames.l015}"
-l019_1018 = f"{RegionNames.l019}->{RegionNames.l018}"
+l019_l018 = f"{RegionNames.l019}->{RegionNames.l018}"
 
 # R(O)oftops
 o001_r005 = f"{RegionNames.o001}->{RegionNames.r005}"
@@ -276,6 +279,8 @@ s005_s004 = f"{RegionNames.s005}->{RegionNames.s004}"
 s005_s006 = f"{RegionNames.s005}->{RegionNames.s006}"
 s005_i001 = f"{RegionNames.s005}->{RegionNames.i001}"
 s005_hub1 = f"{RegionNames.s005}->{RegionNames.hub1}"
+
+s006_s005 = f"{RegionNames.s006}->{RegionNames.s005}"
 
 # Wrecked Ships
 w020_w021 = f"{RegionNames.w020}->{RegionNames.w021}"

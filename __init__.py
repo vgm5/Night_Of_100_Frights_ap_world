@@ -9,26 +9,24 @@ from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import Component, components, Type, SuffixIdentifier
 from .Events import create_events
 from .Items import item_table, NO100FItem
-from .Locations import location_table, BfBBLocation
+from .Locations import location_table, NO100FLocation
 from .Regions import create_regions
-from .Rom import BfBBDeltaPatch
+from .Rom import NO100FDeltaPatch
 from .Rules import set_rules
 from .names import ItemNames, ConnectionNames
-import NO100FOptions
+from .Options import NO100FOptions
 
 
 def run_client():
     print('running NO100F client')
     from worlds.no100f.NO100FClient import main  # lazy import
-    file_types = (('BfBB Patch File', ('.apbfbb',)), ('NGC iso', ('.gcm',)),)
-    kwargs = {'patch_file': Utils.open_filename("Select .apbfbb", file_types)}
+    file_types = (('NO100F Patch File', ('.apno100f',)), ('NGC iso', ('.gcm',)),)
+    kwargs = {'patch_file': Utils.open_filename("Select .apno100f", file_types)}
     p = Process(target=main, kwargs=kwargs)
     p.start()
 
-
     components.append(Component("NO100F Client", func=run_client, component_type=Type.CLIENT,
                             file_identifier=SuffixIdentifier('.apno100f')))
-
 
 class NO100FWeb(WebWorld):
     tutorials = [Tutorial(
@@ -45,7 +43,6 @@ class NO100FWeb(WebWorld):
 class NightOf100FrightsWorld(World):
     """
     Scooby Doo: Night of 100 Frights
-    ToDo
     """
     game = "Night of 100 Frights"
     options_dataclass = NO100FOptions
@@ -65,8 +62,8 @@ class NightOf100FrightsWorld(World):
         # Generate item pool
         itempool = [ItemNames.GumPower, ItemNames.SoapPower, ItemNames.SpringPower, ItemNames.PoundPower, ItemNames.HelmetPower, ItemNames.UmbrellaPower, ItemNames.ShockwavePower,
                     ItemNames.BootsPower, ItemNames.PlungerPower,ItemNames.SlipperPower, ItemNames.LampshadePower, ItemNames.BlackknightPower, ItemNames.ShovelPower]
-        itempool += [ItemNames.SoapAmmoUpgrade] * 9
-        itempool += [ItemNames.GumAmmoUpgrade] * 6
+        itempool += [ItemNames.SoapAmmoUpgrade] * 8
+        itempool += [ItemNames.GumAmmoUpgrade] * 7
        # if self.options.include_keys.value:
        #     itempool += [ItemNames."Keys"]
         if self.options.include_monster_tokens:
@@ -90,7 +87,7 @@ class NightOf100FrightsWorld(World):
 
     def set_rules(self):
         create_events(self.multiworld, self.player)
-        set_rules(self.multiworld, self.options, self.player, self.gate_costs)
+        set_rules(self.multiworld, self.options, self.player)
 
     def create_regions(self):
         create_regions(self.multiworld, self.options, self.player)
@@ -111,8 +108,7 @@ class NightOf100FrightsWorld(World):
             #if self.snack_counter > required number for all SnackGates:
             #    classification = ItemClassification.progression_skip_balancing
 
-        item = NO100FItem(name, classification,
-                        item_data.id, self.player)
+        item = NO100FItem(name, classification, item_data.id, self.player)
 
         return item
 
@@ -120,12 +116,12 @@ class NightOf100FrightsWorld(World):
         return
 
     def generate_output(self, output_directory: str) -> None:
-        patch = BfBBDeltaPatch(path=os.path.join(output_directory,
-                                                 f"{self.multiworld.get_out_file_name_base(self.player)}{BfBBDeltaPatch.patch_file_ending}"),
+        patch = NO100FDeltaPatch(path=os.path.join(output_directory,
+                                                 f"{self.multiworld.get_out_file_name_base(self.player)}{NO100FDeltaPatch.patch_file_ending}"),
                                player=self.player,
                                player_name=self.multiworld.get_player_name(self.player),
                                #include_snacks=bool(self.options.include_snacks.value),
-                               include_keys=bool(self.options.include_keys.value),
+                               #include_keys=bool(self.options.include_keys.value),
                                include_monster_tokens=bool(self.options.include_monster_tokens.value),
                                seed=self.multiworld.seed_name.encode('utf-8'),
                                )

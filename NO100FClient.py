@@ -85,8 +85,8 @@ class Upgrades(Enum):               #Bit assigned at 0x80235098
     GumMaxAmmo       = 0xFFFD7A85
     Gum_Upgrade      = 0x362E34B4
     GumUpgrade       = 0x7EDE8BAD
-    BubblePack       = 0xBF9B5D09   #Soap upgrades increment 0x802350AC by 5
-    Soap__Box        = 0xD656A182
+    BubblePack       = 0xBF9B5D09
+    Soap__Box        = 0xD656A182   #Soap upgrades increment 0x802350AC by 5
     SoapBox1         = 0x3550C423
     SoapOverAcid2    = 0x0C7A534E
     Soap_Box         = 0xDEC7BAA7
@@ -2377,9 +2377,10 @@ UPGRADES_PICKUP_IDS = {
     (base_id + 16): (b's005', Upgrades.GumOverAcid2.value),
     (base_id + 17): (b'o001', Upgrades.Gum_Upgrade.value),
     (base_id + 18): (b'g006', Upgrades.GumPack.value),
-    (base_id + 19): (b'e007', Upgrades.SoapBox1.value),
-    (base_id + 20): (b'g003', Upgrades.Soap__Box.value),
-    (base_id + 21): (b'r005', Upgrades.SoapPack.value),
+    (base_id + 19): (b'r020', Upgrades.BubblePack.value),
+    (base_id + 20): (b'e007', Upgrades.SoapBox1.value),
+    (base_id + 21): (b'g003', Upgrades.Soap__Box.value),
+    (base_id + 22): (b'r005', Upgrades.SoapPack.value),
     (base_id + 22): (b'r020', Upgrades.BubblePack.value),
     (base_id + 23): (b'r021', Upgrades.SoapPack.value),
     (base_id + 24): (b'l019', Upgrades.SoapBox.value),
@@ -2412,6 +2413,7 @@ MONSTERTOKENS_PICKUP_IDS = {
     (base_id + 100 + 20): (b'g002', MonsterTokens.MT_ZOMBIE.value),
 }
 
+"""
 KEYS_PICKUP_IDS = {
     (base_id + 200 + 0): (b'b002', Keys.KEY1.value),
     (base_id + 200 + 1): (b'b002', Keys.KEY2.value),
@@ -2474,7 +2476,7 @@ KEYS_PICKUP_IDS = {
     (base_id + 200 + 58): (b'w027', Keys.KEY03.value),
     (base_id + 200 + 59): (b'w027', Keys.KEY04.value),
 }
-
+"""
 valid_scenes = [
     b'b001', b'b002', b'b003', b'b004',
     b'c001', b'c002', b'c003', b'c004', b'c005', b'c006', b'c007',
@@ -2508,12 +2510,12 @@ class NO100FCommandProcessor(ClientCommandProcessor):
 
 class NO100FContext(CommonContext):
     command_processor = NO100FCommandProcessor
-    game = 'Scooby Doo: Night of 100 Frights'
+    game = "Night of 100 Frights"
     items_handling = 0b111  # full remote
 
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
-        self.included_check_types: CheckTypes = CheckTypes.Upgrades
+        self.included_check_types: CheckTypes = CheckTypes.UPGRADES
         self.items_received_2 = []
         self.dolphin_sync_task = None
         self.dolphin_status = CONNECTION_INITIAL_STATUS
@@ -2535,13 +2537,13 @@ class NO100FContext(CommonContext):
             self.set_notify(self.current_scene_key)
             self.last_rev_index = -1
             self.items_received_2 = []
-            self.included_check_types = CheckTypes.Upgrades
+            self.included_check_types = CheckTypes.UPGRADES
             if 'death_link' in args['slot_data']:
                 Utils.async_start(self.update_death_link(bool(args['slot_data']['death_link'])))
             if 'include_MonsterTokens' in args['slot_data'] and args['slot_data']['include_MonsterTokens']:
-                self.included_check_types |= CheckTypes.MonsterTokens
+                self.included_check_types |= CheckTypes.MONSTERTOKENS
             if 'include_Keys' in args['slot_data'] and args['slot_data']['include_Keys']:
-                self.included_check_types |= CheckTypes.Keys
+                self.included_check_types |= CheckTypes.KEYS
 #            if 'include_Snacks' in args['slot_data'] and args['slot_data']['include_Snacks']:
 #                self.included_check_types |= CheckTypes.Snacks
         if cmd == 'ReceivedItems':
@@ -2551,7 +2553,7 @@ class NO100FContext(CommonContext):
                     self.items_received_2.append((item, self.last_rev_index))
                     self.last_rev_index += 1
             self.items_received_2.sort(key=lambda v: v[1])
-            self._update_item_counts(args)
+           # self._update_item_counts(args)
 
     def on_deathlink(self, data: Dict[str, Any]) -> None:
         super().on_deathlink(data)
@@ -3158,7 +3160,7 @@ async def patch_and_run_game(ctx: NO100FContext, patch_file):
 
 def main(connect=None, password=None, patch_file=None):
     # Text Mode to use !hint and such with games that have no text entry
-    Utils.init_logging("BfBBClient")
+    Utils.init_logging("NO100FClient")
 
     # logger.warning(f"starting {connect}, {password}, {patch_file}")
 

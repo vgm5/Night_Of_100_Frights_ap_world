@@ -14,67 +14,39 @@ from . import Patches
 from .inc.wwrando.wwlib.gcm import GCM
 from .names import ConnectionNames
 
-BFBB_HASH = "9e18f9a0032c4f3092945dc38a6517d3"
+NO100F_HASH = "9e18f9a0032c4f3092945dc38a6517d3"    #This needs to be recalculated for scoob
 
-class BfBBDeltaPatch(APContainer, metaclass=AutoPatchRegister):
-    hash = BFBB_HASH
-    game = "Battle for Bikini Bottom"
-    patch_file_ending: str = ".apbfbb"
+class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
+    hash = NO100F_HASH
+    game = "Night of 100 Frights"
+    patch_file_ending: str = ".apno100f"
     result_file_ending: str = ".gcm"
     zip_version: int = 1
-    logger = logging.getLogger("BfBBPatch")
+    logger = logging.getLogger("NO100FPatch")
 
     def __init__(self, *args: Any, **kwargs: Any):
-        self.include_socks: int = kwargs['include_socks']
-        self.include_skills: int = kwargs['include_skills']
-        self.include_golden_underwear: int = kwargs['include_golden_underwear']
-        self.include_level_items: int = kwargs['include_level_items']
-        self.include_purple_so: int = kwargs['include_purple_so']
+        self.include_monster_tokens: int = kwargs['include_monster_tokens']
         self.seed: bytes = kwargs['seed']
-        self.randomize_gate_cost: int = kwargs['randomize_gate_cost']
-        self.gate_costs: dict[str, int] = kwargs['gate_costs']
-        del kwargs['include_socks']
-        del kwargs['include_skills']
-        del kwargs['include_golden_underwear']
-        del kwargs['include_level_items']
-        del kwargs['include_purple_so']
+        del kwargs['include_monster_tokens']
         del kwargs['seed']
-        del kwargs['randomize_gate_cost']
-        del kwargs['gate_costs']
-        super(BfBBDeltaPatch, self).__init__(*args, **kwargs)
+        super(NO100FDeltaPatch, self).__init__(*args, **kwargs)
 
     def write_contents(self, opened_zipfile: zipfile.ZipFile):
-        super(BfBBDeltaPatch, self).write_contents(opened_zipfile)
+        super(NO100FDeltaPatch, self).write_contents(opened_zipfile)
         opened_zipfile.writestr("zip_version",
                                 self.zip_version.to_bytes(1, "little"),
                                 compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr("include_socks",
-                                self.include_socks.to_bytes(1, "little"),
-                                compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr("include_skills",
-                                self.include_skills.to_bytes(1, "little"),
-                                compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr("include_golden_underwear",
-                                self.include_golden_underwear.to_bytes(1, "little"),
-                                compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr("include_level_items",
-                                self.include_level_items.to_bytes(1, "little"),
-                                compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr("include_purple_so",
-                                self.include_purple_so.to_bytes(1, "little"),
+        opened_zipfile.writestr("include_monster_tokens",
+                                self.include_monster_tokens.to_bytes(1, "little"),
                                 compress_type=zipfile.ZIP_STORED)
         m = hashlib.md5()
         m.update(self.seed)
         opened_zipfile.writestr("seed",
                                 m.digest(),
                                 compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr("randomize_gate_cost",
-                                self.randomize_gate_cost.to_bytes(1, "little"),
-                                compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr(f"gate_costs.json", json.dumps(self.gate_costs))
 
     def read_contents(self, opened_zipfile: zipfile.ZipFile) -> None:
-        super(BfBBDeltaPatch, self).read_contents(opened_zipfile)
+        super(NO100FDeltaPatch, self).read_contents(opened_zipfile)
 
     @classmethod
     def get_int(cls, opened_zipfile: zipfile.ZipFile, name: str):
@@ -105,32 +77,29 @@ class BfBBDeltaPatch(APContainer, metaclass=AutoPatchRegister):
 
     @classmethod
     async def apply_hiphop_changes(cls, opened_zipfile: zipfile.ZipFile, source_iso, dest_iso):
-        randomize_gate_cost = BfBBDeltaPatch.get_int(opened_zipfile, "randomize_gate_cost")
-        gate_costs = BfBBDeltaPatch.get_json_obj(opened_zipfile, "gate_costs.json")
-        include_skills = BfBBDeltaPatch.get_bool(opened_zipfile, "include_skills")
-        include_level_items = BfBBDeltaPatch.get_bool(opened_zipfile, "include_level_items")
-        if not include_skills and not include_level_items and randomize_gate_cost == 0:
+        include_monster_tokens = NO100FDeltaPatch.get_bool(opened_zipfile, "include_monster_tokens")
+        if not include_monster_tokens:
             return
         # extract dependencies need to patch with IP
-        world_path = os.path.join(__file__[:__file__.find('worlds') + len('worlds')], 'bfbb.apworld')
+        world_path = os.path.join(__file__[:__file__.find('worlds') + len('worlds')], 'no100f.apworld')
         is_ap_world = os.path.exists(world_path)
         lib_path = os.path.abspath(os.path.dirname(__file__) + '/inc/')
         if is_ap_world:
             lib_path = os.path.expandvars('%APPDATA%/bfbb_ap/')
             with zipfile.ZipFile(world_path) as world_zip:
                 for file in world_zip.namelist():
-                    if file.startswith('bfbb/inc/packages') or file.startswith('bfbb/inc/IP'):
+                    if file.startswith('no100f/inc/packages') or file.startswith('no100f/inc/IP'):
                         try:
                             world_zip.extract(file, lib_path)
                         except:
                             cls.logger.warning(f"warning: couldn't overwrite dependency: {file}")
-            lib_path = lib_path + 'bfbb/inc/'
+            lib_path = lib_path + 'no100f/inc/'
         if lib_path not in sys.path:
             sys.path.append(lib_path)
         # print(sys.path)
         cls.logger.debug('--before pythonnet.load--')
         # setup pythonnet
-        from packages.pythonnet import load
+        from pythonnet import load
         load()
         import clr
         # extract ISO content
@@ -376,10 +345,8 @@ class BfBBDeltaPatch(APContainer, metaclass=AutoPatchRegister):
             },
         }
         files_to_check: dict[str, dict[int, list[LinkData]]] = {}
-        if include_skills:
+        if include_monster_tokens:
             files_to_check.update(files_to_check_skills)
-        if include_level_items:
-            files_to_check.update(files_to_check_lvl_items)
         HexUIntTypeConverter.Legacy = True
         editor_funcs = RandomizableArchive()
         editor_funcs.SkipTextureDisplay = True
@@ -407,22 +374,6 @@ class BfBBDeltaPatch(APContainer, metaclass=AutoPatchRegister):
                 editor_funcs.assetDictionary[id].Links = [link for link in links if link not in links_to_remove]
             editor_funcs.Save()
 
-        if randomize_gate_cost > 0:
-            editor_funcs.OpenFile(extraction_path + f'/files/hb/hb01.HIP', False, Platform.Unknown)
-            if editor_funcs.ShuffleSpatulaGatesHB01(gate_costs[ConnectionNames.hub1_bb01],
-                                                    gate_costs[ConnectionNames.hub1_gl01],
-                                                    gate_costs[ConnectionNames.hub1_b1],
-                                                    gate_costs[ConnectionNames.hub2_rb01],
-                                                    gate_costs[ConnectionNames.hub2_sm01],
-                                                    gate_costs[ConnectionNames.hub2_b2],
-                                                    gate_costs[ConnectionNames.hub3_kf01],
-                                                    gate_costs[ConnectionNames.hub3_gy01]):
-                editor_funcs.ImportNumbers()
-            editor_funcs.Save()
-        editor_funcs.OpenFile(extraction_path + f'/files/hb/hb08.HIP', False, Platform.Unknown)
-        if editor_funcs.ShuffleSpatulaGatesHB08(gate_costs[ConnectionNames.cb_b3]):
-            editor_funcs.ImportNumbers()
-        editor_funcs.Save()
         cls.logger.info('--done making changes--')
         # repack ISO (as gcm for better distinction)
         cls.logger.info('--repacking--')
@@ -441,24 +392,16 @@ class BfBBDeltaPatch(APContainer, metaclass=AutoPatchRegister):
     async def apply_binary_changes(cls, opened_zipfile: zipfile.ZipFile, iso):
         cls.logger.info('--binary patching--')
         # get slot name and seed hash
-        manifest = BfBBDeltaPatch.get_json_obj(opened_zipfile, "archipelago.json")
+        manifest = NO100FDeltaPatch.get_json_obj(opened_zipfile, "archipelago.json")
         slot_name = manifest["player_name"]
         slot_name_bytes = slot_name.encode('utf-8')
         slot_name_offset = 0x2AB980
-        seed_hash = BfBBDeltaPatch.get_seed_hash(opened_zipfile)
+        seed_hash = NO100FDeltaPatch.get_seed_hash(opened_zipfile)
         seed_hash_offset = slot_name_offset + 0x40
         # always apply these patches
         patches = [Patches.AP_SAVE_LOAD, Patches.SPATS_REWARD_FIX]
         # conditional patches
-        include_socks = BfBBDeltaPatch.get_bool(opened_zipfile, "include_socks")
-        include_golden_underwear = BfBBDeltaPatch.get_bool(opened_zipfile, "include_golden_underwear")
-        include_level_items = BfBBDeltaPatch.get_bool(opened_zipfile, "include_level_items")
-        if include_socks:
-            patches += [Patches.SOCKS_REWARD_FIX]
-        if include_golden_underwear:
-            patches += [Patches.GOLDEN_UNDERWEAR_REWARD_FIX]
-        if include_level_items:
-            patches += [Patches.LVL_ITEM_REWARD_FIX]
+       # include_monster_tokens = NO100FDeltaPatch.get_bool(opened_zipfile, "include_monster_tokens")
         with open(iso, "rb+") as stream:
             # write patches
             for patch in patches:
@@ -503,7 +446,7 @@ def get_base_rom_path(file_name: str = "") -> str:
     options: Utils.OptionsType = Utils.get_options()
     if not file_name:
         # file_name = options["bfbb_options"]["rom_file"]
-        file_name = "Nickelodeon SpongeBob SquarePants - Battle for Bikini Bottom (USA).iso"
+        file_name = "Scooby Doo: Night of 100 Frights (USA).iso"
     if not os.path.exists(file_name):
         file_name = Utils.user_path(file_name)
     return file_name
@@ -515,4 +458,4 @@ def validate_hash(file_name: str = ""):
         base_rom_bytes = bytes(file.read())
     basemd5 = hashlib.md5()
     basemd5.update(base_rom_bytes)
-    return BFBB_HASH == basemd5.hexdigest()
+    return NO100FDeltaPatch == basemd5.hexdigest()

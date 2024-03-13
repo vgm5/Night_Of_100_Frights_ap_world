@@ -34,9 +34,9 @@ item_table = {
     ItemNames.ShockwavePower   : ItemData(base_id + 6, ItemClassification.progression),
     ItemNames.BootsPower       : ItemData(base_id + 7, ItemClassification.progression),
     ItemNames.PlungerPower     : ItemData(base_id + 8, ItemClassification.progression),
-    ItemNames.SlipperPower     : ItemData(base_id + 9, ItemClassification.progression),
-    ItemNames.LampshadePower   : ItemData(base_id + 10, ItemClassification.progression),
-    ItemNames.BlackknightPower : ItemData(base_id + 11, ItemClassification.progression),
+    ItemNames.SlipperPower     : ItemData(base_id + 9, ItemClassification.useful),
+    ItemNames.LampshadePower   : ItemData(base_id + 10, ItemClassification.useful),
+    ItemNames.BlackknightPower : ItemData(base_id + 11, ItemClassification.useful),
     ItemNames.ShovelPower      : ItemData(base_id + 12, ItemClassification.progression),
 
     #Ammo Upgrades
@@ -44,7 +44,7 @@ item_table = {
     ItemNames.SoapAmmoUpgrade  : ItemData(base_id + 14, ItemClassification.useful),
 
     #Monster Tokens
-    ItemNames.MT_BLACKKNIGHT    : ItemData(base_id + 15, ItemClassification.filler),
+    ItemNames.MT_BLACKKNIGHT   : ItemData(base_id + 15, ItemClassification.filler),
     ItemNames.MT_MOODY         : ItemData(base_id + 16, ItemClassification.filler),
     ItemNames.MT_CAVEMAN       : ItemData(base_id + 17, ItemClassification.filler),
     ItemNames.MT_CREEPER       : ItemData(base_id + 18, ItemClassification.filler),

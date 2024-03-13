@@ -16,6 +16,7 @@ slippers_e002 = f"{RegionNames.e002}: From Groundskeeper (1/2)"
 lampshade_e002 = f"{RegionNames.e002}: From Groundskeeper (2/2)"
 witch_token_e003 = f"{RegionNames.e003}: Tumbleweed Chase"
 soapammo_e007 = f"{RegionNames.e007}: Above Birdbath"
+helmetpower_e009 = f"{RegionNames.e009}: Top of mountain"
 #Fishing Village
 soapammo_f001 = f"{RegionNames.f001}: Pelican Route"
 gumammo_f003 = f"{RegionNames.f003}: By Caveman on Ledge"
@@ -46,6 +47,7 @@ boots_o008 = f"{RegionNames.o008}: Black Knight Reward"
 #Secret Passage
 plunger_p003 = f"{RegionNames.p003}: Near Spacekooks"
 #Balcony
+blackknight_power_r004 = f"{RegionNames.r004}: At Top of area"
 soapammo_r005 = f"{RegionNames.r005}: In Hallway Cobwebs"
 gumammo_r020 = f"{RegionNames.r020}: Swing around final chandelier"
 witchdoctor_token_r020 = f"{RegionNames.r020}: Swing Across Chandeliers"
@@ -61,4 +63,4 @@ soapammo_w023 = f"{RegionNames.w023}: On top of boat"
 redbeard_token_w025 = f"{RegionNames.w025}: On Top of Upper Ledge"
 gumpower_w028 = f"{RegionNames.w028}: Redbeard Reward"
 
-credits = "Credits"
+Credits = "Credits"

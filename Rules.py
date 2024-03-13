@@ -2,25 +2,17 @@ import typing
 from typing import Callable, Dict, List, Tuple
 
 from BaseClasses import MultiWorld, CollectionState, Entrance
-from worlds.AutoWorld import LogicMixin
-from . import BfBBOptions
+from .Options import NO100FOptions
 from .names import ConnectionNames, ItemNames, LocationNames, RegionNames
 from worlds.generic.Rules import set_rule, add_rule, CollectionRule
 
-class BfBBLogic(LogicMixin):
-    values = {
-        ItemNames.so_100: 0,
-        ItemNames.so_250: 0,
-        ItemNames.so_500: 500,
-        ItemNames.so_750: 750,
-        ItemNames.so_1000: 1000,
-    }
 
-spat_rules = [
+upgrade_rules = [
     # connections
     {
-        ConnectionNames.pineapple_hub1: lambda player: lambda state: state.has(ItemNames.spat, player, 1),
-        # ConnectionNames.hub1_bb01: lambda player: lambda state: state.has(ItemNames.spat, player, 5),
+        ConnectionNames.hub1_e001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.hub1_f001: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
+        ConnectionNames.i020_i021: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
         # ConnectionNames.hub1_gl01: lambda player: lambda state: state.has(ItemNames.spat, player, 10),
         # ConnectionNames.hub1_b1: lambda player: lambda state: state.has(ItemNames.spat, player, 15),
         # ConnectionNames.hub2_rb01: lambda player: lambda state: state.has(ItemNames.spat, player, 25),
@@ -32,159 +24,23 @@ spat_rules = [
     },
     # locations
     {
-        ItemNames.spat: {
-            LocationNames.spat_ks_01: lambda player: lambda state: state.has(ItemNames.spat, player, 5),
-            LocationNames.spat_ks_02: lambda player: lambda state: state.has(ItemNames.spat, player, 10),
-            LocationNames.spat_ks_03: lambda player: lambda state: state.has(ItemNames.spat, player, 15),
-            LocationNames.spat_ks_04: lambda player: lambda state: state.has(ItemNames.spat, player, 20),
-            LocationNames.spat_ks_05: lambda player: lambda state: state.has(ItemNames.spat, player, 25),
-            LocationNames.spat_ks_06: lambda player: lambda state: state.has(ItemNames.spat, player, 30),
-            LocationNames.spat_ks_07: lambda player: lambda state: state.has(ItemNames.spat, player, 35),
-            LocationNames.spat_ks_08: lambda player: lambda state: state.has(ItemNames.spat, player, 40),
-        }
+        # ItemNames.spat: {
+        #    LocationNames.spat_ks_01: lambda player: lambda state: state.has(ItemNames.spat, player, 5),
+        #    LocationNames.spat_ks_02: lambda player: lambda state: state.has(ItemNames.spat, player, 10),
+        #   LocationNames.spat_ks_03: lambda player: lambda state: state.has(ItemNames.spat, player, 15),
+        #   LocationNames.spat_ks_04: lambda player: lambda state: state.has(ItemNames.spat, player, 20),
+        #   LocationNames.spat_ks_05: lambda player: lambda state: state.has(ItemNames.spat, player, 25),
+        #  LocationNames.spat_ks_06: lambda player: lambda state: state.has(ItemNames.spat, player, 30),
+        #  LocationNames.spat_ks_07: lambda player: lambda state: state.has(ItemNames.spat, player, 35),
+        #   LocationNames.spat_ks_08: lambda player: lambda state: state.has(ItemNames.spat, player, 40),
+        # }
     }
 ]
-sock_rules = [
-    # connections
-    {},
-    # locations
-    {
-        ItemNames.spat: {
-            LocationNames.spat_ps_01: lambda player: lambda state: state.has(ItemNames.sock, player, 10),
-            LocationNames.spat_ps_02: lambda player: lambda state: state.has(ItemNames.sock, player, 20),
-            LocationNames.spat_ps_03: lambda player: lambda state: state.has(ItemNames.sock, player, 30),
-            LocationNames.spat_ps_04: lambda player: lambda state: state.has(ItemNames.sock, player, 40),
-            LocationNames.spat_ps_05: lambda player: lambda state: state.has(ItemNames.sock, player, 50),
-            LocationNames.spat_ps_06: lambda player: lambda state: state.has(ItemNames.sock, player, 60),
-            LocationNames.spat_ps_07: lambda player: lambda state: state.has(ItemNames.sock, player, 70),
-            LocationNames.spat_ps_08: lambda player: lambda state: state.has(ItemNames.sock, player, 80),
-            # ToDo: we need rules for pat spatulas for if socks are disabled
-        }
-    }
-]
-
-skill_rules = [
-    # connections
-    {
-        ConnectionNames.hub2_b2: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player) or state.has(
-            ItemNames.cruise_bubble, player),
-        ConnectionNames.cb_b3: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-        ConnectionNames.bc01_bc02: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-        ConnectionNames.bc02_bc03: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-        ConnectionNames.bc02_bc05: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-        ConnectionNames.kf04_kf05: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-        ConnectionNames.kf04_kf02: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-        ConnectionNames.kf01_kf05: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-    },
-    # locations
-    {
-        ItemNames.spat: {
-            LocationNames.spat_hb_02: lambda player: lambda state: state.has(ItemNames.bubble_bowl,
-                                                                             player) or state.has(
-                ItemNames.cruise_bubble, player),
-            LocationNames.spat_hb_03: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.spat_bb_08: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.spat_bc_01: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-            LocationNames.spat_kf_02: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.spat_kf_05: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.spat_kf_06: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.spat_gy_02: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.spat_gy_03: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.spat_db_02: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-            LocationNames.spat_b3_02: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player) and \
-                                                                   state.has(ItemNames.cruise_bubble, player),
-        },
-        ItemNames.sock: {
-            LocationNames.sock_jf01_06: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-            LocationNames.sock_jf03_02: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.sock_bb04_01: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.sock_bc01_01: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-            # ToDo: check in-game
-            LocationNames.sock_kf01_03: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-            LocationNames.sock_kf04_01: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-        },
-        ItemNames.golden_underwear: {
-            LocationNames.golden_under_02: lambda player: lambda state: state.has(ItemNames.bubble_bowl,
-                                                                                  player) or state.has(
-                ItemNames.cruise_bubble, player),
-            LocationNames.golden_under_03: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-        },
-        ItemNames.lvl_itm: {
-            LocationNames.lvl_itm_kf1_01: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf1_02: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf1_03: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf1_06: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf2_01: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf2_02: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf2_03: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf2_04: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf2_05: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.lvl_itm_kf2_06: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-        },
-        ItemNames.so_purple: {
-            LocationNames.purple_so_bb04_01: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.purple_so_bc01_01: lambda player: lambda state: state.has(ItemNames.bubble_bowl,
-                                                                                    player) or state.has(
-                ItemNames.cruise_bubble, player),
-            LocationNames.purple_so_bc02_01: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-            LocationNames.purple_so_bc02_02: lambda player: lambda state: state.has(ItemNames.bubble_bowl, player),
-            LocationNames.purple_so_kf01_01: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-            LocationNames.purple_so_kf04_01: lambda player: lambda state: state.has(ItemNames.cruise_bubble, player),
-        }
-    }
-]
-
-golden_underwear_rules = [
+monster_token_rules = [
     # connections
     {},
     # locations
     {}
-]
-
-lvl_itm_rules = [
-    # connections
-    {
-        ConnectionNames.bc02_bc05: lambda player: lambda state: state.has(ItemNames.lvl_itm_bc, player, 4),
-        ConnectionNames.gy03_gy04: lambda player: lambda state: state.has(ItemNames.lvl_itm_gy, player, 4),
-    },
-    # locations
-    {
-        ItemNames.spat: {
-            LocationNames.spat_jf_08: lambda player: lambda state: state.has(ItemNames.lvl_itm_jf, player),
-            LocationNames.spat_bb_01: lambda player: lambda state: state.has(ItemNames.lvl_itm_bb, player, 11),
-            LocationNames.spat_gl_03: lambda player: lambda state: state.has(ItemNames.lvl_itm_gl, player, 5),
-            LocationNames.spat_rb_03: lambda player: lambda state: state.has(ItemNames.lvl_itm_rb, player, 6),
-            LocationNames.spat_bc_03: lambda player: lambda state: state.has(ItemNames.lvl_itm_bc, player, 4),
-            LocationNames.spat_kf_02: (lambda player: lambda state: state.has(ItemNames.lvl_itm_kf1, player, 6), True),
-            LocationNames.spat_kf_06: lambda player: lambda state: state.has(ItemNames.lvl_itm_kf2, player, 6),
-            LocationNames.spat_gy_06: lambda player: lambda state: state.has(ItemNames.lvl_itm_gy, player, 4),
-            LocationNames.spat_gy_07: lambda player: lambda state: state.has(ItemNames.lvl_itm_gy, player, 4),
-        },
-        ItemNames.sock: {
-            LocationNames.sock_sm03_01: lambda player: lambda state: state.has(ItemNames.lvl_itm_sm, player, 8),
-        },
-        ItemNames.so_purple: {
-            LocationNames.purple_so_gy03_01: lambda player: lambda state: state.has(ItemNames.lvl_itm_gy, player, 4),
-        }
-    }
-]
-
-so_krabs_rules = [
-    # connections
-    {},
-    # locations
-    {
-        ItemNames.spat: {
-            LocationNames.spat_ks_01: lambda player: lambda state: state.has_so_amount(player, 30100 / 2),
-            LocationNames.spat_ks_02: lambda player: lambda state: state.has_so_amount(player, 6500 / 2),
-            LocationNames.spat_ks_03: lambda player: lambda state: state.has_so_amount(player, 10500 / 2),
-            LocationNames.spat_ks_04: lambda player: lambda state: state.has_so_amount(player, 15000 / 2),
-            LocationNames.spat_ks_05: lambda player: lambda state: state.has_so_amount(player, 20000 / 2),
-            LocationNames.spat_ks_06: lambda player: lambda state: state.has_so_amount(player, 25500 / 2),
-            LocationNames.spat_ks_07: lambda player: lambda state: state.has_so_amount(player, 32000 / 2),
-            LocationNames.spat_ks_08: lambda player: lambda state: state.has_so_amount(player, 39500 / 2),
-        }
-    }
 ]
 
 
@@ -216,44 +72,23 @@ def _set_rules(world: MultiWorld, player: int, rules: List, allowed_loc_types: L
             set_rule(world.get_location(name, player), rule_factory(player))
 
 
-def reset_gate_rules(old_rules: Dict[Entrance, any]):
-    for ent, v in old_rules.items():
-        ent.access_rule = v
+def set_rules(world: MultiWorld, options: NO100FOptions, player: int):
+    allowed_loc_types = [ItemNames.GumPower, ItemNames.SoapPower, ItemNames.SpringPower, ItemNames.PoundPower,
+                         ItemNames.HelmetPower, ItemNames.UmbrellaPower, ItemNames.ShockwavePower,
+                         ItemNames.BootsPower, ItemNames.PlungerPower, ItemNames.SlipperPower, ItemNames.LampshadePower,
+                         ItemNames.BlackknightPower, ItemNames.ShovelPower,
+                         ItemNames.GumAmmoUpgrade, ItemNames.SoapAmmoUpgrade]
+    if options.include_monster_tokens.value:
+        allowed_loc_types += [ItemNames.MT_BLACKKNIGHT, ItemNames.MT_MOODY, ItemNames.MT_CAVEMAN, ItemNames.MT_CREEPER,
+                              ItemNames.MT_GARGOYLE, ItemNames.MT_GERONIMO, ItemNames.MT_GHOST,
+                              ItemNames.MT_GHOSTDIVER, ItemNames.MT_GREENGHOST, ItemNames.MT_HEADLESS,
+                              ItemNames.MT_MASTERMIND, ItemNames.MT_ROBOT, ItemNames.MT_REDBEARD,
+                              ItemNames.MT_SCARECROW,
+                              ItemNames.MT_SEACREATURE, ItemNames.MT_SPACEKOOK, ItemNames.MT_TARMONSTER,
+                              ItemNames.MT_WITCH, ItemNames.MT_WITCHDOC, ItemNames.MT_WOLFMAN, ItemNames.MT_ZOMBIE]
 
-
-def set_gate_rules(player: int, gate_costs: Dict[Entrance, int]):
-    old_rules = {}
-    for ent, v in gate_costs.items():
-        old_rules[ent] = ent.access_rule
-        add_rule(ent, (lambda val=v: lambda state: state.has(ItemNames.spat, player, val))())
-    return old_rules
-
-
-def set_rules(world: MultiWorld, options: BfBBOptions, player: int, gate_costs: typing.Dict[str, int]):
-    allowed_loc_types = [ItemNames.spat]
-    if options.include_socks.value:
-        allowed_loc_types += [ItemNames.sock]
-    # if world.include_skills[player].value:
-    #     allowed_loc_types += [ItemNames.skills]
-    if options.include_golden_underwear.value:
-        allowed_loc_types += [ItemNames.golden_underwear]
-    if options.include_level_items.value:
-        allowed_loc_types += [ItemNames.lvl_itm]
-    if options.include_purple_so.value:
-        allowed_loc_types += [ItemNames.so_purple]
-
-    _add_rules(world, player, spat_rules, allowed_loc_types)
-    if options.include_socks.value:
-        _add_rules(world, player, sock_rules, allowed_loc_types)
-    if options.include_skills.value:
-        _add_rules(world, player, skill_rules, allowed_loc_types)
-    if options.include_golden_underwear.value:
-        _add_rules(world, player, golden_underwear_rules, allowed_loc_types)
-    if options.include_level_items.value:
-        _add_rules(world, player, lvl_itm_rules, allowed_loc_types)
-    if options.include_purple_so.value:
-        _set_rules(world, player, so_krabs_rules, allowed_loc_types)  # we override krabs requirements here
-
-    set_gate_rules(player, {world.get_entrance(k, player): v for k, v in gate_costs.items()})
+    _add_rules(world, player, upgrade_rules, allowed_loc_types)
+    if options.include_monster_tokens.value:
+        _add_rules(world, player, monster_token_rules, allowed_loc_types)
 
     world.completion_condition[player] = lambda state: state.has("Victory", player)

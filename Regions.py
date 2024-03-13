@@ -1,9 +1,8 @@
 from typing import List, Dict
 
-from . import NO100FOptions
+from .Options import NO100FOptions
 from .Locations import NO100FLocation, location_table, \
-    upgrade_location_table, monstertoken_location_table, \
-    key_location_table, purple_so_location_table
+    upgrade_location_table, monstertoken_location_table
 from .names import ConnectionNames, LevelNames, RegionNames, LocationNames
 
 from BaseClasses import MultiWorld, Region, Entrance
@@ -11,100 +10,166 @@ from BaseClasses import MultiWorld, Region, Entrance
 
 def create_region(world: MultiWorld, player: int, name: str, locations=None, exits=None) -> Region:
     ret = Region(name, player, world)
+    print(name)
     if locations:
         for location in locations:
+            print(location)
             loc_id = location_table[location]
             location = NO100FLocation(player, location, loc_id, ret)
             ret.locations.append(location)
+
     if exits:
         for _exit in exits:
             ret.exits.append(Entrance(player, _exit, ret))
     return ret
 
 
-def _get_locations_for_region(options: BfBBOptions, name: str) -> List[str]:
-    result = [k for k in spat_location_table if f"{name}:" in k]
+def _get_locations_for_region(options: NO100FOptions, name: str) -> List[str]:
+    result = [k for k in upgrade_location_table if f"{name}:" in k]
     if name == RegionNames.hub1:
-        result += [k for k in spat_location_table if f"{LevelNames.hub}:" in k]
-    if name == RegionNames.b3:
-        result += [LocationNames.credits]
-    if options.include_socks.value:
-        result += [k for k in sock_location_table if f"{name}:" in k]
-    if options.include_skills.value:
-        result += [k for k in skill_location_table if f"{name}:" in k]
+        result += [k for k in upgrade_location_table if f"{LevelNames.hub}:" in k]
+    if name == RegionNames.s006:
+        result += [LocationNames.Credits]
+    if options.include_monster_tokens.value:
+        result += [k for k in monstertoken_location_table if f"{name}:" in k]
     return result
 
 
 exit_table: Dict[str, List[str]] = {
+
     RegionNames.menu: [ConnectionNames.start_game],
-    RegionNames.pineapple: [ConnectionNames.pineapple_hub1],
-    RegionNames.hub1: [ConnectionNames.hub1_pineapple, ConnectionNames.hub1_squid, ConnectionNames.hub1_pat,
-                       ConnectionNames.hub1_jf01, ConnectionNames.hub1_bb01, ConnectionNames.hub1_gl01,
-                       ConnectionNames.hub1_b1],
-    RegionNames.squid: [ConnectionNames.squid_hub1],
-    RegionNames.pat: [ConnectionNames.pat_hub1],
-    RegionNames.jf01: [ConnectionNames.jf01_hub1, ConnectionNames.jf01_jf02],
-    RegionNames.jf02: [ConnectionNames.jf02_jf01, ConnectionNames.jf02_jf03],
-    RegionNames.jf03: [ConnectionNames.jf03_jf02, ConnectionNames.jf03_jf04],
-    RegionNames.jf04: [ConnectionNames.jf04_jf03, ConnectionNames.jf04_jf01],
-    RegionNames.bb01: [ConnectionNames.bb01_hub1, ConnectionNames.bb01_bb02, ConnectionNames.bb01_bb04],
-    RegionNames.bb02: [ConnectionNames.bb02_bb01, ConnectionNames.bb02_bb03],
-    RegionNames.bb03: [ConnectionNames.bb03_bb02, ConnectionNames.bb03_bb01],
-    RegionNames.bb04: [ConnectionNames.bb04_bb01],
-    RegionNames.gl01: [ConnectionNames.gl01_hub1, ConnectionNames.gl01_gl02],
-    RegionNames.gl02: [ConnectionNames.gl02_gl01, ConnectionNames.gl02_gl03],
-    RegionNames.gl03: [ConnectionNames.gl03_gl02, ConnectionNames.gl03_gl01],
-    RegionNames.b1: [ConnectionNames.b1_hub1, ConnectionNames.b1_hub2],
-    RegionNames.hub2: [ConnectionNames.hub2_hub1, ConnectionNames.hub2_tree, ConnectionNames.hub2_shoals,
-                       ConnectionNames.hub2_police, ConnectionNames.hub2_rb01, ConnectionNames.hub2_sm01,
-                       ConnectionNames.hub2_b2],
-    RegionNames.tree: [ConnectionNames.tree_hub2],
-    RegionNames.shoals: [ConnectionNames.shoals_hub2, ConnectionNames.shoals_bc01],
-    RegionNames.police: [ConnectionNames.police_hub2],
-    RegionNames.rb01: [ConnectionNames.rb01_hub2, ConnectionNames.rb01_rb02, ConnectionNames.rb01_rb03],
-    RegionNames.rb02: [ConnectionNames.rb02_rb01, ConnectionNames.rb02_rb03],
-    RegionNames.rb03: [ConnectionNames.rb03_rb01],
-    RegionNames.bc01: [ConnectionNames.bc01_shoals, ConnectionNames.bc01_bc02],
-    RegionNames.bc02: [ConnectionNames.bc02_bc01, ConnectionNames.bc02_bc03, ConnectionNames.bc02_bc05],
-    RegionNames.bc03: [ConnectionNames.bc03_bc02, ConnectionNames.bc03_bc04],
-    RegionNames.bc04: [ConnectionNames.bc04_bc03, ConnectionNames.bc04_bc02],
-    RegionNames.bc05: [ConnectionNames.bc05_bc02],
-    RegionNames.sm01: [ConnectionNames.sm01_hub2, ConnectionNames.sm01_sm02, ConnectionNames.sm01_sm03,
-                       ConnectionNames.sm01_sm04],
-    RegionNames.sm02: [ConnectionNames.sm02_sm01],
-    RegionNames.sm03: [ConnectionNames.sm03_sm01],
-    RegionNames.sm04: [ConnectionNames.sm04_sm01],
-    RegionNames.b2: [ConnectionNames.b2_hub2, ConnectionNames.b2_hub3],
-    RegionNames.hub3: [ConnectionNames.hub3_hub2, ConnectionNames.hub3_kk, ConnectionNames.hub3_cb,
-                       ConnectionNames.hub3_kf01, ConnectionNames.hub3_gy01, ConnectionNames.hub3_db01],
-    RegionNames.kk: [ConnectionNames.kk_hub3],
-    RegionNames.cb: [ConnectionNames.cb_hub3, ConnectionNames.cb_b3],
-    RegionNames.kf01: [ConnectionNames.kf01_hub3, ConnectionNames.kf01_kf02, ConnectionNames.kf01_kf05],
-    RegionNames.kf02: [ConnectionNames.kf02_kf01, ConnectionNames.kf02_kf04],
-    RegionNames.kf04: [ConnectionNames.kf04_kf02, ConnectionNames.kf04_kf05],
-    RegionNames.kf05: [ConnectionNames.kf05_kf04, ConnectionNames.kf05_kf01],
-    RegionNames.gy01: [ConnectionNames.gy01_hub3, ConnectionNames.gy01_gy02],
-    RegionNames.gy02: [ConnectionNames.gy02_gy01, ConnectionNames.gy02_gy03],
-    RegionNames.gy03: [ConnectionNames.gy03_gy02, ConnectionNames.gy03_gy04],
-    RegionNames.gy04: [ConnectionNames.gy04_gy03, ConnectionNames.gy04_gy01],
-    RegionNames.db01: [ConnectionNames.db01_hub3, ConnectionNames.db01_db02, ConnectionNames.db01_db03,
-                       ConnectionNames.db01_db04, ConnectionNames.db01_db05],
-    RegionNames.db02: [ConnectionNames.db02_db01],
-    RegionNames.db03: [ConnectionNames.db03_db01],
-    RegionNames.db04: [ConnectionNames.db04_db01],
-    RegionNames.db05: [ConnectionNames.db05_db01],
-    RegionNames.b3: [ConnectionNames.b3_cb]
+
+    RegionNames.hub1: [ConnectionNames.hub1_f001, ConnectionNames.hub1_hub2, ConnectionNames.hub1_hub3,
+                       ConnectionNames.hub1_e001, ConnectionNames.hub1_i001],
+    RegionNames.hub2: [ConnectionNames.hub2_hub1],
+    RegionNames.hub3: [ConnectionNames.hub3_hub1],
+
+    # (B)asement
+    RegionNames.b001: [ConnectionNames.b001_b002, ConnectionNames.b001_b003, ConnectionNames.b001_p005],
+    RegionNames.b002: [ConnectionNames.b002_b001, ConnectionNames.b002_b003],
+    RegionNames.b003: [ConnectionNames.b003_b001, ConnectionNames.b003_b002, ConnectionNames.b003_b004,
+                       ConnectionNames.b003_p004],
+    RegionNames.b004: [ConnectionNames.b004_b003, ConnectionNames.b004_i003],
+
+    # (C)liff
+    RegionNames.c001: [ConnectionNames.c001_c002, ConnectionNames.c001_e009],
+    RegionNames.c002: [ConnectionNames.c002_c001, ConnectionNames.c002_c003],
+    RegionNames.c003: [ConnectionNames.c003_c002, ConnectionNames.c003_c004],
+    RegionNames.c004: [ConnectionNames.c004_c003, ConnectionNames.c004_c005],
+    RegionNames.c005: [ConnectionNames.c005_c004, ConnectionNames.c005_c006, ConnectionNames.c005_e003],
+    RegionNames.c006: [ConnectionNames.c006_c005, ConnectionNames.c006_c007],
+    RegionNames.c007: [ConnectionNames.c007_c006, ConnectionNames.c007_g001],
+
+    # H(e)dge Maze
+    RegionNames.e001: [ConnectionNames.e001_e002, ConnectionNames.e001_e009, ConnectionNames.e001_hub1],
+    RegionNames.e002: [ConnectionNames.e002_e001, ConnectionNames.e002_e003],
+    RegionNames.e003: [ConnectionNames.e003_e002, ConnectionNames.e003_e004, ConnectionNames.e003_c005],
+    RegionNames.e004: [ConnectionNames.e004_e003, ConnectionNames.e004_e005],
+    RegionNames.e005: [ConnectionNames.e005_e004, ConnectionNames.e005_e006],
+    RegionNames.e006: [ConnectionNames.e006_e005, ConnectionNames.e006_e007],
+    RegionNames.e007: [ConnectionNames.e007_e006, ConnectionNames.e007_e008],
+    RegionNames.e008: [ConnectionNames.e008_e007, ConnectionNames.e008_e009],
+    RegionNames.e009: [ConnectionNames.e009_e001, ConnectionNames.e009_e008, ConnectionNames.e009_c001],
+
+    # Fishing Village
+    RegionNames.f001: [ConnectionNames.f001_f003, ConnectionNames.f001_hub1],
+    RegionNames.f003: [ConnectionNames.f003_f001, ConnectionNames.f003_f004, ConnectionNames.f003_f009,
+                       ConnectionNames.f003_p001],
+    RegionNames.f004: [ConnectionNames.f004_f003, ConnectionNames.f004_f005],
+    RegionNames.f005: [ConnectionNames.f005_f004, ConnectionNames.f005_f006],
+    RegionNames.f006: [ConnectionNames.f006_f005, ConnectionNames.f006_f007],
+    RegionNames.f007: [ConnectionNames.f007_f006, ConnectionNames.f007_f008],
+    RegionNames.f008: [ConnectionNames.f008_f007, ConnectionNames.f008_f009, ConnectionNames.f008_l011,
+                       ConnectionNames.f008_hub1],
+    RegionNames.f009: [ConnectionNames.f009_f003, ConnectionNames.f009_f008, ConnectionNames.f009_f010],
+    RegionNames.f010: [ConnectionNames.f010_f009],
+
+    # Graveyard
+    RegionNames.g001: [ConnectionNames.g001_g002, ConnectionNames.g001_c007],
+    RegionNames.g002: [ConnectionNames.g002_g001, ConnectionNames.g002_g003],
+    RegionNames.g003: [ConnectionNames.g003_g002, ConnectionNames.g003_g004, ConnectionNames.g003_g005,
+                       ConnectionNames.g003_g006, ConnectionNames.g003_g008],
+    RegionNames.g004: [ConnectionNames.g004_g003],
+    RegionNames.g005: [ConnectionNames.g005_g003, ConnectionNames.g005_g006, ConnectionNames.g005_g007],
+    RegionNames.g006: [ConnectionNames.g006_g003, ConnectionNames.g006_g005],
+    RegionNames.g007: [ConnectionNames.g007_g005, ConnectionNames.g007_g008],
+    RegionNames.g008: [ConnectionNames.g008_g003, ConnectionNames.g008_g007, ConnectionNames.g008_g009],
+    RegionNames.g009: [ConnectionNames.g009_g008, ConnectionNames.g009_hub1],
+
+    # Myst(i)c Manor
+    RegionNames.i001: [ConnectionNames.i001_i020, ConnectionNames.i001_hub1, ConnectionNames.i001_r001],
+    RegionNames.i003: [ConnectionNames.i003_i004, ConnectionNames.i003_i021, ConnectionNames.i003_b004],
+    RegionNames.i004: [ConnectionNames.i004_o001, ConnectionNames.i004_i003, ConnectionNames.i004_i005],
+    RegionNames.i005: [ConnectionNames.i005_i004, ConnectionNames.i005_i006],
+    RegionNames.i006: [ConnectionNames.i006_i005, ConnectionNames.i006_r001],
+    RegionNames.i020: [ConnectionNames.i020_i001, ConnectionNames.i020_i021],
+    RegionNames.i021: [ConnectionNames.i021_i003, ConnectionNames.i021_i020],
+
+    # Lighthouse
+    RegionNames.l011: [ConnectionNames.l011_f008, ConnectionNames.l011_l013],
+    RegionNames.l013: [ConnectionNames.l013_l014, ConnectionNames.l013_l011],
+    RegionNames.l014: [ConnectionNames.l014_l013, ConnectionNames.l014_l015],
+    RegionNames.l015: [ConnectionNames.l015_l014, ConnectionNames.l015_l018, ConnectionNames.l015_l017,
+                       ConnectionNames.l015_l019],
+    RegionNames.l017: [ConnectionNames.l017_l015, ConnectionNames.l017_l018],
+    RegionNames.l018: [ConnectionNames.l018_l015, ConnectionNames.l018_l019, ConnectionNames.l018_p001],
+    RegionNames.l019: [ConnectionNames.l019_l015, ConnectionNames.l019_l018],
+
+    # R(O)oftops
+    RegionNames.o001: [ConnectionNames.o001_o002, ConnectionNames.o001_o008, ConnectionNames.o001_r005],
+    RegionNames.o002: [ConnectionNames.o002_o001, ConnectionNames.o002_o003],
+    RegionNames.o003: [ConnectionNames.o003_o002, ConnectionNames.o003_o004],
+    RegionNames.o004: [ConnectionNames.o004_o003, ConnectionNames.o004_o005],
+    RegionNames.o005: [ConnectionNames.o005_o004, ConnectionNames.o005_o006],
+    RegionNames.o006: [ConnectionNames.o006_o005, ConnectionNames.o006_o008],
+    RegionNames.o008: [ConnectionNames.o008_o001, ConnectionNames.o008_o006],
+
+    # Secret (P)assage
+    RegionNames.p001: [ConnectionNames.p001_f003, ConnectionNames.p001_p002, ConnectionNames.p001_p005,
+                       ConnectionNames.p001_l018],
+    RegionNames.p002: [ConnectionNames.p002_p001, ConnectionNames.p002_p003, ConnectionNames.p002_s001],
+    RegionNames.p003: [ConnectionNames.p003_p002, ConnectionNames.p003_p004],
+    RegionNames.p004: [ConnectionNames.p004_p003, ConnectionNames.p004_p005, ConnectionNames.p004_b003],
+    RegionNames.p005: [ConnectionNames.p005_p001, ConnectionNames.p005_p004, ConnectionNames.p005_b001],
+
+    # Balcony (R)
+    RegionNames.r001: [ConnectionNames.r001_r020, ConnectionNames.r001_i001, ConnectionNames.r001_i006],
+    RegionNames.r003: [ConnectionNames.r003_r004, ConnectionNames.r003_r021],
+    RegionNames.r004: [ConnectionNames.r004_r003, ConnectionNames.r004_r005],
+    RegionNames.r005: [ConnectionNames.r005_o001, ConnectionNames.r005_r004],
+    RegionNames.r020: [ConnectionNames.r020_r001, ConnectionNames.r020_r021],
+    RegionNames.r021: [ConnectionNames.r021_r003, ConnectionNames.r021_r020],
+
+    # Super Secret Lab
+    RegionNames.s001: [ConnectionNames.s001_s002, ConnectionNames.s001_p002],
+    RegionNames.s002: [ConnectionNames.s002_s001, ConnectionNames.s002_s003, ConnectionNames.s002_s004],
+    RegionNames.s003: [ConnectionNames.s003_s002, ConnectionNames.s003_s004],
+    RegionNames.s004: [ConnectionNames.s004_s003, ConnectionNames.s004_s005],
+    RegionNames.s005: [ConnectionNames.s005_s004, ConnectionNames.s005_s006],
+    RegionNames.s006: [ConnectionNames.s006_s005],
+
+    # Wrecked Ships
+    RegionNames.w020: [ConnectionNames.w020_w021, ConnectionNames.w020_w026, ConnectionNames.w020_l015],
+    RegionNames.w021: [ConnectionNames.w021_w020, ConnectionNames.w021_w022],
+    RegionNames.w022: [ConnectionNames.w022_w021, ConnectionNames.w022_w023],
+    RegionNames.w023: [ConnectionNames.w023_w022, ConnectionNames.w023_w025],
+    RegionNames.w025: [ConnectionNames.w025_w023, ConnectionNames.w025_w026],
+    RegionNames.w026: [ConnectionNames.w026_w020, ConnectionNames.w026_w025, ConnectionNames.w026_w027,
+                       ConnectionNames.w026_w028],
+    RegionNames.w027: [ConnectionNames.w027_w026, ConnectionNames.w027_w028],
+    RegionNames.w028: [ConnectionNames.w028_w026],
+
 }
 
 
-def create_regions(world: MultiWorld, options: BfBBOptions, player: int):
+def create_regions(world: MultiWorld, options: NO100FOptions, player: int):
     # create regions
     world.regions += [
         create_region(world, player, k, _get_locations_for_region(options, k), v) for k, v in exit_table.items()
     ]
 
     # connect regions
-    world.get_entrance(ConnectionNames.start_game, player).connect(world.get_region(RegionNames.pineapple, player))
+    world.get_entrance(ConnectionNames.start_game, player).connect(world.get_region(RegionNames.hub1, player))
     for k, v in exit_table.items():
         if k == RegionNames.menu:
             continue
