@@ -85,7 +85,7 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         is_ap_world = os.path.exists(world_path)
         lib_path = os.path.abspath(os.path.dirname(__file__) + '/inc/')
         if is_ap_world:
-            lib_path = os.path.expandvars('%APPDATA%/bfbb_ap/')
+            lib_path = os.path.expandvars('%APPDATA%/no100f_ap/')
             with zipfile.ZipFile(world_path) as world_zip:
                 for file in world_zip.namelist():
                     if file.startswith('no100f/inc/packages') or file.startswith('no100f/inc/IP'):
@@ -161,197 +161,12 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
             def compare(self, link: Link):
                 return link.EventSendID == self.event and link.TargetAsset.op_Implicit(link.TargetAsset) == self.target
 
-        files_to_check_lvl_items = {
-            'jf04': {
-                # CUTSCENE_KJ_END
-                0xbd99ade0: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3)
-                ]
-            },
-            'gl01': {
-                # BALLOON_A_PLAT
-                0x3db4fe59: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_B_PLAT
-                0x393949cc: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_C_PLAT
-                0x34bd953f: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_D_PLAT
-                0x3041e0b2: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_E_PLAT
-                0x2bc62c25: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_A_COUNT_DISP
-                0x078dc464: [
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_B_COUNT_DISP
-                0xa65659df: [
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_C_COUNT_DISP
-                0x451eef5a: [
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_D_COUNT_DISP
-                0xe3e784d5: [
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-                # BALLOON_E_COUNT_DISP
-                0x82b01a50: [
-                    LinkData(EventIDs.Decrement, 0xa6662680),
-                ],
-            },
-            'bc02': {
-                0x5e64831b: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3)
-                ],
-                0x5e64831c: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3)
-                ]
-            },
-            'bc03': {
-                0x91f2a6cf: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3)
-                ],
-            },
-            'bc04': {
-                0xc1841225: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3)
-                ],
-            },
-            'sm03': {
-                0xd4d3bec2: [
-                    LinkData(EventIDs.Decrement, 0xc4e703d6)
-                ],
-                0xd4d3bec3: [
-                    LinkData(EventIDs.Decrement, 0xc4e703d6)
-                ],
-                0xd4d3bec4: [
-                    LinkData(EventIDs.Decrement, 0xc4e703d6)
-                ],
-                0xd4d3bec5: [
-                    LinkData(EventIDs.Decrement, 0xc4e703d6)
-                ],
-                0xd4d3bec6: [
-                    LinkData(EventIDs.Decrement, 0xc4e703d6)
-                ],
-                0xd4d3bec7: [
-                    LinkData(EventIDs.Decrement, 0xc4e703d6)
-                ],
-                0xd4d3bec8: [
-                    LinkData(EventIDs.Decrement, 0xc4e703d6)
-                ],
-                0xd4d3bec9: [
-                    LinkData(EventIDs.Decrement, 0xc4e703d6)
-                ],
-            },
-            'kf01': {
-                0x153CCF73: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                ],
-                0x153CCF74: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                ],
-                0x153CCF75: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                ],
-            },
-            'kf02': {
-                0x9c2d8bb3: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                ],
-                0x9c2d8bb4: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                ],
-            },
-            'kf04': {
-                0x609203fd: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                ],
-                0x96017696: [
-                    LinkData(EventIDs.Increment, 0xed81694f)
-                ],
-                0x96017697: [
-                    LinkData(EventIDs.Increment, 0xed81694f)
-                ],
-                0x96017698: [
-                    LinkData(EventIDs.Increment, 0xed81694f)
-                ],
-                0x96017699: [
-                    LinkData(EventIDs.Increment, 0xed81694f)
-                ],
-                0x9601769a: [
-                    LinkData(EventIDs.Increment, 0xed81694f)
-                ],
-                0x9601769b: [
-                    LinkData(EventIDs.Increment, 0xed81694f)
-                ],
-            },
-            'gy03': {
-                0x1344a38c: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0x9a101de7),
-                ],
-                0x1344a38d: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0x9a101de7),
-                ],
-                0x1344a38e: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0x9a101de7),
-                ],
-                0x1344a38f: [
-                    LinkData(EventIDs.GiveCollectables, 0xBD7097e3),
-                    LinkData(EventIDs.Decrement, 0x9a101de7),
-                ],
-                0x46d4fa25: [
-                    LinkData(EventIDs.Decrement, 0x9a101de7),
-                ],
-                0x46d4fa26: [
-                    LinkData(EventIDs.Decrement, 0x9a101de7),
-                ],
-                0x46d4fa27: [
-                    LinkData(EventIDs.Decrement, 0x9a101de7),
-                ],
-                0x46d4fa28: [
-                    LinkData(EventIDs.Decrement, 0x9a101de7),
-                ],
-            },
-        }
-        files_to_check_skills = {
-            'b101': {
-                0xcc4ea457: [
-                    LinkData(EventIDs.GivePowerUp, 0xBD7097e3)
-                ]
-            },
-            'b201': {
-                0xeb3aada0: [
-                    LinkData(EventIDs.GivePowerUp, 0x00002abb)
-                ]
-            },
-        }
         files_to_check: dict[str, dict[int, list[LinkData]]] = {}
-        if include_monster_tokens:
-            files_to_check.update(files_to_check_skills)
         HexUIntTypeConverter.Legacy = True
         editor_funcs = RandomizableArchive()
         editor_funcs.SkipTextureDisplay = True
         editor_funcs.Platform = Platform.GameCube
-        editor_funcs.Game = Game.BFBB
+        editor_funcs.Game = Game.Scooby
         editor_funcs.standalone = True
         editor_funcs.NoLayers = True
         editor_funcs.editorFilesFolder = f'{lib_path}/IP/Resources/IndustrialPark-EditorFiles/IndustrialPark-EditorFiles-master/'
@@ -446,7 +261,7 @@ def get_base_rom_path(file_name: str = "") -> str:
     options: Utils.OptionsType = Utils.get_options()
     if not file_name:
         # file_name = options["bfbb_options"]["rom_file"]
-        file_name = "Scooby Doo: Night of 100 Frights (USA).iso"
+        file_name = "Scooby-Doo! Night of 100 Frights.iso"
     if not os.path.exists(file_name):
         file_name = Utils.user_path(file_name)
     return file_name

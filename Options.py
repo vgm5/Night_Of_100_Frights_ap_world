@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from Options import Toggle, DeathLink, Range, Choice, PerGameCommonOptions
 
 
-
 class IncludeMonsterTokens(Toggle):
     """Include Monster Tokens as AP Locations/Items"""
     display_name = "Include Monster Tokens"

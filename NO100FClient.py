@@ -16,7 +16,7 @@ from inc.packages import dolphin_memory_engine
 import Utils
 from CommonClient import CommonContext, server_loop, gui_enabled, ClientCommandProcessor, logger, \
     get_base_parser
-from .Rom import BfBBDeltaPatch
+from worlds.no100f.Rom import NO100FDeltaPatch
 
 
 class CheckTypes(Flag):
@@ -3134,20 +3134,20 @@ async def dolphin_sync_task(ctx: NO100FContext):
 
 async def patch_and_run_game(ctx: NO100FContext, patch_file):
     try:
-        result_path = os.path.splitext(patch_file)[0] + BfBBDeltaPatch.result_file_ending
+        result_path = os.path.splitext(patch_file)[0] + NO100FDeltaPatch.result_file_ending
         with zipfile.ZipFile(patch_file, 'r') as patch_archive:
-            if not BfBBDeltaPatch.check_version(patch_archive):
+            if not NO100FDeltaPatch.check_version(patch_archive):
                 logger.error(
                     "apNO100F version doesn't match this client.  Make sure your generator and client are the same")
                 raise Exception("apNO100F version doesn't match this client.")
 
         # check hash
-        BfBBDeltaPatch.check_hash()
+        NO100FDeltaPatch.check_hash()
 
-        shutil.copy(BfBBDeltaPatch.get_rom_path(), result_path)
-        await BfBBDeltaPatch.apply_hiphop_changes(zipfile.ZipFile(patch_file, 'r'), BfBBDeltaPatch.get_rom_path(),
+        shutil.copy(NO100FDeltaPatch.get_rom_path(), result_path)
+        await NO100FDeltaPatch.apply_hiphop_changes(zipfile.ZipFile(patch_file, 'r'), NO100FDeltaPatch.get_rom_path(),
                                                   result_path)
-        await BfBBDeltaPatch.apply_binary_changes(zipfile.ZipFile(patch_file, 'r'), result_path)
+        await NO100FDeltaPatch.apply_binary_changes(zipfile.ZipFile(patch_file, 'r'), result_path)
 
         logger.info('--patching success--')
         os.startfile(result_path)
@@ -3174,10 +3174,10 @@ def main(connect=None, password=None, patch_file=None):
         ctx.patch_task = None
         if patch_file:
             ext = os.path.splitext(patch_file)[1]
-            if ext == BfBBDeltaPatch.patch_file_ending:
+            if ext == NO100FDeltaPatch.patch_file_ending:
                 logger.info("apNO100F file supplied, beginning patching process...")
                 ctx.patch_task = asyncio.create_task(patch_and_run_game(ctx, patch_file), name="PatchGame")
-            elif ext == BfBBDeltaPatch.result_file_ending:
+            elif ext == NO100FDeltaPatch.result_file_ending:
                 os.startfile(patch_file)
             else:
                 logger.warning(f"Unknown patch file extension {ext}")
@@ -3207,7 +3207,7 @@ def main(connect=None, password=None, patch_file=None):
 
 if __name__ == '__main__':
     parser = get_base_parser()
-    parser.add_argument('patch_file', default="", type=str, nargs="?",
-                        help='Path to an .apbfbb patch file')
+    parser.add_argument('patch_file', default="AP_80113784275574774700_P1_Player1.apno100f", type=str, nargs="?",
+                        help='Path to an .apno100f patch file')
     args = parser.parse_args()
     main(args.connect, args.password, args.patch_file)
