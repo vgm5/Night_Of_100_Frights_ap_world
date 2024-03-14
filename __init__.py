@@ -35,7 +35,7 @@ class NO100FWeb(WebWorld):
         "English",
         "setup_en.md",
         "setup/en",
-        ["Cyb3R"]
+        ["vgm5"]
     )]
 
 
