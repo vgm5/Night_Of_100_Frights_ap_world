@@ -13,7 +13,7 @@ would in the vanilla game.
 
 ## What items and locations get shuffled?
 
-Upgrades like the Springs/Umbrella as well as Gum and Soap Ammo upgrades will always be shuffled. Optionally you can also shuffle keys(WIP) and scooby snacks(unimplemented).
+Upgrades like the Springs/Umbrella as well as Gum and Soap Ammo upgrades will always be shuffled. Optionally you can also shuffle Monster Tokens, Keys(WIP) and Scooby Snack Pickups(WIP).
 
 ## What is the goal of Scooby Doo: Night of 100 Frights?
 
