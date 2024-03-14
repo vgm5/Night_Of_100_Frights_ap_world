@@ -3207,7 +3207,7 @@ def main(connect=None, password=None, patch_file=None):
 
 if __name__ == '__main__':
     parser = get_base_parser()
-    parser.add_argument('patch_file', default="AP_80113784275574774700_P1_Player1.apno100f", type=str, nargs="?",
+    parser.add_argument('patch_file', default="", type=str, nargs="?",
                         help='Path to an .apno100f patch file')
     args = parser.parse_args()
     main(args.connect, args.password, args.patch_file)

@@ -14,7 +14,7 @@ from . import Patches
 from .inc.wwrando.wwlib.gcm import GCM
 from .names import ConnectionNames
 
-NO100F_HASH = "9e18f9a0032c4f3092945dc38a6517d3"    #This needs to be recalculated for scoob
+NO100F_HASH = "6f078c687c81e26b8e81127ba4b747ba"
 
 class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
     hash = NO100F_HASH
@@ -26,8 +26,12 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
 
     def __init__(self, *args: Any, **kwargs: Any):
         self.include_monster_tokens: int = kwargs['include_monster_tokens']
+        #self.include_snacks: int = kwargs['include_snacks']
+        #self.include_keys: int = kwargs['include_keys']
         self.seed: bytes = kwargs['seed']
         del kwargs['include_monster_tokens']
+        #del kwargs['include_snacks']
+        #del kwargs['include_keys']
         del kwargs['seed']
         super(NO100FDeltaPatch, self).__init__(*args, **kwargs)
 
@@ -39,6 +43,12 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         opened_zipfile.writestr("include_monster_tokens",
                                 self.include_monster_tokens.to_bytes(1, "little"),
                                 compress_type=zipfile.ZIP_STORED)
+       # opened_zipfile.writestr("include_snacks",
+       #                         self.include_snacks.to_bytes(1, "little"),
+       #                         compress_type=zipfile.ZIP_STORED)
+       # opened_zipfile.writestr("include_keys",
+       #                         self.include_keys.to_bytes(1, "little"),
+       #                         compress_type=zipfile.ZIP_STORED)
         m = hashlib.md5()
         m.update(self.seed)
         opened_zipfile.writestr("seed",
@@ -214,9 +224,18 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         seed_hash = NO100FDeltaPatch.get_seed_hash(opened_zipfile)
         seed_hash_offset = slot_name_offset + 0x40
         # always apply these patches
-        patches = [Patches.AP_SAVE_LOAD, Patches.SPATS_REWARD_FIX]
+        patches = [Patches.AP_SAVE_LOAD, Patches.UPGRADE_REWARD_FIX]
         # conditional patches
-       # include_monster_tokens = NO100FDeltaPatch.get_bool(opened_zipfile, "include_monster_tokens")
+        include_monster_tokens = NO100FDeltaPatch.get_bool(opened_zipfile, "include_monster_tokens")
+        #include_snacks = NO100FDeltaPatch.get_bool(opened_zipfile, "include_snacks")
+        #include_keys = NO100FDeltaPatch.get_bool(opened_zipfile, "include_keys")
+        if include_monster_tokens:
+            patches += [Patches.MONSTER_TOKEN_FIX]
+        #if include_snacks:
+        #    patches += [Patches.SNACK_REWARD_FIX]
+        #if include_keys:
+        #    patches += [Patches.KEY_REWARD_FIX]
+
         with open(iso, "rb+") as stream:
             # write patches
             for patch in patches:

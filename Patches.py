@@ -1,3 +1,4 @@
+#RAM Instruction to .iso Instruction:  RAM ADDRESS - 0x8000 0000 + 0x1B000
 AP_SAVE_LOAD = {
     # ignore cheats
     0xb63c0: 0x60000000,  # nop
@@ -54,22 +55,23 @@ AP_SAVE_LOAD = {
     0x2AB980: bytes([0] * 0x17c)
 }
 
-SPATS_REWARD_FIX = {
-    0x7fcd4: 0x60000000,  # nop
-    0x7fcd8: 0x60000000,  # nop
-    0x7fcdc: 0x60000000,  # nop
+UPGRADE_REWARD_FIX = {
+    0x6a2f4: 0x60000000, # nop	#Nullifies Upgrade Collection
+    0x6a2fc: 0x60000000, # nop
+    0x6a304: 0x60000000, # nop
+    0x6a5bc: 0x60000000, # nop
+    0x6a5c0: 0x60000000, # nop
+    0x6a5cc: 0x60000000, # nop
+
+    0x6a394: 0x60000000, # nop # Nullifies Gum/Soap Ammo Collection
+    0x6a3a8: 0x60000000, # nop
+    0x6a3b4: 0x60000000, # nop
 }
 
-SOCKS_REWARD_FIX = {
-    0x92ff8: 0x4080003c
+MONSTER_TOKEN_FIX = {
+    0x6a420: 0x60000000, # nop
 }
 
-GOLDEN_UNDERWEAR_REWARD_FIX = {
-    0x7fd20: 0x80041738
-}
-
-LVL_ITEM_REWARD_FIX = {
-    0x7fdcc: 0x60000000,  # nop
-    0x7fdd0: 0x60000000,  # nop
-    0x7fdd4: 0x60000000  # nop
+SNACK_REWARD_FIX = {
+    0x7538c: 0x60000000,  # nop
 }
