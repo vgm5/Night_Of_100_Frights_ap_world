@@ -1,21 +1,21 @@
-# Battle for Bikini Bottom Setup Guide
+# Scooby Doo: Night of 100 Frights Setup Guide
 
 ## Required Software
 
 - [Archipelago](https://github.com/ArchipelagoMW/Archipelago/releases) v0.4.1 or higher. Make sure to install the
   Generator.
-- [This AP world](https://github.com/Cyb3RGER/bfbb_ap_world/releases)
+- [This AP world](https://github.com/Night_Of_100_Frights_ap_world/releases)
 - Microsoft .NET Framework 4.8 or higher
 - [Dolphin](https://dolphin-emu.org/download/)
-- Your US Version of Battle for Bikini Bottom, probably
-  named ``Nickelodeon SpongeBob SquarePants - Battle for Bikini Bottom (USA).iso``.
+- Your US Version of Night of 100 Frights Revision 0, probably
+  named ``Scooby Doo! Night of 100 Frights.iso``.
 
 ## Installation Procedures
 
-- Place ``bfbb.apworld`` in ``lib/worlds/`` of your AP installation.
+- Place ``no100f.apworld`` in ``lib/worlds/`` of your AP installation.
 - Place the included ``.pyd`` files and the ``dolphin_memory_engine`` folder into ``lib/`` of your AP installation.
 - Place the ISO in the root folder of your AP installation and make sure it's
-  named ``Nickelodeon SpongeBob SquarePants - Battle for Bikini Bottom (USA).iso``.
+  named ``Scooby Doo! Night of 100 Frights.iso``.
 
 For more information about .apworlds
 see [here](https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/apworld%20specification.md)
@@ -38,7 +38,7 @@ validator page: [YAML Validation page](https://archipelago.gg/mysterycheck)
 
 ## Joining a MultiWorld Game
 
-Start ``ArchipelagoLauncher.exe`` and choose ``BfBB Client``. You will be asked to provide a ``.apbfbb`` patch file so
+Start ``ArchipelagoLauncher.exe`` and choose ``NO100F Client``. You will be asked to provide a ``.apno100f`` patch file so
 choose your patch file. The client will then open, patch and attempt to open the resulting ``.gcm`` ISO file. Patching
 can take a while and the client will become unresponsive while patching. You can also select a ``.gcm`` directly to just
 open it without patching or just click cancel, if you don't want to patch or open any ISO.
@@ -47,7 +47,7 @@ open it without patching or just click cancel, if you don't want to patch or ope
 
 #### With Dolphin
 
-The Client will automatically try to connect to Dolphin every 5 seconds and will do so if BfBB is running. If this
+The Client will automatically try to connect to Dolphin every 5 seconds and will do so if NO100F is running. If this
 doesn't work try restarting Dolphin and make sure you only have one instance running of Dolphin. If you still get the
 invalid game error message when using the US Version make sure that ``Emulated Memory Size Override`` (
 under ``Settings`` > ``Advanced``) is disabled.
