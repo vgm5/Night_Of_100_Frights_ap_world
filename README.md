@@ -7,7 +7,7 @@ More info [here](https://github.com/vgm5/Night_Of_100_Frights_ap_world/blob/main
 
 See the [setup guide](https://github.com/vgm5/Night_Of_100_Frights_ap_world/blob/main/docs/setup_en.md).
 
-## Running from source (untested because I'm lazy and don't want to pip install in my free time)
+## Running from source
 
 - Clone this repo with submodules into the worlds folder for your AP source.
 - Install py_dolphin_memory_engine and pythonnet via pip:
