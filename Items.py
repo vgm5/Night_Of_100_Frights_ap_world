@@ -64,7 +64,7 @@ item_table = {
     ItemNames.MT_WITCH         : ItemData(base_id + 32, ItemClassification.filler),
     ItemNames.MT_WITCHDOC      : ItemData(base_id + 33, ItemClassification.filler),
     ItemNames.MT_WOLFMAN       : ItemData(base_id + 34, ItemClassification.filler),
-    ItemNames.MT_ZOMBIE        : ItemData(base_id + 34, ItemClassification.filler),
+    ItemNames.MT_ZOMBIE        : ItemData(base_id + 35, ItemClassification.filler),
 
     # events
     ItemNames.victory: ItemData(None, ItemClassification.progression)

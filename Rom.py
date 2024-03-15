@@ -26,12 +26,12 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
 
     def __init__(self, *args: Any, **kwargs: Any):
         self.include_monster_tokens: int = kwargs['include_monster_tokens']
-        self.include_snacks: int = kwargs['include_snacks']
-        self.include_keys: int = kwargs['include_keys']
+        #self.include_snacks: int = kwargs['include_snacks']
+        #self.include_keys: int = kwargs['include_keys']
         self.seed: bytes = kwargs['seed']
         del kwargs['include_monster_tokens']
-        del kwargs['include_snacks']
-        del kwargs['include_keys']
+        #del kwargs['include_snacks']
+        #del kwargs['include_keys']
         del kwargs['seed']
         super(NO100FDeltaPatch, self).__init__(*args, **kwargs)
 
@@ -43,12 +43,12 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         opened_zipfile.writestr("include_monster_tokens",
                                 self.include_monster_tokens.to_bytes(1, "little"),
                                 compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr("include_snacks",
-                                self.include_snacks.to_bytes(1, "little"),
-                                compress_type=zipfile.ZIP_STORED)
-        opened_zipfile.writestr("include_keys",
-                                self.include_keys.to_bytes(1, "little"),
-                                compress_type=zipfile.ZIP_STORED)
+        #opened_zipfile.writestr("include_snacks",
+        #                        self.include_snacks.to_bytes(1, "little"),
+        #                        compress_type=zipfile.ZIP_STORED)
+        #opened_zipfile.writestr("include_keys",
+        #                        self.include_keys.to_bytes(1, "little"),
+        #                       compress_type=zipfile.ZIP_STORED)
         m = hashlib.md5()
         m.update(self.seed)
         opened_zipfile.writestr("seed",
@@ -87,9 +87,9 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
 
     @classmethod
     async def apply_hiphop_changes(cls, opened_zipfile: zipfile.ZipFile, source_iso, dest_iso):
-        include_keys = NO100FDeltaPatch.get_bool(opened_zipfile, "include_keys")
-        if not include_keys:
-            return
+        #include_keys = NO100FDeltaPatch.get_bool(opened_zipfile, "include_keys")
+        #if not include_keys:
+        return  #No need for HIPHOP changes until Keys are implemented
         # extract dependencies need to patch with IP
         world_path = os.path.join(__file__[:__file__.find('worlds') + len('worlds')], 'no100f.apworld')
         is_ap_world = os.path.exists(world_path)
@@ -227,8 +227,8 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         patches = [Patches.AP_SAVE_LOAD, Patches.UPGRADE_REWARD_FIX]
         # conditional patches
         include_monster_tokens = NO100FDeltaPatch.get_bool(opened_zipfile, "include_monster_tokens")
-        include_snacks = NO100FDeltaPatch.get_bool(opened_zipfile, "include_snacks")
-        include_keys = NO100FDeltaPatch.get_bool(opened_zipfile, "include_keys")
+        #include_snacks = NO100FDeltaPatch.get_bool(opened_zipfile, "include_snacks")
+        #include_keys = NO100FDeltaPatch.get_bool(opened_zipfile, "include_keys")
         if include_monster_tokens:
             patches += [Patches.MONSTER_TOKEN_FIX]
         #if include_snacks:

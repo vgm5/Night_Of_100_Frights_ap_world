@@ -108,7 +108,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.l013: [ConnectionNames.l013_l014, ConnectionNames.l013_l011],
     RegionNames.l014: [ConnectionNames.l014_l013, ConnectionNames.l014_l015],
     RegionNames.l015: [ConnectionNames.l015_l014, ConnectionNames.l015_l018, ConnectionNames.l015_l017,
-                       ConnectionNames.l015_l019],
+                       ConnectionNames.l015_l019, ConnectionNames.l015_w020],
     RegionNames.l017: [ConnectionNames.l017_l015, ConnectionNames.l017_l018],
     RegionNames.l018: [ConnectionNames.l018_l015, ConnectionNames.l018_l019, ConnectionNames.l018_p001],
     RegionNames.l019: [ConnectionNames.l019_l015, ConnectionNames.l019_l018],
