@@ -11,12 +11,12 @@ from enum import Flag
 from queue import SimpleQueue
 from typing import Callable, Optional, Any, Dict, Tuple
 
-from inc.packages import dolphin_memory_engine
+from .inc.packages import dolphin_memory_engine
 
 import Utils
 from CommonClient import CommonContext, server_loop, gui_enabled, ClientCommandProcessor, logger, \
     get_base_parser
-from worlds.no100f.Rom import NO100FDeltaPatch
+from .Rom import NO100FDeltaPatch
 
 
 class CheckTypes(Flag):
@@ -2544,8 +2544,8 @@ class NO100FContext(CommonContext):
                 self.included_check_types |= CheckTypes.MONSTERTOKENS
             if 'include_Keys' in args['slot_data'] and args['slot_data']['include_Keys']:
                 self.included_check_types |= CheckTypes.KEYS
-#            if 'include_Snacks' in args['slot_data'] and args['slot_data']['include_Snacks']:
-#                self.included_check_types |= CheckTypes.Snacks
+            if 'include_Snacks' in args['slot_data'] and args['slot_data']['include_Snacks']:
+                self.included_check_types |= CheckTypes.SNACKS
         if cmd == 'ReceivedItems':
             if args["index"] >= self.last_rev_index:
                 self.last_rev_index = args["index"]
@@ -2634,8 +2634,8 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
 #def _give_snack(ctx: NO100FContext):
 #    cur_snack_count = dolphin_memory_engine.read_word(SNACK_COUNT_ADDR)
 #    dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_snack_count + 1)
-#    if cur_snack_count > ctx.spat_count:
-#        logger.info("!Some went wrong with the spat count!")
+#    if cur_snack_count > ctx.snack_count:
+#        logger.info("!Some went wrong with the snack count!")
 
 def _give_powerup(ctx: NO100FContext, offset: int):
     dolphin_memory_engine.write_byte(UPGRADE_INVENTORY_ADDR + offset, 1)

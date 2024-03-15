@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-from .Options import NO100FOptions
+from . import NO100FOptions
 from .Locations import NO100FLocation, location_table, \
     upgrade_location_table, monstertoken_location_table
 from .names import ConnectionNames, LevelNames, RegionNames, LocationNames
@@ -10,10 +10,8 @@ from BaseClasses import MultiWorld, Region, Entrance
 
 def create_region(world: MultiWorld, player: int, name: str, locations=None, exits=None) -> Region:
     ret = Region(name, player, world)
-    print(name)
     if locations:
         for location in locations:
-            print(location)
             loc_id = location_table[location]
             location = NO100FLocation(player, location, loc_id, ret)
             ret.locations.append(location)

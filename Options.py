@@ -10,12 +10,18 @@ class IncludeMonsterTokens(Toggle):
 
 
 class IncludeKeys(Toggle):
-    """Include Keys as AP Locations/Items"""
+    """Include Keys as AP Locations/Items(WIP)"""
     display_name = "Include Keys"
-    default = 1
+    default = 0
+
+class IncludeSnacks(Toggle):
+    """Include Snacks as AP Locations/Items (WIP)"""
+    display_name = "Include Snacks"
+    default = 0
 
 @dataclass
 class NO100FOptions(PerGameCommonOptions):
     include_monster_tokens: IncludeMonsterTokens
     include_keys: IncludeKeys
+    include_snacks: IncludeSnacks
     death_link: DeathLink

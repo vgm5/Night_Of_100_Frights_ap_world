@@ -10,11 +10,11 @@ from worlds.LauncherComponents import Component, components, Type, SuffixIdentif
 from .Events import create_events
 from .Items import item_table, NO100FItem
 from .Locations import location_table, NO100FLocation
+from .Options import NO100FOptions
 from .Regions import create_regions
 from .Rom import NO100FDeltaPatch
 from .Rules import set_rules
 from .names import ItemNames, ConnectionNames
-from .Options import NO100FOptions
 
 
 def run_client():
@@ -25,8 +25,10 @@ def run_client():
     p = Process(target=main, kwargs=kwargs)
     p.start()
 
-    components.append(Component("NO100F Client", func=run_client, component_type=Type.CLIENT,
+
+components.append(Component("NO100F Client", func=run_client, component_type=Type.CLIENT,
                             file_identifier=SuffixIdentifier('.apno100f')))
+
 
 class NO100FWeb(WebWorld):
     tutorials = [Tutorial(
@@ -66,6 +68,9 @@ class NightOf100FrightsWorld(World):
         itempool += [ItemNames.GumAmmoUpgrade] * 7
        # if self.options.include_keys.value:
        #     itempool += [ItemNames."Keys"]
+       # if self.options.include_snacks.value:
+       #     itempool += [ItemNames.Snack] * way too much
+       #     itempool += [ItemNames.SnackBox] * also alot
         if self.options.include_monster_tokens:
             itempool += [ItemNames.MT_BLACKKNIGHT, ItemNames.MT_MOODY, ItemNames.MT_CAVEMAN, ItemNames.MT_CREEPER, ItemNames.MT_GARGOYLE, ItemNames.MT_GERONIMO, ItemNames.MT_GHOST,
                          ItemNames.MT_GHOSTDIVER, ItemNames.MT_GREENGHOST, ItemNames.MT_HEADLESS, ItemNames.MT_MASTERMIND, ItemNames.MT_ROBOT, ItemNames.MT_REDBEARD, ItemNames.MT_SCARECROW,
@@ -97,6 +102,7 @@ class NightOf100FrightsWorld(World):
             "death_link": self.options.death_link.value,
             "include_monster_tokens": self.options.include_monster_tokens.value,
             "include_keys": self.options.include_keys,
+            "include_snacks": self.options.include_snacks,
         }
 
     def create_item(self, name: str,) -> Item:
@@ -120,8 +126,8 @@ class NightOf100FrightsWorld(World):
                                                  f"{self.multiworld.get_out_file_name_base(self.player)}{NO100FDeltaPatch.patch_file_ending}"),
                                player=self.player,
                                player_name=self.multiworld.get_player_name(self.player),
-                               #include_snacks=bool(self.options.include_snacks.value),
-                               #include_keys=bool(self.options.include_keys.value),
+                               include_snacks=bool(self.options.include_snacks.value),
+                               include_keys=bool(self.options.include_keys.value),
                                include_monster_tokens=bool(self.options.include_monster_tokens.value),
                                seed=self.multiworld.seed_name.encode('utf-8'),
                                )
