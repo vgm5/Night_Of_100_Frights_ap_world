@@ -21,15 +21,6 @@ upgrade_rules = [
                                                                 state.has(ItemNames.BootsPower, player),
         ConnectionNames.c007_g001: lambda player: lambda state: state.has(ItemNames.PlungerPower, player),
         #determine logic for f003 to f009 access
-
-        # ConnectionNames.hub1_gl01: lambda player: lambda state: state.has(ItemNames.spat, player, 10),
-        # ConnectionNames.hub1_b1: lambda player: lambda state: state.has(ItemNames.spat, player, 15),
-        # ConnectionNames.hub2_rb01: lambda player: lambda state: state.has(ItemNames.spat, player, 25),
-        # ConnectionNames.hub2_sm01: lambda player: lambda state: state.has(ItemNames.spat, player, 30),
-        # ConnectionNames.hub2_b2: lambda player: lambda state: state.has(ItemNames.spat, player, 40),
-        # ConnectionNames.hub3_kf01: lambda player: lambda state: state.has(ItemNames.spat, player, 50),
-        # ConnectionNames.hub3_gy01: lambda player: lambda state: state.has(ItemNames.spat, player, 60),
-        # ConnectionNames.cb_b3: lambda player: lambda state: state.has(ItemNames.spat, player, 75),
     },
     # locations
     {

@@ -44,8 +44,7 @@ UPGRADE_INVENTORY_ADDR = 0x80235098 #4 Bytes
 MONSTER_TOKEN_INVENTORY_ADDR = 0x8023509C   #4 Bytes
 MAX_GUM_COUNT_ADDR = 0x802350A8
 MAX_SOAP_COUNT_ADDR = 0x802350AC
-PLAYER_ADDR = 0x803C0C38        #unused
-PLAYER_CONTROL_OWNER = 0x80234e90       #unused
+PLAYER_CONTROL_OWNER = 0x80234e90
 
 # AP free space usage
 # notes on free space
@@ -67,6 +66,7 @@ SAVED_SEED_ADDR = SAVED_SLOT_NAME_ADDR + 0x40
 # some custom code at 0x817DF080
 
 GLOBAL_INDEX = 0
+
 
 class Upgrades(Enum):               #Bit assigned at 0x80235098
     GumPower         = 0xD4FD7D3C   #xxxx xxxx xxxx xxxx x000 0000 0000 0001
@@ -95,6 +95,7 @@ class Upgrades(Enum):               #Bit assigned at 0x80235098
     SoapBox          = 0xB380CBF0
     SoapPack         = 0xDCC4E558
 
+
 class MonsterTokens(Enum):          #Bit assigned at 0x8023509C
     MT_BLACKKNIGHT = 0x3A6FCC38     #xxxx xxxx xxx0 0000 0000 0000 0000 0001
     MT_MOODY       = 0xDC98824E     #xxxx xxxx xxx0 0000 0000 0000 0000 0010
@@ -117,6 +118,7 @@ class MonsterTokens(Enum):          #Bit assigned at 0x8023509C
     MT_WITCHDOC    = 0x55794316     #xxxx xxxx xxx0 0100 0000 0000 0000 0000
     MT_WOLFMAN     = 0x51D4A7D2     #xxxx xxxx xxx0 1000 0000 0000 0000 0000
     MT_ZOMBIE      = 0x818F2933     #xxxx xxxx xxx1 0000 0000 0000 0000 0000
+
 
 class Keys(Enum):
     DOORKEY         = 0x13109411
@@ -2356,8 +2358,7 @@ class Keys(Enum):
 #    URN__2__PRIZE                    =
 
 
-
-base_id = 1490000
+base_id = 1495000
 
 UPGRADES_PICKUP_IDS = {
     (base_id + 0): (b'W028', Upgrades.GumPower.value),
@@ -2415,7 +2416,7 @@ MONSTERTOKENS_PICKUP_IDS = {
     (base_id + 100 + 20): (b'G002', MonsterTokens.MT_ZOMBIE.value),
 }
 
-"""
+
 KEYS_PICKUP_IDS = {
     (base_id + 200 + 0): (b'b002', Keys.KEY1.value),
     (base_id + 200 + 1): (b'b002', Keys.KEY2.value),
@@ -2478,7 +2479,7 @@ KEYS_PICKUP_IDS = {
     (base_id + 200 + 58): (b'w027', Keys.KEY03.value),
     (base_id + 200 + 59): (b'w027', Keys.KEY04.value),
 }
-"""
+
 valid_scenes = [
     b'B001', b'B002', b'B003', b'B004',
     b'C001', b'C002', b'C003', b'C004', b'C005', b'C006', b'C007',
@@ -2634,7 +2635,7 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
         return None
 
 
-#def _give_snack(ctx: NO100FContext):
+# def _give_snack(ctx: NO100FContext):
 #    cur_snack_count = dolphin_memory_engine.read_word(SNACK_COUNT_ADDR)
 #    dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_snack_count + 1)
 #    if cur_snack_count > ctx.snack_count:
@@ -2665,168 +2666,38 @@ def _give_death(ctx: NO100FContext):
             and check_ingame(ctx) and check_control_owner(ctx, lambda owner: owner == 1):
         dolphin_memory_engine.write_word(HEALTH_ADDR, 0)
 
-def _get_ptr_from_info(ctx: NO100FContext, info: Tuple[bytes, int]):
-    if not _check_cur_scene(ctx, info[0]):
-        return None
-    obj_ptr = _find_obj_in_obj_table(info[1])
-    if obj_ptr is None or obj_ptr == -1:
-        return None
-    return obj_ptr
-
-
-def _set_counter_value(ctx: NO100FContext, cntr_info: Tuple[bytes, int], val: int):
-    obj_ptr = _get_ptr_from_info(ctx, cntr_info)
-    if obj_ptr is None:
-        return
-    count_addr = obj_ptr + 0x14
-    cur_count = int.from_bytes(dolphin_memory_engine.read_bytes(count_addr, 0x2), "big")
-    if cur_count != val:
-        dolphin_memory_engine.write_bytes(count_addr, val.to_bytes(0x2, "big"))
-
-
-def _set_pickup_active(ctx: NO100FContext, pickup_info: Tuple[bytes, int]):
-    obj_ptr = _get_ptr_from_info(ctx, pickup_info)
-    if obj_ptr is None:
-        return
-    state = dolphin_memory_engine.read_word(obj_ptr + 0x16c)
-    if state & 0x8 == 0:  # not collected yet
-        current_pickup_flags = int.from_bytes(dolphin_memory_engine.read_bytes(obj_ptr + 0x264, 0x2), "big")
-        current_pickup_flags |= 0x2
-        dolphin_memory_engine.write_bytes(obj_ptr + 0x264, current_pickup_flags.to_bytes(0x2, "big"))
-        current_ent_flags = dolphin_memory_engine.read_byte(obj_ptr + 0x18)
-        current_ent_flags |= 0x1
-        dolphin_memory_engine.write_byte(obj_ptr + 0x18, current_ent_flags)
-
-def _set_plat_active(ctx: NO100FContext, plat_info: Tuple[bytes, int]):
-    obj_ptr = _get_ptr_from_info(ctx, plat_info)
-    if obj_ptr is None:
-        return
-    state = dolphin_memory_engine.read_byte(obj_ptr + 0x18)
-    if state & 0x1 == 0:
-        dolphin_memory_engine.write_byte(obj_ptr + 0x18, state | 0x1)  # visible
-    coll_mask = dolphin_memory_engine.read_byte(obj_ptr + 0x22)
-    if coll_mask != 0x18:
-        dolphin_memory_engine.write_byte(obj_ptr + 0x22, 0x18)  # collision on
-
-
-def _set_plat_inactive(ctx: NO100FContext, plat_info: Tuple[bytes, int]):
-    obj_ptr = _get_ptr_from_info(ctx, plat_info)
-    if obj_ptr is None:
-        return
-    state = dolphin_memory_engine.read_byte(obj_ptr + 0x18)
-    if state & 0x1 == 0x1:
-        dolphin_memory_engine.write_byte(obj_ptr + 0x18, state & ~0x1)  # invisible
-    coll_mask = dolphin_memory_engine.read_byte(obj_ptr + 0x22)
-    if coll_mask == 0x18:
-        dolphin_memory_engine.write_byte(obj_ptr + 0x22, 0)  # collision off
-
-
-def _set_taskbox_success(ctx: NO100FContext, task_info: Tuple[bytes, int]):
-    obj_ptr = _get_ptr_from_info(ctx, task_info)
-    if obj_ptr is None:
-        return
-    state_addr = obj_ptr + 0x18
-    state = dolphin_memory_engine.read_word(state_addr)
-    enabled_ptr = obj_ptr + 0x10
-    enabled = dolphin_memory_engine.read_byte(enabled_ptr)
-    if 0 < state < 3 and enabled == 1:
-        dolphin_memory_engine.write_word(state_addr, 3)
-        # _set_trig_active(ctx, BALLOON_KID_SUC_TRIG_ID)
-
-
-def _set_trig_active(ctx: NO100FContext, trig_info: Tuple[bytes, int]):
-    obj_ptr = _get_ptr_from_info(ctx, trig_info)
-    if obj_ptr is None:
-        return
-    addr = obj_ptr + 0x7
-    val = dolphin_memory_engine.read_byte(addr)
-    if val & 1 != 1:
-        dolphin_memory_engine.write_byte(addr, val & 1)
-
 
 def _check_cur_scene(ctx: NO100FContext, scene_id: bytes, scene_ptr: Optional[int] = None):
     cur_scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
     return cur_scene == scene_id
 
 
-def _print_player_info(ctx: NO100FContext):
-    base_flags = dolphin_memory_engine.read_bytes(PLAYER_ADDR + 6, 0x2)
-    if base_flags != ctx.LAST_STATE[0]:
-        str_1 = format(int(ctx.LAST_STATE[0].hex(), 16), '#018b')
-        str_1 = f"{str_1[2:10]} {str_1[10:]}"
-        str_2 = format(int(base_flags.hex(), 16), '#018b')
-        str_2 = f"{str_2[2:10]} {str_2[10:]}"
-        print(f"player base flags:\t{str_1}-> {str_2}")
-        ctx.LAST_STATE[0] = base_flags
-    ent_flags = dolphin_memory_engine.read_bytes(PLAYER_ADDR + 0x18, 0x2)
-    if ent_flags != ctx.LAST_STATE[1]:
-        str_1 = format(int(ctx.LAST_STATE[1].hex(), 16), '#018b')
-        str_1 = f"{str_1[2:10]} {str_1[10:]}"
-        str_2 = format(int(ent_flags.hex(), 16), '#018b')
-        str_2 = f"{str_2[2:10]} {str_2[10:]}"
-        print(f"ent_flags:\t\t\t{str_1}-> {str_2}")
-        ctx.LAST_STATE[1] = ent_flags
-    pflags = dolphin_memory_engine.read_bytes(PLAYER_ADDR + 0x1b, 0x2)
-    if pflags != ctx.LAST_STATE[2]:
-        str_1 = format(int(ctx.LAST_STATE[2].hex(), 16), '#018b')
-        str_1 = f"{str_1[2:10]} {str_1[10:]}"
-        str_2 = format(int(pflags.hex(), 16), '#018b')
-        str_2 = f"{str_2[2:10]} {str_2[10:]}"
-        print(f"pflags:\t\t\t\t{str_1}-> {str_2}")
-        ctx.LAST_STATE[2] = pflags
-
-
 def _give_item(ctx: NO100FContext, item_id: int):
-    true_id = item_id - base_id     #Use item_id to generate offset for use with functions
-    if(true_id < 100 and true_id >= 0):      #ID is from the Upgrades Group
+    true_id = item_id - base_id     # Use item_id to generate offset for use with functions
+    if 100 > true_id >= 0:      # ID is from the Upgrades Group
 
-        if(true_id < 7):
+        if true_id < 7:
             _give_powerup(ctx, true_id)
 
-        elif(true_id < 13):
-            _give_powerup(ctx, true_id + 2)  #There are 2 unused bits at 8 and 9, offset remaining actual upgrades.
+        elif true_id < 13:
+            _give_powerup(ctx, true_id + 2)  # There are 2 unused bits at 8 and 9, offset remaining actual upgrades.
 
-        elif(true_id == 13):
+        elif true_id == 13:
             _give_gum_upgrade(ctx)
 
-        elif(true_id == 14):
+        elif true_id == 14:
             _give_soap_upgrade(ctx)
 
-        if(true_id < 36 and true_id > 14):
+        if 36 > true_id > 14:
             _give_monstertoken(ctx, true_id - 15)
 
     else:
         logger.warning(f"Received unknown item with id {item_id}")
 
-# TODO repurpose this to implement Key randomization?
-#async def update_delayed_items(ctx: NO100FContext):
-#    if not await check_alive(ctx):
-#        return
-#    if CheckTypes.LEVEL_ITEMS in ctx.included_check_types:
-#        balloon_count = dolphin_memory_engine.read_byte(BALLOON_KID_COUNT_ADDR)
-#        _set_counter_value(ctx, BALLOON_KID_COUNTER_ID, max(5 - balloon_count, 0))
-#        if balloon_count >= 5:
-#            _set_taskbox_success(ctx, BALLOON_KID_TASKBOX_ID)
-#        sandman_count = dolphin_memory_engine.read_byte(SANDMAN_COUNT_ADDR)
-#        _set_counter_value(ctx, SANDMAN_CNTR_ID, max(8 - sandman_count, 0))
-#        if sandman_count >= 8:
-#            _set_pickup_active(ctx, SANDMAN_SOCK_ID)
-#        power_crystal_count = dolphin_memory_engine.read_byte(POWER_CRYSTAL_COUNT_ADDR)
-#        _set_counter_value(ctx, POWERCRYSTAL_COUNTER_ID, power_crystal_count)
-#        if power_crystal_count >= 6:
-#            for v in POWERCRYSTAL_TASKBOX_IDS:
-#                _set_taskbox_success(ctx, v)
-#       cannon_button_count = dolphin_memory_engine.read_byte(CANNON_BUTTON_COUNT_ADDR)
-#        if cannon_button_count >= 4:
-#           _set_pickup_active(ctx, CANNON_BUTTON_SPAT_ID)
-#           _set_plat_active(ctx, CANNON_BUTTON_PLAT_IDS[0])
-#          _set_plat_inactive(ctx, CANNON_BUTTON_PLAT_IDS[1])
-#          # _set_plat_inactive(ctx, CANNON_BUTTON_PLAT_IDS[2])
-
 
 async def give_items(ctx: NO100FContext):
-    #await update_delayed_items(ctx)
-    #expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
+    # await update_delayed_items(ctx)
+    # expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
     # we need to loop some items
     for item, idx in ctx.items_received_2:
         if check_control_owner(ctx, lambda owner: owner == 0):
@@ -2840,36 +2711,8 @@ async def give_items(ctx: NO100FContext):
             item_id = item.item
             _give_item(ctx, item_id)
             ctx.item_index += 1
-            #dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR, idx + 1)
-            await asyncio.sleep(.01)  # wait a bit for values to updat
-
-
-# ToDo: do we actually want this?
-# ToDo: implement socks/golden underwear/lvl_pickups/skills/ etc..
-# async def set_locations(ctx: BfBBContext):
-#     scene_ptr = dolphin_memory_engine.read_word(CUR_SCENE_PTR_ADDR)
-#     if not _is_ptr_valid(scene_ptr):
-#         return
-#     scene = dolphin_memory_engine.read_bytes(scene_ptr, 0x4)
-#     ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
-#     if not _is_ptr_valid(ptr):
-#         return
-#     size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
-#     for v in ctx.checked_locations:
-#         if v not in SPAT_PICKUP_IDS.keys():
-#             continue
-#         val = SPAT_PICKUP_IDS[v]
-#         if val[0] != scene:
-#             continue
-#         obj_ptr = _find_obj_in_obj_table(val[1], ptr, size)
-#         if obj_ptr is None: break
-#         if obj_ptr == -1: continue
-#         if not _is_ptr_valid(obj_ptr + 0x16C):
-#             return
-#         obj_state = dolphin_memory_engine.read_word(obj_ptr + 0x16C)
-#         print(obj_state)
-#         if obj_state is not None and obj_state & 0x4 == 0:
-#             dolphin_memory_engine.write_word(obj_ptr + 0x16c, obj_state & ~0x3f | 0x4)
+            # dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR, idx + 1)
+            await asyncio.sleep(.01)  # wait a bit for values to update
 
 
 def _check_pickup_state(ctx: NO100FContext, obj_ptr: int):
@@ -2877,52 +2720,6 @@ def _check_pickup_state(ctx: NO100FContext, obj_ptr: int):
         return False
     obj_state = dolphin_memory_engine.read_word(obj_ptr + 0xec)
     return obj_state & 0x08 > 0 and obj_state & 0x37 == 0
-
-
-def _check_button_state(ctx: NO100FContext, obj_ptr: int):
-    if not _is_ptr_valid(obj_ptr + 0x144):
-        return False
-    btn_state = dolphin_memory_engine.read_word(obj_ptr + 0x144)
-    return btn_state & 0x1 == 0x1
-
-
-def _check_destructible_state(ctx: NO100FContext, obj_ptr: int):
-    if not _is_ptr_valid(obj_ptr + 0xdc):
-        return False
-    health = dolphin_memory_engine.read_word(obj_ptr + 0xdc)
-    return health == 0
-
-
-def format_to_bitmask(val: bytes) -> str:
-    result = ''
-    for b in val:
-        result += format(b, '#010b') + ' '
-    return result
-
-
-def _check_platform_state(ctx: NO100FContext, obj_ptr: int):
-    if not _is_ptr_valid(obj_ptr + 0x18):
-        return False
-    state = dolphin_memory_engine.read_byte(obj_ptr + 0x18)
-    return state != 1
-
-
-def _check_counter(ctx: NO100FContext, obj_ptr: int, target_cb: Callable):
-    if not _is_ptr_valid(obj_ptr + 0x14):
-        return False
-    counter = int.from_bytes(dolphin_memory_engine.read_bytes(obj_ptr + 0x14, 0x2), "big")
-    return target_cb(counter)
-
-
-def _check_base_inactive(ctx: NO100FContext, obj_ptr: int):
-    if not _is_ptr_valid(obj_ptr + 0x6):
-        return False
-    state = dolphin_memory_engine.read_bytes(obj_ptr + 0x6, 0x2)
-    return state[1] & 0x1 == 0
-
-
-def _check_base_active(ctx: NO100FContext, obj_ptr: int):
-    return not _check_base_inactive(ctx, obj_ptr)
 
 
 async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_table: dict, check_cb: Callable):
@@ -2953,31 +2750,35 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
             if obj_ptr is None: break
             if obj_ptr == -1: continue
 
-            #Black Knight Fix
+            # Shovel Fix
+            if v[1] == 0x866C5887:  # Only do this for the Shovel Power Up in H001
+                dolphin_memory_engine.write_byte(0x80688ef7,0x1d)
+
+            # Black Knight Fix
             if v[1] == 0x9133CECD:   #Only do this for the Boots Power Up in O008
                 BK_Alive = dolphin_memory_engine.read_word(0x806c4da4) #Check Fight Over Counter
                 if BK_Alive == 0:  #Is he dead?
                     locations_checked.add(k)
 
-            #Green Ghost Fix
+            # Green Ghost Fix
             if v[1] == 0xC889BB9E:
-                #Fix Check Itself
+                # Fix Check Itself
                 GG_Defeated = dolphin_memory_engine.read_byte(0x80743f46)
                 if GG_Defeated == 0x1f:
                     locations_checked.add(k)
 
-                #Fix Broken Fight Trigger
-                dolphin_memory_engine.write_byte(0x8074c89f, 0x1d)  #Re-enable Key Counter
+                # Fix Broken Fight Trigger
+                dolphin_memory_engine.write_byte(0x8074c89f, 0x1d)  # Re-enable Key Counter
                 GG_Alive = dolphin_memory_engine.read_byte(0x80743f44)
-                if GG_Alive == 0 and GG_Defeated == 0x1b:   #Green Ghost has not been defeated, and he is not yet present
+                if GG_Alive == 0 and GG_Defeated == 0x1b: # Green Ghost has not been defeated, and he is not yet present
                     dolphin_memory_engine.write_byte(0x8073444f, 0x1f)
                 else:
                     dolphin_memory_engine.write_byte(0x8073444f, 0x1e)
 
-            #Red Beard Fix
-            if v[1] == 0xD4FD7D3C:   #Only do this for the Gum Powerup in W028
-                RB_Alive = dolphin_memory_engine.read_word(0x80764e94) #Check Fight Over Counter
-                if RB_Alive == 0:  #Is he dead?
+            # Red Beard Fix
+            if v[1] == 0xD4FD7D3C:   # Only do this for the Gum Powerup in W028
+                RB_Alive = dolphin_memory_engine.read_word(0x80764e94) # Check Fight Over Counter
+                if RB_Alive == 0:  # Is he dead?
                     locations_checked.add(k)
 
             if check_cb(ctx, obj_ptr):
@@ -2985,7 +2786,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
 
                 # Lampshade Fix
                 if v[1] == 0x9AD0813E:  # We are checking the slipper power up
-                    locations_checked.add(k+1)  #Add the lampshade check as well
+                    locations_checked.add(k+1)  # Add the lampshade check as well
                 break
 
 
@@ -2997,20 +2798,8 @@ async def _check_monstertokens(ctx: NO100FContext, locations_checked: set):
     await _check_objects_by_id(ctx, locations_checked, MONSTERTOKENS_PICKUP_IDS, _check_pickup_state)
 
 
-#async def _check_snacks(ctx: NO100FContext, locations_checked: set):
+# async def _check_snacks(ctx: NO100FContext, locations_checked: set):
 #    await _check_objects_by_id(ctx, locations_checked, SNACKIDS, _check_pickup_state)
-
-#TODO Something like this could be used for Key Randomization
-#async def _check_level_pickups(ctx: BfBBContext, locations_checked: set):
-#   await _check_objects_by_id(ctx, locations_checked, KING_JF_DISP_ID, _check_base_active)
-#   await _check_objects_by_id(ctx, locations_checked, STEERING_WHEEL_PICKUP_IDS, _check_pickup_state)
-#   await _check_objects_by_id(ctx, locations_checked, BALLOON_KID_PLAT_IDS, _check_platform_state)
-#   await _check_objects_by_id(ctx, locations_checked, ART_WORK_IDS, _check_pickup_state)
-#   await _check_objects_by_id(ctx, locations_checked, OVERRIDE_BUTTON_IDS, _check_button_state)
-#   await _check_objects_by_id(ctx, locations_checked, SANDMAN_DSTR_IDS, _check_destructible_state)
-#  await _check_objects_by_id(ctx, locations_checked, LOST_CAMPER_TRIG_IDS, _check_base_inactive)
-#  await _check_objects_by_id(ctx, locations_checked, POWERCRYSTAL_PICKUP_IDS, _check_pickup_state)
-#  await _check_objects_by_id(ctx, locations_checked, CANNON_BUTTON_IDS, _check_button_state)
 
 async def check_locations(ctx: NO100FContext):
     await _check_upgrades(ctx, ctx.locations_checked)
@@ -3181,8 +2970,6 @@ async def patch_and_run_game(ctx: NO100FContext, patch_file):
         NO100FDeltaPatch.check_hash()
 
         shutil.copy(NO100FDeltaPatch.get_rom_path(), result_path)
-        await NO100FDeltaPatch.apply_hiphop_changes(zipfile.ZipFile(patch_file, 'r'), NO100FDeltaPatch.get_rom_path(),
-                                                  result_path)
         await NO100FDeltaPatch.apply_binary_changes(zipfile.ZipFile(patch_file, 'r'), result_path)
 
         logger.info('--patching success--')

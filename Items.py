@@ -21,7 +21,7 @@ class NO100FItem(Item):
     game: str = "Night of 100 Frights"
 
 
-base_id = 1490000
+base_id = 1495000
 
 item_table = {
     #Upgrades

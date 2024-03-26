@@ -174,6 +174,5 @@ def create_regions(world: MultiWorld, options: NO100FOptions, player: int):
         for _exit in v:
             exit_regions = _exit.split('->')
             assert len(exit_regions) == 2
-            # ToDo: warp rando
             target = world.get_region(exit_regions[1], player)
             world.get_entrance(_exit, player).connect(target)

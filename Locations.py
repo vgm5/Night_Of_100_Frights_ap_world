@@ -7,7 +7,7 @@ class NO100FLocation(Location):
     game: str = "Night of 100 Frights"
 
 
-base_id = 1490000
+base_id = 1495000
 
 upgrade_location_table = {
     LocationNames.gumpower_w028: base_id + 0,
