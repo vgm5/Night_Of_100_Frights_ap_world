@@ -17,4 +17,5 @@ See the [setup guide](https://github.com/vgm5/Night_Of_100_Frights_ap_world/blob
 ## Known Issues
 
 -Logic is Broken
+
 -In Game Indexing isn't patched in properly yet (doesn't negativey affect the randomizer yet)
