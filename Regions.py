@@ -96,7 +96,7 @@ exit_table: Dict[str, List[str]] = {
 
     # Myst(i)c Manor
     RegionNames.i001: [ConnectionNames.i001_i020, ConnectionNames.i001_hub1],
-    RegionNames.i003: [ConnectionNames.i003_i004, ConnectionNames.i003_i021],
+    RegionNames.i003: [ConnectionNames.i003_i004, ConnectionNames.i003_i021, ConnectionNames.i003_b004],
     RegionNames.i004: [ConnectionNames.i004_o001, ConnectionNames.i004_i003, ConnectionNames.i004_i005],
     RegionNames.i005: [ConnectionNames.i005_i004, ConnectionNames.i005_i006],
     RegionNames.i006: [ConnectionNames.i006_i005, ConnectionNames.i006_r001],
@@ -147,7 +147,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.s006: [ConnectionNames.s006_s005],
 
     # Wrecked Ships
-    RegionNames.w020: [ConnectionNames.w020_w021, ConnectionNames.w020_w026, ConnectionNames.w020_l015],
+    RegionNames.w020: [ConnectionNames.w020_w021, ConnectionNames.w020_l015],
     RegionNames.w021: [ConnectionNames.w021_w020, ConnectionNames.w021_w022],
     RegionNames.w022: [ConnectionNames.w022_w021, ConnectionNames.w022_w023],
     RegionNames.w023: [ConnectionNames.w023_w022, ConnectionNames.w023_w025],

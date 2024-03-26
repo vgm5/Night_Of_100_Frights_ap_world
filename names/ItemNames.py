@@ -13,6 +13,8 @@ LampshadePower = "Lampshade Power"
 BlackknightPower = "Black Knight Power"
 ShovelPower = "Shovel Power"
 
+Upgrades = "Upgrades"
+
 #Ammo Upgrades
 GumAmmoUpgrade = "Max Gum Ammo"
 SoapAmmoUpgrade = "Max Soap Ammo"
@@ -39,5 +41,7 @@ MT_WITCH = "Monster Token: Witch"
 MT_WITCHDOC = "Monster Token: Witchdoctor"
 MT_WOLFMAN = "Monster Token: Wolfman"
 MT_ZOMBIE = "Monster Token: Zombie"
+
+MonsterTokens = "Monster Tokens"
 
 victory = "Victory"

@@ -2384,7 +2384,6 @@ UPGRADES_PICKUP_IDS = {
     (base_id + 20): (b'E007', Upgrades.SoapBox1.value),
     (base_id + 21): (b'G003', Upgrades.Soap__Box.value),
     (base_id + 22): (b'R005', Upgrades.SoapPack.value),
-    (base_id + 22): (b'R020', Upgrades.BubblePack.value),
     (base_id + 23): (b'R021', Upgrades.SoapPack.value),
     (base_id + 24): (b'L019', Upgrades.SoapBox.value),
     (base_id + 25): (b'S005', Upgrades.SoapOverAcid2.value),
