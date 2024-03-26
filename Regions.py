@@ -43,7 +43,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.hub3: [ConnectionNames.hub3_hub1],
 
     # (B)asement
-    RegionNames.b001: [ConnectionNames.b001_b002, ConnectionNames.b001_b003, ConnectionNames.b001_p005],
+    RegionNames.b001: [ConnectionNames.b001_b002, ConnectionNames.b001_p005],
     RegionNames.b002: [ConnectionNames.b002_b001, ConnectionNames.b002_b003],
     RegionNames.b003: [ConnectionNames.b003_b001, ConnectionNames.b003_b002, ConnectionNames.b003_b004,
                        ConnectionNames.b003_p004],
@@ -127,7 +127,7 @@ exit_table: Dict[str, List[str]] = {
                        ConnectionNames.p001_l018],
     RegionNames.p002: [ConnectionNames.p002_p001, ConnectionNames.p002_p003, ConnectionNames.p002_s001],
     RegionNames.p003: [ConnectionNames.p003_p002, ConnectionNames.p003_p004],
-    RegionNames.p004: [ConnectionNames.p004_p003, ConnectionNames.p004_p005, ConnectionNames.p004_b003],
+    RegionNames.p004: [ConnectionNames.p004_p003, ConnectionNames.p004_p005],
     RegionNames.p005: [ConnectionNames.p005_p001, ConnectionNames.p005_p004, ConnectionNames.p005_b001],
 
     # Balcony (R)

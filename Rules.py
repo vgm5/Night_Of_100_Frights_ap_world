@@ -56,7 +56,7 @@ upgrade_rules = [
         ConnectionNames.l015_w020: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1),
 
         # Wrecked Ships
-        ConnectionNames.w020_w021: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
+        ConnectionNames.w020_w021: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
     },
     # locations
     {
@@ -74,8 +74,8 @@ upgrade_rules = [
             LocationNames.soapammo_e007: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
             # Fishing Village
-            LocationNames.gumammo_f003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.BootsPower, player, 1),
-            LocationNames.soapammo_f001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) or (state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
+            LocationNames.gumammo_f003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+            LocationNames.soapammo_f001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) or (state.has(ItemNames.SpringPower, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1))),
             # Coast
             LocationNames.gumammo_c003: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or (state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1)),
 
@@ -90,7 +90,7 @@ upgrade_rules = [
 
             # Lighthouse
             LocationNames.soapammo_l019: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and (state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
-            LocationNames.gumammo_l011: lambda player: lambda state: state.has(ItemNames.PlungerPower, player, 1) or state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1),
+            LocationNames.gumammo_l011: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and (state.has(ItemNames.PlungerPower, player, 1) or state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
             # Wrecked Ships
         },
 
