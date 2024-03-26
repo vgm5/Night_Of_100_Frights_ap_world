@@ -1,6 +1,9 @@
-# ToDo
+# To Do
+- Clean Up Code
 
-## later
+- Fix Logic
 
+- Reintroduce In-Game Item Indexing
+## Later
 - Scooby Snack Randomization
 - Key Randomization
