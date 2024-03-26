@@ -8,7 +8,7 @@
 - Microsoft .NET Framework 4.8 or higher
 - [Dolphin](https://dolphin-emu.org/download/)
 - Your US Version of Night of 100 Frights Revision 0, probably
-  named ``Scooby Doo! Night of 100 Frights.iso``.
+  named ``Scooby-Doo! Night of 100 Frights.iso``.
 
 ## Installation Procedures
 
