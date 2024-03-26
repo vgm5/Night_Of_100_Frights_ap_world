@@ -47,7 +47,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.b002: [ConnectionNames.b002_b001, ConnectionNames.b002_b003],
     RegionNames.b003: [ConnectionNames.b003_b001, ConnectionNames.b003_b002, ConnectionNames.b003_b004,
                        ConnectionNames.b003_p004],
-    RegionNames.b004: [ConnectionNames.b004_b003, ConnectionNames.b004_i003],
+    RegionNames.b004: [ConnectionNames.b004_i003],
 
     # (C)liff
     RegionNames.c001: [ConnectionNames.c001_c002, ConnectionNames.c001_e009],
