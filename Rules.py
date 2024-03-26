@@ -6,13 +6,22 @@ from .Options import NO100FOptions
 from .names import ConnectionNames, ItemNames, LocationNames, RegionNames
 from worlds.generic.Rules import set_rule, add_rule, CollectionRule
 
-
 upgrade_rules = [
     # connections
     {
-        ConnectionNames.hub1_e001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.hub1_f001: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
-        ConnectionNames.i020_i021: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+        ConnectionNames.hub1_e001: lambda player: lambda state: state.has(ItemNames.SpringPower, player),
+        ConnectionNames.hub1_f001: lambda player: lambda state: state.has(ItemNames.ShovelPower, player),
+        ConnectionNames.i020_i021: lambda player: lambda state: state.has(ItemNames.HelmetPower, player),
+        ConnectionNames.i004_o001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player),
+        ConnectionNames.e009_c001: lambda player: lambda state: state.has(ItemNames.PoundPower, player),
+        ConnectionNames.f003_f004: lambda player: lambda state: state.has(ItemNames.HelmetPower, player) and \
+                                                                state.has(ItemNames.BootsPower, player),
+        ConnectionNames.f003_p001: lambda player: lambda state: state.has(ItemNames.PoundPower, player),
+        ConnectionNames.f009_f008: lambda player: lambda state: state.has(ItemNames.HelmetPower, player) and \
+                                                                state.has(ItemNames.BootsPower, player),
+        ConnectionNames.c007_g001: lambda player: lambda state: state.has(ItemNames.PlungerPower, player),
+        #determine logic for f003 to f009 access
+
         # ConnectionNames.hub1_gl01: lambda player: lambda state: state.has(ItemNames.spat, player, 10),
         # ConnectionNames.hub1_b1: lambda player: lambda state: state.has(ItemNames.spat, player, 15),
         # ConnectionNames.hub2_rb01: lambda player: lambda state: state.has(ItemNames.spat, player, 25),
@@ -24,16 +33,15 @@ upgrade_rules = [
     },
     # locations
     {
-        # ItemNames.spat: {
-        #    LocationNames.spat_ks_01: lambda player: lambda state: state.has(ItemNames.spat, player, 5),
-        #    LocationNames.spat_ks_02: lambda player: lambda state: state.has(ItemNames.spat, player, 10),
-        #   LocationNames.spat_ks_03: lambda player: lambda state: state.has(ItemNames.spat, player, 15),
-        #   LocationNames.spat_ks_04: lambda player: lambda state: state.has(ItemNames.spat, player, 20),
-        #   LocationNames.spat_ks_05: lambda player: lambda state: state.has(ItemNames.spat, player, 25),
-        #  LocationNames.spat_ks_06: lambda player: lambda state: state.has(ItemNames.spat, player, 30),
-        #  LocationNames.spat_ks_07: lambda player: lambda state: state.has(ItemNames.spat, player, 35),
-        #   LocationNames.spat_ks_08: lambda player: lambda state: state.has(ItemNames.spat, player, 40),
-        # }
+        LocationNames.headless_token_i001: lambda player: lambda state: state.has(ItemNames.SpringPower, player),
+        LocationNames.wolfman_token_e001: lambda player: lambda state: state.has(ItemNames.HelmetPower, player),
+        LocationNames.soapammo_e007: lambda player: lambda state: state.has(ItemNames.GumPower, player),
+        LocationNames.gumammo_f003: lambda player: lambda state: state.has(ItemNames.SpringPower, player) and \
+                                                                 state.has(ItemNames.BootsPower, player),
+        LocationNames.spacekook_token_b001: lambda player: lambda state: state.has(ItemNames.SoapPower, player),
+        LocationNames.moody_token_w022: lambda player: lambda state: state.has(ItemNames.GumPower, player),
+        LocationNames.seacreature_token_l014: lambda player: lambda state: state.has(ItemNames.PoundPower, player) or \
+                                                                           state.has(ItemNames.UmbrellaPower, player),
     }
 ]
 monster_token_rules = [

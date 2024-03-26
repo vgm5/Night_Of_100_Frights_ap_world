@@ -220,7 +220,7 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         manifest = NO100FDeltaPatch.get_json_obj(opened_zipfile, "archipelago.json")
         slot_name = manifest["player_name"]
         slot_name_bytes = slot_name.encode('utf-8')
-        slot_name_offset = 0x2AB980
+        slot_name_offset = 0x1e0c9c
         seed_hash = NO100FDeltaPatch.get_seed_hash(opened_zipfile)
         seed_hash_offset = slot_name_offset + 0x40
         # always apply these patches
@@ -262,7 +262,7 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
     @classmethod
     def check_hash(cls):
         if not validate_hash():
-            Exception(f"Supplied Base Rom does not match known MD5 for BfBB (US). "
+            Exception(f"Supplied Base Rom does not match known MD5 for Scooby Doo! Night of 100 Frights.iso. "
                       "Get the correct game and version.")
 
     @classmethod
@@ -279,7 +279,7 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
 def get_base_rom_path(file_name: str = "") -> str:
     options: Utils.OptionsType = Utils.get_options()
     if not file_name:
-        # file_name = options["bfbb_options"]["rom_file"]
+        # file_name = options["no100f_options"]["rom_file"]
         file_name = "Scooby-Doo! Night of 100 Frights.iso"
     if not os.path.exists(file_name):
         file_name = Utils.user_path(file_name)

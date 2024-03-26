@@ -26,7 +26,7 @@ def _get_locations_for_region(options: NO100FOptions, name: str) -> List[str]:
     result = [k for k in upgrade_location_table if f"{name}:" in k]
     if name == RegionNames.hub1:
         result += [k for k in upgrade_location_table if f"{LevelNames.hub}:" in k]
-    if name == RegionNames.s006:
+    if name == RegionNames.s005:
         result += [LocationNames.Credits]
     if options.include_monster_tokens.value:
         result += [k for k in monstertoken_location_table if f"{name}:" in k]
@@ -59,9 +59,9 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.c007: [ConnectionNames.c007_c006, ConnectionNames.c007_g001],
 
     # H(e)dge Maze
-    RegionNames.e001: [ConnectionNames.e001_e002, ConnectionNames.e001_e009, ConnectionNames.e001_hub1],
+    RegionNames.e001: [ConnectionNames.e001_e002, ConnectionNames.e001_hub1],
     RegionNames.e002: [ConnectionNames.e002_e001, ConnectionNames.e002_e003],
-    RegionNames.e003: [ConnectionNames.e003_e002, ConnectionNames.e003_e004, ConnectionNames.e003_c005],
+    RegionNames.e003: [ConnectionNames.e003_e002, ConnectionNames.e003_e004],
     RegionNames.e004: [ConnectionNames.e004_e003, ConnectionNames.e004_e005],
     RegionNames.e005: [ConnectionNames.e005_e004, ConnectionNames.e005_e006],
     RegionNames.e006: [ConnectionNames.e006_e005, ConnectionNames.e006_e007],
@@ -95,8 +95,8 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.g009: [ConnectionNames.g009_g008, ConnectionNames.g009_hub1],
 
     # Myst(i)c Manor
-    RegionNames.i001: [ConnectionNames.i001_i020, ConnectionNames.i001_hub1, ConnectionNames.i001_r001],
-    RegionNames.i003: [ConnectionNames.i003_i004, ConnectionNames.i003_i021, ConnectionNames.i003_b004],
+    RegionNames.i001: [ConnectionNames.i001_i020, ConnectionNames.i001_hub1],
+    RegionNames.i003: [ConnectionNames.i003_i004, ConnectionNames.i003_i021],
     RegionNames.i004: [ConnectionNames.i004_o001, ConnectionNames.i004_i003, ConnectionNames.i004_i005],
     RegionNames.i005: [ConnectionNames.i005_i004, ConnectionNames.i005_i006],
     RegionNames.i006: [ConnectionNames.i006_i005, ConnectionNames.i006_r001],

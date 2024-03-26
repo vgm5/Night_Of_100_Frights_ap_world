@@ -1,58 +1,72 @@
 #RAM Instruction to .iso Instruction:  RAM ADDRESS - 0x8000 0000 + 0x1B000
 AP_SAVE_LOAD = {
-    # ignore cheats
-    0xb63c0: 0x60000000,  # nop
+    # ignore cheats, hold L+R and press (x/y/b) for funny
+    0xc73ec: 0x60000000,  # nop
+    0xc73f8: 0x60000000,  # nop
+    0xc7404: 0x60000000,  # nop
+    0xc7410: 0x60000000,  # nop
+    0xc741c: 0x60000000,  # nop
+    0xc7428: 0x60000000,  # nop
+    0xc7434: 0x60000000,  # nop
+    0xc7440: 0x60000000,  # nop
+    0xc7444: 0x60000000,  # nop
+    0xc7448: 0x60000000,  # nop
+    0xc744c: 0x60000000,  # nop
+    0xc7450: 0x60000000,  # nop
+    0xc7454: 0x60000000,  # nop
+    0xc7458: 0x60000000,  # nop
+    0xc745c: 0x60000000,  # nop
 
     # inject write function
-    0xcebdc: 0x481dcb29,  # bl   -> 0x8028F204 (write function)
+    #0xcebdc: 0x481dcb29,  # bl   -> 0x8028F204 (write function)
 
     # inject read function
-    0xcf034: 0x481dc711,  # bl   -> 0x8028f244 (read function)
+    #0xcf034: 0x481dc711,  # bl   -> 0x8028f244 (read function)
 
     # write function
-    0x2ab8e4: 0x9421fff0,  # stwu sp, -0x0010 (sp)
-    0x2ab8e8: 0x7c0802a6,  # mflr r0
-    0x2ab8ec: 0x90010014,  # stw  r0, 0x0014 (sp)
-    0x2ab8f0: 0x4bdb3dfd,  # bl   ->0x8004300C (Write_b1__7xSerialFi)
-    0x2ab8f4: 0x3dc0817f,  # lis	r14, 0x817f
-    0x2ab8f8: 0x39e00000,  # li   r15, 0
-    0x2ab8fc: 0x7fe3fb78,  # mr	r3, r31
-    0x2ab900: 0x7c8e782e,  # lwzx	r4, r14, r15
-    0x2ab904: 0x4bdb3ed9,  # bl	->0x800430FC (Write__7xSerialFi)
-    0x2ab908: 0x39ef0004,  # addi r15, r15, 4
-    0x2ab90c: 0x2C0f007c,  # cmp  r15, 0x7c
-    0x2ab910: 0x4081ffec,  # ble -> 0x8028f21c (-5)
-    0x2ab914: 0x80010014,  # lwz	r0, 0x0014 (sp)
-    0x2ab918: 0x7c0803a6,  # mtlr	r0
-    0x2ab91c: 0x38210010,  # addi	sp, sp, 16
-    0x2ab920: 0x4e800020,  # blr
+    0x1e0c04: 0x9421fff0,  # stwu sp, -0x0010 (sp)
+    0x1e0c08: 0x7c0802a6,  # mflr r0
+    0x1e0c0c: 0x90010014,  # stw  r0, 0x0014 (sp)
+    0x1e0c10: 0x4bdb3dfd,  # bl   ->0x8004300C (Write_b1__7xSerialFi)
+    0x1e0c14: 0x3dc0817f,  # lis	r14, 0x817f
+    0x1e0c18: 0x39e00000,  # li   r15, 0
+    0x1e0c1c: 0x7fe3fb78,  # mr	r3, r31
+    0x1e0c20: 0x7c8e782e,  # lwzx	r4, r14, r15
+    0x1e0c24: 0x4bdb3ed9,  # bl	->0x800430FC (Write__7xSerialFi)
+    0x1e0c28: 0x39ef0004,  # addi r15, r15, 4
+    0x1e0c2c: 0x2C0f007c,  # cmp  r15, 0x7c
+    0x1e0c30: 0x4081ffec,  # ble -> 0x8028f21c (-5)
+    0x1e0c34: 0x80010014,  # lwz	r0, 0x0014 (sp)
+    0x1e0c38: 0x7c0803a6,  # mtlr	r0
+    0x1e0c3c: 0x38210010,  # addi	sp, sp, 16
+    0x1e0c40: 0x4e800020,  # blr
 
     # read function
-    0x2ab924: 0x9421fff0,  # stwu	sp, -0x0010 (sp)
-    0x2ab928: 0x7c0802a6,  # mflr	r0
-    0x2ab92c: 0x90010014,  # stw	r0, 0x0014 (sp)
-    0x2ab930: 0x3dc0817f,  # lis	r14, 0x817f
-    0x2ab934: 0x39e00000,  # li   r15, 0
-    0x2ab938: 0x7fe3fb78,  # mr	r3, r31
-    0x2ab93c: 0x7c8e7a14,  # add  r4, r14, r15
-    0x2ab940: 0x7c9d2378,  # mr	r29, r4
-    0x2ab944: 0x4bdb4111,  # bl	->0x80043374 (Read_7xSerialFPUi)
-    0x2ab948: 0x39ef0004,  # addi r15, r15, 4
-    0x2ab94c: 0x2C0f007c,  # cmp r15, 0x7c
-    0x2ab950: 0x4081ffe8,  # ble -> 0x8028f258 (-6)
-    0x2ab954: 0x3c80803c,  # lis	r4, 0x803C
-    0x2ab958: 0x7fe3fb78,  # mr	r3, r31
-    0x2ab95c: 0x38840558,  # addi	r4, r4, 1368
-    0x2ab960: 0x3ba41738,  # addi	r29, r4, 5944
-    0x2ab964: 0x7fa4eb78,  # mr	r4, r29
-    0x2ab968: 0x4bdb40ed,  # bl	->0x80043374 (Read_7xSerialFPUi)
-    0x2ab96c: 0x80010014,  # lwz	r0, 0x0014 (sp)
-    0x2ab970: 0x7c0803a6,  # mtlr	r0
-    0x2ab974: 0x38210010,  # addi	sp, sp, 16
-    0x2ab978: 0x4e800020,  # blr
+    0x1e0c44: 0x9421fff0,  # stwu	sp, -0x0010 (sp)
+    0x1e0c48: 0x7c0802a6,  # mflr	r0
+    0x1e0c4c: 0x90010014,  # stw	r0, 0x0014 (sp)
+    0x1e0c50: 0x3dc0817f,  # lis	r14, 0x817f
+    0x1e0c54: 0x39e00000,  # li   r15, 0
+    0x1e0c58: 0x7fe3fb78,  # mr	r3, r31
+    0x1e0c5c: 0x7c8e7a14,  # add  r4, r14, r15
+    0x1e0c60: 0x7c9d2378,  # mr	r29, r4
+    0x1e0c64: 0x4bdb4111,  # bl	->0x80043374 (Read_7xSerialFPUi)
+    0x1e0c68: 0x39ef0004,  # addi r15, r15, 4
+    0x1e0c6c: 0x2C0f007c,  # cmp r15, 0x7c
+    0x1e0c70: 0x4081ffe8,  # ble -> 0x8028f258 (-6)
+    0x1e0c74: 0x3c80803c,  # lis	r4, 0x803C
+    0x1e0c78: 0x7fe3fb78,  # mr	r3, r31
+    0x1e0c7c: 0x38840558,  # addi	r4, r4, 1368
+    0x1e0c80: 0x3ba41738,  # addi	r29, r4, 5944
+    0x1e0c84: 0x7fa4eb78,  # mr	r4, r29
+    0x1e0c88: 0x4bdb40ed,  # bl	->0x80043374 (Read_7xSerialFPUi)
+    0x1e0c8c: 0x80010014,  # lwz	r0, 0x0014 (sp)
+    0x1e0c90: 0x7c0803a6,  # mtlr	r0
+    0x1e0c94: 0x38210010,  # addi	sp, sp, 16
+    0x1e0c98: 0x4e800020,  # blr
 
     # nuke remaining cheats info
-    0x2AB980: bytes([0] * 0x17c)
+    0x1e0c9c: bytes([0] * 0xb0)
 }
 
 UPGRADE_REWARD_FIX = {

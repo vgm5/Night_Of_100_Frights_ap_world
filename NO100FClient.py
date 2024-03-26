@@ -33,10 +33,10 @@ CONNECTION_LOST_STATUS = "Dolphin Connection was lost. Please restart your emula
 CONNECTION_CONNECTED_STATUS = "Dolphin Connected"
 CONNECTION_INITIAL_STATUS = "Dolphin Connection has not been initiated"
 
-SCENE_OBJ_LIST_PTR_ADDR = 0x803cb9ec
-SCENE_OBJ_LIST_SIZE_ADDR = 0x803cac08
+SCENE_OBJ_LIST_PTR_ADDR = 0x8025f0e0
+SCENE_OBJ_LIST_SIZE_ADDR = 0x8025e5ac
 
-CUR_SCENE_PTR_ADDR = 0x803c2518
+CUR_SCENE_ADDR = 0x8025f0d0
 
 HEALTH_ADDR = 0x80234DC8
 SNACK_COUNT_ADDR = 0x80235094   #4 Bytes
@@ -44,27 +44,29 @@ UPGRADE_INVENTORY_ADDR = 0x80235098 #4 Bytes
 MONSTER_TOKEN_INVENTORY_ADDR = 0x8023509C   #4 Bytes
 MAX_GUM_COUNT_ADDR = 0x802350A8
 MAX_SOAP_COUNT_ADDR = 0x802350AC
-PLAYER_ADDR = 0x803C0C38
-PLAYER_CONTROL_OWNER = 0x803c1ce0
+PLAYER_ADDR = 0x803C0C38        #unused
+PLAYER_CONTROL_OWNER = 0x80234e90       #unused
 
 # AP free space usage
 # notes on free space
-# 0x817FFFF6 - 0x817FFFFF
-# around 0x8179f890-0x817fcf00 (?)
+# 0x817FDFF6 - 0x817FDFFF
+# around 0x8179d890-0x817fbf00 (?)
 
-# @0x817f0080 save game write injection code
-# @0x817f0400 save game read injection code
+# @0x817DF080 save game write injection code
+# @0x817DF400 save game read injection code
 
-SLOT_NAME_ADDR = 0x8028F2a0
+SLOT_NAME_ADDR = 0x801c5c9c
 SEED_ADDR = SLOT_NAME_ADDR + 0x40
-# we currently write/read 0x20 bytes starting from 0x817f0000 to/from save game
-# we could extend up to 0x80 bytes or more if we move AP code from 0x817f0080 to somewhere else
+# we currently write/read 0x20 bytes starting from 0x817DF000 to/from save game
+# we could extend up to 0x80 bytes or more if we move AP code from 0x817DF080 to somewhere else
 # expected received item index
-EXPECTED_INDEX_ADDR = 0x817f0000
+#EXPECTED_INDEX_ADDR = 0x817DF000
 # delayed item
-SAVED_SLOT_NAME_ADDR = 0x817f0020
+SAVED_SLOT_NAME_ADDR = 0x817DF020
 SAVED_SEED_ADDR = SAVED_SLOT_NAME_ADDR + 0x40
-# some custom code at 0x817f0080
+# some custom code at 0x817DF080
+
+GLOBAL_INDEX = 0
 
 class Upgrades(Enum):               #Bit assigned at 0x80235098
     GumPower         = 0xD4FD7D3C   #xxxx xxxx xxxx xxxx x000 0000 0000 0001
@@ -2358,59 +2360,59 @@ class Keys(Enum):
 base_id = 1490000
 
 UPGRADES_PICKUP_IDS = {
-    (base_id + 0): (b'w028', Upgrades.GumPower.value),
-    (base_id + 1): (b'b004', Upgrades.SoapPower.value),
-    (base_id + 2): (b'o008', Upgrades.BootsPower.value),
-    (base_id + 3): (b'p003', Upgrades.PlungerPower.value),
-    (base_id + 4): (b'e002', Upgrades.SlippersPower.value),
-    (base_id + 5): (b'e002', Upgrades.LampshadePower.value),
-    (base_id + 6): (b'r004', Upgrades.BlackKnightPower.value),
-    (base_id + 7): (b'f010', Upgrades.SpringPower.value),
-    (base_id + 8): (b'l017', Upgrades.PoundPower.value),
-    (base_id + 9): (b'e009', Upgrades.HelmetPower.value),
-    (base_id + 10): (b'g009', Upgrades.UmbrellaPower.value),
-    (base_id + 11): (b'h001', Upgrades.ShovelPower.value),
-    (base_id + 12): (b'c007', Upgrades.ShockwavePower.value),
-    (base_id + 13): (b'c003', Upgrades.GumPack.value),
-    (base_id + 14): (b'lo11', Upgrades.GumMaxAmmo.value),
-    (base_id + 15): (b'f003', Upgrades.GumUpgrade.value),
-    (base_id + 16): (b's005', Upgrades.GumOverAcid2.value),
-    (base_id + 17): (b'o001', Upgrades.Gum_Upgrade.value),
-    (base_id + 18): (b'g006', Upgrades.GumPack.value),
-    (base_id + 19): (b'r020', Upgrades.BubblePack.value),
-    (base_id + 20): (b'e007', Upgrades.SoapBox1.value),
-    (base_id + 21): (b'g003', Upgrades.Soap__Box.value),
-    (base_id + 22): (b'r005', Upgrades.SoapPack.value),
-    (base_id + 22): (b'r020', Upgrades.BubblePack.value),
-    (base_id + 23): (b'r021', Upgrades.SoapPack.value),
-    (base_id + 24): (b'l019', Upgrades.SoapBox.value),
-    (base_id + 25): (b's005', Upgrades.SoapOverAcid2.value),
-    (base_id + 26): (b'w023', Upgrades.SoapBox.value),
-    (base_id + 27): (b'f001', Upgrades.Soap_Box.value),
+    (base_id + 0): (b'W028', Upgrades.GumPower.value),
+    (base_id + 1): (b'B004', Upgrades.SoapPower.value),
+    (base_id + 2): (b'O008', Upgrades.BootsPower.value),
+    (base_id + 3): (b'P003', Upgrades.PlungerPower.value),
+    (base_id + 4): (b'E002', Upgrades.SlippersPower.value),
+    (base_id + 5): (b'E002', Upgrades.LampshadePower.value),
+    (base_id + 6): (b'R004', Upgrades.BlackKnightPower.value),
+    (base_id + 7): (b'F010', Upgrades.SpringPower.value),
+    (base_id + 8): (b'L017', Upgrades.PoundPower.value),
+    (base_id + 9): (b'E009', Upgrades.HelmetPower.value),
+    (base_id + 10): (b'G009', Upgrades.UmbrellaPower.value),
+    (base_id + 11): (b'H001', Upgrades.ShovelPower.value),
+    (base_id + 12): (b'C007', Upgrades.ShockwavePower.value),
+    (base_id + 13): (b'C003', Upgrades.GumPack.value),
+    (base_id + 14): (b'Lo11', Upgrades.GumMaxAmmo.value),
+    (base_id + 15): (b'F003', Upgrades.GumUpgrade.value),
+    (base_id + 16): (b'S005', Upgrades.GumOverAcid2.value),
+    (base_id + 17): (b'O001', Upgrades.Gum_Upgrade.value),
+    (base_id + 18): (b'G006', Upgrades.GumPack.value),
+    (base_id + 19): (b'R020', Upgrades.BubblePack.value),
+    (base_id + 20): (b'E007', Upgrades.SoapBox1.value),
+    (base_id + 21): (b'G003', Upgrades.Soap__Box.value),
+    (base_id + 22): (b'R005', Upgrades.SoapPack.value),
+    (base_id + 22): (b'R020', Upgrades.BubblePack.value),
+    (base_id + 23): (b'R021', Upgrades.SoapPack.value),
+    (base_id + 24): (b'L019', Upgrades.SoapBox.value),
+    (base_id + 25): (b'S005', Upgrades.SoapOverAcid2.value),
+    (base_id + 26): (b'W023', Upgrades.SoapBox.value),
+    (base_id + 27): (b'F001', Upgrades.Soap_Box.value),
 }
 
 MONSTERTOKENS_PICKUP_IDS = {
-    (base_id + 100 + 0): (b'o001', MonsterTokens.MT_BLACKKNIGHT.value),
-    (base_id + 100 + 1): (b'w022', MonsterTokens.MT_MOODY.value),
-    (base_id + 100 + 2): (b'l013', MonsterTokens.MT_CAVEMAN.value),
-    (base_id + 100 + 3): (b'o002', MonsterTokens.MT_CREEPER.value),
-    (base_id + 100 + 4): (b'h002', MonsterTokens.MT_GARGOYLE.value),
-    (base_id + 100 + 5): (b'i005', MonsterTokens.MT_GERONIMO.value),
-    (base_id + 100 + 6): (b'g005', MonsterTokens.MT_GHOST.value),
-    (base_id + 100 + 7): (b'f007', MonsterTokens.MT_GHOSTDIVER.value),
-    (base_id + 100 + 8): (b'c005', MonsterTokens.MT_GREENGHOST.value),
-    (base_id + 100 + 9): (b'i001', MonsterTokens.MT_HEADLESS.value),
-    (base_id + 100 + 10): (b's003', MonsterTokens.MT_MASTERMIND.value),
-    (base_id + 100 + 11): (b's002', MonsterTokens.MT_ROBOT.value),
-    (base_id + 100 + 12): (b'w025', MonsterTokens.MT_REDBEARD.value),
-    (base_id + 100 + 13): (b'g008', MonsterTokens.MT_SCARECROW.value),
-    (base_id + 100 + 14): (b'l014', MonsterTokens.MT_SEACREATURE.value),
-    (base_id + 100 + 15): (b'b001', MonsterTokens.MT_SPACEKOOK.value),
-    (base_id + 100 + 16): (b'f004', MonsterTokens.MT_TARMONSTER.value),
-    (base_id + 100 + 17): (b'e003', MonsterTokens.MT_WITCH.value),
-    (base_id + 100 + 18): (b'r020', MonsterTokens.MT_WITCHDOC.value),
-    (base_id + 100 + 19): (b'e001', MonsterTokens.MT_WOLFMAN.value),
-    (base_id + 100 + 20): (b'g002', MonsterTokens.MT_ZOMBIE.value),
+    (base_id + 100 + 0): (b'O001', MonsterTokens.MT_BLACKKNIGHT.value),
+    (base_id + 100 + 1): (b'W022', MonsterTokens.MT_MOODY.value),
+    (base_id + 100 + 2): (b'L013', MonsterTokens.MT_CAVEMAN.value),
+    (base_id + 100 + 3): (b'O002', MonsterTokens.MT_CREEPER.value),
+    (base_id + 100 + 4): (b'H002', MonsterTokens.MT_GARGOYLE.value),
+    (base_id + 100 + 5): (b'I005', MonsterTokens.MT_GERONIMO.value),
+    (base_id + 100 + 6): (b'G005', MonsterTokens.MT_GHOST.value),
+    (base_id + 100 + 7): (b'F007', MonsterTokens.MT_GHOSTDIVER.value),
+    (base_id + 100 + 8): (b'C005', MonsterTokens.MT_GREENGHOST.value),
+    (base_id + 100 + 9): (b'I001', MonsterTokens.MT_HEADLESS.value),
+    (base_id + 100 + 10): (b'S003', MonsterTokens.MT_MASTERMIND.value),
+    (base_id + 100 + 11): (b'S002', MonsterTokens.MT_ROBOT.value),
+    (base_id + 100 + 12): (b'W025', MonsterTokens.MT_REDBEARD.value),
+    (base_id + 100 + 13): (b'G008', MonsterTokens.MT_SCARECROW.value),
+    (base_id + 100 + 14): (b'L014', MonsterTokens.MT_SEACREATURE.value),
+    (base_id + 100 + 15): (b'B001', MonsterTokens.MT_SPACEKOOK.value),
+    (base_id + 100 + 16): (b'F004', MonsterTokens.MT_TARMONSTER.value),
+    (base_id + 100 + 17): (b'E003', MonsterTokens.MT_WITCH.value),
+    (base_id + 100 + 18): (b'R020', MonsterTokens.MT_WITCHDOC.value),
+    (base_id + 100 + 19): (b'E001', MonsterTokens.MT_WOLFMAN.value),
+    (base_id + 100 + 20): (b'G002', MonsterTokens.MT_ZOMBIE.value),
 }
 
 """
@@ -2478,23 +2480,23 @@ KEYS_PICKUP_IDS = {
 }
 """
 valid_scenes = [
-    b'b001', b'b002', b'b003', b'b004',
-    b'c001', b'c002', b'c003', b'c004', b'c005', b'c006', b'c007',
-    b'e001', b'e002', b'e003', b'e004', b'e005', b'e006', b'e007', b'e008', b'e009',
-    b'f001', b'f003', b'f004', b'f005', b'f006', b'f007', b'f008', b'f009', b'f010',
-    b'g001', b'g002', b'g003', b'g004', b'g005', b'g006', b'g007', b'g008', b'g009',
-    b'h001', b'h002', b'h003',
-    b'i001', b'i003', b'i004', b'i005', b'i006', b'i020', b'i021',
-    b'l011', b'l013', b'l014', b'l015', b'l017', b'l018', b'l019',
-    b'o001', b'o002', b'o003', b'o004', b'o005', b'o006', b'o008',
-    b'p001', b'p002', b'p003', b'p004', b'p005',
-    b'r001', b'r002', b'r003', b'r004', b'r005', b'r020', b'r021',
-    b's001', b's002', b's003', b's004', b's005', b's006',
-    b'w020', b'w021', b'w022', b'w023', b'w025', b'w026', b'w027', b'w028',
+    b'B001', b'B002', b'B003', b'B004',
+    b'C001', b'C002', b'C003', b'C004', b'C005', b'C006', b'C007',
+    b'E001', b'E002', b'E003', b'E004', b'E005', b'E006', b'E007', b'E008', b'E009',
+    b'F001', b'F003', b'F004', b'F005', b'F006', b'F007', b'F008', b'F009', b'F010',
+    b'G001', b'G002', b'G003', b'G004', b'G005', b'G006', b'G007', b'G008', b'G009',
+    b'H001', b'H002', b'H003',
+    b'I001', b'I003', b'I004', b'I005', b'I006', b'I020', b'I021',
+    b'L011', b'L013', b'L014', b'L015', b'L017', b'L018', b'L019',
+    b'O001', b'O002', b'O003', b'O004', b'O005', b'O006', b'O008',
+    b'P001', b'P002', b'P003', b'P004', b'P005',
+    b'R001', b'R002', b'R003', b'R004', b'R005', b'R020', b'R021',
+    b'S001', b'S002', b'S003', b'S004', b'S005', b'S006',
+    b'W020', b'W021', b'W022', b'W023', b'W025', b'W026', b'W027', b'W028',
 ]
 
 invalid_scenes = [
-    b'mnu3', b'mnu4', # menus
+    b'MNU3', b'MNU4', # menus
 ]
 
 
@@ -2526,6 +2528,7 @@ class NO100FContext(CommonContext):
         self.has_send_death = False
         self.last_death_link_send = time.time()
         self.current_scene_key = None
+        self.item_index = 0
 
     async def disconnect(self, allow_autoreconnect: bool = False):
         self.auth = None
@@ -2540,7 +2543,7 @@ class NO100FContext(CommonContext):
             self.included_check_types = CheckTypes.UPGRADES
             if 'death_link' in args['slot_data']:
                 Utils.async_start(self.update_death_link(bool(args['slot_data']['death_link'])))
-            if 'include_MonsterTokens' in args['slot_data'] and args['slot_data']['include_MonsterTokens']:
+            if 'include_monster_tokens' in args['slot_data'] and args['slot_data']['include_monster_tokens']:
                 self.included_check_types |= CheckTypes.MONSTERTOKENS
             if 'include_Keys' in args['slot_data'] and args['slot_data']['include_Keys']:
                 self.included_check_types |= CheckTypes.KEYS
@@ -2637,19 +2640,21 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
 #    if cur_snack_count > ctx.snack_count:
 #        logger.info("!Some went wrong with the snack count!")
 
-def _give_powerup(ctx: NO100FContext, offset: int):
-    dolphin_memory_engine.write_byte(UPGRADE_INVENTORY_ADDR + offset, 1)
+def _give_powerup(ctx: NO100FContext, bit: int):
+    cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+    dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades + 2**bit)
 
 def _give_gum_upgrade(ctx: NO100FContext):
     cur_max_gum = dolphin_memory_engine.read_word(MAX_GUM_COUNT_ADDR)
-    dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_max_gum + 5)
+    dolphin_memory_engine.write_word(MAX_GUM_COUNT_ADDR, cur_max_gum + 5)
 
 def _give_soap_upgrade(ctx: NO100FContext):
     cur_max_soap = dolphin_memory_engine.read_word(MAX_SOAP_COUNT_ADDR)
-    dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_max_soap + 5)
+    dolphin_memory_engine.write_word(MAX_SOAP_COUNT_ADDR, cur_max_soap + 5)
 
-def _give_monstertoken(ctx: NO100FContext, offset: int):
-    dolphin_memory_engine.write_byte(MONSTER_TOKEN_INVENTORY_ADDR + offset, 1)
+def _give_monstertoken(ctx: NO100FContext, bit: int):
+    cur_monster_tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
+    dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, cur_monster_tokens + 2**bit)
 
 #def _give_key(ctx: NO100FContext, offset: int):
 #    dolphin_memory_engine.write_byte(POWERUPS_ADDR + offset, 1)
@@ -2657,7 +2662,7 @@ def _give_monstertoken(ctx: NO100FContext, offset: int):
 
 def _give_death(ctx: NO100FContext):
     if ctx.slot and dolphin_memory_engine.is_hooked() and ctx.dolphin_status == CONNECTION_CONNECTED_STATUS \
-            and check_ingame(ctx) and check_control_owner(ctx, lambda owner: owner == 0):
+            and check_ingame(ctx) and check_control_owner(ctx, lambda owner: owner == 1):
         dolphin_memory_engine.write_word(HEALTH_ADDR, 0)
 
 def _get_ptr_from_info(ctx: NO100FContext, info: Tuple[bytes, int]):
@@ -2740,10 +2745,7 @@ def _set_trig_active(ctx: NO100FContext, trig_info: Tuple[bytes, int]):
 
 
 def _check_cur_scene(ctx: NO100FContext, scene_id: bytes, scene_ptr: Optional[int] = None):
-    if scene_ptr is None:
-        scene_ptr = dolphin_memory_engine.read_word(CUR_SCENE_PTR_ADDR)
-        if not _is_ptr_valid(scene_ptr): return False
-    cur_scene = dolphin_memory_engine.read_bytes(scene_ptr, 0x4)
+    cur_scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
     return cur_scene == scene_id
 
 
@@ -2776,25 +2778,22 @@ def _print_player_info(ctx: NO100FContext):
 
 def _give_item(ctx: NO100FContext, item_id: int):
     true_id = item_id - base_id     #Use item_id to generate offset for use with functions
-    if(true_id < 100 and true_id > 0):      #ID is from the Upgrades Group
+    if(true_id < 100 and true_id >= 0):      #ID is from the Upgrades Group
 
         if(true_id < 7):
             _give_powerup(ctx, true_id)
 
         elif(true_id < 13):
-            _give_powerup(ctx, true_id +2)  #There are 2 unused bits at 8 and 9, offset remaining actual upgrades.
+            _give_powerup(ctx, true_id + 2)  #There are 2 unused bits at 8 and 9, offset remaining actual upgrades.
 
-        elif(true_id < 19):
+        elif(true_id == 13):
             _give_gum_upgrade(ctx)
 
-        elif(true_id < 28):
+        elif(true_id == 14):
             _give_soap_upgrade(ctx)
 
-        else:
-            logger.warning(f"Received unknown item with id {item_id}")
-
-    if(true_id < 121 and true_id > 100):
-        _give_monstertoken(ctx, true_id - 100)
+        if(true_id < 36 and true_id > 14):
+            _give_monstertoken(ctx, true_id - 15)
 
     else:
         logger.warning(f"Received unknown item with id {item_id}")
@@ -2827,16 +2826,22 @@ def _give_item(ctx: NO100FContext, item_id: int):
 
 async def give_items(ctx: NO100FContext):
     #await update_delayed_items(ctx)
-    expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
+    #expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
     # we need to loop some items
     for item, idx in ctx.items_received_2:
-        if check_control_owner(ctx, lambda owner: owner & 0x2 or owner & 0x8000 or owner & 0x200 or owner & 0x1):
+        if check_control_owner(ctx, lambda owner: owner == 0):
             return
-        if expected_idx <= idx:
+        if(ctx.item_index == 0):
+            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, 0)
+            dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, 0)
+            dolphin_memory_engine.write_word(MAX_GUM_COUNT_ADDR, 5)
+            dolphin_memory_engine.write_word(MAX_SOAP_COUNT_ADDR, 5)
+        if ctx.item_index <= idx:
             item_id = item.item
             _give_item(ctx, item_id)
-            dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR, idx + 1)
-            await asyncio.sleep(.01)  # wait a bit for values to update
+            ctx.item_index += 1
+            #dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR, idx + 1)
+            await asyncio.sleep(.01)  # wait a bit for values to updat
 
 
 # ToDo: do we actually want this?
@@ -2868,9 +2873,9 @@ async def give_items(ctx: NO100FContext):
 
 
 def _check_pickup_state(ctx: NO100FContext, obj_ptr: int):
-    if not _is_ptr_valid(obj_ptr + 0x16C):
+    if not _is_ptr_valid(obj_ptr + 0xec):
         return False
-    obj_state = dolphin_memory_engine.read_word(obj_ptr + 0x16c)
+    obj_state = dolphin_memory_engine.read_word(obj_ptr + 0xec)
     return obj_state & 0x08 > 0 and obj_state & 0x37 == 0
 
 
@@ -2921,16 +2926,25 @@ def _check_base_active(ctx: NO100FContext, obj_ptr: int):
 
 
 async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_table: dict, check_cb: Callable):
-    scene_ptr = dolphin_memory_engine.read_word(CUR_SCENE_PTR_ADDR)
-    if not _is_ptr_valid(scene_ptr):
-        return
-    scene = dolphin_memory_engine.read_bytes(scene_ptr, 0x4)
+    scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
     ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
     if not _is_ptr_valid(ptr):
         return
     size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
+
+    # Credits Location
+    if scene == b"S005" and not ctx.finished_game:  # We have not finished, and we are in the final room
+        MM_Alive = dolphin_memory_engine.read_byte(0x8085fed5)
+        if MM_Alive == 0:
+            print("send done")
+            await ctx.send_msgs([
+            {"cmd": "StatusUpdate",
+             "status": 30}
+            ])
+            ctx.finished_game = True
+
     for k, v in id_table.items():
-        if k in locations_checked and (k != base_id + 83 or ctx.finished_game):  # we need to check base_id + 83 for goal
+        if k in locations_checked:
             continue
         if v[0] is not None and v[0] != scene:
             continue
@@ -2938,15 +2952,40 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
             obj_ptr = _find_obj_in_obj_table(v[i], ptr, size)
             if obj_ptr is None: break
             if obj_ptr == -1: continue
+
+            #Black Knight Fix
+            if v[1] == 0x9133CECD:   #Only do this for the Boots Power Up in O008
+                BK_Alive = dolphin_memory_engine.read_word(0x806c4da4) #Check Fight Over Counter
+                if BK_Alive == 0:  #Is he dead?
+                    locations_checked.add(k)
+
+            #Green Ghost Fix
+            if v[1] == 0xC889BB9E:
+                #Fix Check Itself
+                GG_Defeated = dolphin_memory_engine.read_byte(0x80743f46)
+                if GG_Defeated == 0x1f:
+                    locations_checked.add(k)
+
+                #Fix Broken Fight Trigger
+                dolphin_memory_engine.write_byte(0x8074c89f, 0x1d)  #Re-enable Key Counter
+                GG_Alive = dolphin_memory_engine.read_byte(0x80743f44)
+                if GG_Alive == 0 and GG_Defeated == 0x1b:   #Green Ghost has not been defeated, and he is not yet present
+                    dolphin_memory_engine.write_byte(0x8073444f, 0x1f)
+                else:
+                    dolphin_memory_engine.write_byte(0x8073444f, 0x1e)
+
+            #Red Beard Fix
+            if v[1] == 0xD4FD7D3C:   #Only do this for the Gum Powerup in W028
+                RB_Alive = dolphin_memory_engine.read_word(0x80764e94) #Check Fight Over Counter
+                if RB_Alive == 0:  #Is he dead?
+                    locations_checked.add(k)
+
             if check_cb(ctx, obj_ptr):
                 locations_checked.add(k)
-                if k == base_id + 83 and not ctx.finished_game:
-                    print("send done")
-                    await ctx.send_msgs([
-                        {"cmd": "StatusUpdate",
-                         "status": 30}
-                    ])
-                    ctx.finished_game = True
+
+                # Lampshade Fix
+                if v[1] == 0x9AD0813E:  # We are checking the slipper power up
+                    locations_checked.add(k+1)  #Add the lampshade check as well
                 break
 
 
@@ -2990,12 +3029,12 @@ async def check_locations(ctx: NO100FContext):
 
 async def check_alive(ctx: NO100FContext):
     cur_health = dolphin_memory_engine.read_word(HEALTH_ADDR)
-    return not (cur_health <= 0 or check_control_owner(ctx, lambda owner: owner & 0x4))
+    return not (cur_health <= 0 or check_control_owner(ctx, lambda owner: owner == 0))
 
 
 async def check_death(ctx: NO100FContext):
     cur_health = dolphin_memory_engine.read_word(HEALTH_ADDR)
-    if cur_health <= 0 or check_control_owner(ctx, lambda owner: owner & 0x4):
+    if cur_health <= 0:
         if not ctx.has_send_death and time.time() >= ctx.last_death_link + 3:
             ctx.has_send_death = True
             await ctx.send_death("NO100F")
@@ -3004,10 +3043,7 @@ async def check_death(ctx: NO100FContext):
 
 
 def check_ingame(ctx: NO100FContext, ignore_control_owner: bool = False) -> bool:
-    scene_ptr = dolphin_memory_engine.read_word(CUR_SCENE_PTR_ADDR)
-    if not _is_ptr_valid(scene_ptr):
-        return False
-    scene = dolphin_memory_engine.read_bytes(scene_ptr, 0x4)
+    scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
     if scene not in valid_scenes:
         return False
     update_current_scene(ctx, scene.decode('ascii'))
@@ -3059,16 +3095,16 @@ async def dolphin_sync_task(ctx: NO100FContext):
     while not ctx.exit_event.is_set():
         try:
             if dolphin_memory_engine.is_hooked() and ctx.dolphin_status == CONNECTION_CONNECTED_STATUS:
-                if not check_ingame(ctx):
+                #if not check_ingame(ctx):
                     # reset AP values when on main menu
                     # ToDo: this should be done via patch when other globals are reset
-                    if _check_cur_scene(ctx, b'MNU3'):
-                        for i in range(0, 0x80, 0x4):
-                            cur_val = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR + i)
-                            if cur_val != 0:
-                                dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR + i, 0)
-                    await asyncio.sleep(.1)
-                    continue
+                    #if _check_cur_scene(ctx, b'MNU3'):
+                    #    for i in range(0, 0x80, 0x4):
+                    #        cur_val = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR + i)
+                    #       if cur_val != 0:
+                    #            dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR + i, 0)
+                    #await asyncio.sleep(.1)
+                    #continue
                 # _print_player_info(ctx)
                 if ctx.slot:
                     if not validate_save(ctx):
