@@ -1,7 +1,7 @@
 # Scooby Doo:Night of 100 Frights AP World
 
 Scooby Doo Night of 100 Frights AP World [Archipelago](https://archipelago.gg/) world.
-More info [here](https://github.com/vgm5/Night_Of_100_Frights_ap_world/blob/main/docs/en_bfbb.md).
+More info [here](https://github.com/vgm5/Night_Of_100_Frights_ap_world/blob/main/docs/en_no100f.md).
 
 ## Installation & Usage
 
