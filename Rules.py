@@ -29,9 +29,9 @@ upgrade_rules = [
         ConnectionNames.e009_c001: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
 
         # Fishing Village
-        ConnectionNames.f003_f004: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.f003_f004: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
         ConnectionNames.f003_p001: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
-        ConnectionNames.f009_f008: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+        ConnectionNames.f009_f008: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
 
         # Coast
         ConnectionNames.c001_c002: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
@@ -60,6 +60,7 @@ upgrade_rules = [
 
         # Wrecked Ships
         ConnectionNames.w020_w021: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.w025_w026: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1)
     },
     # locations
     {
@@ -94,6 +95,7 @@ upgrade_rules = [
             # Lighthouse
             LocationNames.soapammo_l019: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) and (state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
             LocationNames.gumammo_l011: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and (state.has(ItemNames.PlungerPower, player, 1) or state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
+            LocationNames.pound_l017: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1)
             # Wrecked Ships
         },
 
@@ -115,7 +117,7 @@ upgrade_rules = [
             LocationNames.witch_token_e003: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
             # Fishing Village
-            LocationNames.tarmonster_token_f004: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.tarmonster_token_f004: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
             LocationNames.ghostdiver_token_f007: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
             # Coast
@@ -134,7 +136,7 @@ upgrade_rules = [
 
             # Wrecked Ships
             LocationNames.moody_token_w022: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1),
-            LocationNames.redbeard_token_w025: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1),
+            LocationNames.redbeard_token_w025: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
         },
 
         ItemNames.victory:
