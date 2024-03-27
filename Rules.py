@@ -17,7 +17,7 @@ upgrade_rules = [
         ConnectionNames.i020_i021: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
         ConnectionNames.i003_b004: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1),
         ConnectionNames.i003_i004: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
-        ConnectionNames.i004_o001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1),
+        ConnectionNames.i004_o001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
         ConnectionNames.i006_r001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
 
         # Rooftops
@@ -29,9 +29,9 @@ upgrade_rules = [
         ConnectionNames.e009_c001: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
 
         # Fishing Village
-        ConnectionNames.f003_f004: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.BootsPower, player, 1),
+        ConnectionNames.f003_f004: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
         ConnectionNames.f003_p001: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
-        ConnectionNames.f009_f008: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.BootsPower, player, 1),
+        ConnectionNames.f009_f008: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
 
         # Coast
         ConnectionNames.c001_c002: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
@@ -40,20 +40,23 @@ upgrade_rules = [
 
         # Passage
         ConnectionNames.p001_p002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
+        ConnectionNames.p002_p003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
         ConnectionNames.p004_p005: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PlungerPower, player, 1),
-        ConnectionNames.p005_b001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1),
+        ConnectionNames.p005_b001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
         ConnectionNames.p002_s001: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.p003_p004: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1),
+        ConnectionNames.p003_p004: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
         # Secret Lab
-        ConnectionNames.s001_s002: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
+        ConnectionNames.s001_s002: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
         # Basement
         ConnectionNames.b001_b002: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1),
 
         # Lighthouse
         ConnectionNames.l017_l018: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
-        ConnectionNames.l015_w020: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1),
+        ConnectionNames.l015_l017: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.l015_w020: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.l015_l014: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
 
         # Wrecked Ships
         ConnectionNames.w020_w021: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
@@ -75,9 +78,9 @@ upgrade_rules = [
 
             # Fishing Village
             LocationNames.gumammo_f003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
-            LocationNames.soapammo_f001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) or (state.has(ItemNames.SpringPower, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1))),
+            LocationNames.soapammo_f001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) or (state.has(ItemNames.SpringPower, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1))),
             # Coast
-            LocationNames.gumammo_c003: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or (state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1)),
+            LocationNames.gumammo_c003: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or (state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1)),
 
             # Passage
 
@@ -89,7 +92,7 @@ upgrade_rules = [
             LocationNames.soapammo_g003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
             # Lighthouse
-            LocationNames.soapammo_l019: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and (state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
+            LocationNames.soapammo_l019: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) and (state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
             LocationNames.gumammo_l011: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and (state.has(ItemNames.PlungerPower, player, 1) or state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
             # Wrecked Ships
         },
@@ -109,14 +112,14 @@ upgrade_rules = [
 
             # Hedge
             LocationNames.wolfman_token_e001: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
-            LocationNames.witch_token_e003: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1),
+            LocationNames.witch_token_e003: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
             # Fishing Village
-            LocationNames.tarmonster_token_f004: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1),
-            LocationNames.ghostdiver_token_f007: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1),
+            LocationNames.tarmonster_token_f004: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.ghostdiver_token_f007: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
             # Coast
-            LocationNames.greenghost_token_c005: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1),
+            LocationNames.greenghost_token_c005: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
             # Passage
 

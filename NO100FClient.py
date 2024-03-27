@@ -114,7 +114,7 @@ class MonsterTokens(Enum):          #Bit assigned at 0x8023509C
     MT_SEACREATURE = 0x6CC29412     #xxxx xxxx xxx0 0000 0100 0000 0000 0000
     MT_SPACEKOOK   = 0xFC42FAAC     #xxxx xxxx xxx0 0000 1000 0000 0000 0000
     MT_TARMONSTER  = 0x2E849EB9     #xxxx xxxx xxx0 0001 0000 0000 0000 0000
-    MT_WITCH       = 0xAB19F726     #xxxx xxxx xxx0 0010 0000 0000 0000 0000
+    MT_WITCH       = 0x8CFF4526     #xxxx xxxx xxx0 0010 0000 0000 0000 0000
     MT_WITCHDOC    = 0x55794316     #xxxx xxxx xxx0 0100 0000 0000 0000 0000
     MT_WOLFMAN     = 0x51D4A7D2     #xxxx xxxx xxx0 1000 0000 0000 0000 0000
     MT_ZOMBIE      = 0x818F2933     #xxxx xxxx xxx1 0000 0000 0000 0000 0000
@@ -2375,7 +2375,7 @@ UPGRADES_PICKUP_IDS = {
     (base_id + 11): (b'H001', Upgrades.ShovelPower.value),
     (base_id + 12): (b'C007', Upgrades.ShockwavePower.value),
     (base_id + 13): (b'C003', Upgrades.GumPack.value),
-    (base_id + 14): (b'Lo11', Upgrades.GumMaxAmmo.value),
+    (base_id + 14): (b'L011', Upgrades.GumMaxAmmo.value),
     (base_id + 15): (b'F003', Upgrades.GumUpgrade.value),
     (base_id + 16): (b'S005', Upgrades.GumOverAcid2.value),
     (base_id + 17): (b'O001', Upgrades.Gum_Upgrade.value),
