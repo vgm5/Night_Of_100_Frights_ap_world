@@ -16,6 +16,8 @@ See the [setup guide](https://github.com/vgm5/Night_Of_100_Frights_ap_world/blob
 
 ## Known Issues
 
--Logic is Broken
-
 -In Game Indexing isn't patched in properly yet (doesn't negativey affect the randomizer yet)
+
+-Softlock Possible if you go to Aghast by the Mast! Part 2 without helmet - please utilize the save station in Part 1 to avoid this issue.
+
+-It is theoretically possible to run out of scooby snacks that are accessible, saving before using snack gates may be a good idea for now until this is accounted for in logic
