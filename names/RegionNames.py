@@ -92,11 +92,11 @@ p005 = "Gusts Abound Underground 2"
 
 # R
 r001 = "All Scares Upstairs! 1"
-r003 = "All Scares Upstairs! 2"
-r004 = "All Scares Upstairs! 3"
-r005 = "All Scares Upstairs! 4"
-r020 = "Don't Look Down, Scooby-Doo! 1"
-r021 = "Don't Look Down, Scooby-Doo! 2"
+r003 = "All Scares Upstairs! 4"
+r004 = "Don't Look Down, Scooby-Doo! 1"
+r005 = "Don't Look Down, Scooby-Doo! 2"
+r020 = "All Scares Upstairs! 2"
+r021 = "All Scares Upstairs! 3"
 
 # S
 s001 = "Little Lab of Horrors 1"

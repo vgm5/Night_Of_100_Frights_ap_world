@@ -92,7 +92,8 @@ class NightOf100FrightsWorld(World):
 
     def set_rules(self):
         create_events(self.multiworld, self.player)
-        set_rules(self.multiworld, self.options, self.player)
+        if(self.options.no_logic == 0):
+            set_rules(self.multiworld, self.options, self.player)
 
     def create_regions(self):
         create_regions(self.multiworld, self.options, self.player)
@@ -103,6 +104,7 @@ class NightOf100FrightsWorld(World):
             "include_monster_tokens": self.options.include_monster_tokens.value,
             #"include_keys": self.options.include_keys,
             #"include_snacks": self.options.include_snacks,
+            "no_logic": self.options.no_logic.value,
         }
 
     def create_item(self, name: str,) -> Item:

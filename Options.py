@@ -20,9 +20,15 @@ class IncludeMonsterTokens(Toggle):
 #    display_name = "Include Snacks"
 #    default = 0
 
+class NoLogic(Toggle):
+    """Disables all item Logic | USE AT YOUR OWN RISK"""
+    display_name = "Disable Logic"
+    default = 0
+
 @dataclass
 class NO100FOptions(PerGameCommonOptions):
     include_monster_tokens: IncludeMonsterTokens
  #   include_keys: IncludeKeys
   #  include_snacks: IncludeSnacks
     death_link: DeathLink
+    no_logic: NoLogic

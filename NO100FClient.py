@@ -2730,7 +2730,8 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
 
     # Credits Location
     if scene == b"S005" and not ctx.finished_game:  # We have not finished, and we are in the final room
-        MM_Alive = dolphin_memory_engine.read_byte(0x8085fed5)
+        fix_ptr = _find_obj_in_obj_table(0x21D3EDA4, ptr, size)
+        MM_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15)
         if MM_Alive == 0:
             print("send done")
             await ctx.send_msgs([
@@ -2750,33 +2751,39 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
             if obj_ptr == -1: continue
 
             # Shovel Fix
-            if v[1] == 0x866C5887:  # Only do this for the Shovel Power Up in H001
-                dolphin_memory_engine.write_byte(0x80688ef7,0x1d)
+            if v[1] == Upgrades.ShovelPower.value:  # Only do this for the Shovel Power Up in H001
+                fix_ptr = _find_obj_in_obj_table(0xD5159008, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7,0x1d)
 
             # Black Knight Fix
-            if v[1] == 0x9133CECD:   #Only do this for the Boots Power Up in O008
-                BK_Alive = dolphin_memory_engine.read_word(0x806c4da4) #Check Fight Over Counter
+            if v[1] == Upgrades.BootsPower.value:   #Only do this for the Boots Power Up in O008
+                fix_ptr = _find_obj_in_obj_table(0x7B9BA1C7, ptr, size)
+                BK_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15) #Check Fight Over Counter
                 if BK_Alive == 0:  #Is he dead?
                     locations_checked.add(k)
 
             # Green Ghost Fix
-            if v[1] == 0xC889BB9E:
+            if v[1] == Upgrades.UmbrellaPower.value:    # Only do this for the Umbrella Power Up in G009
                 # Fix Check Itself
-                GG_Defeated = dolphin_memory_engine.read_byte(0x80743f46)
+                fix_ptr = _find_obj_in_obj_table(0xB6C6E412 , ptr, size)
+                GG_Defeated = dolphin_memory_engine.read_byte(fix_ptr + 0x16)
                 if GG_Defeated == 0x1f:
                     locations_checked.add(k)
 
                 # Fix Broken Fight Trigger
-                dolphin_memory_engine.write_byte(0x8074c89f, 0x1d)  # Re-enable Key Counter
-                GG_Alive = dolphin_memory_engine.read_byte(0x80743f44)
+                fix_ptr1 = _find_obj_in_obj_table(0x060E343c, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr1 + 0x7, 0x1d)  # Re-enable Key Counter
+                GG_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x14)
+                fix_ptr2 = _find_obj_in_obj_table(0xA11635BD, ptr, size)
                 if GG_Alive == 0 and GG_Defeated == 0x1b: # Green Ghost has not been defeated, and he is not yet present
-                    dolphin_memory_engine.write_byte(0x8073444f, 0x1f)
+                    dolphin_memory_engine.write_byte(fix_ptr2 + 0x7, 0x1f)
                 else:
-                    dolphin_memory_engine.write_byte(0x8073444f, 0x1e)
+                    dolphin_memory_engine.write_byte(fix_ptr2 + 0x7, 0x1e)
 
             # Red Beard Fix
-            if v[1] == 0xD4FD7D3C:   # Only do this for the Gum Powerup in W028
-                RB_Alive = dolphin_memory_engine.read_word(0x80764e94) # Check Fight Over Counter
+            if v[1] == Upgrades.GumPower.value:   # Only do this for the Gum Powerup in W028
+                fix_ptr = _find_obj_in_obj_table(0x5A3B5C98, ptr, size)
+                RB_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15) # Check Fight Over Counter
                 if RB_Alive == 0:  # Is he dead?
                     locations_checked.add(k)
 
@@ -2784,7 +2791,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 locations_checked.add(k)
 
                 # Lampshade Fix
-                if v[1] == 0x9AD0813E:  # We are checking the slipper power up
+                if v[1] == Upgrades.SlippersPower.value:  # We are checking the slipper power up
                     locations_checked.add(k+1)  # Add the lampshade check as well
                 break
 
