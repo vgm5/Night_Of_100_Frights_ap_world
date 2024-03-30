@@ -66,8 +66,8 @@ i020 = "Clamor in the Manor! 2"
 i021 = "Clamor in the Manor! 3"
 
 # L
-l011 = "Coast for some Ghosts! 3"
-l013 = "Coast for some Ghosts! 3"
+l011 = "Coast for some Ghosts! 1"
+l013 = "Coast for some Ghosts! 2"
 l014 = "Coast for some Ghosts! 3"
 l015 = "Going Down Witch Way? 1"
 l017 = "Lighthouse Fright House! 1"

@@ -18,24 +18,24 @@ AP_SAVE_LOAD = {
     0xc745c: 0x60000000,  # nop
 
     # inject write function
-    #0xcebdc: 0x481dcb29,  # bl   -> 0x8028F204 (write function)
+    0xeab7c: 0x480f6089,  # bl   -> 0x801C5C04 (write function)
 
     # inject read function
-    #0xcf034: 0x481dc711,  # bl   -> 0x8028f244 (read function)
+    0xea724: 0x480f6521,  # bl   -> 0x801C5C44 (read function)
 
     # write function
     0x1e0c04: 0x9421fff0,  # stwu sp, -0x0010 (sp)
     0x1e0c08: 0x7c0802a6,  # mflr r0
     0x1e0c0c: 0x90010014,  # stw  r0, 0x0014 (sp)
-    0x1e0c10: 0x4bdb3dfd,  # bl   ->0x8004300C (Write_b1__7xSerialFi)
+    0x1e0c10: 0x4be74c01,  # bl   ->0x8003A810 (Write_b1__7xSerialFi)
     0x1e0c14: 0x3dc0817f,  # lis	r14, 0x817f
     0x1e0c18: 0x39e00000,  # li   r15, 0
     0x1e0c1c: 0x7fe3fb78,  # mr	r3, r31
     0x1e0c20: 0x7c8e782e,  # lwzx	r4, r14, r15
-    0x1e0c24: 0x4bdb3ed9,  # bl	->0x800430FC (Write__7xSerialFi)
+    0x1e0c24: 0x4be74afd,  # bl	->0x8003A720 (Write__7xSerialFi)
     0x1e0c28: 0x39ef0004,  # addi r15, r15, 4
     0x1e0c2c: 0x2C0f007c,  # cmp  r15, 0x7c
-    0x1e0c30: 0x4081ffec,  # ble -> 0x8028f21c (-5)
+    0x1e0c30: 0x4081ffec,  # ble -> 0x801C5C1C (-5)
     0x1e0c34: 0x80010014,  # lwz	r0, 0x0014 (sp)
     0x1e0c38: 0x7c0803a6,  # mtlr	r0
     0x1e0c3c: 0x38210010,  # addi	sp, sp, 16
@@ -45,21 +45,21 @@ AP_SAVE_LOAD = {
     0x1e0c44: 0x9421fff0,  # stwu	sp, -0x0010 (sp)
     0x1e0c48: 0x7c0802a6,  # mflr	r0
     0x1e0c4c: 0x90010014,  # stw	r0, 0x0014 (sp)
-    0x1e0c50: 0x3dc0817f,  # lis	r14, 0x817f
+    0x1e0c50: 0x3dc0817f,  # lis	r14, 0x817F
     0x1e0c54: 0x39e00000,  # li   r15, 0
     0x1e0c58: 0x7fe3fb78,  # mr	r3, r31
     0x1e0c5c: 0x7c8e7a14,  # add  r4, r14, r15
     0x1e0c60: 0x7c9d2378,  # mr	r29, r4
-    0x1e0c64: 0x4bdb4111,  # bl	->0x80043374 (Read_7xSerialFPUi)
+    0x1e0c64: 0x4be746c9,  # bl	->0x8003A32C (Read_7xSerialFPUi)
     0x1e0c68: 0x39ef0004,  # addi r15, r15, 4
     0x1e0c6c: 0x2C0f007c,  # cmp r15, 0x7c
-    0x1e0c70: 0x4081ffe8,  # ble -> 0x8028f258 (-6)
+    0x1e0c70: 0x4081ffe8,  # ble -> 0x801C5C58 (-6)
     0x1e0c74: 0x3c80803c,  # lis	r4, 0x803C
     0x1e0c78: 0x7fe3fb78,  # mr	r3, r31
     0x1e0c7c: 0x38840558,  # addi	r4, r4, 1368
     0x1e0c80: 0x3ba41738,  # addi	r29, r4, 5944
     0x1e0c84: 0x7fa4eb78,  # mr	r4, r29
-    0x1e0c88: 0x4bdb40ed,  # bl	->0x80043374 (Read_7xSerialFPUi)
+    0x1e0c88: 0x4be746a5,  # bl	->0x8003A32C (Read_7xSerialFPUi)
     0x1e0c8c: 0x80010014,  # lwz	r0, 0x0014 (sp)
     0x1e0c90: 0x7c0803a6,  # mtlr	r0
     0x1e0c94: 0x38210010,  # addi	sp, sp, 16

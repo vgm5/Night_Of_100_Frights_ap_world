@@ -45,27 +45,17 @@ MONSTER_TOKEN_INVENTORY_ADDR = 0x8023509C   #4 Bytes
 MAX_GUM_COUNT_ADDR = 0x802350A8
 MAX_SOAP_COUNT_ADDR = 0x802350AC
 PLAYER_CONTROL_OWNER = 0x80234e90
-
-# AP free space usage
-# notes on free space
-# 0x817FDFF6 - 0x817FDFFF
-# around 0x8179d890-0x817fbf00 (?)
-
-# @0x817DF080 save game write injection code
-# @0x817DF400 save game read injection code
+MAP_ADDR = 0x8025F140
 
 SLOT_NAME_ADDR = 0x801c5c9c
 SEED_ADDR = SLOT_NAME_ADDR + 0x40
-# we currently write/read 0x20 bytes starting from 0x817DF000 to/from save game
-# we could extend up to 0x80 bytes or more if we move AP code from 0x817DF080 to somewhere else
+# we currently write/read 0x20 bytes starting from 0x817f0000 to/from save game
 # expected received item index
-#EXPECTED_INDEX_ADDR = 0x817DF000
+EXPECTED_INDEX_ADDR = 0x817f0000
+KEY_COUNT_ADDR = 0x817f0004
 # delayed item
-SAVED_SLOT_NAME_ADDR = 0x817DF020
+SAVED_SLOT_NAME_ADDR = 0x817f0020
 SAVED_SEED_ADDR = SAVED_SLOT_NAME_ADDR + 0x40
-# some custom code at 0x817DF080
-
-GLOBAL_INDEX = 0
 
 
 class Upgrades(Enum):               #Bit assigned at 0x80235098
@@ -2485,7 +2475,7 @@ valid_scenes = [
     b'E001', b'E002', b'E003', b'E004', b'E005', b'E006', b'E007', b'E008', b'E009',
     b'F001', b'F003', b'F004', b'F005', b'F006', b'F007', b'F008', b'F009', b'F010',
     b'G001', b'G002', b'G003', b'G004', b'G005', b'G006', b'G007', b'G008', b'G009',
-    b'H001', b'H002', b'H003',
+    b'H001', b'H002', b'H003', b'h001', #I don't know why this wasn't an issue before, but when you first enter H001 it reads as h001, I may have done this with a patch somehow idk
     b'I001', b'I003', b'I004', b'I005', b'I006', b'I020', b'I021',
     b'L011', b'L013', b'L014', b'L015', b'L017', b'L018', b'L019',
     b'O001', b'O002', b'O003', b'O004', b'O005', b'O006', b'O008',
@@ -2528,7 +2518,6 @@ class NO100FContext(CommonContext):
         self.has_send_death = False
         self.last_death_link_send = time.time()
         self.current_scene_key = None
-        self.item_index = 0
 
     async def disconnect(self, allow_autoreconnect: bool = False):
         self.auth = None
@@ -2556,7 +2545,7 @@ class NO100FContext(CommonContext):
                     self.items_received_2.append((item, self.last_rev_index))
                     self.last_rev_index += 1
             self.items_received_2.sort(key=lambda v: v[1])
-           # self._update_item_counts(args)
+            #self._update_key_counts(args)
 
     def on_deathlink(self, data: Dict[str, Any]) -> None:
         super().on_deathlink(data)
@@ -2694,23 +2683,25 @@ def _give_item(ctx: NO100FContext, item_id: int):
         logger.warning(f"Received unknown item with id {item_id}")
 
 
+async def update_key_items(ctx: NO100FContext):
+    if not await check_alive(ctx):
+        return
+    if CheckTypes.KEYS in ctx.included_check_types:
+        hedge_key_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
+        if hedge_key_count == 1:
+            ctx.hedge_key_found = True
+
 async def give_items(ctx: NO100FContext):
-    # await update_delayed_items(ctx)
-    # expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
+    await update_key_items(ctx)
+    expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
     # we need to loop some items
     for item, idx in ctx.items_received_2:
         if check_control_owner(ctx, lambda owner: owner == 0):
             return
-        if(ctx.item_index == 0):
-            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, 0)
-            dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, 0)
-            dolphin_memory_engine.write_word(MAX_GUM_COUNT_ADDR, 5)
-            dolphin_memory_engine.write_word(MAX_SOAP_COUNT_ADDR, 5)
-        if ctx.item_index <= idx:
+        if expected_idx <= idx:
             item_id = item.item
             _give_item(ctx, item_id)
-            ctx.item_index += 1
-            # dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR, idx + 1)
+            dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR, idx + 1)
             await asyncio.sleep(.01)  # wait a bit for values to update
 
 
@@ -2731,14 +2722,15 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
     # Credits Location
     if scene == b"S005" and not ctx.finished_game:  # We have not finished, and we are in the final room
         fix_ptr = _find_obj_in_obj_table(0x21D3EDA4, ptr, size)
-        MM_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15)
-        if MM_Alive == 0:
-            print("send done")
-            await ctx.send_msgs([
-            {"cmd": "StatusUpdate",
-             "status": 30}
-            ])
-            ctx.finished_game = True
+        if fix_ptr is not None:
+            MM_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15)
+            if MM_Alive == 0:
+                print("send done")
+                await ctx.send_msgs([
+                {"cmd": "StatusUpdate",
+                "status": 30}
+                ])
+                ctx.finished_game = True
 
     for k, v in id_table.items():
         if k in locations_checked:
@@ -2752,29 +2744,43 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
 
             # Shovel Fix
             if v[1] == Upgrades.ShovelPower.value:  # Only do this for the Shovel Power Up in H001
+
                 fix_ptr = _find_obj_in_obj_table(0xD5159008, ptr, size)
-                dolphin_memory_engine.write_byte(fix_ptr + 0x7,0x1d)
+                if fix_ptr is None: break
+
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7,0x1d)    # Force Shovel Pickup Availability
 
             # Black Knight Fix
             if v[1] == Upgrades.BootsPower.value:   #Only do this for the Boots Power Up in O008
+
                 fix_ptr = _find_obj_in_obj_table(0x7B9BA1C7, ptr, size)
+                if fix_ptr is None: break
+
                 BK_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15) #Check Fight Over Counter
                 if BK_Alive == 0:  #Is he dead?
                     locations_checked.add(k)
 
             # Green Ghost Fix
             if v[1] == Upgrades.UmbrellaPower.value:    # Only do this for the Umbrella Power Up in G009
+
                 # Fix Check Itself
                 fix_ptr = _find_obj_in_obj_table(0xB6C6E412 , ptr, size)
+                if fix_ptr is None: break
+
                 GG_Defeated = dolphin_memory_engine.read_byte(fix_ptr + 0x16)
                 if GG_Defeated == 0x1f:
                     locations_checked.add(k)
 
                 # Fix Broken Fight Trigger
                 fix_ptr1 = _find_obj_in_obj_table(0x060E343c, ptr, size)
+                if fix_ptr1 is None: break
+
                 dolphin_memory_engine.write_byte(fix_ptr1 + 0x7, 0x1d)  # Re-enable Key Counter
                 GG_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x14)
+
                 fix_ptr2 = _find_obj_in_obj_table(0xA11635BD, ptr, size)
+                if fix_ptr2 is None: break
+
                 if GG_Alive == 0 and GG_Defeated == 0x1b: # Green Ghost has not been defeated, and he is not yet present
                     dolphin_memory_engine.write_byte(fix_ptr2 + 0x7, 0x1f)
                 else:
@@ -2782,7 +2788,10 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
 
             # Red Beard Fix
             if v[1] == Upgrades.GumPower.value:   # Only do this for the Gum Powerup in W028
+
                 fix_ptr = _find_obj_in_obj_table(0x5A3B5C98, ptr, size)
+                if fix_ptr is None: break
+
                 RB_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15) # Check Fight Over Counter
                 if RB_Alive == 0:  # Is he dead?
                     locations_checked.add(k)
@@ -2806,6 +2815,34 @@ async def _check_monstertokens(ctx: NO100FContext, locations_checked: set):
 
 # async def _check_snacks(ctx: NO100FContext, locations_checked: set):
 #    await _check_objects_by_id(ctx, locations_checked, SNACKIDS, _check_pickup_state)
+
+async def apply_level_fixes(ctx: NO100FContext):
+    scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
+    ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
+    if not _is_ptr_valid(ptr):
+        return
+    size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
+
+    dolphin_memory_engine.write_word(MAP_ADDR, 0x1)     # Force the Map Into Inventory
+
+    if scene == b'H001' or b'h001':
+        fix_ptr = _find_obj_in_obj_table(0xBBFA4948, ptr, size)
+        if not fix_ptr == None:
+            if dolphin_memory_engine.read_byte(fix_ptr + 0xEF) == 0x48:     #The Hedge key is collected, open the gate
+                fix_ptr = _find_obj_in_obj_table(0xC20224F3, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x14, 0)
+
+                fix_ptr = _find_obj_in_obj_table(0xE8B3FF9B, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1c)
+
+                fix_ptr = _find_obj_in_obj_table(0xD72B66B7, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)
+
+        fix_ptr = _find_obj_in_obj_table(0xBB82B3B3, ptr, size)
+        if not fix_ptr == None:
+            if dolphin_memory_engine.read_byte(fix_ptr + 0xEF) == 0x48:     #The Fishing key is collected, open the gate
+                fix_ptr = _find_obj_in_obj_table(0x42A3128E, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x14, 0)
 
 async def check_locations(ctx: NO100FContext):
     await _check_upgrades(ctx, ctx.locations_checked)
@@ -2890,16 +2927,15 @@ async def dolphin_sync_task(ctx: NO100FContext):
     while not ctx.exit_event.is_set():
         try:
             if dolphin_memory_engine.is_hooked() and ctx.dolphin_status == CONNECTION_CONNECTED_STATUS:
-                #if not check_ingame(ctx):
+                if not check_ingame(ctx):
                     # reset AP values when on main menu
-                    # ToDo: this should be done via patch when other globals are reset
-                    #if _check_cur_scene(ctx, b'MNU3'):
-                    #    for i in range(0, 0x80, 0x4):
-                    #        cur_val = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR + i)
-                    #       if cur_val != 0:
-                    #            dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR + i, 0)
-                    #await asyncio.sleep(.1)
-                    #continue
+                    if _check_cur_scene(ctx, b'MNU3'):
+                        for i in range(0, 0x80, 0x4):
+                            cur_val = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR + i)
+                            if cur_val != 0:
+                                dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR + i, 0)
+                    await asyncio.sleep(.1)
+                    continue
                 # _print_player_info(ctx)
                 if ctx.slot:
                     if not validate_save(ctx):
@@ -2915,6 +2951,9 @@ async def dolphin_sync_task(ctx: NO100FContext):
                         await check_death(ctx)
                     await give_items(ctx)
                     await check_locations(ctx)
+                    await apply_level_fixes(ctx)
+                    # await apply_qol_fixes(ctx)
+                    # await apply_key_fixes(ctx)
                     # await set_locations(ctx)
                 else:
                     if not ctx.auth:
