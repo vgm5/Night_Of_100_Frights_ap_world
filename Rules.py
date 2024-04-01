@@ -152,6 +152,12 @@ monster_token_rules = [
     {}
 ]
 
+key_rules = [
+# connections
+    {},
+    # locations
+    {}
+]
 
 def _add_rules(world: MultiWorld, player: int, rules: List, allowed_loc_types: List[str]):
     for name, rule_factory in rules[0].items():
@@ -185,9 +191,13 @@ def set_rules(world: MultiWorld, options: NO100FOptions, player: int):
     allowed_loc_types = [ItemNames.Upgrades,ItemNames.victory]
     if options.include_monster_tokens.value:
         allowed_loc_types += [ItemNames.MonsterTokens]
+    if options.include_keys.value:
+        allowed_loc_types += [ItemNames.Keys]
 
     _add_rules(world, player, upgrade_rules, allowed_loc_types)
     if options.include_monster_tokens.value:
         _add_rules(world, player, monster_token_rules, allowed_loc_types)
+    if options.include_keys.value:
+        _add_rules(world, player, key_rules, allowed_loc_types)
 
     world.completion_condition[player] = lambda state: state.has("Victory", player)

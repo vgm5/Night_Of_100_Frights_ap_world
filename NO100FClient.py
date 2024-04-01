@@ -2407,66 +2407,106 @@ MONSTERTOKENS_PICKUP_IDS = {
 
 
 KEYS_PICKUP_IDS = {
-    (base_id + 200 + 0): (b'b002', Keys.KEY1.value),
-    (base_id + 200 + 1): (b'b002', Keys.KEY2.value),
-    (base_id + 200 + 2): (b'b002', Keys.KEY3.value),
-    (base_id + 200 + 3): (b'b003', Keys.KEY1.value),
-    (base_id + 200 + 4): (b'b003', Keys.KEY2.value),
-    (base_id + 200 + 5): (b'b003', Keys.KEY3.value),
-    (base_id + 200 + 6): (b'b003', Keys.KEY4.value),
-    (base_id + 200 + 7): (b'c005', Keys.KEY_1.value),
-    (base_id + 200 + 8): (b'c005', Keys.KEY_2.value),
-    (base_id + 200 + 9): (b'c005', Keys.KEY_3.value),
-    (base_id + 200 + 10): (b'c005', Keys.KEY_4.value),
-    (base_id + 200 + 11): (b'f005', Keys.KEY01.value),
-    (base_id + 200 + 12): (b'f005', Keys.KEY02.value),
-    (base_id + 200 + 13): (b'f005', Keys.KEY03.value),
-    (base_id + 200 + 14): (b'f005', Keys.KEY04.value),
-    (base_id + 200 + 15): (b'g001', Keys.KEY_01.value),
-    (base_id + 200 + 16): (b'g001', Keys.KEY_02.value),
-    (base_id + 200 + 17): (b'g001', Keys.KEY_03.value),
-    (base_id + 200 + 18): (b'g007', Keys.KEY.value),
-    (base_id + 200 + 19): (b'g009', Keys.KEY_1.value),
-    (base_id + 200 + 20): (b'g009', Keys.KEY_2.value),
-    (base_id + 200 + 21): (b'h001', Keys.HEDGE_KEY.value),
-    (base_id + 200 + 22): (b'h001', Keys.DUG_FISHING_KEY.value),
-    (base_id + 200 + 23): (b'i001', Keys.KEY.value),
-    (base_id + 200 + 24): (b'i003', Keys.DOORKEY.value),
-    (base_id + 200 + 25): (b'i005', Keys.DOORKEY1.value),
-    (base_id + 200 + 26): (b'i005', Keys.DOORKEY2.value),
-    (base_id + 200 + 27): (b'i005', Keys.DOORKEY3.value),
-    (base_id + 200 + 28): (b'i005', Keys.DOORKEY4.value),
-    (base_id + 200 + 29): (b'l011', Keys.KEY01.value),
-    (base_id + 200 + 30): (b'l011', Keys.KEY02.value),
-    (base_id + 200 + 31): (b'l011', Keys.KEY03.value),
-    (base_id + 200 + 32): (b'l011', Keys.KEY04.value),
-    (base_id + 200 + 33): (b'o003', Keys.KEY1.value),
-    (base_id + 200 + 34): (b'o003', Keys.KEY2.value),
-    (base_id + 200 + 35): (b'o003', Keys.KEY3.value),
-    (base_id + 200 + 36): (b'o006', Keys.KEY1.value),
-    (base_id + 200 + 37): (b'o006', Keys.KEY2.value),
-    (base_id + 200 + 38): (b'o006', Keys.KEY3.value),
-    (base_id + 200 + 39): (b'o006', Keys.KEY4.value),
-    (base_id + 200 + 40): (b'p002', Keys.KEY1.value),
-    (base_id + 200 + 41): (b'p002', Keys.KEY2.value),
-    (base_id + 200 + 42): (b'p002', Keys.KEY3.value),
-    (base_id + 200 + 43): (b'p002', Keys.KEY4.value),
-    (base_id + 200 + 44): (b'p002', Keys.KEY5.value),
-    (base_id + 200 + 45): (b'p003', Keys.KEY1.value),
-    (base_id + 200 + 46): (b'p003', Keys.KEY2.value),
-    (base_id + 200 + 47): (b'p003', Keys.KEY3.value),
-    (base_id + 200 + 48): (b'p004', Keys.KEY1.value),
-    (base_id + 200 + 49): (b'p005', Keys.KEY1.value),
-    (base_id + 200 + 50): (b'p005', Keys.KEY2.value),
-    (base_id + 200 + 51): (b'p005', Keys.KEY3.value),
-    (base_id + 200 + 52): (b'p005', Keys.KEY4.value),
-    (base_id + 200 + 53): (b'r005', Keys.KEY1.value),
-    (base_id + 200 + 54): (b'r005', Keys.KEY2.value),
-    (base_id + 200 + 55): (b'r005', Keys.KEY3.value),
-    (base_id + 200 + 56): (b'l011', Keys.KEY01.value),
-    (base_id + 200 + 57): (b'w027', Keys.KEY02.value),
-    (base_id + 200 + 58): (b'w027', Keys.KEY03.value),
-    (base_id + 200 + 59): (b'w027', Keys.KEY04.value),
+    # +3
+    (base_id + 200 + 0): (b'B002', Keys.KEY1.value),
+    (base_id + 200 + 1): (b'B002', Keys.KEY2.value),
+    (base_id + 200 + 2): (b'B002', Keys.KEY3.value),
+
+    # +4
+    (base_id + 200 + 3): (b'B003', Keys.KEY1.value),
+    (base_id + 200 + 4): (b'B003', Keys.KEY2.value),
+    (base_id + 200 + 5): (b'B003', Keys.KEY3.value),
+    (base_id + 200 + 6): (b'B003', Keys.KEY4.value),
+
+    # +5
+    (base_id + 200 + 7): (b'C005', Keys.KEY_1.value),
+    (base_id + 200 + 8): (b'C005', Keys.KEY_2.value),
+    (base_id + 200 + 9): (b'C005', Keys.KEY_3.value),
+    (base_id + 200 + 10): (b'C005', Keys.KEY_4.value),
+
+    # +6
+    (base_id + 200 + 11): (b'F005', Keys.KEY01.value),
+    (base_id + 200 + 12): (b'F005', Keys.KEY02.value),
+    (base_id + 200 + 13): (b'F005', Keys.KEY03.value),
+    (base_id + 200 + 14): (b'F005', Keys.KEY04.value),
+
+    # +7
+    (base_id + 200 + 15): (b'G001', Keys.KEY_01.value),
+    (base_id + 200 + 16): (b'G001', Keys.KEY_02.value),
+    (base_id + 200 + 17): (b'G001', Keys.KEY_03.value),
+
+    # +8
+    (base_id + 200 + 18): (b'G007', Keys.KEY.value),
+
+    # +9
+    (base_id + 200 + 19): (b'G009', Keys.KEY_1.value),
+    (base_id + 200 + 20): (b'G009', Keys.KEY_2.value),
+
+    # +1
+    (base_id + 200 + 21): (b'H001', Keys.HEDGE_KEY.value),
+
+    # +2
+    (base_id + 200 + 22): (b'H001', Keys.DUG_FISHING_KEY.value),
+
+    # +0
+    (base_id + 200 + 23): (b'I001', Keys.KEY.value),
+
+    # +10
+    (base_id + 200 + 24): (b'I003', Keys.DOORKEY.value),
+
+    # +11
+    (base_id + 200 + 25): (b'I005', Keys.DOORKEY1.value),
+    (base_id + 200 + 26): (b'I005', Keys.DOORKEY2.value),
+    (base_id + 200 + 27): (b'I005', Keys.DOORKEY3.value),
+    (base_id + 200 + 28): (b'I005', Keys.DOORKEY4.value),
+
+    # +12
+    (base_id + 200 + 29): (b'L011', Keys.KEY01.value),
+    (base_id + 200 + 30): (b'L011', Keys.KEY02.value),
+    (base_id + 200 + 31): (b'L011', Keys.KEY03.value),
+    (base_id + 200 + 32): (b'L011', Keys.KEY04.value),
+
+    # +13
+    (base_id + 200 + 33): (b'O003', Keys.KEY1.value),
+    (base_id + 200 + 34): (b'O003', Keys.KEY2.value),
+    (base_id + 200 + 35): (b'O003', Keys.KEY3.value),
+
+    # +14
+    (base_id + 200 + 36): (b'O006', Keys.KEY1.value),
+    (base_id + 200 + 37): (b'O006', Keys.KEY2.value),
+    (base_id + 200 + 38): (b'O006', Keys.KEY3.value),
+    (base_id + 200 + 39): (b'O006', Keys.KEY4.value),
+
+    # +15
+    (base_id + 200 + 40): (b'P002', Keys.KEY1.value),
+    (base_id + 200 + 41): (b'P002', Keys.KEY2.value),
+    (base_id + 200 + 42): (b'P002', Keys.KEY3.value),
+    (base_id + 200 + 43): (b'P002', Keys.KEY4.value),
+    (base_id + 200 + 44): (b'P002', Keys.KEY5.value),
+
+    # +16
+    (base_id + 200 + 45): (b'P003', Keys.KEY1.value),
+    (base_id + 200 + 46): (b'P003', Keys.KEY2.value),
+    (base_id + 200 + 47): (b'P003', Keys.KEY3.value),
+
+    # +17
+    (base_id + 200 + 48): (b'P004', Keys.KEY1.value),
+
+    # +18
+    (base_id + 200 + 49): (b'P005', Keys.KEY1.value),
+    (base_id + 200 + 50): (b'P005', Keys.KEY2.value),
+    (base_id + 200 + 51): (b'P005', Keys.KEY3.value),
+    (base_id + 200 + 52): (b'P005', Keys.KEY4.value),
+
+    # +19
+    (base_id + 200 + 53): (b'R005', Keys.KEY1.value),
+    (base_id + 200 + 54): (b'R005', Keys.KEY2.value),
+    (base_id + 200 + 55): (b'R005', Keys.KEY3.value),
+
+    # 20
+    (base_id + 200 + 56): (b'W027', Keys.KEY02.value),
+    (base_id + 200 + 57): (b'W027', Keys.KEY03.value),
+    (base_id + 200 + 58): (b'W027', Keys.KEY04.value),
 }
 
 valid_scenes = [
@@ -2518,6 +2558,28 @@ class NO100FContext(CommonContext):
         self.has_send_death = False
         self.last_death_link_send = time.time()
         self.current_scene_key = None
+        self.CitM1_key = 0
+        self.hedge_key = 0
+        self.fish_key = 0
+        self.WYitC2_keys = 0
+        self.WYitC3_keys = 0
+        self.MCaC_keys = 0
+        self.FCFS_keys = 0
+        self.TSFaGP_keys = 0
+        self.GDDitT1_key = 0
+        self.GDDitT3_keys = 0
+        self.CitM4_key = 0
+        self.MyM2_keys = 0
+        self.CfsG1_keys = 0
+        self.PitA2_keys = 0
+        self.ADaSK2_keys = 0
+        self.CCitH2_keys = 0
+        self.CCitH3_keys = 0
+        self.GAU1_key = 0
+        self.GAU2_keys = 0
+        self.DLDS2_keys = 0
+        self.SYTS1_keys = 0
+
 
     async def disconnect(self, allow_autoreconnect: bool = False):
         self.auth = None
@@ -2545,7 +2607,6 @@ class NO100FContext(CommonContext):
                     self.items_received_2.append((item, self.last_rev_index))
                     self.last_rev_index += 1
             self.items_received_2.sort(key=lambda v: v[1])
-            #self._update_key_counts(args)
 
     def on_deathlink(self, data: Dict[str, Any]) -> None:
         super().on_deathlink(data)
@@ -2645,8 +2706,9 @@ def _give_monstertoken(ctx: NO100FContext, bit: int):
     cur_monster_tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
     dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, cur_monster_tokens + 2**bit)
 
-#def _give_key(ctx: NO100FContext, offset: int):
-#    dolphin_memory_engine.write_byte(POWERUPS_ADDR + offset, 1)
+def _give_key(ctx: NO100FContext, offset: int):
+    cur_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + offset)
+    dolphin_memory_engine.write_byte(KEY_COUNT_ADDR + offset, cur_count + 1)
 
 
 def _give_death(ctx: NO100FContext):
@@ -2662,7 +2724,7 @@ def _check_cur_scene(ctx: NO100FContext, scene_id: bytes, scene_ptr: Optional[in
 
 def _give_item(ctx: NO100FContext, item_id: int):
     true_id = item_id - base_id     # Use item_id to generate offset for use with functions
-    if 100 > true_id >= 0:      # ID is from the Upgrades Group
+    if 0 <= true_id <= 56:      # ID is expected value
 
         if true_id < 7:
             _give_powerup(ctx, true_id)
@@ -2676,23 +2738,198 @@ def _give_item(ctx: NO100FContext, item_id: int):
         elif true_id == 14:
             _give_soap_upgrade(ctx)
 
-        if 36 > true_id > 14:
+        if 14 < true_id < 36:
             _give_monstertoken(ctx, true_id - 15)
+
+        if 36 <= true_id <= 56:
+            _give_key(ctx, true_id - 36)
 
     else:
         logger.warning(f"Received unknown item with id {item_id}")
 
 
-async def update_key_items(ctx: NO100FContext):
-    if not await check_alive(ctx):
+async def apply_key_fixes(ctx: NO100FContext):
+    scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
+    ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
+    if not _is_ptr_valid(ptr):
         return
-    if CheckTypes.KEYS in ctx.included_check_types:
-        hedge_key_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
-        if hedge_key_count == 1:
-            ctx.hedge_key_found = True
+    size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
 
+    if scene == b'I001':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
+        ctx.CitM1_key = count
+
+    if scene == b'H001':
+        fix_ptr = _find_obj_in_obj_table(0xBBFA4948, ptr, size)
+        if not fix_ptr == None:
+            if ctx.hedge_key == 1:  # The Hedge key is collected, open the gate
+                fix_ptr = _find_obj_in_obj_table(0xC20224F3, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x14, 0)
+
+                fix_ptr = _find_obj_in_obj_table(0xE8B3FF9B, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1c)
+
+                fix_ptr = _find_obj_in_obj_table(0xD72B66B7, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)
+
+            else:   # Hedge Key is not collected, make sure the gate is closed
+                fix_ptr = _find_obj_in_obj_table(0xC20224F3, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x14, 1)
+
+                fix_ptr = _find_obj_in_obj_table(0xE8B3FF9B, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)
+
+                fix_ptr = _find_obj_in_obj_table(0xD72B66B7, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1c)
+
+        fix_ptr = _find_obj_in_obj_table(0xBB82B3B3, ptr, size)
+        if not fix_ptr == None:
+            if ctx.fish_key == 1:  # The Fishing key is collected, open the gate
+                fix_ptr = _find_obj_in_obj_table(0x42A3128E, ptr, size)
+                dolphin_memory_engine.write_byte(fix_ptr + 0x14, 0)
+
+
+    if scene == b'B002':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
+        ctx.WYitC2_keys = count
+
+    if scene == b'B003':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
+        ctx.WYitC3_keys = count
+
+    if scene == b'C005':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
+        ctx.MCaC_keys = count
+
+    if scene == b'F005':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
+        ctx.FCfS_keys = count
+
+    if scene == b'G001':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
+        ctx.TSfaGP_keys = count
+
+    if scene == b'G007':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
+        ctx.GDDitT1_key = count
+
+    if scene == b'G009':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
+        ctx.GDDitT3_keys = count
+
+    if scene == b'I003':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10)
+        ctx.CitM4_key = count
+
+    if scene == b'I005':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 11)
+        ctx.MyM2_keys = count
+
+    if scene == b'L011':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 12)
+        ctx.CfsG1_keys = count
+
+    if scene == b'O003':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 13)
+        ctx.PitA2_keys = count
+
+    if scene == b'O006':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 14)
+        ctx.ADaSK2_keys = count
+
+    if scene == b'P002':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 15)
+        ctx.CCitH2_keys = count
+
+    if scene == b'P003':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 16)
+        ctx.CCitH3_keys = count
+
+    if scene == b'P004':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 17)
+        ctx.GAU1_key = count
+
+    if scene == b'P005':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 18)
+        ctx.GAU2_keys = count
+
+    if scene == b'R005':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 19)
+        ctx.DLDS2_keys = count
+
+    if scene == b'W027':
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 20)
+        ctx.SYTS1_keys = count
+
+async def update_key_items(ctx: NO100FContext):
+    await asyncio.sleep(10) # This is a lot to be doing constantly, especially when it wont update often
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
+    ctx.CitM1_key = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
+    ctx.hedge_key = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
+    ctx.fish_key = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
+    ctx.WYitC2_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
+    ctx.WYitC3_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
+    ctx.MCaC_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
+    ctx.FCfS_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
+    ctx.TSfaGP_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
+    ctx.GDDitT1_key = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
+    ctx.GDDitT3_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10)
+    ctx.CitM4_key = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 11)
+    ctx.MyM2_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 12)
+    ctx.CfsG1_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 13)
+    ctx.PitA2_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 14)
+    ctx.ADaSK2_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 15)
+    ctx.CCitH2_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 16)
+    ctx.CCitH3_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 17)
+    ctx.GAU1_key = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 18)
+    ctx.GAU2_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 19)
+    ctx.DLDS2_keys = count
+
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 20)
+    ctx.SYTS1_keys = count
+    
 async def give_items(ctx: NO100FContext):
-    await update_key_items(ctx)
+    if CheckTypes.KEYS in ctx.included_check_types:
+        await update_key_items(ctx)
     expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
     # we need to loop some items
     for item, idx in ctx.items_received_2:
@@ -2813,6 +3050,10 @@ async def _check_monstertokens(ctx: NO100FContext, locations_checked: set):
     await _check_objects_by_id(ctx, locations_checked, MONSTERTOKENS_PICKUP_IDS, _check_pickup_state)
 
 
+async def _check_keys(ctx: NO100FContext, locations_checked: set):
+    await _check_objects_by_id(ctx, locations_checked, KEYS_PICKUP_IDS, _check_pickup_state)
+
+
 # async def _check_snacks(ctx: NO100FContext, locations_checked: set):
 #    await _check_objects_by_id(ctx, locations_checked, SNACKIDS, _check_pickup_state)
 
@@ -2826,28 +3067,31 @@ async def apply_level_fixes(ctx: NO100FContext):
     dolphin_memory_engine.write_word(MAP_ADDR, 0x1)     # Force the Map Into Inventory
 
     if scene == b'H001' or b'h001':
-        fix_ptr = _find_obj_in_obj_table(0xBBFA4948, ptr, size)
-        if not fix_ptr == None:
-            if dolphin_memory_engine.read_byte(fix_ptr + 0xEF) == 0x48:     #The Hedge key is collected, open the gate
-                fix_ptr = _find_obj_in_obj_table(0xC20224F3, ptr, size)
-                dolphin_memory_engine.write_byte(fix_ptr + 0x14, 0)
+       if CheckTypes.KEYS not in ctx.included_check_types:
+            fix_ptr = _find_obj_in_obj_table(0xBBFA4948, ptr, size)
+            if not fix_ptr == None:
+                if dolphin_memory_engine.read_byte(fix_ptr + 0xEF) == 0x48:     #The Hedge key is collected, open the gate
+                    fix_ptr = _find_obj_in_obj_table(0xC20224F3, ptr, size)
+                    dolphin_memory_engine.write_byte(fix_ptr + 0x14, 0)
 
-                fix_ptr = _find_obj_in_obj_table(0xE8B3FF9B, ptr, size)
-                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1c)
+                    fix_ptr = _find_obj_in_obj_table(0xE8B3FF9B, ptr, size)
+                    dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1c)
 
-                fix_ptr = _find_obj_in_obj_table(0xD72B66B7, ptr, size)
-                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)
+                    fix_ptr = _find_obj_in_obj_table(0xD72B66B7, ptr, size)
+                    dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)
 
-        fix_ptr = _find_obj_in_obj_table(0xBB82B3B3, ptr, size)
-        if not fix_ptr == None:
-            if dolphin_memory_engine.read_byte(fix_ptr + 0xEF) == 0x48:     #The Fishing key is collected, open the gate
-                fix_ptr = _find_obj_in_obj_table(0x42A3128E, ptr, size)
-                dolphin_memory_engine.write_byte(fix_ptr + 0x14, 0)
+            fix_ptr = _find_obj_in_obj_table(0xBB82B3B3, ptr, size)
+            if not fix_ptr == None:
+                if dolphin_memory_engine.read_byte(fix_ptr + 0xEF) == 0x48:     #The Fishing key is collected, open the gate
+                    fix_ptr = _find_obj_in_obj_table(0x42A3128E, ptr, size)
+                    dolphin_memory_engine.write_byte(fix_ptr + 0x14, 0)
 
 async def check_locations(ctx: NO100FContext):
     await _check_upgrades(ctx, ctx.locations_checked)
     if CheckTypes.MONSTERTOKENS in ctx.included_check_types:
         await _check_monstertokens(ctx, ctx.locations_checked)
+    if CheckTypes.KEYS in ctx.included_check_types:
+        await _check_keys(ctx, ctx.locations_checked)
 
     # ignore already in server state
     locations_checked = ctx.locations_checked.difference(ctx.checked_locations)
@@ -2953,8 +3197,7 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     await check_locations(ctx)
                     await apply_level_fixes(ctx)
                     # await apply_qol_fixes(ctx)
-                    # await apply_key_fixes(ctx)
-                    # await set_locations(ctx)
+                    await apply_key_fixes(ctx)
                 else:
                     if not ctx.auth:
                         ctx.auth = dolphin_memory_engine.read_bytes(SLOT_NAME_ADDR, 0x40).decode('utf-8').strip(

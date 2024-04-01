@@ -2,7 +2,7 @@ from typing import List, Dict
 
 from . import NO100FOptions
 from .Locations import NO100FLocation, location_table, \
-    upgrade_location_table, monstertoken_location_table
+    upgrade_location_table, monstertoken_location_table, key_location_table
 from .names import ConnectionNames, LevelNames, RegionNames, LocationNames
 
 from BaseClasses import MultiWorld, Region, Entrance
@@ -30,6 +30,8 @@ def _get_locations_for_region(options: NO100FOptions, name: str) -> List[str]:
         result += [LocationNames.Credits]
     if options.include_monster_tokens.value:
         result += [k for k in monstertoken_location_table if f"{name}:" in k]
+    if options.include_keys.value:
+        result += [k for k in key_location_table if f"{name}:" in k]
     return result
 
 
