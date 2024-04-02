@@ -2910,7 +2910,7 @@ def check_control_owner(ctx: NO100FContext, check_cb: Callable[[int], bool]) -> 
 
 async def save_warp_gates(ctx: NO100FContext):
     warp_gate_map = 0
-    await asyncio.sleep(5)  #This is a lot to do all of the time, save warp gates every 5 seconds
+    await asyncio.sleep(1)
     for i in range(26):
         cur_gate = dolphin_memory_engine.read_word(WARP_ADDR + (12 * i))
         if cur_gate == 1:
