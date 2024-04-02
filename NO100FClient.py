@@ -46,6 +46,7 @@ MAX_GUM_COUNT_ADDR = 0x802350A8
 MAX_SOAP_COUNT_ADDR = 0x802350AC
 PLAYER_CONTROL_OWNER = 0x80234e90
 MAP_ADDR = 0x8025F140
+WARP_ADDR = 0x801b7ef4
 
 SLOT_NAME_ADDR = 0x801c5c9c
 SEED_ADDR = SLOT_NAME_ADDR + 0x40
@@ -53,6 +54,7 @@ SEED_ADDR = SLOT_NAME_ADDR + 0x40
 # expected received item index
 EXPECTED_INDEX_ADDR = 0x817f0000
 KEY_COUNT_ADDR = 0x817f0004
+SAVED_WARP_ADDR = 0x817f001C
 # delayed item
 SAVED_SLOT_NAME_ADDR = 0x817f0020
 SAVED_SEED_ADDR = SAVED_SLOT_NAME_ADDR + 0x40
@@ -2906,6 +2908,28 @@ def check_control_owner(ctx: NO100FContext, check_cb: Callable[[int], bool]) -> 
     return check_cb(owner)
 
 
+async def save_warp_gates(ctx: NO100FContext):
+    warp_gate_map = 0
+    await asyncio.sleep(5)  #This is a lot to do all of the time, save warp gates every 5 seconds
+    for i in range(26):
+        cur_gate = dolphin_memory_engine.read_word(WARP_ADDR + (12 * i))
+        if cur_gate == 1:
+            warp_gate_map += 2**i
+
+    if warp_gate_map == 0x400:  # The game is at the default state, attempt to load instead of saving
+        if not dolphin_memory_engine.read_word(SAVED_WARP_ADDR) == 0 and not _check_cur_scene(ctx, b'MNU3'):  # We happened to check this value before it was initialized fully
+            await load_warp_gates()
+        return
+
+    dolphin_memory_engine.write_word(SAVED_WARP_ADDR, warp_gate_map)
+
+async def load_warp_gates():
+    warp_gates = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
+    for i in range(26):
+        if warp_gates & 2**i == 2**i:
+            dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 1)
+
+
 def validate_save(ctx: NO100FContext) -> bool:
     saved_slot_bytes = dolphin_memory_engine.read_bytes(SAVED_SLOT_NAME_ADDR, 0x40).strip(b'\0')
     slot_bytes = dolphin_memory_engine.read_bytes(SLOT_NAME_ADDR, 0x40).strip(b'\0')
@@ -2934,6 +2958,7 @@ async def dolphin_sync_task(ctx: NO100FContext):
                             cur_val = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR + i)
                             if cur_val != 0:
                                 dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR + i, 0)
+
                     await asyncio.sleep(.1)
                     continue
                 # _print_player_info(ctx)
@@ -2952,6 +2977,7 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     await give_items(ctx)
                     await check_locations(ctx)
                     await apply_level_fixes(ctx)
+                    await save_warp_gates(ctx)
                     # await apply_qol_fixes(ctx)
                     # await apply_key_fixes(ctx)
                     # await set_locations(ctx)

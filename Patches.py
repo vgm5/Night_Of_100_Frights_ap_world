@@ -54,10 +54,10 @@ AP_SAVE_LOAD = {
     0x1e0c68: 0x39ef0004,  # addi r15, r15, 4
     0x1e0c6c: 0x2C0f007c,  # cmp r15, 0x7c
     0x1e0c70: 0x4081ffe8,  # ble -> 0x801C5C58 (-6)
-    0x1e0c74: 0x3c80803c,  # lis	r4, 0x803C
+    0x1e0c74: 0x3c808023,  # lis	r4, 0x8023
     0x1e0c78: 0x7fe3fb78,  # mr	r3, r31
-    0x1e0c7c: 0x38840558,  # addi	r4, r4, 1368
-    0x1e0c80: 0x3ba41738,  # addi	r29, r4, 5944
+    0x1e0c7c: 0x38844ae0,  # addi	r4, r4, 4ae0
+    0x1e0c80: 0x3ba405b0,  # addi	r29, r4, 05b0
     0x1e0c84: 0x7fa4eb78,  # mr	r4, r29
     0x1e0c88: 0x4be746a5,  # bl	->0x8003A32C (Read_7xSerialFPUi)
     0x1e0c8c: 0x80010014,  # lwz	r0, 0x0014 (sp)
