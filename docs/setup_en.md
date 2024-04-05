@@ -15,7 +15,7 @@
 - Place ``no100f.apworld`` in ``lib/worlds/`` of your AP installation.
 - Place the included ``.pyd`` files and the ``dolphin_memory_engine`` folder into ``lib/`` of your AP installation.
 - Place the ISO in the root folder of your AP installation and make sure it's
-  named ``Scooby Doo! Night of 100 Frights.iso``.
+  named ``Scooby-Doo! Night of 100 Frights.iso``.
 
 For more information about .apworlds
 see [here](https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/apworld%20specification.md)
