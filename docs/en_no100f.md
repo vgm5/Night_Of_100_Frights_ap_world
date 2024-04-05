@@ -1,4 +1,4 @@
-# Scooby Doo: Night of 100 Frights
+# Scooby-Doo! Night of 100 Frights
 
 ## Where is the settings page?
 
@@ -13,7 +13,9 @@ would in the vanilla game.
 
 ## What items and locations get shuffled?
 
-Upgrades like the Springs/Umbrella as well as Gum and Soap Ammo upgrades will always be shuffled. Optionally you can also shuffle Monster Tokens, Keys and Scooby Snack Pickups(WIP).
+-Upgrades like the Springs/Umbrella as well as Gum and Soap Ammo upgrades will always be shuffled. 
+
+-Optionally you can also shuffle Monster Tokens, Keys, Warp Gates(WIP) and Scooby Snack Pickups(WIP).
 
 ## Key Rando Notes
 **Some rooms will behave differently than others, there is however a rhyme and reason to it:**
