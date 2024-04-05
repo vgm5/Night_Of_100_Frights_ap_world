@@ -2906,7 +2906,7 @@ async def apply_key_fixes(ctx: NO100FContext):
 
     if scene == b'F005':
         fix_ptr = _find_obj_in_obj_table(0xD0798EC6, ptr, size)
-        if not fix_ptr >= None:
+        if not fix_ptr == None:
             if ctx.FCfS_keys >= 4:  # Keys collected, open the gate
                 fix_ptr = _find_obj_in_obj_table(0xD0798EC6, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1d)
