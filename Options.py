@@ -10,7 +10,7 @@ class IncludeMonsterTokens(Toggle):
 
 
 class IncludeKeys(Toggle):
-    """Include Keys as AP Locations/Items(WIP)"""
+    """Include Keys as AP Locations/Items"""
     display_name = "Include Keys"
     default = 0
 
