@@ -147,12 +147,13 @@ key_location_table = {
     LocationNames.key1_w027: base_id + 200 + 56,
     LocationNames.key2_w027: base_id + 200 + 57,
     LocationNames.key3_w027: base_id + 200 + 58,
+    LocationNames.key4_w027: base_id + 200 + 59,
 }
 
 location_table: typing.Dict[str, typing.Optional[int]] = {
     **upgrade_location_table,      # 0 - 27
     **monstertoken_location_table, # 100 - 120
-    **key_location_table,          # 200 - 258
+    **key_location_table,          # 200 - 259
     LocationNames.Credits: None
 }
 

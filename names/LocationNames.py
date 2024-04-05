@@ -175,6 +175,7 @@ redbeard_token_w025 = f"{RegionNames.w025}: Redbeard Token"
 key1_w027 = f"{RegionNames.w027}: Key Pickup 1"
 key2_w027 = f"{RegionNames.w027}: Key Pickup 2"
 key3_w027 = f"{RegionNames.w027}: Key Pickup 3"
+key4_w027 = f"{RegionNames.w027}: Key Pickup 4"
 
 gumpower_w028 = f"{RegionNames.w028}: Redbeard Reward"
 

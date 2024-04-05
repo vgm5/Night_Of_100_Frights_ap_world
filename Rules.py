@@ -6,12 +6,13 @@ from .Options import NO100FOptions
 from .names import ConnectionNames, ItemNames, LocationNames, RegionNames
 from worlds.generic.Rules import set_rule, add_rule, CollectionRule
 
+
 upgrade_rules = [
     # connections
     {
         # Hub
-        ConnectionNames.hub1_e001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.hub1_f001: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
+        # ConnectionNames.hub1_e001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1), Moved outside Rule Factory
+        # ConnectionNames.hub1_f001: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
         # Manor
         ConnectionNames.i020_i021: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
@@ -139,12 +140,23 @@ upgrade_rules = [
             LocationNames.redbeard_token_w025: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
         },
 
+        ItemNames.Keys:
+            {
+                # Hub
+                LocationNames.hedgekey_h001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+                LocationNames.fishingkey_h001: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
+
+                # Passage
+                LocationNames.key5_p002: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+            },
+
         ItemNames.victory:
         {
             LocationNames.Credits: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
         }
     }
 ]
+
 monster_token_rules = [
     # connections
     {},
@@ -154,9 +166,58 @@ monster_token_rules = [
 
 key_rules = [
 # connections
-    {},
+    {
+        # Hub
+        ConnectionNames.hub1_e001: lambda player: lambda state: state.has(ItemNames.Hedge_Key, player, 1),
+        ConnectionNames.hub1_f001: lambda player: lambda state: state.has(ItemNames.Fishing_Key, player, 1),
+
+        # Manor
+        ConnectionNames.i001_i020: lambda player: lambda state: state.has(ItemNames.Clamor1_Key, player, 1),
+        ConnectionNames.i003_i004: lambda player: lambda state: state.has(ItemNames.Clamor4_Key, player, 1),
+        ConnectionNames.i005_i006: lambda player: lambda state: state.has(ItemNames.MYM_Key, player, 4),
+
+        # Rooftop
+        ConnectionNames.r005_o001: lambda player: lambda state: state.has(ItemNames.DLD_Key, player, 3),
+
+        # Balcony
+        ConnectionNames.o003_o004: lambda player: lambda state: state.has(ItemNames.Attic_Key, player, 3),
+        ConnectionNames.o006_o008: lambda player: lambda state: state.has(ItemNames.Knight_Key, player, 4),
+
+        # Fishing Village
+        ConnectionNames.f005_f006: lambda player: lambda state: state.has(ItemNames.FishyClues_Key, player, 4),
+
+        # Coast
+        ConnectionNames.c005_c006: lambda player: lambda state: state.has(ItemNames.Cavein_Key, player, 4),
+
+        # Passage
+        ConnectionNames.p002_s001: lambda player: lambda state: state.has(ItemNames.Creepy2_Key, player, 5),
+        ConnectionNames.p002_p003: lambda player: lambda state: state.has(ItemNames.Creepy2_Key, player, 5),
+        ConnectionNames.p003_p004: lambda player: lambda state: state.has(ItemNames.Creepy3_Key, player, 3),
+        ConnectionNames.p004_p005: lambda player: lambda state: state.has(ItemNames.Gusts1_Key, player, 1),
+        ConnectionNames.p005_b001: lambda player: lambda state: state.has(ItemNames.Gusts2_Key, player, 4),
+
+        # Graveyard
+        ConnectionNames.g001_g002: lambda player: lambda state: state.has(ItemNames.Graveplot_Key, player, 3),
+        ConnectionNames.g007_g008: lambda player: lambda state: state.has(ItemNames.Tomb1_Key, player, 1),
+
+        # Basement
+        ConnectionNames.b002_b003: lambda player: lambda state: state.has(ItemNames.Cellar2_Key, player, 3),
+        ConnectionNames.b003_b004: lambda player: lambda state: state.has(ItemNames.Cellar3_Key, player, 4),
+
+        # Lighthouse
+        ConnectionNames.l011_l013: lambda player: lambda state: state.has(ItemNames.Coast_Key, player, 4),
+
+        # Wrecked Ships
+        ConnectionNames.w027_w028: lambda player: lambda state: state.has(ItemNames.Shiver_Key, player, 4),
+    },
     # locations
-    {}
+    {
+        # Graveyard
+        LocationNames.umbrella_g009: lambda player: lambda state: state.has(ItemNames.Tomb3_Key, player, 2),
+
+        # Passage
+        LocationNames.key5_p002: lambda player: lambda state: state.has(ItemNames.Creepy2_Key, player, 4),
+     }
 ]
 
 def _add_rules(world: MultiWorld, player: int, rules: List, allowed_loc_types: List[str]):
@@ -199,5 +260,9 @@ def set_rules(world: MultiWorld, options: NO100FOptions, player: int):
         _add_rules(world, player, monster_token_rules, allowed_loc_types)
     if options.include_keys.value:
         _add_rules(world, player, key_rules, allowed_loc_types)
+    if ItemNames.Keys not in allowed_loc_types:
+        add_rule(world.get_entrance(ConnectionNames.hub1_e001, player), lambda state: state.has(ItemNames.SpringPower, player, 1))
+        add_rule(world.get_entrance(ConnectionNames.hub1_f001, player), lambda state: state.has(ItemNames.ShovelPower, player, 1)),
+
 
     world.completion_condition[player] = lambda state: state.has("Victory", player)
