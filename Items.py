@@ -66,6 +66,30 @@ item_table = {
     ItemNames.MT_WOLFMAN       : ItemData(base_id + 34, ItemClassification.filler),
     ItemNames.MT_ZOMBIE        : ItemData(base_id + 35, ItemClassification.filler),
 
+    #Keys
+    ItemNames.Clamor1_Key      : ItemData(base_id + 36, ItemClassification.progression),
+    ItemNames.Hedge_Key        : ItemData(base_id + 37, ItemClassification.progression),
+    ItemNames.Fishing_Key      : ItemData(base_id + 38, ItemClassification.progression),
+    ItemNames.Cellar2_Key      : ItemData(base_id + 39, ItemClassification.progression),
+    ItemNames.Cellar3_Key      : ItemData(base_id + 40, ItemClassification.progression),
+    ItemNames.Cavein_Key       : ItemData(base_id + 41, ItemClassification.progression),
+    ItemNames.FishyClues_Key   : ItemData(base_id + 42, ItemClassification.progression),
+    ItemNames.Graveplot_Key    : ItemData(base_id + 43, ItemClassification.progression),
+    ItemNames.Tomb1_Key        : ItemData(base_id + 44, ItemClassification.progression),
+    ItemNames.Tomb3_Key        : ItemData(base_id + 45, ItemClassification.progression),
+    ItemNames.Clamor4_Key      : ItemData(base_id + 46, ItemClassification.progression),
+    ItemNames.MYM_Key          : ItemData(base_id + 47, ItemClassification.progression),
+    ItemNames.Coast_Key        : ItemData(base_id + 48, ItemClassification.progression),
+    ItemNames.Attic_Key        : ItemData(base_id + 49, ItemClassification.progression),
+    ItemNames.Knight_Key       : ItemData(base_id + 50, ItemClassification.progression),
+    ItemNames.Creepy2_Key      : ItemData(base_id + 51, ItemClassification.progression),
+    ItemNames.Creepy3_Key      : ItemData(base_id + 52, ItemClassification.progression),
+    ItemNames.Gusts1_Key       : ItemData(base_id + 53, ItemClassification.progression),
+    ItemNames.Gusts2_Key       : ItemData(base_id + 54, ItemClassification.progression),
+    ItemNames.DLD_Key          : ItemData(base_id + 55, ItemClassification.progression),
+    ItemNames.Shiver_Key       : ItemData(base_id + 56, ItemClassification.progression),
+
+
     # events
     ItemNames.victory: ItemData(None, ItemClassification.progression)
 }

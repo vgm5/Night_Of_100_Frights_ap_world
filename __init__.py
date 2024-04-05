@@ -53,7 +53,6 @@ class NightOf100FrightsWorld(World):
 
     item_name_to_id = {name: data.id for name, data in item_table.items()}
     location_name_to_id = location_table
-
     web = NO100FWeb()
 
     def __init__(self, multiworld: "MultiWorld", player: int):
@@ -66,15 +65,19 @@ class NightOf100FrightsWorld(World):
                     ItemNames.BootsPower, ItemNames.PlungerPower,ItemNames.SlipperPower, ItemNames.LampshadePower, ItemNames.BlackknightPower, ItemNames.ShovelPower]
         itempool += [ItemNames.SoapAmmoUpgrade] * 8
         itempool += [ItemNames.GumAmmoUpgrade] * 7
-       # if self.options.include_keys.value:
-       #     itempool += [ItemNames."Keys"]
-       # if self.options.include_snacks.value:
+       # if self.options.include_snacks:
        #     itempool += [ItemNames.Snack] * way too much
        #     itempool += [ItemNames.SnackBox] * also alot
         if self.options.include_monster_tokens:
             itempool += [ItemNames.MT_BLACKKNIGHT, ItemNames.MT_MOODY, ItemNames.MT_CAVEMAN, ItemNames.MT_CREEPER, ItemNames.MT_GARGOYLE, ItemNames.MT_GERONIMO, ItemNames.MT_GHOST,
                          ItemNames.MT_GHOSTDIVER, ItemNames.MT_GREENGHOST, ItemNames.MT_HEADLESS, ItemNames.MT_MASTERMIND, ItemNames.MT_ROBOT, ItemNames.MT_REDBEARD, ItemNames.MT_SCARECROW,
                          ItemNames.MT_SEACREATURE, ItemNames.MT_SPACEKOOK, ItemNames.MT_TARMONSTER, ItemNames.MT_WITCH, ItemNames.MT_WITCHDOC, ItemNames.MT_WOLFMAN, ItemNames.MT_ZOMBIE]
+        if self.options.include_keys:
+            itempool += [ItemNames.Hedge_Key, ItemNames.Fishing_Key, ItemNames.Clamor1_Key, ItemNames.Clamor4_Key,  ItemNames.Gusts1_Key, ItemNames.Tomb1_Key]  # Single Keys
+            itempool += [ItemNames.Tomb3_Key] * 2  # Double Keys
+            itempool += [ItemNames.Cellar2_Key, ItemNames.Graveplot_Key, ItemNames.Attic_Key, ItemNames.Creepy3_Key, ItemNames.DLD_Key] * 3  # Triple Keys
+            itempool += [ItemNames.Cellar3_Key, ItemNames.Cavein_Key, ItemNames.FishyClues_Key, ItemNames.MYM_Key, ItemNames.Coast_Key, ItemNames.Knight_Key, ItemNames.Gusts2_Key, ItemNames.Shiver_Key] * 4  # Quad Keys
+            itempool += [ItemNames.Creepy2_Key] * 5  # Penta Keys
 
         # adjust for starting inv prog. items
         k = 0
@@ -102,8 +105,8 @@ class NightOf100FrightsWorld(World):
         return {
             "death_link": self.options.death_link.value,
             "include_monster_tokens": self.options.include_monster_tokens.value,
-            #"include_keys": self.options.include_keys,
-            #"include_snacks": self.options.include_snacks,
+            "include_keys": self.options.include_keys.value,
+            #"include_snacks": self.options.include_snacks.value,
             "no_logic": self.options.no_logic.value,
         }
 
@@ -128,8 +131,8 @@ class NightOf100FrightsWorld(World):
                                                  f"{self.multiworld.get_out_file_name_base(self.player)}{NO100FDeltaPatch.patch_file_ending}"),
                                player=self.player,
                                player_name=self.multiworld.get_player_name(self.player),
-                               #include_snacks=bool(self.options.include_snacks.value),
-                               #include_keys=bool(self.options.include_keys.value),
+                               #include_snacks=bool(self.options.include_snacks),
+                               include_keys=bool(self.options.include_keys.value),
                                include_monster_tokens=bool(self.options.include_monster_tokens.value),
                                seed=self.multiworld.seed_name.encode('utf-8'),
                                )
