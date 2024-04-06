@@ -26,6 +26,9 @@ would in the vanilla game.
 
 -If a set of keys opens up a loading zone upon collection (e.g. Hedge/Fishing Village/Shiver) them the keys do not need to be collected - the loading zone will immediately open up once you have found all of the keys in the set
 
+## Current QOL Fixes (enabled by default)
+- Prevent player from going through the a loading zone in Aghast that would get them stuck if they don't have the helmet
+
 ## What is the goal of Scooby Doo: Night of 100 Frights?
 
 Same as vanilla, beat Tim Curry in a brawl to the death.
