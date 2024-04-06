@@ -14,11 +14,20 @@ class IncludeKeys(Toggle):
     display_name = "Include Keys"
     default = 0
 
+#class IncludeWarpGates(Toggle):
+#    """Include Warp Gates as AP Locations/Items (WIP)"""
+#    display_name = "Include Snacks"
+#    default = 0
 
 #class IncludeSnacks(Toggle):
 #    """Include Snacks as AP Locations/Items (WIP)"""
 #    display_name = "Include Snacks"
 #    default = 0
+
+class ApplyQOL(Toggle):
+    """Applies various QOL fixes to the game"""
+    display_name = "Apply QOL Fixes"
+    default = 1
 
 class NoLogic(Toggle):
     """Disables all item Logic | USE AT YOUR OWN RISK"""
@@ -29,6 +38,8 @@ class NoLogic(Toggle):
 class NO100FOptions(PerGameCommonOptions):
     include_monster_tokens: IncludeMonsterTokens
     include_keys: IncludeKeys
-  #  include_snacks: IncludeSnacks
+    #  include_warpgates: IncludeWarpGates
+    #  include_snacks: IncludeSnacks
     death_link: DeathLink
+    apply_qol_fixes: ApplyQOL
     no_logic: NoLogic

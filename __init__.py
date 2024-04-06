@@ -18,7 +18,7 @@ from .names import ItemNames, ConnectionNames
 
 
 def run_client():
-    print('running NO100F client')
+    print('running Scooby-Doo! NO100F client')
     from worlds.no100f.NO100FClient import main  # lazy import
     file_types = (('NO100F Patch File', ('.apno100f',)), ('NGC iso', ('.gcm',)),)
     kwargs = {'patch_file': Utils.open_filename("Select .apno100f", file_types)}
@@ -26,14 +26,14 @@ def run_client():
     p.start()
 
 
-components.append(Component("NO100F Client", func=run_client, component_type=Type.CLIENT,
+components.append(Component("Scooby-Doo! NO100F Client", func=run_client, component_type=Type.CLIENT,
                             file_identifier=SuffixIdentifier('.apno100f')))
 
 
 class NO100FWeb(WebWorld):
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
-        "A guide to setting up the The Binding Of Isaac Repentance integration for Archipelago multiworld games.",
+        "A guide to setting up the integration for Archipelago multiworld games.",
         "English",
         "setup_en.md",
         "setup/en",
@@ -44,9 +44,9 @@ class NO100FWeb(WebWorld):
 
 class NightOf100FrightsWorld(World):
     """
-    Scooby Doo: Night of 100 Frights
+    Scooby-Doo! Night of 100 Frights
     """
-    game = "Night of 100 Frights"
+    game = "Scooby-Doo! Night of 100 Frights"
     options_dataclass = NO100FOptions
     options: NO100FOptions
     topology_present = False
@@ -107,6 +107,7 @@ class NightOf100FrightsWorld(World):
             "include_monster_tokens": self.options.include_monster_tokens.value,
             "include_keys": self.options.include_keys.value,
             #"include_snacks": self.options.include_snacks.value,
+            "apply_qol_fixes": self.options.apply_qol_fixes.value,
             "no_logic": self.options.no_logic.value,
         }
 

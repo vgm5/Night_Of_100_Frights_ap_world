@@ -2542,10 +2542,17 @@ class NO100FCommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, NO100FContext):
             logger.info(f"Dolphin Status: {self.ctx.dolphin_status}")
 
+    def _cmd_resetscooby(self):
+        """Force Kill Scooby to escape softlocks"""
+        if dolphin_memory_engine.is_hooked():
+            dolphin_memory_engine.write_word(HEALTH_ADDR, 69)
+            logger.info("Killing Scooby :(")
+
+
 
 class NO100FContext(CommonContext):
     command_processor = NO100FCommandProcessor
-    game = "Night of 100 Frights"
+    game = "Scooby-Doo! Night of 100 Frights"
     items_handling = 0b111  # full remote
 
     def __init__(self, server_address, password):
@@ -2559,8 +2566,11 @@ class NO100FContext(CommonContext):
         self.LAST_STATE = [bytes([0, 0]), bytes([0, 0]), bytes([0, 0])]
         self.last_rev_index = -1
         self.has_send_death = False
+        self.forced_death = False
+        self.post_boss = False
         self.last_death_link_send = time.time()
         self.current_scene_key = None
+        self.use_qol = False
         self.CitM1_key = 0
         self.hedge_key = 0
         self.fish_key = 0
@@ -2603,6 +2613,8 @@ class NO100FContext(CommonContext):
                 self.included_check_types |= CheckTypes.KEYS
             if 'include_snacks' in args['slot_data'] and args['slot_data']['include_snacks']:
                 self.included_check_types |= CheckTypes.SNACKS
+            if 'apply_qol_fixes' in args['slot_data'] and args['slot_data']['apply_qol_fixes']:
+                self.use_qol = True
         if cmd == 'ReceivedItems':
             if args["index"] >= self.last_rev_index:
                 self.last_rev_index = args["index"]
@@ -2774,6 +2786,21 @@ def _set_counter_value(ctx: NO100FContext, ptr, count):
 def _set_pickup_active(ctx: NO100FContext, ptr, state):
     dolphin_memory_engine.write_byte(ptr + 0x7, state)
 
+async def apply_qol_fixes(ctx: NO100FContext):
+    scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
+    ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
+    if not _is_ptr_valid(ptr):
+        return
+    size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
+
+    if scene == b'W023':
+        fix_ptr = _find_obj_in_obj_table(0xD2C0B716, ptr, size)
+        if not fix_ptr == None:
+            if dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR) & 2**11:
+                _set_trigger_state(ctx, fix_ptr, 0x1d)
+
+            else:
+                _set_trigger_state(ctx, fix_ptr, 0x1c)
 
 async def apply_key_fixes(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
@@ -2842,7 +2869,6 @@ async def apply_key_fixes(ctx: NO100FContext):
                 fix_ptr = _find_obj_in_obj_table(0x2E8B6D0E, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1f)
 
-
     if scene == b'B002':
         fix_ptr = _find_obj_in_obj_table(0xc71019dc, ptr, size)
         if not fix_ptr == None:
@@ -2887,7 +2913,6 @@ async def apply_key_fixes(ctx: NO100FContext):
                 fix_ptr = _find_obj_in_obj_table(0x44BC97AA, ptr, size)
                 _set_platform_state(ctx, fix_ptr, 0)
 
-
             else:  # Keys not collected, make sure the gate is closed
                 fix_ptr = _find_obj_in_obj_table(0xD6E6CB86, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1e)
@@ -2925,7 +2950,6 @@ async def apply_key_fixes(ctx: NO100FContext):
 
                 fix_ptr = _find_obj_in_obj_table(0x1F0FB51B, ptr, size)
                 _set_platform_state(ctx, fix_ptr, 0)
-
 
             else:  # Keys not collected, make sure the gate is closed
                 fix_ptr = _find_obj_in_obj_table(0xD0798EC6, ptr, size)
@@ -3029,7 +3053,6 @@ async def apply_key_fixes(ctx: NO100FContext):
 
                 fix_ptr = _find_obj_in_obj_table(0x1F0FB51B, ptr, size)
                 _set_platform_state(ctx, fix_ptr, 0)
-
 
             else:  # Keys not collected, make sure the gate is closed
                 fix_ptr = _find_obj_in_obj_table(0xD14760E8, ptr, size)
@@ -3142,7 +3165,6 @@ async def apply_key_fixes(ctx: NO100FContext):
                 fix_ptr = _find_obj_in_obj_table(0x1F0FB51B, ptr, size)
                 _set_platform_state(ctx, fix_ptr, 0)
 
-
             else:  # Keys not collected, make sure the gate is closed
                 fix_ptr = _find_obj_in_obj_table(0xD2c0b719, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1e)
@@ -3161,6 +3183,7 @@ async def apply_key_fixes(ctx: NO100FContext):
 
                 fix_ptr = _find_obj_in_obj_table(0x1F0FB51B, ptr, size)
                 _set_platform_state(ctx, fix_ptr, 1)
+
 
 async def update_key_items(ctx: NO100FContext):
     count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
@@ -3225,7 +3248,8 @@ async def update_key_items(ctx: NO100FContext):
 
     count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 20)
     ctx.SYTS1_keys = count
-    
+
+
 async def give_items(ctx: NO100FContext):
     if CheckTypes.KEYS in ctx.included_check_types:
         await update_key_items(ctx)
@@ -3273,6 +3297,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 "status": 30}
                 ])
                 ctx.finished_game = True
+                ctx.post_boss = True
 
     for k, v in id_table.items():
         if k in locations_checked:
@@ -3301,6 +3326,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 BK_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15) #Check Fight Over Counter
                 if BK_Alive == 0:  #Is he dead?
                     locations_checked.add(k)
+                    ctx.post_boss = True
 
             # Green Ghost Fix
             if v[1] == Upgrades.UmbrellaPower.value:    # Only do this for the Umbrella Power Up in G009
@@ -3312,6 +3338,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 GG_Defeated = dolphin_memory_engine.read_byte(fix_ptr + 0x16)
                 if GG_Defeated == 0x1f:
                     locations_checked.add(k)
+                    ctx.post_boss = True
 
                 # Fix Broken Fight Trigger
                 fix_ptr1 = _find_obj_in_obj_table(0x060E343c, ptr, size)
@@ -3337,6 +3364,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 RB_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15) # Check Fight Over Counter
                 if RB_Alive == 0:  # Is he dead?
                     locations_checked.add(k)
+                    ctx.post_boss = True
 
             if check_cb(ctx, obj_ptr):
                 locations_checked.add(k)
@@ -3416,7 +3444,15 @@ async def check_alive(ctx: NO100FContext):
 
 async def check_death(ctx: NO100FContext):
     cur_health = dolphin_memory_engine.read_word(HEALTH_ADDR)
-    if cur_health <= 0:
+
+    if cur_health > 0:
+        ctx.forced_death = False
+
+    if cur_health <= 0 and not ctx.forced_death and not ctx.post_boss:
+        if dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4) == b'F003':  # Avoid Creepy Early Trigger causing erroneous DL Sends
+            await asyncio.sleep(3)
+            if dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4) != b'F003':
+                return
         if not ctx.has_send_death and time.time() >= ctx.last_death_link + 3:
             ctx.has_send_death = True
             await ctx.send_death("NO100F")
@@ -3478,6 +3514,14 @@ async def load_warp_gates(ctx: NO100FContext):
             dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 1)
 
 
+async def force_death(ctx:NO100FContext):
+    cur_health = dolphin_memory_engine.read_word(HEALTH_ADDR)
+
+    if cur_health == 69 and not ctx.post_boss:    # Funny number, but also good luck accidentally setting your health this high
+        ctx.forced_death = True
+        dolphin_memory_engine.write_word(HEALTH_ADDR, 0)
+
+
 def validate_save(ctx: NO100FContext) -> bool:
     saved_slot_bytes = dolphin_memory_engine.read_bytes(SAVED_SLOT_NAME_ADDR, 0x40).strip(b'\0')
     slot_bytes = dolphin_memory_engine.read_bytes(SLOT_NAME_ADDR, 0x40).strip(b'\0')
@@ -3526,8 +3570,12 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     await check_locations(ctx)
                     await apply_level_fixes(ctx)
                     await save_warp_gates(ctx)
-                    # await apply_qol_fixes(ctx)
+                    if ctx.use_qol:
+                        await apply_qol_fixes(ctx)
                     await apply_key_fixes(ctx)
+                    await force_death(ctx)
+                    if not (_check_cur_scene(ctx,b'O008') or _check_cur_scene(ctx, b'S005') or _check_cur_scene(ctx, b'G009') or _check_cur_scene(ctx, b'W028')):
+                        ctx.post_boss = False
                 else:
                     if not ctx.auth:
                         ctx.auth = dolphin_memory_engine.read_bytes(SLOT_NAME_ADDR, 0x40).decode('utf-8').strip(
