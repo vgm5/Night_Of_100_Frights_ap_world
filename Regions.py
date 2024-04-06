@@ -122,7 +122,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.o004: [ConnectionNames.o004_o003, ConnectionNames.o004_o005],
     RegionNames.o005: [ConnectionNames.o005_o004, ConnectionNames.o005_o006],
     RegionNames.o006: [ConnectionNames.o006_o005, ConnectionNames.o006_o008],
-    RegionNames.o008: [ConnectionNames.o008_o001, ConnectionNames.o008_o006],
+    RegionNames.o008: [ConnectionNames.o008_o001],
 
     # Secret (P)assage
     RegionNames.p001: [ConnectionNames.p001_p002, ConnectionNames.p001_l018],
