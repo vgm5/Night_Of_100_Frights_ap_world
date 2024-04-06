@@ -2548,6 +2548,71 @@ class NO100FCommandProcessor(ClientCommandProcessor):
             dolphin_memory_engine.write_word(HEALTH_ADDR, 69)
             logger.info("Killing Scooby :(")
 
+    def _cmd_keys(self):
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
+        logger.info(f"Clamor 1 Keys {count}/1")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
+        logger.info(f"Hedge Maze Keys {count}/1")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
+        logger.info(f"Fishing Village Keys {count}/1")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
+        logger.info(f"Cellar 2 Keys {count}/3")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
+        logger.info(f"Cellar 3 Keys {count}/4")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
+        logger.info(f"Cavein Keys {count}/4")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
+        logger.info(f"Fishy Clues Keys {count}/4")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
+        logger.info(f"Graveplot Keys {count}/3")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
+        logger.info(f"Tomb 1 Keys {count}/1")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
+        logger.info(f"Tomb 3 Keys {count}/2")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10)
+        logger.info(f"Clamor 4 Keys {count}/1")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 11)
+        logger.info(f"MYM Keys {count}/4")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 12)
+        logger.info(f"Coast Keys {count}/4")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 13)
+        logger.info(f"Attic Keys {count}/3")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 14)
+        logger.info(f"Knight Keys {count}/4")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 15)
+        logger.info(f"Creepy 2 Keys {count}/5")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 16)
+        logger.info(f"Creepy 3 Keys {count}/3")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 17)
+        logger.info(f"Gusts 1 Keys {count}/1")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 18)
+        logger.info(f"Gusts 2 Keys {count}/3")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 19)
+        logger.info(f"DLD Keys {count}/3")
+
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 20)
+        logger.info(f"Shiver Keys {count}/4")
+
+
 
 
 class NO100FContext(CommonContext):
@@ -3074,12 +3139,39 @@ async def apply_key_fixes(ctx: NO100FContext):
                 _set_platform_state(ctx, fix_ptr, 1)
 
     if scene == b'O003':
-        fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)
+        fix_ptr = _find_obj_in_obj_table(0xB418244E, ptr, size)
         if not fix_ptr == None:
-            if ctx.PitA2_keys >= 3:
-                return
-            else:
-                _set_counter_value(ctx, fix_ptr, 3)
+            if ctx.PitA2_keys >= 3:  # Keys collected, open the gate
+                fix_ptr = _find_obj_in_obj_table(0xB418244E, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1f)
+
+                fix_ptr = _find_obj_in_obj_table(0x9F625B9C, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1e)
+
+                fix_ptr = _find_obj_in_obj_table(0x1F0FB518, ptr, size)
+                _set_platform_state(ctx, fix_ptr, 0)
+
+                fix_ptr = _find_obj_in_obj_table(0x1F0FB519, ptr, size)
+                _set_platform_state(ctx, fix_ptr, 0)
+
+                fix_ptr = _find_obj_in_obj_table(0x1F0FB51A, ptr, size)
+                _set_platform_state(ctx, fix_ptr, 0)
+
+            else:  # Keys not collected, make sure the gate is closed
+                fix_ptr = _find_obj_in_obj_table(0xB418244E, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1e)
+
+                fix_ptr = _find_obj_in_obj_table(0x09F625B9C, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1f)
+
+                fix_ptr = _find_obj_in_obj_table(0x1F0FB518, ptr, size)
+                _set_platform_state(ctx, fix_ptr, 1)
+
+                fix_ptr = _find_obj_in_obj_table(0x1F0FB519, ptr, size)
+                _set_platform_state(ctx, fix_ptr, 1)
+
+                fix_ptr = _find_obj_in_obj_table(0x1F0FB51A, ptr, size)
+                _set_platform_state(ctx, fix_ptr, 1)
 
     if scene == b'O006':
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)

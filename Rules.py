@@ -146,6 +146,15 @@ upgrade_rules = [
                 LocationNames.hedgekey_h001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
                 LocationNames.fishingkey_h001: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
 
+                # Manor
+                LocationNames.geronimo_token_i005: lambda player: lambda state: state.has(ItemNames.MYM_Key, player, 4),
+
+                # Basement
+                LocationNames.spacekook_token_b001: lambda player: lambda state: state.has(ItemNames.Cellar2_Key, player, 3),
+
+                # Graveyard
+                LocationNames.umbrella_g009: lambda player: lambda state: state.has(ItemNames.Tomb3_Key, player, 2),
+
                 # Passage
                 LocationNames.key5_p002: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
             },
