@@ -157,6 +157,13 @@ upgrade_rules = [
 
                 # Passage
                 LocationNames.key5_p002: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+
+                # Lighthouse
+                LocationNames.key1_l011: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.key2_l011: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.key3_l011: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.key4_l011: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.PoundPower, player, 1),
+
             },
 
         ItemNames.victory:

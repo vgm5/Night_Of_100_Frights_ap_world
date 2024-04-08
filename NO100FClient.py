@@ -2604,7 +2604,7 @@ class NO100FCommandProcessor(ClientCommandProcessor):
         logger.info(f"Gusts 1 Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 18)
-        logger.info(f"Gusts 2 Keys {count}/3")
+        logger.info(f"Gusts 2 Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 19)
         logger.info(f"DLD Keys {count}/3")
