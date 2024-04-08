@@ -2549,6 +2549,7 @@ class NO100FCommandProcessor(ClientCommandProcessor):
             logger.info("Killing Scooby :(")
 
     def _cmd_keys(self):
+        """Displays current key counts and the number expected in a room"""
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
         logger.info(f"Clamor 1 Keys {count}/1")
 
