@@ -192,6 +192,9 @@ key_rules = [
         ConnectionNames.i003_i004: lambda player: lambda state: state.has(ItemNames.Clamor4_Key, player, 1),
         ConnectionNames.i005_i006: lambda player: lambda state: state.has(ItemNames.MYM_Key, player, 4),
 
+        # Hedge
+        ConnectionNames.e002_e003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+
         # Rooftop
         ConnectionNames.r005_o001: lambda player: lambda state: state.has(ItemNames.DLD_Key, player, 3),
 
