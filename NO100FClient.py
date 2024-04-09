@@ -2773,7 +2773,8 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
 
 def _give_powerup(ctx: NO100FContext, bit: int):
     cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
-    dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades + 2**bit)
+    if cur_upgrades & 2**bit == 0:
+        dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades + 2**bit)
 
 
 def _give_gum_upgrade(ctx: NO100FContext):
@@ -2788,7 +2789,8 @@ def _give_soap_upgrade(ctx: NO100FContext):
 
 def _give_monstertoken(ctx: NO100FContext, bit: int):
     cur_monster_tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
-    dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, cur_monster_tokens + 2**bit)
+    if cur_monster_tokens & 2**bit == 0:
+        dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, cur_monster_tokens + 2**bit)
 
 
 def _give_key(ctx: NO100FContext, offset: int):
@@ -2890,7 +2892,7 @@ async def apply_key_fixes(ctx: NO100FContext):
                 fix_ptr = _find_obj_in_obj_table(0x586E19B9, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1c)
 
-    if scene == b'H001':
+    if scene == b'H001' or b'h001':
         fix_ptr = _find_obj_in_obj_table(0xC20224F3, ptr, size)
         if not fix_ptr == None:
             if ctx.hedge_key >= 1:  # The Hedge key is collected, open the gate
