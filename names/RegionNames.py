@@ -76,9 +76,9 @@ l019 = "Lighthouse Fright House! 3"
 
 # O
 o001 = "Cower in the Tower! 1"
-o002 = "Panic in the Attic! 1"
-o003 = "Panic in the Attic! 2"
-o004 = "Panic in the Attic! 3"
+o002 = "Panic in the Attic! 2"
+o003 = "Panic in the Attic! 3"
+o004 = "Panic in the Attic! 4"
 o005 = "A Dark and Stormy Knight! 1"
 o006 = "A Dark and Stormy Knight! 2"
 o008 = "A Dark and Stormy Knight! 3"

@@ -37,7 +37,7 @@ item_table = {
     ItemNames.HelmetPower      : ItemData(base_id + 9, ItemClassification.progression),
     ItemNames.UmbrellaPower    : ItemData(base_id + 10, ItemClassification.progression),
     ItemNames.ShovelPower      : ItemData(base_id + 11, ItemClassification.progression),
-    ItemNames.ShockwavePower   : ItemData(base_id + 12, ItemClassification.progression),
+    ItemNames.ShockwavePower   : ItemData(base_id + 12, ItemClassification.useful),
 
     #Ammo Upgrades
     ItemNames.GumAmmoUpgrade   : ItemData(base_id + 13, ItemClassification.useful),

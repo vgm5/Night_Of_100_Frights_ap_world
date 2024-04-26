@@ -2623,7 +2623,6 @@ class NO100FContext(CommonContext):
 
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
-        self.included_check_types: CheckTypes = CheckTypes.UPGRADES
         self.items_received_2 = []
         self.dolphin_sync_task = None
         self.dolphin_status = CONNECTION_INITIAL_STATUS
@@ -2636,6 +2635,9 @@ class NO100FContext(CommonContext):
         self.post_boss = False
         self.last_death_link_send = time.time()
         self.current_scene_key = None
+        self.use_tokens = False
+        self.use_keys = False
+        self.use_snacks = False
         self.use_qol = False
         self.CitM1_key = 0
         self.hedge_key = 0
@@ -2674,11 +2676,11 @@ class NO100FContext(CommonContext):
             if 'death_link' in args['slot_data']:
                 Utils.async_start(self.update_death_link(bool(args['slot_data']['death_link'])))
             if 'include_monster_tokens' in args['slot_data'] and args['slot_data']['include_monster_tokens']:
-                self.included_check_types |= CheckTypes.MONSTERTOKENS
+                self.use_tokens = True
             if 'include_keys' in args['slot_data'] and args['slot_data']['include_keys']:
-                self.included_check_types |= CheckTypes.KEYS
+                self.use_keys = True
             if 'include_snacks' in args['slot_data'] and args['slot_data']['include_snacks']:
-                self.included_check_types |= CheckTypes.SNACKS
+                self.use_snacks = True
             if 'apply_qol_fixes' in args['slot_data'] and args['slot_data']['apply_qol_fixes']:
                 self.use_qol = True
         if cmd == 'ReceivedItems':
@@ -3346,7 +3348,7 @@ async def update_key_items(ctx: NO100FContext):
 
 
 async def give_items(ctx: NO100FContext):
-    if CheckTypes.KEYS in ctx.included_check_types:
+    if ctx.use_keys:
         await update_key_items(ctx)
     expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
     # we need to loop some items
@@ -3495,7 +3497,7 @@ async def apply_level_fixes(ctx: NO100FContext):
     dolphin_memory_engine.write_word(MAP_ADDR, 0x1)     # Force the Map Into Inventory
 
     if scene == b'H001' or b'h001':
-       if CheckTypes.KEYS not in ctx.included_check_types:
+       if not ctx.use_keys:
             fix_ptr = _find_obj_in_obj_table(0xBBFA4948, ptr, size)
             if not fix_ptr == None:
                 if _check_pickup_state(ctx, fix_ptr):     #The Hedge key is collected, open the gate
@@ -3517,9 +3519,9 @@ async def apply_level_fixes(ctx: NO100FContext):
 
 async def check_locations(ctx: NO100FContext):
     await _check_upgrades(ctx, ctx.locations_checked)
-    if CheckTypes.MONSTERTOKENS in ctx.included_check_types:
+    if ctx.use_tokens:
         await _check_monstertokens(ctx, ctx.locations_checked)
-    if CheckTypes.KEYS in ctx.included_check_types:
+    if ctx.use_keys:
         await _check_keys(ctx, ctx.locations_checked)
 
     # ignore already in server state
@@ -3667,7 +3669,8 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     await save_warp_gates(ctx)
                     if ctx.use_qol:
                         await apply_qol_fixes(ctx)
-                    await apply_key_fixes(ctx)
+                    if ctx.use_keys:
+                        await apply_key_fixes(ctx)
                     await force_death(ctx)
                     if not (_check_cur_scene(ctx,b'O008') or _check_cur_scene(ctx, b'S005') or _check_cur_scene(ctx, b'G009') or _check_cur_scene(ctx, b'W028')):
                         ctx.post_boss = False
