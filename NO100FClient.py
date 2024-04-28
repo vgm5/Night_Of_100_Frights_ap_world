@@ -47,6 +47,7 @@ MAX_SOAP_COUNT_ADDR = 0x802350AC
 PLAYER_CONTROL_OWNER = 0x80234e90
 MAP_ADDR = 0x8025F140
 WARP_ADDR = 0x801b7ef4
+VISITED_SCENES_ADDR = 0x8026af70
 
 SLOT_NAME_ADDR = 0x801c5c9c
 SEED_ADDR = SLOT_NAME_ADDR + 0x40
@@ -2727,6 +2728,16 @@ class NO100FContext(CommonContext):
 def _is_ptr_valid(ptr):
     return 0x80000000 <= ptr < 0x817fffff
 
+def _is_scene_visited(target_scene: bytes):
+    current_index = VISITED_SCENES_ADDR
+    current_value = 1
+    while not current_value == 0:
+        current_value = dolphin_memory_engine.read_word(current_index)
+        if current_value == int.from_bytes(target_scene, "big"):
+            return True
+        current_index += 0x10
+    return False
+
 
 def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[int] = None):
     if size is None:
@@ -2775,6 +2786,9 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
 
 def _give_powerup(ctx: NO100FContext, bit: int):
     cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+    if ((bit == 13) and cur_upgrades & 2**7):   # Player is getting a shovel and currently has the fake
+        cur_upgrades -= 2**7
+
     if cur_upgrades & 2**bit == 0:
         dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades + 2**bit)
 
@@ -2840,6 +2854,8 @@ def _give_item(ctx: NO100FContext, item_id: int):
 def _set_platform_state(ctx: NO100FContext, ptr, state):
     dolphin_memory_engine.write_byte(ptr + 0x14, state)
 
+def _set_platform_collision_state(ctx: NO100FContext, ptr, state):
+    dolphin_memory_engine.write_byte(ptr + 0x28, state)
 
 def _check_platform_state(ctx: NO100FContext, ptr):
    return dolphin_memory_engine.read_byte(ptr + 0x14)
@@ -3495,6 +3511,70 @@ async def apply_level_fixes(ctx: NO100FContext):
     size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
 
     dolphin_memory_engine.write_word(MAP_ADDR, 0x1)     # Force the Map Into Inventory
+    if scene == b'I001':
+        upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
+            upgrades += (2**13 + 2**7)
+            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
+
+        fix_ptr = _find_obj_in_obj_table(0x22B1A6E6, ptr, size) # Holly Trigger #1
+        _set_trigger_state(ctx, fix_ptr, 0x1c)
+
+        fix_ptr = _find_obj_in_obj_table(0xC0E867E2, ptr, size)  # Holly Trigger #2
+        _set_trigger_state(ctx, fix_ptr, 0x1e)
+
+        fix_ptr = _find_obj_in_obj_table(0xFA854786, ptr, size)  # Holly Collision and Visibility Disabled
+        _set_platform_collision_state(ctx, fix_ptr, 0)
+        _set_platform_state(ctx, fix_ptr, 0)
+
+        if _is_scene_visited(b'R001'):
+            fix_ptr = _find_obj_in_obj_table(0x4f81e846, ptr, size) # Doorway Trigger
+            _set_trigger_state(ctx, fix_ptr, 0x1d)
+
+            fix_ptr = _find_obj_in_obj_table(0xDE90259F, ptr, size)  # Text Trigger
+            _set_trigger_state(ctx, fix_ptr, 0x1c)
+
+        if _is_scene_visited(b'S005'):
+            fix_ptr = _find_obj_in_obj_table(0xB0d216d1, ptr, size) # Load Trigger
+            _set_trigger_state(ctx, fix_ptr, 0x1d)
+
+            fix_ptr = _find_obj_in_obj_table(0xc402cded, ptr, size) # Disable Armoire Collision and Visibility
+            _set_platform_collision_state(ctx, fix_ptr, 0)
+            _set_platform_state(ctx, fix_ptr, 0x1c)
+
+    if scene == b'E001':
+        upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
+            upgrades += (2**13 + 2**7)
+            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
+
+        if upgrades & 2**7: # Player has a fake shovel, don't let them dig
+            fix_ptr = _find_obj_in_obj_table(0xb37f36c7, ptr, size)
+            _set_trigger_state(ctx, fix_ptr, 0x1c)
+
+    if scene == b'F001':
+        upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
+            upgrades += (2**13 + 2**7)
+            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
+
+    if scene == b'H002':
+        upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
+            upgrades += (2**13 + 2**7)
+            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
+
+    if scene == b'H003':
+        upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
+            upgrades += (2**13 + 2**7)
+            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
+
+    if not (scene == b'I001' or scene == b'E001' or scene == b'F001' or scene == b'H002' or scene == b'H003'):
+        upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+        if upgrades & 2**7:     # Player has a fake shovel, get rid of it
+            upgrades -= (2**7 + 2**13)
+            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
     if scene == b'H001' or b'h001':
        if not ctx.use_keys:
