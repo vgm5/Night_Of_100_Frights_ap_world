@@ -2788,6 +2788,7 @@ def _give_powerup(ctx: NO100FContext, bit: int):
     cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
     if ((bit == 13) and cur_upgrades & 2**7):   # Player is getting a shovel and currently has the fake
         cur_upgrades -= 2**7
+        dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades)
 
     if cur_upgrades & 2**bit == 0:
         dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades + 2**bit)
