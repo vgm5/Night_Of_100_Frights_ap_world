@@ -16,5 +16,3 @@ See the [setup guide](https://github.com/vgm5/Night_Of_100_Frights_ap_world/blob
 
 ## Known Issues
 -It is theoretically possible to run out of scooby snacks that are accessible, saving before using snack gates may be a good idea for now until this is accounted for in logic
-
--The Groundskeeper has decided to become invisible when you don't have the shovel, I wish I knew why - you can still pick up the shovel from him despite his ghostly nature. 
