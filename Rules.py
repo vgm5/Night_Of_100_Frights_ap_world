@@ -189,6 +189,7 @@ key_rules = [
         # Balcony
         ConnectionNames.o003_o004: lambda player: lambda state: state.has(ItemNames.Attic_Key, player, 3),
         ConnectionNames.o006_o008: lambda player: lambda state: state.has(ItemNames.Knight_Key, player, 4),
+        ConnectionNames.o008_o006: lambda player: lambda state: state.has(ItemNames.Knight_Key, player, 4),
 
         # Fishing Village
         ConnectionNames.f005_f006: lambda player: lambda state: state.has(ItemNames.FishyClues_Key, player, 4),
@@ -246,58 +247,57 @@ key_rules = [
      }
 ]
 
-def _add_rules(world: MultiWorld, player: int, rules: List, allowed_loc_types: List[str]):
+def _add_rules(multiworld: MultiWorld, player: int, rules: List, allowed_loc_types: List[str]):
     for name, rule_factory in rules[0].items():
         if type(rule_factory) == tuple and len(rule_factory) > 1 and rule_factory[1]:  # force override
             rule_factory = rule_factory[0]
-            set_rule(world.get_entrance(name, player), rule_factory(player))
+            set_rule(multiworld.get_entrance(name, player), rule_factory(player))
         else:
-            add_rule(world.get_entrance(name, player), rule_factory(player))
+            add_rule(multiworld.get_entrance(name, player), rule_factory(player))
     for loc_type, type_rules in rules[1].items():
         if loc_type not in allowed_loc_types:
             continue
         for name, rule_factory in type_rules.items():
             if type(rule_factory) == tuple and len(rule_factory) > 1 and rule_factory[1]:  # force override
                 rule_factory = rule_factory[0]
-                set_rule(world.get_location(name, player), rule_factory(player))
+                set_rule(multiworld.get_location(name, player), rule_factory(player))
             else:
-                add_rule(world.get_location(name, player), rule_factory(player))
+                add_rule(multiworld.get_location(name, player), rule_factory(player))
 
 
-def _set_rules(world: MultiWorld, player: int, rules: List, allowed_loc_types: List[str]):
+def _set_rules(multiworld: MultiWorld, player: int, rules: List, allowed_loc_types: List[str]):
     for name, rule_factory in rules[0].items():
-        set_rule(world.get_entrance(name, player), rule_factory(player))
+        set_rule(multiworld.get_entrance(name, player), rule_factory(player))
     for loc_type, type_rules in rules[1].items():
         if loc_type not in allowed_loc_types:
             continue
         for name, rule_factory in type_rules.items():
-            set_rule(world.get_location(name, player), rule_factory(player))
+            set_rule(multiworld.get_location(name, player), rule_factory(player))
 
 
-def set_rules(world: MultiWorld, options: NO100FOptions, player: int):
+def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
     allowed_loc_types = [ItemNames.Upgrades,ItemNames.victory]
     if options.include_monster_tokens.value:
         allowed_loc_types += [ItemNames.MonsterTokens]
     if options.include_keys.value:
         allowed_loc_types += [ItemNames.Keys]
 
-    _add_rules(world, player, upgrade_rules, allowed_loc_types)
+    _add_rules(multiworld, player, upgrade_rules, allowed_loc_types)
     if options.include_monster_tokens.value:
-        _add_rules(world, player, monster_token_rules, allowed_loc_types)
+        _add_rules(multiworld, player, monster_token_rules, allowed_loc_types)
     if options.include_keys.value:
-        _add_rules(world, player, key_rules, allowed_loc_types)
+        _add_rules(multiworld, player, key_rules, allowed_loc_types)
     if ItemNames.Keys not in allowed_loc_types:
         if ItemNames.MonsterTokens in allowed_loc_types:
-            add_rule(world.get_location(LocationNames.spacekook_token_b001, player), lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.hub1_e001, player), lambda state: state.has(ItemNames.SpringPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.hub1_f001, player), lambda state: state.has(ItemNames.ShovelPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.i003_i004, player), lambda state: state.has(ItemNames.HelmetPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.c005_c006, player), lambda state: state.has(ItemNames.PlungerPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.p002_p003, player), lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.p003_p004, player), lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.SpringPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.p004_p005, player), lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PlungerPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.p005_b001, player), lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1))
-        add_rule(world.get_entrance(ConnectionNames.p002_s001, player), lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1)),
+            add_rule(multiworld.get_location(LocationNames.spacekook_token_b001, player), lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.hub1_e001, player), lambda state: state.has(ItemNames.SpringPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.hub1_f001, player), lambda state: state.has(ItemNames.ShovelPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.i003_i004, player), lambda state: state.has(ItemNames.HelmetPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.c005_c006, player), lambda state: state.has(ItemNames.PlungerPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.p002_p003, player), lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.p003_p004, player), lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.SpringPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.p004_p005, player), lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PlungerPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.p005_b001, player), lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.p002_s001, player), lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1)),
 
-
-    world.completion_condition[player] = lambda state: state.has("Victory", player)
+    multiworld.completion_condition[player] = lambda state: state.has("Victory", player)

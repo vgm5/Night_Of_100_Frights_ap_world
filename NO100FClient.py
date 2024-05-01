@@ -2977,6 +2977,9 @@ async def apply_key_fixes(ctx: NO100FContext):
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)
         if not fix_ptr == None:
             if ctx.WYitC3_keys >= 4:
+                fix_ptr = _find_obj_in_obj_table(0xE7196747, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr, 0)
                 return
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
@@ -3084,6 +3087,14 @@ async def apply_key_fixes(ctx: NO100FContext):
         fix_ptr = _find_obj_in_obj_table(0x0013c74b, ptr, size)
         if not fix_ptr == None:
             if ctx.GDDitT1_key >= 1:
+                fix_ptr2 = _find_obj_in_obj_table(0x4A884EB4, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr2, 0)
+                _set_platform_state(ctx, fix_ptr2, 0)
+
+                fix_ptr2 = _find_obj_in_obj_table(0x4A884EB5, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr2, 0)
+                _set_platform_state(ctx, fix_ptr2, 0)
+
                 fix_ptr2 = _find_obj_in_obj_table(0x7FCDBE0F, ptr, size)
                 if _check_platform_state(ctx, fix_ptr2) == 1:
                     _set_pickup_active(ctx, fix_ptr, 0x1f)
@@ -3108,6 +3119,12 @@ async def apply_key_fixes(ctx: NO100FContext):
         if not fix_ptr == None:
             if ctx.CitM4_key >= 1:
                 _set_pickup_active(ctx, fix_ptr, 0x1d)
+                fix_ptr = _find_obj_in_obj_table(0x7B5AC815, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr,0)
+
+                fix_ptr = _find_obj_in_obj_table(0xDa0349cc, ptr, size)
+                _set_platform_state(ctx,fix_ptr, 0x1e)
             else:
                 _set_pickup_active(ctx, fix_ptr, 0x1c)
 
@@ -3115,6 +3132,9 @@ async def apply_key_fixes(ctx: NO100FContext):
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)
         if not fix_ptr == None:
             if ctx.MyM2_keys >= 4:
+                 fix_ptr = _find_obj_in_obj_table(0xD4FBFFD9, ptr, size)
+                 _set_platform_collision_state(ctx, fix_ptr, 0)
+                 _set_platform_state(ctx, fix_ptr, 0)
                  return
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
@@ -3199,6 +3219,11 @@ async def apply_key_fixes(ctx: NO100FContext):
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)
         if not fix_ptr == None:
             if ctx.ADaSK2_keys >= 4:
+                fix_ptr = _find_obj_in_obj_table(0x4DE2CB91, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr, 0)
+                fix_ptr = _find_obj_in_obj_table(0xc9e0fb6A, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1e)
                 return
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
@@ -3207,12 +3232,23 @@ async def apply_key_fixes(ctx: NO100FContext):
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)
         if not fix_ptr == None:
             if ctx.CCitH2_keys >= 4:
-                 None
+                fix_ptr = _find_obj_in_obj_table(0xE7196746, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr, 0)
+                fix_ptr = _find_obj_in_obj_table(0x4ac3ac06, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1c)
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
             fix_ptr = _find_obj_in_obj_table(0x0a1efb96, ptr, size)
             if ctx.CCitH2_keys >= 5:
                 _set_pickup_active(ctx, fix_ptr, 0x1d)
+                fix_ptr = _find_obj_in_obj_table(0xE7196749, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr, 0)
+
+                fix_ptr = _find_obj_in_obj_table(0xE719674B, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr, 0)
             else:
                 _set_pickup_active(ctx, fix_ptr, 0x1c)
 
@@ -3229,6 +3265,12 @@ async def apply_key_fixes(ctx: NO100FContext):
         if not fix_ptr == None:
             if ctx.GAU1_key >= 1:
                 _set_pickup_active(ctx, fix_ptr, 0x1d)
+                fix_ptr = _find_obj_in_obj_table(0xE7196747, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr, 0)
+
+                fix_ptr = _find_obj_in_obj_table(0x18E5F2D9,ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1c)
             else:
                 _set_pickup_active(ctx, fix_ptr, 0x1c)
 
@@ -3236,6 +3278,13 @@ async def apply_key_fixes(ctx: NO100FContext):
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)
         if not fix_ptr == None:
             if ctx.GAU2_keys >= 4:
+                fix_ptr = _find_obj_in_obj_table(0xB3FDF2CE, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr, 0)
+
+                fix_ptr = _find_obj_in_obj_table(0xA25C26B4, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1e)
+                _set_platform_state(ctx, fix_ptr,0)
                 return
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
@@ -3398,20 +3447,6 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
     if not _is_ptr_valid(ptr):
         return
     size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
-
-    # Credits Location
-    if scene == b"S005" and not ctx.finished_game:  # We have not finished, and we are in the final room
-        fix_ptr = _find_obj_in_obj_table(0x21D3EDA4, ptr, size)
-        if fix_ptr is not None:
-            MM_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15)
-            if MM_Alive == 0:
-                print("send done")
-                await ctx.send_msgs([
-                {"cmd": "StatusUpdate",
-                "status": 30}
-                ])
-                ctx.finished_game = True
-                ctx.post_boss = True
 
     for k, v in id_table.items():
         if k in locations_checked:
@@ -3596,6 +3631,27 @@ async def apply_level_fixes(ctx: NO100FContext):
                 if _check_pickup_state(ctx, fix_ptr):     #The Fishing key is collected, open the gate
                     fix_ptr = _find_obj_in_obj_table(0x42A3128E, ptr, size)
                     _set_platform_state(ctx, fix_ptr, 0)
+
+    if scene == b'R021':
+        if _is_scene_visited(b'R003'):
+            fix_ptr = _find_obj_in_obj_table(0xcbd0A98D, ptr, size)  # Holly Collision and Visibility Disabled
+            _set_platform_collision_state(ctx, fix_ptr, 0)
+            _set_platform_state(ctx, fix_ptr, 0)
+
+    # Credits Location
+    if scene == b"S005":    #We are in the final room
+        if not ctx.finished_game:  # We have not finished
+            fix_ptr = _find_obj_in_obj_table(0x21D3EDA4, ptr, size)
+            if fix_ptr is not None:
+                MM_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15)
+                if MM_Alive == 0:
+                    print("send done")
+                    await ctx.send_msgs([
+                    {"cmd": "StatusUpdate",
+                    "status": 30}
+                    ])
+                    ctx.finished_game = True
+                    ctx.post_boss = True
 
 
 async def check_locations(ctx: NO100FContext):
