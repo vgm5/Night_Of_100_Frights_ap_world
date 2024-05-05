@@ -15,7 +15,7 @@
 - Place ``no100f.apworld`` in ``lib/worlds/`` of your AP installation.
 - Place the included ``.pyd`` files and the ``dolphin_memory_engine`` folder into ``lib/`` of your AP installation.
 - Place the Uncompressed ISO in the root folder of your AP installation and make sure it's
-  named ``Scooby-Doo! Night of 100 Frights.iso``.  (Using an invalid version of the game will likely result in the necessary game patches breaking)
+  named ``Scooby-Doo! Night of 100 Frights.iso``.  (Using an invalid version of the game [Rev1 or Compressed .ciso] will likely result in the necessary game patches breaking)
 
 For more information about .apworlds
 see [here](https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/apworld%20specification.md)
