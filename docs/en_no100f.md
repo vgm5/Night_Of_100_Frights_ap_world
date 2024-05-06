@@ -19,6 +19,7 @@ would in the vanilla game.
 
 ## Current QOL Fixes (enabled by default)
 - Prevent player from going through the a loading zone in Aghast that would get them stuck if they don't have the helmet
+- Prevent player from going from Cellar 4 to Clamor 4 if they don't have the helmet (Requires glitches to escape)
 
 ## What is the goal of Scooby Doo: Night of 100 Frights?
 
