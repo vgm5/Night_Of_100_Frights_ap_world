@@ -150,10 +150,39 @@ key_location_table = {
     LocationNames.key4_w027: base_id + 200 + 59,
 }
 
+warpgate_location_table = {
+    LocationNames.warp_gate_b004: base_id + 300 + 0,
+    LocationNames.warp_gate_c004: base_id + 300 + 1,
+    LocationNames.warp_gate_e004: base_id + 300 + 2,
+    LocationNames.warp_gate_e006: base_id + 300 + 3,
+    LocationNames.warp_gate_e009: base_id + 300 + 4,
+    LocationNames.warp_gate_f003: base_id + 300 + 5,
+    LocationNames.warp_gate_f007: base_id + 300 + 6,
+    LocationNames.warp_gate_o001: base_id + 300 + 7,
+    LocationNames.warp_gate_g005: base_id + 300 + 8,
+    LocationNames.warp_gate_g008: base_id + 300 + 9,
+    LocationNames.warp_gate_i003: base_id + 300 + 11,
+    LocationNames.warp_gate_i006: base_id + 300 + 12,
+    LocationNames.warp_gate_l014: base_id + 300 + 13,
+    LocationNames.warp_gate_l018: base_id + 300 + 14,
+    LocationNames.warp_gate_o004: base_id + 300 + 15,
+    LocationNames.warp_gate_o006: base_id + 300 + 16,
+    LocationNames.warp_gate_p003: base_id + 300 + 17,
+    LocationNames.warp_gate_p005: base_id + 300 + 18,
+    LocationNames.warp_gate_r003: base_id + 300 + 19,
+    LocationNames.warp_gate_s002: base_id + 300 + 20,
+    LocationNames.warp_gate_w022: base_id + 300 + 21,
+    LocationNames.warp_gate_w026: base_id + 300 + 22,
+    LocationNames.warp_gate_l015: base_id + 300 + 23,
+    LocationNames.warp_gate_g001: base_id + 300 + 24,
+    LocationNames.warp_gate_h003: base_id + 300 + 25,
+}
+
 location_table: typing.Dict[str, typing.Optional[int]] = {
     **upgrade_location_table,      # 0 - 27
     **monstertoken_location_table, # 100 - 120
     **key_location_table,          # 200 - 259
+    **warpgate_location_table,     # 300 - 325
     LocationNames.Credits: None
 }
 

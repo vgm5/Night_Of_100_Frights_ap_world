@@ -2,7 +2,7 @@ from typing import List, Dict
 
 from . import NO100FOptions
 from .Locations import NO100FLocation, location_table, \
-    upgrade_location_table, monstertoken_location_table, key_location_table
+    upgrade_location_table, monstertoken_location_table, key_location_table, warpgate_location_table
 from .names import ConnectionNames, LevelNames, RegionNames, LocationNames
 
 from BaseClasses import MultiWorld, Region, Entrance
@@ -32,6 +32,8 @@ def _get_locations_for_region(options: NO100FOptions, name: str) -> List[str]:
         result += [k for k in monstertoken_location_table if f"{name}:" in k]
     if options.include_keys.value:
         result += [k for k in key_location_table if f"{name}:" in k]
+    if options.include_warpgates.value:
+        result += [k for k in warpgate_location_table if f"{name}:" in k]
     return result
 
 
@@ -40,7 +42,15 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.menu: [ConnectionNames.start_game],
 
     RegionNames.hub1: [ConnectionNames.hub1_f001, ConnectionNames.hub1_hub2, ConnectionNames.hub1_hub3,
-                       ConnectionNames.hub1_e001, ConnectionNames.hub1_i001],
+                       ConnectionNames.hub1_e001, ConnectionNames.hub1_i001,
+                       ConnectionNames.hub1_b004, ConnectionNames.hub1_c004, ConnectionNames.hub1_e004,
+                       ConnectionNames.hub1_e006, ConnectionNames.hub1_e009, ConnectionNames.hub1_f003,
+                       ConnectionNames.hub1_f007, ConnectionNames.hub1_o001, ConnectionNames.hub1_o004,
+                       ConnectionNames.hub1_o006, ConnectionNames.hub1_g001, ConnectionNames.hub1_g005,
+                       ConnectionNames.hub1_g008, ConnectionNames.hub1_i003, ConnectionNames.hub1_i006,
+                       ConnectionNames.hub1_l014, ConnectionNames.hub1_l015, ConnectionNames.hub1_l018,
+                       ConnectionNames.hub1_p003, ConnectionNames.hub1_p005, ConnectionNames.hub1_r003,
+                       ConnectionNames.hub1_s002, ConnectionNames.hub1_w022, ConnectionNames.hub1_w026,],
     RegionNames.hub2: [ConnectionNames.hub2_hub1],
     RegionNames.hub3: [ConnectionNames.hub3_hub1],
 
@@ -64,7 +74,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.e001: [ConnectionNames.e001_e002, ConnectionNames.e001_hub1],
     RegionNames.e002: [ConnectionNames.e002_e001, ConnectionNames.e002_e003],
     RegionNames.e003: [ConnectionNames.e003_e002, ConnectionNames.e003_e004],
-    RegionNames.e004: [ConnectionNames.e004_e003, ConnectionNames.e004_e005],
+    RegionNames.e004: [ConnectionNames.e004_e005],
     RegionNames.e005: [ConnectionNames.e005_e004, ConnectionNames.e005_e006],
     RegionNames.e006: [ConnectionNames.e006_e005, ConnectionNames.e006_e007],
     RegionNames.e007: [ConnectionNames.e007_e006, ConnectionNames.e007_e008],
@@ -85,7 +95,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.f010: [ConnectionNames.f010_f009],
 
     # Graveyard
-    RegionNames.g001: [ConnectionNames.g001_g002, ConnectionNames.g001_c007],
+    RegionNames.g001: [ConnectionNames.g001_g002],
     RegionNames.g002: [ConnectionNames.g002_g001, ConnectionNames.g002_g003],
     RegionNames.g003: [ConnectionNames.g003_g002, ConnectionNames.g003_g004, ConnectionNames.g003_g005,
                        ConnectionNames.g003_g006, ConnectionNames.g003_g008],
@@ -128,7 +138,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.p001: [ConnectionNames.p001_p002, ConnectionNames.p001_l018],
     RegionNames.p002: [ConnectionNames.p002_p001, ConnectionNames.p002_p003, ConnectionNames.p002_s001],
     RegionNames.p003: [ConnectionNames.p003_p002, ConnectionNames.p003_p004],
-    RegionNames.p004: [ConnectionNames.p004_p003, ConnectionNames.p004_p005],
+    RegionNames.p004: [ConnectionNames.p004_p005],
     RegionNames.p005: [ConnectionNames.p005_p001, ConnectionNames.p005_p004, ConnectionNames.p005_b001],
 
     # Balcony (R)
@@ -141,19 +151,19 @@ exit_table: Dict[str, List[str]] = {
 
     # Super Secret Lab
     RegionNames.s001: [ConnectionNames.s001_s002, ConnectionNames.s001_p002],
-    RegionNames.s002: [ConnectionNames.s002_s001, ConnectionNames.s002_s003, ConnectionNames.s002_s004],
+    RegionNames.s002: [ConnectionNames.s002_s003, ConnectionNames.s002_s004],
     RegionNames.s003: [ConnectionNames.s003_s002, ConnectionNames.s003_s004],
     RegionNames.s004: [ConnectionNames.s004_s003, ConnectionNames.s004_s005],
     RegionNames.s005: [ConnectionNames.s005_s004, ConnectionNames.s005_s006],
     RegionNames.s006: [ConnectionNames.s006_s005],
 
     # Wrecked Ships
-    RegionNames.w020: [ConnectionNames.w020_w021, ConnectionNames.w020_l015],
+    RegionNames.w020: [ConnectionNames.w020_w021],
     RegionNames.w021: [ConnectionNames.w021_w020, ConnectionNames.w021_w022],
     RegionNames.w022: [ConnectionNames.w022_w021, ConnectionNames.w022_w023],
     RegionNames.w023: [ConnectionNames.w023_w022, ConnectionNames.w023_w025],
     RegionNames.w025: [ConnectionNames.w025_w023, ConnectionNames.w025_w026],
-    RegionNames.w026: [ConnectionNames.w026_w020, ConnectionNames.w026_w025, ConnectionNames.w026_w027],
+    RegionNames.w026: [ConnectionNames.w026_w020, ConnectionNames.w026_w027],
     RegionNames.w027: [ConnectionNames.w027_w026, ConnectionNames.w027_w028],
     RegionNames.w028: [ConnectionNames.w028_w026],
 

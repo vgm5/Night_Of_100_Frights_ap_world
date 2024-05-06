@@ -28,10 +28,14 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         self.include_monster_tokens: int = kwargs['include_monster_tokens']
         #self.include_snacks: int = kwargs['include_snacks']
         self.include_keys: int = kwargs['include_keys']
+        self.include_warpgates: int = kwargs['include_warpgates']
+        self.completion_goal: int = kwargs['completion_goal']
         self.seed: bytes = kwargs['seed']
         del kwargs['include_monster_tokens']
         #del kwargs['include_snacks']
         del kwargs['include_keys']
+        del kwargs['include_warpgates']
+        del kwargs['completion_goal']
         del kwargs['seed']
         super(NO100FDeltaPatch, self).__init__(*args, **kwargs)
 
@@ -49,6 +53,12 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         opened_zipfile.writestr("include_keys",
                                 self.include_keys.to_bytes(1, "little"),
                                compress_type=zipfile.ZIP_STORED)
+        opened_zipfile.writestr("include_warpgates",
+                                self.include_warpgates.to_bytes(1, "little"),
+                               compress_type=zipfile.ZIP_STORED)
+        opened_zipfile.writestr("completion_goal",
+                                self.completion_goal.to_bytes(1, "little"),
+                                compress_type=zipfile.ZIP_STORED)
         m = hashlib.md5()
         m.update(self.seed)
         opened_zipfile.writestr("seed",
