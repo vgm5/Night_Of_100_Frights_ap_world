@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Toggle, DeathLink, Range, Choice, PerGameCommonOptions, FreeText
+from Options import Toggle, DeathLink, Range, Choice, PerGameCommonOptions
 
 
 class IncludeMonsterTokens(Toggle):
@@ -15,7 +15,7 @@ class IncludeKeys(Toggle):
     default = 0
 
 class IncludeWarpGates(Toggle):
-    """Include Warp Gates as AP Locations/Items (WIP)"""
+    """Include Warp Gates as AP Locations/Items"""
     display_name = "Include Warp Gates"
     default = 0
 
