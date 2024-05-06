@@ -61,23 +61,39 @@ class NightOf100FrightsWorld(World):
 
     def get_items(self):
         # Generate item pool
-        itempool = [ItemNames.GumPower, ItemNames.SoapPower, ItemNames.SpringPower, ItemNames.PoundPower, ItemNames.HelmetPower, ItemNames.UmbrellaPower, ItemNames.ShockwavePower,
-                    ItemNames.BootsPower, ItemNames.PlungerPower,ItemNames.SlipperPower, ItemNames.LampshadePower, ItemNames.BlackknightPower, ItemNames.ShovelPower]
+        itempool = [ItemNames.GumPower, ItemNames.SoapPower, ItemNames.SpringPower, ItemNames.PoundPower,
+                    ItemNames.HelmetPower, ItemNames.UmbrellaPower, ItemNames.ShockwavePower,
+                    ItemNames.BootsPower, ItemNames.PlungerPower,ItemNames.SlipperPower, ItemNames.LampshadePower,
+                    ItemNames.BlackknightPower, ItemNames.ShovelPower]
         itempool += [ItemNames.SoapAmmoUpgrade] * 8
         itempool += [ItemNames.GumAmmoUpgrade] * 7
        # if self.options.include_snacks:
        #     itempool += [ItemNames.Snack] * way too much
        #     itempool += [ItemNames.SnackBox] * also alot
         if self.options.include_monster_tokens:
-            itempool += [ItemNames.MT_BLACKKNIGHT, ItemNames.MT_MOODY, ItemNames.MT_CAVEMAN, ItemNames.MT_CREEPER, ItemNames.MT_GARGOYLE, ItemNames.MT_GERONIMO, ItemNames.MT_GHOST,
-                         ItemNames.MT_GHOSTDIVER, ItemNames.MT_GREENGHOST, ItemNames.MT_HEADLESS, ItemNames.MT_MASTERMIND, ItemNames.MT_ROBOT, ItemNames.MT_REDBEARD, ItemNames.MT_SCARECROW,
-                         ItemNames.MT_SEACREATURE, ItemNames.MT_SPACEKOOK, ItemNames.MT_TARMONSTER, ItemNames.MT_WITCH, ItemNames.MT_WITCHDOC, ItemNames.MT_WOLFMAN, ItemNames.MT_ZOMBIE]
+            itempool += [ItemNames.MT_BLACKKNIGHT, ItemNames.MT_MOODY, ItemNames.MT_CAVEMAN, ItemNames.MT_CREEPER,
+                         ItemNames.MT_GARGOYLE, ItemNames.MT_GERONIMO, ItemNames.MT_GHOST,
+                         ItemNames.MT_GHOSTDIVER, ItemNames.MT_GREENGHOST, ItemNames.MT_HEADLESS,
+                         ItemNames.MT_MASTERMIND, ItemNames.MT_ROBOT, ItemNames.MT_REDBEARD, ItemNames.MT_SCARECROW,
+                         ItemNames.MT_SEACREATURE, ItemNames.MT_SPACEKOOK, ItemNames.MT_TARMONSTER, ItemNames.MT_WITCH,
+                         ItemNames.MT_WITCHDOC, ItemNames.MT_WOLFMAN, ItemNames.MT_ZOMBIE]
         if self.options.include_keys:
-            itempool += [ItemNames.Hedge_Key, ItemNames.Fishing_Key, ItemNames.Clamor1_Key, ItemNames.Clamor4_Key,  ItemNames.Gusts1_Key, ItemNames.Tomb1_Key]  # Single Keys
+            itempool += [ItemNames.Hedge_Key, ItemNames.Fishing_Key, ItemNames.Clamor1_Key, ItemNames.Clamor4_Key,
+                         ItemNames.Gusts1_Key, ItemNames.Tomb1_Key]  # Single Keys
             itempool += [ItemNames.Tomb3_Key] * 2  # Double Keys
-            itempool += [ItemNames.Cellar2_Key, ItemNames.Graveplot_Key, ItemNames.Attic_Key, ItemNames.Creepy3_Key, ItemNames.DLD_Key] * 3  # Triple Keys
-            itempool += [ItemNames.Cellar3_Key, ItemNames.Cavein_Key, ItemNames.FishyClues_Key, ItemNames.MYM_Key, ItemNames.Coast_Key, ItemNames.Knight_Key, ItemNames.Gusts2_Key, ItemNames.Shiver_Key] * 4  # Quad Keys
+            itempool += [ItemNames.Cellar2_Key, ItemNames.Graveplot_Key, ItemNames.Attic_Key, ItemNames.Creepy3_Key,
+                         ItemNames.DLD_Key] * 3  # Triple Keys
+            itempool += [ItemNames.Cellar3_Key, ItemNames.Cavein_Key, ItemNames.FishyClues_Key, ItemNames.MYM_Key,
+                         ItemNames.Coast_Key, ItemNames.Knight_Key, ItemNames.Gusts2_Key, ItemNames.Shiver_Key] * 4  # Quad Keys
             itempool += [ItemNames.Creepy2_Key] * 5  # Penta Keys
+        if self.options.include_warpgates:
+            itempool += [ItemNames.Cellar4_Warp, ItemNames.Cliff4_Warp, ItemNames.Hedge4_Warp, ItemNames.Hedge6_Warp,
+                         ItemNames.Hedge9_Warp, ItemNames.Fish3_Warp, ItemNames.Fish7_Warp, ItemNames.Balc1_Warp,
+                         ItemNames.Balc4_Warp, ItemNames.Balc6_Warp, ItemNames.Grave1_Warp, ItemNames.Grave5_Warp,
+                         ItemNames.Grave8_Warp, ItemNames.Manor3_Warp, ItemNames.Manor6_Warp, ItemNames.LH14_Warp,
+                         ItemNames.LH15_Warp, ItemNames.LH18_Warp, ItemNames.SP3_Warp, ItemNames.SP5_Warp,
+                         ItemNames.Roof3_Warp, ItemNames.SL2_Warp, ItemNames.Wreck22_Warp, ItemNames.Wreck26_Warp,
+                         ItemNames.MG_Warp]
 
         # adjust for starting inv prog. items
         k = 0
@@ -106,8 +122,10 @@ class NightOf100FrightsWorld(World):
             "death_link": self.options.death_link.value,
             "include_monster_tokens": self.options.include_monster_tokens.value,
             "include_keys": self.options.include_keys.value,
+            "include_warpgates": self.options.include_warpgates.value,
             #"include_snacks": self.options.include_snacks.value,
             "apply_qol_fixes": self.options.apply_qol_fixes.value,
+            "completion_goal": self.options.completion_goal.value,
             "no_logic": self.options.no_logic.value,
         }
 
@@ -135,6 +153,8 @@ class NightOf100FrightsWorld(World):
                                #include_snacks=bool(self.options.include_snacks),
                                include_keys=bool(self.options.include_keys.value),
                                include_monster_tokens=bool(self.options.include_monster_tokens.value),
+                               include_warpgates=bool(self.options.include_warpgates.value),
+                               completion_goal=bool(self.options.completion_goal.value),
                                seed=self.multiworld.seed_name.encode('utf-8'),
                                )
         patch.write()

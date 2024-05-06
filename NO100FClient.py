@@ -24,6 +24,7 @@ class CheckTypes(Flag):
     MONSTERTOKENS = 2
     KEYS = 3
     SNACKS = 4
+    WARPGATES = 5
 
 
 CONNECTION_REFUSED_GAME_STATUS = "Dolphin Connection refused due to invalid Game. Please load the US Version of NO100F."
@@ -39,9 +40,9 @@ SCENE_OBJ_LIST_SIZE_ADDR = 0x8025e5ac
 CUR_SCENE_ADDR = 0x8025f0d0
 
 HEALTH_ADDR = 0x80234DC8
-SNACK_COUNT_ADDR = 0x80235094   #4 Bytes
-UPGRADE_INVENTORY_ADDR = 0x80235098 #4 Bytes
-MONSTER_TOKEN_INVENTORY_ADDR = 0x8023509C   #4 Bytes
+SNACK_COUNT_ADDR = 0x80235094  #4 Bytes
+UPGRADE_INVENTORY_ADDR = 0x80235098  #4 Bytes
+MONSTER_TOKEN_INVENTORY_ADDR = 0x8023509C  #4 Bytes
 MAX_GUM_COUNT_ADDR = 0x802350A8
 MAX_SOAP_COUNT_ADDR = 0x802350AC
 PLAYER_CONTROL_OWNER = 0x80234e90
@@ -55,89 +56,98 @@ SEED_ADDR = SLOT_NAME_ADDR + 0x40
 # expected received item index
 EXPECTED_INDEX_ADDR = 0x817f0000
 KEY_COUNT_ADDR = 0x817f0004
+BOSS_KILLS_ADDR = 0x817f0019
+# Free space for 1A and 1B
 SAVED_WARP_ADDR = 0x817f001C
 # delayed item
 SAVED_SLOT_NAME_ADDR = 0x817f0020
 SAVED_SEED_ADDR = SAVED_SLOT_NAME_ADDR + 0x40
 
 
-class Upgrades(Enum):               #Bit assigned at 0x80235098
-    GumPower         = 0xD4FD7D3C   #xxxx xxxx xxxx xxxx x000 0000 0000 0001
-    SoapPower        = 0xE8A3B45F   #xxxx xxxx xxxx xxxx x000 0000 0000 0010
-    BootsPower       = 0x9133CECD   #xxxx xxxx xxxx xxxx x000 0000 0000 0100
-    PlungerPower     = 0xDA82A36C   #xxxx xxxx xxxx xxxx x000 0000 0000 1000
-    SlippersPower    = 0x9AD0813E   #xxxx xxxx xxxx xxxx x000 0000 0001 0000
-    LampshadePower   = 0x6FAFFB01   #xxxx xxxx xxxx xxxx x000 0000 0010 0000
-    BlackKnightPower = 0xB00E719E   #xxxx xxxx xxxx xxxx x000 0000 0100 0000
-    SpringPower      = 0xD88133D6   #xxxx xxxx xxxx xxxx x000 0010 0000 0000
-    PoundPower       = 0x84D3E950   #xxxx xxxx xxxx xxxx x000 0100 0000 0000
-    HelmetPower      = 0x2F03BFDC   #xxxx xxxx xxxx xxxx x000 1000 0000 0000
-    UmbrellaPower    = 0xC889BB9E   #xxxx xxxx xxxx xxxx x001 0000 0000 0000
-    ShovelPower      = 0x866C5887   #xxxx xxxx xxxx xxxx x010 0000 0000 0000
-    ShockwavePower   = 0x1B0ADE07   #xxxx xxxx xxxx xxxx x100 0000 0000 0000
-    GumOverAcid2     = 0xEAF330FE   #Gum upgrades increment 0x802350A8 by 5.
-    GumPack          = 0xFFD0E61E
-    GumMaxAmmo       = 0xFFFD7A85
-    Gum_Upgrade      = 0x362E34B4
-    GumUpgrade       = 0x7EDE8BAD
-    BubblePack       = 0xBF9B5D09
-    Soap__Box        = 0xD656A182   #Soap upgrades increment 0x802350AC by 5
-    SoapBox1         = 0x3550C423
-    SoapOverAcid2    = 0x0C7A534E
-    Soap_Box         = 0xDEC7BAA7
-    SoapBox          = 0xB380CBF0
-    SoapPack         = 0xDCC4E558
+class Upgrades(Enum):              #Bit assigned at 0x80235098
+    GumPower = 0xD4FD7D3C          #xxxx xxxx xxxx xxxx x000 0000 0000 0001
+    SoapPower = 0xE8A3B45F         #xxxx xxxx xxxx xxxx x000 0000 0000 0010
+    BootsPower = 0x9133CECD        #xxxx xxxx xxxx xxxx x000 0000 0000 0100
+    PlungerPower = 0xDA82A36C      #xxxx xxxx xxxx xxxx x000 0000 0000 1000
+    SlippersPower = 0x9AD0813E     #xxxx xxxx xxxx xxxx x000 0000 0001 0000
+    LampshadePower = 0x6FAFFB01    #xxxx xxxx xxxx xxxx x000 0000 0010 0000
+    BlackKnightPower = 0xB00E719E  #xxxx xxxx xxxx xxxx x000 0000 0100 0000
+    SpringPower = 0xD88133D6       #xxxx xxxx xxxx xxxx x000 0010 0000 0000
+    PoundPower = 0x84D3E950        #xxxx xxxx xxxx xxxx x000 0100 0000 0000
+    HelmetPower = 0x2F03BFDC       #xxxx xxxx xxxx xxxx x000 1000 0000 0000
+    UmbrellaPower = 0xC889BB9E     #xxxx xxxx xxxx xxxx x001 0000 0000 0000
+    ShovelPower = 0x866C5887       #xxxx xxxx xxxx xxxx x010 0000 0000 0000
+    ShockwavePower = 0x1B0ADE07    #xxxx xxxx xxxx xxxx x100 0000 0000 0000
+    GumOverAcid2 = 0xEAF330FE      #Gum upgrades increment 0x802350A8 by 5.
+    GumPack = 0xFFD0E61E
+    GumMaxAmmo = 0xFFFD7A85
+    Gum_Upgrade = 0x362E34B4
+    GumUpgrade = 0x7EDE8BAD
+    BubblePack = 0xBF9B5D09
+    Soap__Box = 0xD656A182         #Soap upgrades increment 0x802350AC by 5
+    SoapBox1 = 0x3550C423
+    SoapOverAcid2 = 0x0C7A534E
+    Soap_Box = 0xDEC7BAA7
+    SoapBox = 0xB380CBF0
+    SoapPack = 0xDCC4E558
 
 
-class MonsterTokens(Enum):          #Bit assigned at 0x8023509C
-    MT_BLACKKNIGHT = 0x3A6FCC38     #xxxx xxxx xxx0 0000 0000 0000 0000 0001
-    MT_MOODY       = 0xDC98824E     #xxxx xxxx xxx0 0000 0000 0000 0000 0010
-    MT_CAVEMAN     = 0x56400EF1     #xxxx xxxx xxx0 0000 0000 0000 0000 0100
-    MT_CREEPER     = 0xDFA0C15E     #xxxx xxxx xxx0 0000 0000 0000 0000 1000
-    MT_GARGOYLE    = 0xFBBC715F     #xxxx xxxx xxx0 0000 0000 0000 0001 0000
-    MT_GERONIMO    = 0x94C56BF0     #xxxx xxxx xxx0 0000 0000 0000 0010 0000
-    MT_GHOST       = 0x74004B8A     #xxxx xxxx xxx0 0000 0000 0000 0100 0000
-    MT_GHOSTDIVER  = 0x2ACB9327     #xxxx xxxx xxx0 0000 0000 0000 1000 0000
-    MT_GREENGHOST  = 0xF077B0E1     #xxxx xxxx xxx0 0000 0000 0001 0000 0000
-    MT_HEADLESS    = 0x52CE630A     #xxxx xxxx xxx0 0000 0000 0010 0000 0000
-    MT_MASTERMIND  = 0x08D04C9B     #xxxx xxxx xxx0 0000 0000 0100 0000 0000
-    MT_ROBOT       = 0x699623C9     #xxxx xxxx xxx0 0000 0000 1000 0000 0000
-    MT_REDBEARD    = 0x0F7F79CB     #xxxx xxxx xxx0 0000 0001 0000 0000 0000
-    MT_SCARECROW   = 0xAB19F726     #xxxx xxxx xxx0 0000 0010 0000 0000 0000
-    MT_SEACREATURE = 0x6CC29412     #xxxx xxxx xxx0 0000 0100 0000 0000 0000
-    MT_SPACEKOOK   = 0xFC42FAAC     #xxxx xxxx xxx0 0000 1000 0000 0000 0000
-    MT_TARMONSTER  = 0x2E849EB9     #xxxx xxxx xxx0 0001 0000 0000 0000 0000
-    MT_WITCH       = 0x8CFF4526     #xxxx xxxx xxx0 0010 0000 0000 0000 0000
-    MT_WITCHDOC    = 0x55794316     #xxxx xxxx xxx0 0100 0000 0000 0000 0000
-    MT_WOLFMAN     = 0x51D4A7D2     #xxxx xxxx xxx0 1000 0000 0000 0000 0000
-    MT_ZOMBIE      = 0x818F2933     #xxxx xxxx xxx1 0000 0000 0000 0000 0000
+class MonsterTokens(Enum):       #Bit assigned at 0x8023509C
+    MT_BLACKKNIGHT = 0x3A6FCC38  #xxxx xxxx xxx0 0000 0000 0000 0000 0001
+    MT_MOODY = 0xDC98824E        #xxxx xxxx xxx0 0000 0000 0000 0000 0010
+    MT_CAVEMAN = 0x56400EF1      #xxxx xxxx xxx0 0000 0000 0000 0000 0100
+    MT_CREEPER = 0xDFA0C15E      #xxxx xxxx xxx0 0000 0000 0000 0000 1000
+    MT_GARGOYLE = 0xFBBC715F     #xxxx xxxx xxx0 0000 0000 0000 0001 0000
+    MT_GERONIMO = 0x94C56BF0     #xxxx xxxx xxx0 0000 0000 0000 0010 0000
+    MT_GHOST = 0x74004B8A        #xxxx xxxx xxx0 0000 0000 0000 0100 0000
+    MT_GHOSTDIVER = 0x2ACB9327   #xxxx xxxx xxx0 0000 0000 0000 1000 0000
+    MT_GREENGHOST = 0xF077B0E1   #xxxx xxxx xxx0 0000 0000 0001 0000 0000
+    MT_HEADLESS = 0x52CE630A     #xxxx xxxx xxx0 0000 0000 0010 0000 0000
+    MT_MASTERMIND = 0x08D04C9B   #xxxx xxxx xxx0 0000 0000 0100 0000 0000
+    MT_ROBOT = 0x699623C9        #xxxx xxxx xxx0 0000 0000 1000 0000 0000
+    MT_REDBEARD = 0x0F7F79CB     #xxxx xxxx xxx0 0000 0001 0000 0000 0000
+    MT_SCARECROW = 0xAB19F726    #xxxx xxxx xxx0 0000 0010 0000 0000 0000
+    MT_SEACREATURE = 0x6CC29412  #xxxx xxxx xxx0 0000 0100 0000 0000 0000
+    MT_SPACEKOOK = 0xFC42FAAC    #xxxx xxxx xxx0 0000 1000 0000 0000 0000
+    MT_TARMONSTER = 0x2E849EB9   #xxxx xxxx xxx0 0001 0000 0000 0000 0000
+    MT_WITCH = 0x8CFF4526        #xxxx xxxx xxx0 0010 0000 0000 0000 0000
+    MT_WITCHDOC = 0x55794316     #xxxx xxxx xxx0 0100 0000 0000 0000 0000
+    MT_WOLFMAN = 0x51D4A7D2      #xxxx xxxx xxx0 1000 0000 0000 0000 0000
+    MT_ZOMBIE = 0x818F2933       #xxxx xxxx xxx1 0000 0000 0000 0000 0000
 
 
 class Keys(Enum):
-    DOORKEY         = 0x13109411
-    DOORKEY1        = 0xC17BC4E4
-    DOORKEY2        = 0xC17BC4E5
-    DOORKEY3        = 0xC17BC4E6
-    DOORKEY4        = 0xC17BC4E7
+    DOORKEY = 0x13109411
+    DOORKEY1 = 0xC17BC4E4
+    DOORKEY2 = 0xC17BC4E5
+    DOORKEY3 = 0xC17BC4E6
+    DOORKEY4 = 0xC17BC4E7
     DUG_FISHING_KEY = 0xBB82B3B3
-    HEDGE_KEY       = 0xBBFA4948
-    KEY             = 0x0013C74B
-    KEY_01          = 0x76E9B34A
-    KEY_02          = 0x76E9B34B
-    KEY_03          = 0x76E9B34C
-    KEY_1           = 0x2DDAB334
-    KEY_2           = 0x2DDAB335
-    KEY_3           = 0x2DDAB336
-    KEY_4           = 0x2DDAB337
-    KEY01           = 0x2DDABB64
-    KEY02           = 0x2DDABB65
-    KEY03           = 0x2DDABB66
-    KEY04           = 0x2DDABB67
-    KEY1            = 0x0A1EFB92
-    KEY2            = 0x0A1EFB93
-    KEY3            = 0x0A1EFB94
-    KEY4            = 0x0A1EFB95
-    KEY5            = 0x0A1EFB96
+    HEDGE_KEY = 0xBBFA4948
+    KEY = 0x0013C74B
+    KEY_01 = 0x76E9B34A
+    KEY_02 = 0x76E9B34B
+    KEY_03 = 0x76E9B34C
+    KEY_1 = 0x2DDAB334
+    KEY_2 = 0x2DDAB335
+    KEY_3 = 0x2DDAB336
+    KEY_4 = 0x2DDAB337
+    KEY01 = 0x2DDABB64
+    KEY02 = 0x2DDABB65
+    KEY03 = 0x2DDABB66
+    KEY04 = 0x2DDABB67
+    KEY1 = 0x0A1EFB92
+    KEY2 = 0x0A1EFB93
+    KEY3 = 0x0A1EFB94
+    KEY4 = 0x0A1EFB95
+    KEY5 = 0x0A1EFB96
+
+
+class Warpgates(Enum):
+    WARPPOINT = 0xD7341DE8
+    WARP_GATE = 0x8B8D6C9B
+    WARPGATE_POWERUP = 0xD399D40F
+
 
 #Snacks are notated nearly exactly as they are in the game, but Space characters are replaced with "__"
 #class Snacks(Enum):
@@ -2408,7 +2418,6 @@ MONSTERTOKENS_PICKUP_IDS = {
     (base_id + 100 + 20): (b'G002', MonsterTokens.MT_ZOMBIE.value),
 }
 
-
 KEYS_PICKUP_IDS = {
     # +3
     (base_id + 200 + 0): (b'B002', Keys.KEY1.value),
@@ -2513,6 +2522,34 @@ KEYS_PICKUP_IDS = {
     (base_id + 200 + 59): (b'W027', Keys.KEY04.value),
 }
 
+WARPGATE_PICKUP_IDS = {
+    (base_id + 300 + 0): (b'B004', Warpgates.WARP_GATE.value),
+    (base_id + 300 + 1): (b'C004', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 2): (b'E004', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 3): (b'E006', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 4): (b'E009', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 5): (b'F003', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 6): (b'F007', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 7): (b'O001', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 8): (b'G005', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 9): (b'G008', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 11): (b'I003', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 12): (b'I006', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 13): (b'L014', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 14): (b'L018', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 15): (b'O004', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 16): (b'O006', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 17): (b'P003', Warpgates.WARP_GATE.value),
+    (base_id + 300 + 18): (b'P005', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 19): (b'R003', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 20): (b'S002', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 21): (b'W022', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 22): (b'W026', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 23): (b'L015', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 24): (b'G001', Warpgates.WARPPOINT.value),
+    (base_id + 300 + 25): (b'H003', Warpgates.WARPGATE_POWERUP.value),
+}
+
 valid_scenes = [
     b'B001', b'B002', b'B003', b'B004',
     b'C001', b'C002', b'C003', b'C004', b'C005', b'C006', b'C007',
@@ -2530,7 +2567,7 @@ valid_scenes = [
 ]
 
 invalid_scenes = [
-    b'MNU3', b'MNU4', # menus
+    b'MNU3', b'MNU4',  # menus
 ]
 
 
@@ -2615,8 +2652,6 @@ class NO100FCommandProcessor(ClientCommandProcessor):
         logger.info(f"Shiver Keys {count}/4")
 
 
-
-
 class NO100FContext(CommonContext):
     command_processor = NO100FCommandProcessor
     game = "Scooby-Doo! Night of 100 Frights"
@@ -2638,6 +2673,7 @@ class NO100FContext(CommonContext):
         self.current_scene_key = None
         self.use_tokens = False
         self.use_keys = False
+        self.use_warpgates = False
         self.use_snacks = False
         self.use_qol = False
         self.CitM1_key = 0
@@ -2662,7 +2698,6 @@ class NO100FContext(CommonContext):
         self.DLDS2_keys = 0
         self.SYTS1_keys = 0
 
-
     async def disconnect(self, allow_autoreconnect: bool = False):
         self.auth = None
         await super().disconnect(allow_autoreconnect)
@@ -2680,10 +2715,14 @@ class NO100FContext(CommonContext):
                 self.use_tokens = True
             if 'include_keys' in args['slot_data'] and args['slot_data']['include_keys']:
                 self.use_keys = True
+            if 'include_warpgates' in args['slot_data'] and args['slot_data']['include_warpgates']:
+                self.use_warpgates = True
             if 'include_snacks' in args['slot_data'] and args['slot_data']['include_snacks']:
                 self.use_snacks = True
             if 'apply_qol_fixes' in args['slot_data'] and args['slot_data']['apply_qol_fixes']:
                 self.use_qol = True
+            if 'completion_goal' in args['slot_data']:
+                self.completion_goal = args['slot_data']['completion_goal']
         if cmd == 'ReceivedItems':
             if args["index"] >= self.last_rev_index:
                 self.last_rev_index = args["index"]
@@ -2697,7 +2736,7 @@ class NO100FContext(CommonContext):
         _give_death(self)
 
     #def _update_item_counts(self, args: dict):
-        #self.snack_count = len([item for item in self.items_received if item.item == base_id + 0])
+    #self.snack_count = len([item for item in self.items_received if item.item == base_id + 0])
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -2727,6 +2766,7 @@ class NO100FContext(CommonContext):
 
 def _is_ptr_valid(ptr):
     return 0x80000000 <= ptr < 0x817fffff
+
 
 def _is_scene_visited(target_scene: bytes):
     current_index = VISITED_SCENES_ADDR
@@ -2786,12 +2826,12 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
 
 def _give_powerup(ctx: NO100FContext, bit: int):
     cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
-    if ((bit == 13) and cur_upgrades & 2**7):   # Player is getting a shovel and currently has the fake
-        cur_upgrades -= 2**7
+    if ((bit == 13) and cur_upgrades & 2 ** 7):  # Player is getting a shovel and currently has the fake
+        cur_upgrades -= 2 ** 7
         dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades)
 
-    if cur_upgrades & 2**bit == 0:
-        dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades + 2**bit)
+    if cur_upgrades & 2 ** bit == 0:
+        dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades + 2 ** bit)
 
 
 def _give_gum_upgrade(ctx: NO100FContext):
@@ -2806,13 +2846,20 @@ def _give_soap_upgrade(ctx: NO100FContext):
 
 def _give_monstertoken(ctx: NO100FContext, bit: int):
     cur_monster_tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
-    if cur_monster_tokens & 2**bit == 0:
-        dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, cur_monster_tokens + 2**bit)
+    if cur_monster_tokens & 2 ** bit == 0:
+        dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, cur_monster_tokens + 2 ** bit)
 
 
 def _give_key(ctx: NO100FContext, offset: int):
     cur_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + offset)
     dolphin_memory_engine.write_byte(KEY_COUNT_ADDR + offset, cur_count + 1)
+
+
+def _give_warp(ctx: NO100FContext, offset: int):
+    cur_warps = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
+    if not cur_warps & 2 ** offset == 2 ** offset:
+        cur_warps += 2 ** offset
+        dolphin_memory_engine.write_word(SAVED_WARP_ADDR, cur_warps)
 
 
 def _give_death(ctx: NO100FContext):
@@ -2827,8 +2874,8 @@ def _check_cur_scene(ctx: NO100FContext, scene_id: bytes, scene_ptr: Optional[in
 
 
 def _give_item(ctx: NO100FContext, item_id: int):
-    true_id = item_id - base_id     # Use item_id to generate offset for use with functions
-    if 0 <= true_id <= 56:      # ID is expected value
+    true_id = item_id - base_id  # Use item_id to generate offset for use with functions
+    if 0 <= true_id <= 82:  # ID is expected value
 
         if true_id < 7:
             _give_powerup(ctx, true_id)
@@ -2848,6 +2895,9 @@ def _give_item(ctx: NO100FContext, item_id: int):
         if 36 <= true_id <= 56:
             _give_key(ctx, true_id - 36)
 
+        if 57 <= true_id <= 82:
+            _give_warp(ctx, true_id - 57)
+
     else:
         logger.warning(f"Received unknown item with id {item_id}")
 
@@ -2855,11 +2905,13 @@ def _give_item(ctx: NO100FContext, item_id: int):
 def _set_platform_state(ctx: NO100FContext, ptr, state):
     dolphin_memory_engine.write_byte(ptr + 0x14, state)
 
+
 def _set_platform_collision_state(ctx: NO100FContext, ptr, state):
     dolphin_memory_engine.write_byte(ptr + 0x28, state)
 
+
 def _check_platform_state(ctx: NO100FContext, ptr):
-   return dolphin_memory_engine.read_byte(ptr + 0x14)
+    return dolphin_memory_engine.read_byte(ptr + 0x14)
 
 
 def _set_trigger_state(ctx: NO100FContext, ptr, state):
@@ -2873,6 +2925,7 @@ def _set_counter_value(ctx: NO100FContext, ptr, count):
 def _set_pickup_active(ctx: NO100FContext, ptr, state):
     dolphin_memory_engine.write_byte(ptr + 0x7, state)
 
+
 async def apply_qol_fixes(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
     ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
@@ -2883,7 +2936,16 @@ async def apply_qol_fixes(ctx: NO100FContext):
     if scene == b'W023':
         fix_ptr = _find_obj_in_obj_table(0xD2C0B716, ptr, size)
         if not fix_ptr == None:
-            if dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR) & 2**11:
+            if dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR) & 2 ** 11:
+                _set_trigger_state(ctx, fix_ptr, 0x1d)
+
+            else:
+                _set_trigger_state(ctx, fix_ptr, 0x1c)
+
+    if scene == b'B004':
+        fix_ptr = _find_obj_in_obj_table(0xc71019dc, ptr, size)
+        if not fix_ptr == None:
+            if dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR) & 2 ** 11:
                 _set_trigger_state(ctx, fix_ptr, 0x1d)
 
             else:
@@ -2906,8 +2968,8 @@ async def apply_key_fixes(ctx: NO100FContext):
                 _set_trigger_state(ctx, fix_ptr, 0x1d)
 
             if ctx.CitM1_key == 0:  # The Key is not collected, block door from opening
-                fix_ptr = _find_obj_in_obj_table(0x1e1157c3, ptr, size)
-                _set_trigger_state(ctx, fix_ptr, 0x1c)
+              #  fix_ptr = _find_obj_in_obj_table(0x1e1157c3, ptr, size)
+              #  _set_trigger_state(ctx, fix_ptr, 0x1c)
                 fix_ptr = _find_obj_in_obj_table(0x586E19B9, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1c)
 
@@ -2924,7 +2986,7 @@ async def apply_key_fixes(ctx: NO100FContext):
                 fix_ptr = _find_obj_in_obj_table(0xD72B66B7, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1d)
 
-            else:   # Hedge Key is not collected, make sure the gate is closed
+            else:  # Hedge Key is not collected, make sure the gate is closed
                 fix_ptr = _find_obj_in_obj_table(0xC20224F3, ptr, size)
                 _set_platform_state(ctx, fix_ptr, 1)
 
@@ -2946,7 +3008,7 @@ async def apply_key_fixes(ctx: NO100FContext):
                 fix_ptr = _find_obj_in_obj_table(0x2E8B6D0E, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1E)
 
-            else:   # Fishing Key is not collected, make sure the gate is closed
+            else:  # Fishing Key is not collected, make sure the gate is closed
                 fix_ptr = _find_obj_in_obj_table(0x42A3128E, ptr, size)
                 _set_platform_state(ctx, fix_ptr, 1)
 
@@ -3121,10 +3183,10 @@ async def apply_key_fixes(ctx: NO100FContext):
                 _set_pickup_active(ctx, fix_ptr, 0x1d)
                 fix_ptr = _find_obj_in_obj_table(0x7B5AC815, ptr, size)
                 _set_platform_collision_state(ctx, fix_ptr, 0)
-                _set_platform_state(ctx, fix_ptr,0)
+                _set_platform_state(ctx, fix_ptr, 0)
 
                 fix_ptr = _find_obj_in_obj_table(0xDa0349cc, ptr, size)
-                _set_platform_state(ctx,fix_ptr, 0x1e)
+                _set_platform_state(ctx, fix_ptr, 0x1e)
             else:
                 _set_pickup_active(ctx, fix_ptr, 0x1c)
 
@@ -3132,10 +3194,10 @@ async def apply_key_fixes(ctx: NO100FContext):
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)
         if not fix_ptr == None:
             if ctx.MyM2_keys >= 4:
-                 fix_ptr = _find_obj_in_obj_table(0xD4FBFFD9, ptr, size)
-                 _set_platform_collision_state(ctx, fix_ptr, 0)
-                 _set_platform_state(ctx, fix_ptr, 0)
-                 return
+                fix_ptr = _find_obj_in_obj_table(0xD4FBFFD9, ptr, size)
+                _set_platform_collision_state(ctx, fix_ptr, 0)
+                _set_platform_state(ctx, fix_ptr, 0)
+                return
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
 
@@ -3269,7 +3331,7 @@ async def apply_key_fixes(ctx: NO100FContext):
                 _set_platform_collision_state(ctx, fix_ptr, 0)
                 _set_platform_state(ctx, fix_ptr, 0)
 
-                fix_ptr = _find_obj_in_obj_table(0x18E5F2D9,ptr, size)
+                fix_ptr = _find_obj_in_obj_table(0x18E5F2D9, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1c)
             else:
                 _set_pickup_active(ctx, fix_ptr, 0x1c)
@@ -3284,7 +3346,7 @@ async def apply_key_fixes(ctx: NO100FContext):
 
                 fix_ptr = _find_obj_in_obj_table(0xA25C26B4, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1e)
-                _set_platform_state(ctx, fix_ptr,0)
+                _set_platform_state(ctx, fix_ptr, 0)
                 return
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
@@ -3464,30 +3526,36 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 fix_ptr = _find_obj_in_obj_table(0xD5159008, ptr, size)
                 if fix_ptr is None: break
 
-                dolphin_memory_engine.write_byte(fix_ptr + 0x7,0x1d)    # Force Shovel Pickup Availability
+                dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)  # Force Shovel Pickup Availability
 
             # Black Knight Fix
-            if v[1] == Upgrades.BootsPower.value:   #Only do this for the Boots Power Up in O008
+            if v[1] == Upgrades.BootsPower.value:  #Only do this for the Boots Power Up in O008
 
                 fix_ptr = _find_obj_in_obj_table(0x7B9BA1C7, ptr, size)
                 if fix_ptr is None: break
 
-                BK_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15) #Check Fight Over Counter
+                BK_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15)  #Check Fight Over Counter
                 if BK_Alive == 0:  #Is he dead?
                     locations_checked.add(k)
                     ctx.post_boss = True
+                    boss_kills = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
+                    boss_kills += 1
+                    dolphin_memory_engine.write_byte(BOSS_KILLS_ADDR, boss_kills)
 
             # Green Ghost Fix
-            if v[1] == Upgrades.UmbrellaPower.value:    # Only do this for the Umbrella Power Up in G009
+            if v[1] == Upgrades.UmbrellaPower.value:  # Only do this for the Umbrella Power Up in G009
 
                 # Fix Check Itself
-                fix_ptr = _find_obj_in_obj_table(0xB6C6E412 , ptr, size)
+                fix_ptr = _find_obj_in_obj_table(0xB6C6E412, ptr, size)
                 if fix_ptr is None: break
 
                 GG_Defeated = dolphin_memory_engine.read_byte(fix_ptr + 0x16)
                 if GG_Defeated == 0x1f:
                     locations_checked.add(k)
                     ctx.post_boss = True
+                    boss_kills = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
+                    boss_kills += 1
+                    dolphin_memory_engine.write_byte(BOSS_KILLS_ADDR, boss_kills)
 
                 # Fix Broken Fight Trigger
                 fix_ptr1 = _find_obj_in_obj_table(0x060E343c, ptr, size)
@@ -3499,28 +3567,31 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 fix_ptr2 = _find_obj_in_obj_table(0xA11635BD, ptr, size)
                 if fix_ptr2 is None: break
 
-                if GG_Alive == 0 and GG_Defeated == 0x1b: # Green Ghost has not been defeated, and he is not yet present
+                if GG_Alive == 0 and GG_Defeated == 0x1b:  # Green Ghost has not been defeated, and he is not yet present
                     dolphin_memory_engine.write_byte(fix_ptr2 + 0x7, 0x1f)
                 else:
                     dolphin_memory_engine.write_byte(fix_ptr2 + 0x7, 0x1e)
 
             # Red Beard Fix
-            if v[1] == Upgrades.GumPower.value:   # Only do this for the Gum Powerup in W028
+            if v[1] == Upgrades.GumPower.value:  # Only do this for the Gum Powerup in W028
 
                 fix_ptr = _find_obj_in_obj_table(0x5A3B5C98, ptr, size)
                 if fix_ptr is None: break
 
-                RB_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15) # Check Fight Over Counter
+                RB_Alive = dolphin_memory_engine.read_byte(fix_ptr + 0x15)  # Check Fight Over Counter
                 if RB_Alive == 0:  # Is he dead?
                     locations_checked.add(k)
                     ctx.post_boss = True
+                    boss_kills = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
+                    boss_kills += 1
+                    dolphin_memory_engine.write_byte(BOSS_KILLS_ADDR, boss_kills)
 
             if check_cb(ctx, obj_ptr):
                 locations_checked.add(k)
 
                 # Lampshade Fix
                 if v[1] == Upgrades.SlippersPower.value:  # We are checking the slipper power up
-                    locations_checked.add(k+1)  # Add the lampshade check as well
+                    locations_checked.add(k + 1)  # Add the lampshade check as well
                 break
 
 
@@ -3536,8 +3607,38 @@ async def _check_keys(ctx: NO100FContext, locations_checked: set):
     await _check_objects_by_id(ctx, locations_checked, KEYS_PICKUP_IDS, _check_pickup_state)
 
 
+async def _check_warpgates(ctx: NO100FContext, locations_checked: set):
+    await _check_warpgates_location(ctx, locations_checked, WARPGATE_PICKUP_IDS)
+
+
 # async def _check_snacks(ctx: NO100FContext, locations_checked: set):
 #    await _check_objects_by_id(ctx, locations_checked, SNACKIDS, _check_pickup_state)
+
+async def _check_warpgates_location(ctx: NO100FContext, locations_checked: set, id_table : dict):
+    scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
+    ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
+    if not _is_ptr_valid(ptr):
+        return
+    size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
+
+    for k, v in id_table.items():
+        if k in locations_checked:
+            continue
+        if v[0] is not None and v[0] != scene:
+            continue
+        bit = k - 300 - base_id
+        value = dolphin_memory_engine.read_word(WARP_ADDR + (12 * bit))
+        if value == 1:
+            locations_checked.add(k)
+
+    warp_gates = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
+    if warp_gates == 0:
+        dolphin_memory_engine.write_word(SAVED_WARP_ADDR, 0X400)
+    for i in range(26):
+        if warp_gates & 2 ** i == 2 ** i:
+            dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 1)
+        else:
+            dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 0)
 
 async def apply_level_fixes(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
@@ -3546,14 +3647,14 @@ async def apply_level_fixes(ctx: NO100FContext):
         return
     size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
 
-    dolphin_memory_engine.write_word(MAP_ADDR, 0x1)     # Force the Map Into Inventory
+    dolphin_memory_engine.write_word(MAP_ADDR, 0x1)  # Force the Map Into Inventory
     if scene == b'I001':
         upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
-        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
-            upgrades += (2**13 + 2**7)
+        if not upgrades & 2 ** 13:  # Player does not have the shovel, give them a fake
+            upgrades += (2 ** 13 + 2 ** 7)
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
-        fix_ptr = _find_obj_in_obj_table(0x22B1A6E6, ptr, size) # Holly Trigger #1
+        fix_ptr = _find_obj_in_obj_table(0x22B1A6E6, ptr, size)  # Holly Trigger #1
         _set_trigger_state(ctx, fix_ptr, 0x1c)
 
         fix_ptr = _find_obj_in_obj_table(0xC0E867E2, ptr, size)  # Holly Trigger #2
@@ -3564,59 +3665,67 @@ async def apply_level_fixes(ctx: NO100FContext):
         _set_platform_state(ctx, fix_ptr, 0)
 
         if _is_scene_visited(b'R001'):
-            fix_ptr = _find_obj_in_obj_table(0x4f81e846, ptr, size) # Doorway Trigger
+            fix_ptr = _find_obj_in_obj_table(0x4f81e846, ptr, size)  # Doorway Trigger
             _set_trigger_state(ctx, fix_ptr, 0x1d)
 
             fix_ptr = _find_obj_in_obj_table(0xDE90259F, ptr, size)  # Text Trigger
             _set_trigger_state(ctx, fix_ptr, 0x1c)
 
         if _is_scene_visited(b'S005'):
-            fix_ptr = _find_obj_in_obj_table(0xB0d216d1, ptr, size) # Load Trigger
+            fix_ptr = _find_obj_in_obj_table(0xB0d216d1, ptr, size)  # Load Trigger
             _set_trigger_state(ctx, fix_ptr, 0x1d)
 
-            fix_ptr = _find_obj_in_obj_table(0xc402cded, ptr, size) # Disable Armoire Collision and Visibility
+            fix_ptr = _find_obj_in_obj_table(0xc402cded, ptr, size)  # Disable Armoire Collision and Visibility
             _set_platform_collision_state(ctx, fix_ptr, 0)
             _set_platform_state(ctx, fix_ptr, 0x1c)
 
     if scene == b'E001':
         upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
-        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
-            upgrades += (2**13 + 2**7)
+        if not upgrades & 2 ** 13:  # Player does not have the shovel, give them a fake
+            upgrades += (2 ** 13 + 2 ** 7)
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
-        if upgrades & 2**7: # Player has a fake shovel, don't let them dig
+        if upgrades & 2 ** 7:  # Player has a fake shovel, don't let them dig
             fix_ptr = _find_obj_in_obj_table(0xb37f36c7, ptr, size)
             _set_trigger_state(ctx, fix_ptr, 0x1c)
 
     if scene == b'F001':
         upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
-        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
-            upgrades += (2**13 + 2**7)
+        if not upgrades & 2 ** 13:  # Player does not have the shovel, give them a fake
+            upgrades += (2 ** 13 + 2 ** 7)
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
     if scene == b'H002':
         upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
-        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
-            upgrades += (2**13 + 2**7)
+        if not upgrades & 2 ** 13:  # Player does not have the shovel, give them a fake
+            upgrades += (2 ** 13 + 2 ** 7)
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
     if scene == b'H003':
         upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
-        if not upgrades & 2**13:    # Player does not have the shovel, give them a fake
-            upgrades += (2**13 + 2**7)
+        if not upgrades & 2 ** 13:  # Player does not have the shovel, give them a fake
+            upgrades += (2 ** 13 + 2 ** 7)
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
     if not (scene == b'I001' or scene == b'E001' or scene == b'F001' or scene == b'H002' or scene == b'H003'):
         upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
-        if upgrades & 2**7:     # Player has a fake shovel, get rid of it
-            upgrades -= (2**7 + 2**13)
+        if upgrades & 2 ** 7:  # Player has a fake shovel, get rid of it
+            upgrades -= (2 ** 7 + 2 ** 13)
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
     if scene == b'H001' or b'h001':
-       if not ctx.use_keys:
+
+        # Clear Monster Gallery Snack Gate
+        fix_ptr = _find_obj_in_obj_table(0x7E8E16F5, ptr, size)
+        if not fix_ptr == None:
+            _set_platform_state(ctx, fix_ptr, 0)
+            fix_ptr = _find_obj_in_obj_table(0xD7924F8A, ptr, size)
+            _set_trigger_state(ctx, fix_ptr, 0x1f)
+
+        if not ctx.use_keys:
             fix_ptr = _find_obj_in_obj_table(0xBBFA4948, ptr, size)
             if not fix_ptr == None:
-                if _check_pickup_state(ctx, fix_ptr):     #The Hedge key is collected, open the gate
+                if _check_pickup_state(ctx, fix_ptr):  #The Hedge key is collected, open the gate
                     fix_ptr = _find_obj_in_obj_table(0xC20224F3, ptr, size)
                     _set_platform_state(ctx, fix_ptr, 0)
 
@@ -3628,7 +3737,7 @@ async def apply_level_fixes(ctx: NO100FContext):
 
             fix_ptr = _find_obj_in_obj_table(0xBB82B3B3, ptr, size)
             if not fix_ptr == None:
-                if _check_pickup_state(ctx, fix_ptr):     #The Fishing key is collected, open the gate
+                if _check_pickup_state(ctx, fix_ptr):  #The Fishing key is collected, open the gate
                     fix_ptr = _find_obj_in_obj_table(0x42A3128E, ptr, size)
                     _set_platform_state(ctx, fix_ptr, 0)
 
@@ -3639,7 +3748,52 @@ async def apply_level_fixes(ctx: NO100FContext):
             _set_platform_state(ctx, fix_ptr, 0)
 
     # Credits Location
-    if scene == b"S005":    #We are in the final room
+    if scene == b"S005":  #We are in the final room
+
+        if not ctx.completion_goal == 0:
+            fix_ptr = _find_obj_in_obj_table(0x79f90e17, ptr, size)
+            if fix_ptr is not None:
+                in_arena = dolphin_memory_engine.read_byte(fix_ptr + 0x7)
+                conditions_met = False
+                if ctx.completion_goal == 1:    #Fixes for all bosses
+                    bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
+                    if bosseskilled == 3:
+                        conditions_met = True
+
+                if ctx.completion_goal == 2:
+                    tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
+                    if tokens == 0x1FFFFF:
+                        conditions_met = True
+
+                if conditions_met == 3 and in_arena == 0x1d:
+                    fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
+                    _set_trigger_state(ctx, fix_ptr, 0x1f)
+                else:
+                    fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
+                    _set_trigger_state(ctx, fix_ptr, 0x1e)
+                    fix_ptr = _find_obj_in_obj_table(0x78CFEF58, ptr, size)
+                    _set_trigger_state(ctx, fix_ptr, 0x1c)
+                    fix_ptr = _find_obj_in_obj_table(0x3C433393, ptr, size)
+                    _set_trigger_state(ctx, fix_ptr, 0x1c)
+                    fix_ptr = _find_obj_in_obj_table(0x0C413492, ptr, size)
+                    _set_platform_state(ctx, fix_ptr, 0)
+                    fix_ptr = _find_obj_in_obj_table(0x9AA96044, ptr, size)
+                    _set_platform_state(ctx, fix_ptr, 0)
+                    fix_ptr = _find_obj_in_obj_table(0xCF095CD7, ptr, size)
+                    _set_platform_state(ctx, fix_ptr, 0)
+                    fix_ptr = _find_obj_in_obj_table(0x1480DF86, ptr, size)
+                    _set_platform_state(ctx, fix_ptr, 0)
+                    fix_ptr = _find_obj_in_obj_table(0xD046F599, ptr, size)
+                    _set_platform_state(ctx, fix_ptr, 0)
+                    fix_ptr = _find_obj_in_obj_table(0x08E9D051, ptr, size)
+                    _set_platform_state(ctx, fix_ptr, 0)
+
+                if not conditions_met == 3 and in_arena == 0x1c:
+                    fix_ptr = _find_obj_in_obj_table(0x2854c118, ptr, size)
+                    _set_platform_collision_state(ctx, fix_ptr, 0)
+                    _set_platform_state(ctx, fix_ptr, 0)
+
+
         if not ctx.finished_game:  # We have not finished
             fix_ptr = _find_obj_in_obj_table(0x21D3EDA4, ptr, size)
             if fix_ptr is not None:
@@ -3647,8 +3801,8 @@ async def apply_level_fixes(ctx: NO100FContext):
                 if MM_Alive == 0:
                     print("send done")
                     await ctx.send_msgs([
-                    {"cmd": "StatusUpdate",
-                    "status": 30}
+                        {"cmd": "StatusUpdate",
+                         "status": 30}
                     ])
                     ctx.finished_game = True
                     ctx.post_boss = True
@@ -3660,6 +3814,8 @@ async def check_locations(ctx: NO100FContext):
         await _check_monstertokens(ctx, ctx.locations_checked)
     if ctx.use_keys:
         await _check_keys(ctx, ctx.locations_checked)
+    if ctx.use_warpgates:
+        await _check_warpgates(ctx, ctx.locations_checked)
 
     # ignore already in server state
     locations_checked = ctx.locations_checked.difference(ctx.checked_locations)
@@ -3683,7 +3839,8 @@ async def check_death(ctx: NO100FContext):
         ctx.forced_death = False
 
     if cur_health <= 0 and not ctx.forced_death and not ctx.post_boss:
-        if dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4) == b'F003':  # Avoid Creepy Early Trigger causing erroneous DL Sends
+        if dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR,
+                                            0x4) == b'F003':  # Avoid Creepy Early Trigger causing erroneous DL Sends
             await asyncio.sleep(3)
             if dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4) != b'F003':
                 return
@@ -3732,7 +3889,7 @@ async def save_warp_gates(ctx: NO100FContext):
     for i in range(26):
         cur_gate = dolphin_memory_engine.read_word(WARP_ADDR + (12 * i))
         if cur_gate == 1:
-            warp_gate_map += 2**i
+            warp_gate_map += 2 ** i
 
     if warp_gate_map == 0x400:  # The game is at the default state, attempt to load instead of saving
         if not dolphin_memory_engine.read_word(SAVED_WARP_ADDR) == 0 and not _check_cur_scene(ctx, b'MNU3'):
@@ -3741,17 +3898,22 @@ async def save_warp_gates(ctx: NO100FContext):
 
     dolphin_memory_engine.write_word(SAVED_WARP_ADDR, warp_gate_map)
 
+
 async def load_warp_gates(ctx: NO100FContext):
     warp_gates = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
+    if warp_gates == 0:
+        dolphin_memory_engine.write_word(SAVED_WARP_ADDR, 0X400)
     for i in range(26):
-        if warp_gates & 2**i == 2**i:
+        if warp_gates & 2 ** i == 2 ** i:
             dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 1)
+        else:
+            dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 0)
 
 
-async def force_death(ctx:NO100FContext):
+async def force_death(ctx: NO100FContext):
     cur_health = dolphin_memory_engine.read_word(HEALTH_ADDR)
 
-    if cur_health == 69 and not ctx.post_boss:    # Funny number, but also good luck accidentally setting your health this high
+    if cur_health == 69 and not ctx.post_boss:  # Funny number, but also good luck accidentally setting your health this high
         ctx.forced_death = True
         dolphin_memory_engine.write_word(HEALTH_ADDR, 0)
 
@@ -3803,13 +3965,16 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     await give_items(ctx)
                     await check_locations(ctx)
                     await apply_level_fixes(ctx)
-                    await save_warp_gates(ctx)
+                    if not ctx.use_warpgates:
+                        await save_warp_gates(ctx)
                     if ctx.use_qol:
                         await apply_qol_fixes(ctx)
                     if ctx.use_keys:
                         await apply_key_fixes(ctx)
                     await force_death(ctx)
-                    if not (_check_cur_scene(ctx,b'O008') or _check_cur_scene(ctx, b'S005') or _check_cur_scene(ctx, b'G009') or _check_cur_scene(ctx, b'W028')):
+                    if not (_check_cur_scene(ctx, b'O008') or _check_cur_scene(ctx, b'S005') or _check_cur_scene(ctx,
+                                                                                                                 b'G009') or _check_cur_scene(
+                            ctx, b'W028')):
                         ctx.post_boss = False
                 else:
                     if not ctx.auth:
