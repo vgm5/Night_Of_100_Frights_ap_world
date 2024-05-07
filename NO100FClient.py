@@ -2826,6 +2826,23 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
 
 def _give_powerup(ctx: NO100FContext, bit: int):
     cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+
+    if bit == 4:    # Progressive Sneak Upgrade
+        if not cur_upgrades & 2 ** 4:
+            cur_upgrades += 2 ** 4
+        elif not cur_upgrades & 2 ** 5:
+            cur_upgrades += 2 ** 5
+        elif not cur_upgrades & 2 ** 6:
+            cur_upgrades += 2 ** 6
+        dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades)
+
+    if bit == 9:    # Progressive Jump Upgrade
+        if not cur_upgrades & 2 ** 9:
+            cur_upgrades += 2 ** 9
+        elif not cur_upgrades & 2 ** 12:
+            cur_upgrades += 2 ** 12
+        dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades)
+
     if ((bit == 13) and cur_upgrades & 2 ** 7):  # Player is getting a shovel and currently has the fake
         cur_upgrades -= 2 ** 7
         dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, cur_upgrades)
@@ -3528,6 +3545,14 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
 
                 dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)  # Force Shovel Pickup Availability
 
+            # Slippers Fix
+            if v[1] == Upgrades.SlippersPower.value:  # Only do this for the Shovel Power Up in H001
+
+                fix_ptr = _find_obj_in_obj_table(0xF08C8F07, ptr, size)
+                if fix_ptr is None: break
+
+                _set_counter_value(ctx, fix_ptr, 0xa0)  # Force Counter to large value
+
             # Black Knight Fix
             if v[1] == Upgrades.BootsPower.value:  #Only do this for the Boots Power Up in O008
 
@@ -3589,9 +3614,13 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
             if check_cb(ctx, obj_ptr):
                 locations_checked.add(k)
 
-                # Lampshade Fix
+                # Lampshade/Slippers Fix
                 if v[1] == Upgrades.SlippersPower.value:  # We are checking the slipper power up
                     locations_checked.add(k + 1)  # Add the lampshade check as well
+
+                    fix_ptr = _find_obj_in_obj_table(0xF08C8F07, ptr, size)
+                    _set_counter_value(ctx, fix_ptr, 0x1)  # Force Counter to 1
+
                 break
 
 
@@ -3765,10 +3794,10 @@ async def apply_level_fixes(ctx: NO100FContext):
                     if tokens == 0x1FFFFF:
                         conditions_met = True
 
-                if conditions_met == 3 and in_arena == 0x1d:
+                if conditions_met and in_arena == 0x1d:
                     fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
                     _set_trigger_state(ctx, fix_ptr, 0x1f)
-                else:
+                elif not conditions_met:
                     fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
                     _set_trigger_state(ctx, fix_ptr, 0x1e)
                     fix_ptr = _find_obj_in_obj_table(0x78CFEF58, ptr, size)
@@ -3788,7 +3817,7 @@ async def apply_level_fixes(ctx: NO100FContext):
                     fix_ptr = _find_obj_in_obj_table(0x08E9D051, ptr, size)
                     _set_platform_state(ctx, fix_ptr, 0)
 
-                if not conditions_met == 3 and in_arena == 0x1c:
+                if not conditions_met and in_arena == 0x1c:
                     fix_ptr = _find_obj_in_obj_table(0x2854c118, ptr, size)
                     _set_platform_collision_state(ctx, fix_ptr, 0)
                     _set_platform_state(ctx, fix_ptr, 0)

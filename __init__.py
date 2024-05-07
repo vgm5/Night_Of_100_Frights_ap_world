@@ -61,10 +61,10 @@ class NightOf100FrightsWorld(World):
 
     def get_items(self):
         # Generate item pool
-        itempool = [ItemNames.GumPower, ItemNames.SoapPower, ItemNames.SpringPower, ItemNames.PoundPower,
-                    ItemNames.HelmetPower, ItemNames.UmbrellaPower, ItemNames.ShockwavePower,
-                    ItemNames.BootsPower, ItemNames.PlungerPower,ItemNames.SlipperPower, ItemNames.LampshadePower,
-                    ItemNames.BlackknightPower, ItemNames.ShovelPower]
+        itempool = [ItemNames.GumPower, ItemNames.SoapPower, ItemNames.PoundPower, ItemNames.HelmetPower,
+                    ItemNames.ShockwavePower, ItemNames.BootsPower, ItemNames.PlungerPower, ItemNames.ShovelPower]
+        itempool += [ItemNames.ProgressiveJump] * 2
+        itempool += [ItemNames.ProgressiveSneak] * 3
         itempool += [ItemNames.SoapAmmoUpgrade] * 8
         itempool += [ItemNames.GumAmmoUpgrade] * 7
        # if self.options.include_snacks:

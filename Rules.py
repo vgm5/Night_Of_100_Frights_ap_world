@@ -11,48 +11,48 @@ upgrade_rules = [
     # connections
     {
         # Hub
-        # ConnectionNames.hub1_e001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1), Moved outside Rule Factory
+        # ConnectionNames.hub1_e001: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1), Moved outside Rule Factory
         # ConnectionNames.hub1_f001: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
         # Manor
         ConnectionNames.i020_i021: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
         ConnectionNames.i003_b004: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
         # ConnectionNames.i003_i004: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
-        ConnectionNames.i004_o001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.i006_r001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.i004_o001: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
+        ConnectionNames.i006_r001: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
 
         # Rooftops
         ConnectionNames.r021_r020: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
         # Balcony
-        ConnectionNames.o001_o008: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.o001_r005: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.o001_o008: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
+        ConnectionNames.o001_r005: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.ProgressiveJump, player, 1),
 
         # Hedge
-        ConnectionNames.e004_e005: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.e006_e005: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.e004_e005: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+        ConnectionNames.e006_e005: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
         ConnectionNames.e009_c001: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
         ConnectionNames.e009_e001: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
         # Fishing Village
-        ConnectionNames.f003_f004: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.f003_f004: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
         ConnectionNames.f003_p001: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
-        ConnectionNames.f008_l011: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.f009_f008: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+        ConnectionNames.f008_l011: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+        ConnectionNames.f009_f008: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
 
         # Graveyard
         ConnectionNames.g002_g003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
         # Coast
-        ConnectionNames.c001_c002: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.c004_c003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.c001_c002: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
+        ConnectionNames.c004_c003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
         ConnectionNames.c006_c007: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
         ConnectionNames.c007_g001: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
         # ConnectionNames.c005_c006: lambda player: lambda state: state.has(ItemNames.PlungerPower, player, 1),
 
         # Passage
         ConnectionNames.p001_p002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
-        ConnectionNames.p005_p001: lambda player: lambda state: state.has(ItemNames.PlungerPower, player, 1) or (state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1)),
+        ConnectionNames.p005_p001: lambda player: lambda state: state.has(ItemNames.PlungerPower, player, 1) or state.has(ItemNames.ProgressiveJump, player, 2),
         # ConnectionNames.p002_p003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
         # ConnectionNames.p004_p005: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PlungerPower, player, 1),
         # ConnectionNames.p005_b001: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
@@ -60,8 +60,8 @@ upgrade_rules = [
         # ConnectionNames.p003_p004: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
 
         # Secret Lab
-        ConnectionNames.s001_s002: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.s002_s004: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.s001_s002: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
+        ConnectionNames.s002_s004: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
 
         # Basement
         ConnectionNames.b001_b002: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1),
@@ -69,13 +69,13 @@ upgrade_rules = [
 
         # Lighthouse
         ConnectionNames.l017_l018: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
-        ConnectionNames.l015_l017: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.l015_w020: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.l014_l013: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.l015_l017: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+        ConnectionNames.l015_w020: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
+        ConnectionNames.l014_l013: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
 
         # Wrecked Ships
-        ConnectionNames.w020_w021: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
-        ConnectionNames.w025_w026: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.w020_w021: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
+        ConnectionNames.w025_w026: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 2),
     },
     # locations
     {
@@ -87,17 +87,17 @@ upgrade_rules = [
 
             # Rooftops
             LocationNames.soapammo_r005: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
-            LocationNames.gumammo_r020: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.gumammo_r020: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
             # Balcony
 
             # Hedge
-            LocationNames.soapammo_e007: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.soapammo_e007: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
 
             # Fishing Village
-            LocationNames.gumammo_f003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
-            LocationNames.soapammo_f001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) or (state.has(ItemNames.SpringPower, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1))),
+            LocationNames.gumammo_f003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+            LocationNames.soapammo_f001: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2) or (state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1))),
             # Coast
-            LocationNames.gumammo_c003: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or (state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1)),
+            LocationNames.gumammo_c003: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or (state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 2)),
 
             # Passage
 
@@ -106,14 +106,14 @@ upgrade_rules = [
             # Basement
 
             # Graveyard
-            LocationNames.soapammo_g003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.soapammo_g003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
 
             # Lighthouse
-            LocationNames.soapammo_l019: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) and (state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
-            LocationNames.gumammo_l011: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and (state.has(ItemNames.PlungerPower, player, 1) or state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
+            LocationNames.soapammo_l019: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2) and (state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
+            LocationNames.gumammo_l011: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.PlungerPower, player, 1) or state.has(ItemNames.SoapPower, player, 1) or state.has(ItemNames.GumPower, player, 1)),
             LocationNames.pound_l017: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
             # Wrecked Ships
-            LocationNames.soapammo_w023: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.soapammo_w023: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
             LocationNames.gumpower_w028: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1)
         },
 
@@ -122,10 +122,10 @@ upgrade_rules = [
             # Hub
 
             # Manor
-            LocationNames.headless_token_i001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.headless_token_i001: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
 
             # Rooftops
-            LocationNames.witchdoctor_token_r020: lambda player: lambda state: state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.witchdoctor_token_r020: lambda player: lambda state: state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
 
             # Balcony
             LocationNames.creeper_token_o002: lambda player: lambda state: state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
@@ -136,47 +136,47 @@ upgrade_rules = [
 
             # Hedge
             LocationNames.wolfman_token_e001: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
-            LocationNames.witch_token_e003: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.witch_token_e003: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
 
             # Fishing Village
-            LocationNames.tarmonster_token_f004: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
-            LocationNames.ghostdiver_token_f007: lambda player: lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.tarmonster_token_f004: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.ghostdiver_token_f007: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
 
             # Coast
-            LocationNames.greenghost_token_c005: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.greenghost_token_c005: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
 
             # Passage
 
             # Secret Lab
-            LocationNames.robot_token_s002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1),
-            LocationNames.mastermind_token_s003: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.SpringPower, player, 1) and
+            LocationNames.robot_token_s002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 2),
+            LocationNames.mastermind_token_s003: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1) and
                                                                               (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)) ,
 
             # Basement
             # LocationNames.spacekook_token_b001: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
 
             # Lighthouse
-            LocationNames.seacreature_token_l014: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) or state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
-            LocationNames.caveman_token_l013: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+            LocationNames.seacreature_token_l014: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) or state.has(ItemNames.ProgressiveJump, player, 2),
+            LocationNames.caveman_token_l013: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
 
             # Wrecked Ships
-            LocationNames.moody_token_w022: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
+            LocationNames.moody_token_w022: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
             LocationNames.redbeard_token_w025: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
         },
 
         ItemNames.Keys:
             {
                 # Hub
-                LocationNames.hedgekey_h001: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+                LocationNames.hedgekey_h001: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
                 LocationNames.fishingkey_h001: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
 
                 # Graveyard
-                LocationNames.key_g007: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
+                LocationNames.key_g007: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
 
                 # Passage
-                LocationNames.key1_p003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.GumPower, player, 1),
-                LocationNames.key2_p003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.GumPower, player, 1),
-                LocationNames.key3_p003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.GumPower, player, 1),
+                LocationNames.key1_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1),
+                LocationNames.key2_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1),
+                LocationNames.key3_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1),
 
                 # Lighthouse
                 LocationNames.key1_l011: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.PoundPower, player, 1),
@@ -188,10 +188,10 @@ upgrade_rules = [
                 LocationNames.key3_r005: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
                 # Lighthouse
-                LocationNames.key1_w027: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
-                LocationNames.key2_w027: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
-                LocationNames.key3_w027: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1),
-                LocationNames.key4_w027: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.key1_w027: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.key2_w027: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.key3_w027: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
+                LocationNames.key4_w027: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
             },
 
         ItemNames.victory:
@@ -221,14 +221,14 @@ key_rules = [
         ConnectionNames.i005_i006: lambda player: lambda state: state.has(ItemNames.MYM_Key, player, 4),
 
         # Hedge
-        ConnectionNames.e002_e003: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.e002_e003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
 
         # Rooftop
         ConnectionNames.r005_o001: lambda player: lambda state: state.has(ItemNames.DLD_Key, player, 3),
 
         # Balcony
         ConnectionNames.o003_o004: lambda player: lambda state: state.has(ItemNames.Attic_Key, player, 3),
-        ConnectionNames.o005_o006: lambda player: lambda state: state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
+        ConnectionNames.o005_o006: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
         ConnectionNames.o006_o008: lambda player: lambda state: state.has(ItemNames.Knight_Key, player, 4),
         ConnectionNames.o008_o006: lambda player: lambda state: state.has(ItemNames.Knight_Key, player, 4),
 
@@ -239,11 +239,11 @@ key_rules = [
         ConnectionNames.c005_c006: lambda player: lambda state: state.has(ItemNames.Cavein_Key, player, 4) and state.has(ItemNames.PlungerPower, player, 1),
 
         # Passage
-        ConnectionNames.p002_s001: lambda player: lambda state: state.has(ItemNames.Creepy2_Key, player, 5) and state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+        ConnectionNames.p002_s001: lambda player: lambda state: state.has(ItemNames.Creepy2_Key, player, 5) and state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
         ConnectionNames.p002_p003: lambda player: lambda state: state.has(ItemNames.Creepy2_Key, player, 5) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
-        ConnectionNames.p003_p004: lambda player: lambda state: state.has(ItemNames.Creepy3_Key, player, 3) and state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.p003_p004: lambda player: lambda state: state.has(ItemNames.Creepy3_Key, player, 3) and state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
         ConnectionNames.p004_p005: lambda player: lambda state: state.has(ItemNames.Gusts1_Key, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PlungerPower, player, 1),
-        ConnectionNames.p005_b001: lambda player: lambda state: state.has(ItemNames.Gusts2_Key, player, 4) and state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1),
+        ConnectionNames.p005_b001: lambda player: lambda state: state.has(ItemNames.Gusts2_Key, player, 4) and state.has(ItemNames.ProgressiveJump, player, 2),
 
         # Graveyard
         ConnectionNames.g001_g002: lambda player: lambda state: state.has(ItemNames.Graveplot_Key, player, 3),
@@ -272,7 +272,7 @@ key_rules = [
         ItemNames.MonsterTokens:
             {
                 # Manor
-                LocationNames.geronimo_token_i005: lambda player: lambda state: state.has(ItemNames.MYM_Key, player, 4) or (state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1)),
+                LocationNames.geronimo_token_i005: lambda player: lambda state: state.has(ItemNames.MYM_Key, player, 4) or state.has(ItemNames.ProgressiveJump, player, 2),
 
                 # Balcony
                 LocationNames.blackknight_token_o001: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) or (state.has(ItemNames.Attic_Key, player, 3) and state.has(ItemNames.Knight_Key, player, 4)),
@@ -416,8 +416,8 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
                 state.can_reach(RegionNames.b003, "Region", player) and state.can_reach(RegionNames.f004, "Region", player) and
                 state.can_reach(RegionNames.e003, "Region", player) and state.can_reach(RegionNames.r020, "Region", player) and
                 state.can_reach(RegionNames.e001, "Region", player) and state.can_reach(RegionNames.g002, "Region", player) and
-                state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SoapPower, player, 1) and
-                state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.BootsPower, player, 1))
+                state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SoapPower, player, 1) and
+                state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1))
 
     if ItemNames.Keys not in allowed_loc_types:
         if ItemNames.MonsterTokens in allowed_loc_types:
@@ -426,16 +426,16 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
             add_rule(multiworld.get_location(LocationNames.warp_gate_i003, player), lambda state: state.has(ItemNames.HelmetPower, player, 1))
         add_rule(multiworld.get_location(LocationNames.umbrella_g009, player), lambda state: state.has(ItemNames.PoundPower, player, 1))
 
-        add_rule(multiworld.get_entrance(ConnectionNames.hub1_e001, player), lambda state: state.has(ItemNames.SpringPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.hub1_e001, player), lambda state: state.has(ItemNames.ProgressiveJump, player, 1))
         add_rule(multiworld.get_entrance(ConnectionNames.hub1_f001, player), lambda state: state.has(ItemNames.ShovelPower, player, 1))
         add_rule(multiworld.get_entrance(ConnectionNames.i003_i004, player), lambda state: state.has(ItemNames.HelmetPower, player, 1))
-        add_rule(multiworld.get_entrance(ConnectionNames.g007_g008, player), lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SpringPower))
+        add_rule(multiworld.get_entrance(ConnectionNames.g007_g008, player), lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1))
         add_rule(multiworld.get_entrance(ConnectionNames.c005_c006, player), lambda state: state.has(ItemNames.PlungerPower, player, 1))
         add_rule(multiworld.get_entrance(ConnectionNames.p002_p003, player), lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1))
-        add_rule(multiworld.get_entrance(ConnectionNames.p003_p004, player), lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.SpringPower, player, 1))
+        add_rule(multiworld.get_entrance(ConnectionNames.p003_p004, player), lambda state: state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1))
         add_rule(multiworld.get_entrance(ConnectionNames.p004_p005, player), lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PlungerPower, player, 1))
-        add_rule(multiworld.get_entrance(ConnectionNames.p005_b001, player), lambda state: state.has(ItemNames.UmbrellaPower, player, 1) and state.has(ItemNames.SpringPower, player, 1))
-        add_rule(multiworld.get_entrance(ConnectionNames.p002_s001, player), lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.SpringPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1)),
+        add_rule(multiworld.get_entrance(ConnectionNames.p005_b001, player), lambda state: state.has(ItemNames.ProgressiveJump, player, 2))
+        add_rule(multiworld.get_entrance(ConnectionNames.p002_s001, player), lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1)),
 
     if ItemNames.Warps not in allowed_loc_types:
         # Warps, but not accessible logically
