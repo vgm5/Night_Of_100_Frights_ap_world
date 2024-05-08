@@ -13,6 +13,3 @@ See the [setup guide](https://github.com/vgm5/Night_Of_100_Frights_ap_world/blob
 - Install py_dolphin_memory_engine and pythonnet via pip:
     - ``pip install dolphin-memory-engine``
     - ``pip install pythonnet``
-
-## Known Issues
--It is theoretically possible to run out of scooby snacks that are accessible, saving before using snack gates may be a good idea for now until this is accounted for in logic
