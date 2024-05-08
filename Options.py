@@ -15,7 +15,9 @@ class IncludeKeys(Toggle):
     default = 0
 
 class IncludeWarpGates(Toggle):
-    """Include Warp Gates as AP Locations/Items"""
+    """Include Warp Gates as AP Locations/Items
+    Additionally, to offset issues with snack gates, you will start with 400 Scooby Snacks
+    """
     display_name = "Include Warp Gates"
     default = 0
 
@@ -24,10 +26,6 @@ class IncludeWarpGates(Toggle):
 #    display_name = "Include Snacks"
 #    default = 0
 
-class ApplyQOL(Toggle):
-    """Applies various QOL fixes to the game"""
-    display_name = "Apply QOL Fixes"
-    default = 1
 
 class CompletionGoal(Choice):
     """
@@ -56,6 +54,5 @@ class NO100FOptions(PerGameCommonOptions):
     include_warpgates: IncludeWarpGates
     #  include_snacks: IncludeSnacks
     death_link: DeathLink
-    apply_qol_fixes: ApplyQOL
     completion_goal: CompletionGoal
     no_logic: NoLogic

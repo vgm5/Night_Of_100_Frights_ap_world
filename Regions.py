@@ -152,8 +152,8 @@ exit_table: Dict[str, List[str]] = {
     # Super Secret Lab
     RegionNames.s001: [ConnectionNames.s001_s002, ConnectionNames.s001_p002],
     RegionNames.s002: [ConnectionNames.s002_s003, ConnectionNames.s002_s004],
-    RegionNames.s003: [ConnectionNames.s003_s002, ConnectionNames.s003_s004],
-    RegionNames.s004: [ConnectionNames.s004_s003, ConnectionNames.s004_s005],
+    RegionNames.s003: [ConnectionNames.s003_s002],
+    RegionNames.s004: [ConnectionNames.s004_s002, ConnectionNames.s004_s005],
     RegionNames.s005: [ConnectionNames.s005_s004, ConnectionNames.s005_s006],
     RegionNames.s006: [ConnectionNames.s006_s005],
 

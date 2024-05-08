@@ -297,9 +297,8 @@ s002_s003 = f"{RegionNames.s002}->{RegionNames.s003}"
 s002_s004 = f"{RegionNames.s002}->{RegionNames.s004}"
 
 s003_s002 = f"{RegionNames.s003}->{RegionNames.s002}"
-s003_s004 = f"{RegionNames.s003}->{RegionNames.s004}"
 
-s004_s003 = f"{RegionNames.s004}->{RegionNames.s003}"
+s004_s002 = f"{RegionNames.s004}->{RegionNames.s002}"
 s004_s005 = f"{RegionNames.s004}->{RegionNames.s005}"
 
 s005_s004 = f"{RegionNames.s005}->{RegionNames.s004}"

@@ -2675,7 +2675,8 @@ class NO100FContext(CommonContext):
         self.use_keys = False
         self.use_warpgates = False
         self.use_snacks = False
-        self.use_qol = False
+        self.current_scene = None
+        self.previous_scene = None
         self.CitM1_key = 0
         self.hedge_key = 0
         self.fish_key = 0
@@ -2719,8 +2720,6 @@ class NO100FContext(CommonContext):
                 self.use_warpgates = True
             if 'include_snacks' in args['slot_data'] and args['slot_data']['include_snacks']:
                 self.use_snacks = True
-            if 'apply_qol_fixes' in args['slot_data'] and args['slot_data']['apply_qol_fixes']:
-                self.use_qol = True
             if 'completion_goal' in args['slot_data']:
                 self.completion_goal = args['slot_data']['completion_goal']
         if cmd == 'ReceivedItems':
@@ -2942,31 +2941,6 @@ def _set_counter_value(ctx: NO100FContext, ptr, count):
 def _set_pickup_active(ctx: NO100FContext, ptr, state):
     dolphin_memory_engine.write_byte(ptr + 0x7, state)
 
-
-async def apply_qol_fixes(ctx: NO100FContext):
-    scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
-    ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
-    if not _is_ptr_valid(ptr):
-        return
-    size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
-
-    if scene == b'W023':
-        fix_ptr = _find_obj_in_obj_table(0xD2C0B716, ptr, size)
-        if not fix_ptr == None:
-            if dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR) & 2 ** 11:
-                _set_trigger_state(ctx, fix_ptr, 0x1d)
-
-            else:
-                _set_trigger_state(ctx, fix_ptr, 0x1c)
-
-    if scene == b'B004':
-        fix_ptr = _find_obj_in_obj_table(0xc71019dc, ptr, size)
-        if not fix_ptr == None:
-            if dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR) & 2 ** 11:
-                _set_trigger_state(ctx, fix_ptr, 0x1d)
-
-            else:
-                _set_trigger_state(ctx, fix_ptr, 0x1c)
 
 async def apply_key_fixes(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
@@ -3669,6 +3643,24 @@ async def _check_warpgates_location(ctx: NO100FContext, locations_checked: set, 
         else:
             dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 0)
 
+async def enable_map_warping(ctx: NO100FContext):
+    scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
+    ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
+    if not _is_ptr_valid(ptr):
+        return
+    size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
+
+    fix_ptr = _find_obj_in_obj_table(0x8542BAD4, ptr, size)
+    if not fix_ptr == None:
+        for i in range(17):
+            _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
+
+    fix_ptr = _find_obj_in_obj_table(0x6887e731, ptr, size)
+    if not fix_ptr == None:
+        for i in range(7):
+            _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
+
+
 async def apply_level_fixes(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
     ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
@@ -3742,6 +3734,12 @@ async def apply_level_fixes(ctx: NO100FContext):
             upgrades -= (2 ** 7 + 2 ** 13)
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
+    if scene == b'h001':
+        if ctx.use_warpgates:
+            cur_snacks = dolphin_memory_engine.read_word(SNACK_COUNT_ADDR)
+            if cur_snacks == 0:
+                dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, 400)
+
     if scene == b'H001' or b'h001':
 
         # Clear Monster Gallery Snack Gate
@@ -3775,6 +3773,12 @@ async def apply_level_fixes(ctx: NO100FContext):
             fix_ptr = _find_obj_in_obj_table(0xcbd0A98D, ptr, size)  # Holly Collision and Visibility Disabled
             _set_platform_collision_state(ctx, fix_ptr, 0)
             _set_platform_state(ctx, fix_ptr, 0)
+
+    if scene == b"P003":
+        fix_ptr = _find_obj_in_obj_table(0x0A1EFB92, ptr, size)
+        if not fix_ptr == None:
+            if ctx.previous_scene == b'P004' and _check_platform_state(ctx, fix_ptr) == 1:
+                dolphin_memory_engine.write_word(HEALTH_ADDR, 5)    # Give scooby health to teleport out if entering creepy backwards
 
     # Credits Location
     if scene == b"S005":  #We are in the final room
@@ -3821,6 +3825,11 @@ async def apply_level_fixes(ctx: NO100FContext):
                     fix_ptr = _find_obj_in_obj_table(0x2854c118, ptr, size)
                     _set_platform_collision_state(ctx, fix_ptr, 0)
                     _set_platform_state(ctx, fix_ptr, 0)
+
+                if conditions_met and in_arena == 0x1c:
+                    fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
+                    _set_trigger_state(ctx, fix_ptr, 0x1e)
+
 
 
         if not ctx.finished_game:  # We have not finished
@@ -3989,6 +3998,10 @@ async def dolphin_sync_task(ctx: NO100FContext):
                         continue
                     ctx.current_scene_key = f"NO100F_current_scene_T{ctx.team}_P{ctx.slot}"
                     ctx.set_notify(ctx.current_scene_key)
+                    if not _check_cur_scene(ctx, ctx.current_scene):
+                        scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 4)
+                        ctx.previous_scene = ctx.current_scene
+                        ctx.current_scene = scene
                     if "DeathLink" in ctx.tags:
                         await check_death(ctx)
                     await give_items(ctx)
@@ -3996,11 +4009,10 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     await apply_level_fixes(ctx)
                     if not ctx.use_warpgates:
                         await save_warp_gates(ctx)
-                    if ctx.use_qol:
-                        await apply_qol_fixes(ctx)
                     if ctx.use_keys:
                         await apply_key_fixes(ctx)
                     await force_death(ctx)
+                    await enable_map_warping(ctx)
                     if not (_check_cur_scene(ctx, b'O008') or _check_cur_scene(ctx, b'S005') or _check_cur_scene(ctx,
                                                                                                                  b'G009') or _check_cur_scene(
                             ctx, b'W028')):

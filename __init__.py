@@ -124,7 +124,6 @@ class NightOf100FrightsWorld(World):
             "include_keys": self.options.include_keys.value,
             "include_warpgates": self.options.include_warpgates.value,
             #"include_snacks": self.options.include_snacks.value,
-            "apply_qol_fixes": self.options.apply_qol_fixes.value,
             "completion_goal": self.options.completion_goal.value,
             "no_logic": self.options.no_logic.value,
         }
