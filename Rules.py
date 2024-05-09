@@ -26,6 +26,7 @@ upgrade_rules = [
 
         # Balcony
         ConnectionNames.o001_o008: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
+        ConnectionNames.o002_o003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
         ConnectionNames.o001_r005: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.ProgressiveJump, player, 1),
 
         # Hedge
@@ -158,7 +159,7 @@ upgrade_rules = [
             # LocationNames.spacekook_token_b001: lambda player: lambda state: state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
 
             # Lighthouse
-            LocationNames.seacreature_token_l014: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) or state.has(ItemNames.ProgressiveJump, player, 2),
+            LocationNames.seacreature_token_l014: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1) or state.has(ItemNames.ProgressiveJump, player, 2),
             LocationNames.caveman_token_l013: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
 
             # Wrecked Ships
@@ -184,7 +185,10 @@ upgrade_rules = [
                 LocationNames.key2_p005: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
                 LocationNames.key3_p005: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
                 LocationNames.key4_p005: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
-                
+
+                # Balcony
+                LocationNames.key1_o003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.key2_o003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
                 # Lighthouse
                 LocationNames.key1_l011: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) or state.has(ItemNames.PoundPower, player, 1),
