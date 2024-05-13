@@ -119,6 +119,10 @@ item_table = {
     ItemNames.Grave1_Warp      : ItemData(base_id + 81, ItemClassification.progression),
     ItemNames.MG_Warp          : ItemData(base_id + 82, ItemClassification.progression),
 
+    #Snacks
+    ItemNames.Snack            : ItemData(base_id + 83, ItemClassification.progression),
+    ItemNames.SnackBox         : ItemData(base_id + 84, ItemClassification.progression),
+
     # events
     ItemNames.victory: ItemData(None, ItemClassification.progression)
 }

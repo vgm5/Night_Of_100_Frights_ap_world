@@ -150,7 +150,7 @@ class Warpgates(Enum):
 
 
 #Snacks are notated nearly exactly as they are in the game, but Space characters are replaced with "__"
-#class Snacks(Enum):
+class Snacks(Enum):
 #    BOX__O__SNACKS__UNDER__SWINGER   =
 #    BOX__O__SNACKS__UNDER__SWINGER0  =
 #    BOX__O__SNACKS__UNDER__SWINGER00 =
@@ -212,8 +212,8 @@ class Warpgates(Enum):
 #    CRATE_SNACK09                    =
 #    CRATE_SSBOX07                    =
 #    DIG__2__SNACKBOX                 =
-#    DRYER__SNACKBOX__1               =
-#    DRYER__SNACKBOX__2               =
+    DRYER__SNACKBOX__1               = 0x12E62152
+    DRYER__SNACKBOX__2               = 0x12E62153
 #    EX__CLUE__SNACK__BOX__1          =
 #    EX__CLUE__SNACK__BOX__2          =
 #    EX__CLUE__SNACK__BOX__3          =
@@ -221,22 +221,22 @@ class Warpgates(Enum):
 #    EX__CLUE__SNACK__BOX2            =
 #    EX__CLUE__SNACK__BOX3            =
 #    EX__CLUE__SNACK__BOX5            =
-#    EX__CLUE__SNACKBOX__1            =
-#    EX__CLUE__SNACKBOX__2            =
-#    EX__CLUE__SNACKBOX__3            =
+    EX__CLUE__SNACKBOX__1            = 0x2E3F1530
+    EX__CLUE__SNACKBOX__2            = 0x2E3F1531
+    EX__CLUE__SNACKBOX__3            = 0x2E3F1532
 #    EX__CLUE__SNACKBOX__4            =
 #    EX__CLUE__SNACKBOX1              =
-#    EX__CLUE__SNACKBOX2              =
-#    EX__CLUE__SNACKBOX3              =
-#    EX__CLUE__SNACKBOX30             =
-#    EX__CLUE__SNACKBOX300            =
-#    EX__CLUE__SNACKBOX3000           =
-#    EX__CLUE__SNACKBOX4              =
-#    EX__CLUE__SNACKBOX5              =
+    EX__CLUE__SNACKBOX2              = 0x1BB638E7
+    EX__CLUE__SNACKBOX3              = 0x1BB638E8
+    EX__CLUE__SNACKBOX30             = 0x2E3F1EE8
+    EX__CLUE__SNACKBOX300            = 0xAA4CD0E8
+    EX__CLUE__SNACKBOX3000           = 0x254EE6E8
+    EX__CLUE__SNACKBOX4              = 0x1BB638E9
+    EX__CLUE__SNACKBOX5              = 0x1BB638EA
 #    EXCLUE__SNACKBOX__1              =
 #    HIGH__SNACK__BOX                 =
-#    HIGH__SNACKBOX__1                =
-#    HIGH__SNACKBOX__10               =
+    HIGH__SNACKBOX__1                = 0xA542AA10
+    HIGH__SNACKBOX__10               = 0x911D0660
 #    LASTFLOAT_SS02                   =
 #    LASTFLOAT_SS03                   =
 #    LASTFLOAT_SS04                   =
@@ -1184,9 +1184,9 @@ class Warpgates(Enum):
 #    SNACK09304                       =
 #    SNACK09305                       =
 #    SNACK1                           =
-#    SNACK10                          =
+    SNACK10                          = 0xB640DB6D
 #    SNACK11                          =
-#    SNACK110                         =
+    SNACK110                         = 0x4330497A
 #    SNACK1101                        =
 #    SNACK110101                      =
 #    SNACK110103                      =
@@ -1198,38 +1198,38 @@ class Warpgates(Enum):
 #    SNACK1107                        =
 #    SNACK1109                        =
 #    SNACK111                         =
-#    SNACK112                         =
-#    SNACK1120                        =
+    SNACK112                         = 0x4330497C
+    SNACK1120                        = 0x61B59AA4
 #    SNACK1121                        =
-#    SNACK11210                       =
+    SNACK11210                       = 0xFFEE229F
 #    SNACK11211                       =
-#    SNACK1122                        =
+    SNACK1122                        = 0x61B59AA6
 #    SNACK1123                        =
-#    SNACK1124                        =
+    SNACK1124                        = 0x61B59AA8
 #    SNACK1125                        =
-#    SNACK1126                        =
+    SNACK1126                        = 0x61B59AAA
 #    SNACK1127                        =
-#    SNACK1128                        =
+    SNACK1128                        = 0x61B59AAC
 #    SNACK1129                        =
 #    SNACK113                         =
-#    SNACK114                         =
+    SNACK114                         = 0x4330497E
 #    SNACK115                         =
-#    SNACK116                         =
+    SNACK116                         = 0x43304980
 #    SNACK117                         =
-#    SNACK118                         =
+    SNACK118                         = 0x43304982
 #    SNACK119                         =
-#    SNACK12                          =
+    SNACK12                          = 0xB640DB6F
 #    SNACK120                         =
-#    SNACK1200                        =
-#    SNACK12010                       =
-#    SNACK12012                       =
-#    SNACK12014                       =
-#    SNACK12016                       =
-#    SNACK12018                       =
-#    SNACK1202                        =
-#    SNACK1204                        =
-#    SNACK1206                        =
-#    SNACK1208                        =
+    SNACK1200                        = 0x615BDCA7
+    SNACK12010                       = 0x000FEA28
+    SNACK12012                       = 0x000FEA2A
+    SNACK12014                       = 0x000FEA2C
+    SNACK12016                       = 0x000FEA2E
+    SNACK12018                       = 0x000FEA30
+    SNACK1202                        = 0x61B5DCA9
+    SNACK1204                        = 0x61B5DCAB
+    SNACK1206                        = 0x61B5DCAD
+    SNACK1208                        = 0x61B5DCAF
 #    SNACK121                         =
 #    SNACK122                         =
 #    SNACK123                         =
@@ -1250,15 +1250,15 @@ class Warpgates(Enum):
 #    SNACK1300                        =
 #    SNACK132                         =
 #    SNACK133                         =
-#    SNACK14                          =
+    SNACK14                          = 0xB640DB71
 #    SNACK140                         =
 #    SNACK141                         =
 #    SNACK142                         =
 #    SNACK143                         =
 #    SNACK15                          =
-#    SNACK16                          =
+    SNACK16                          = 0xB640DB73
 #    SNACK17                          =
-#    SNACK18                          =
+    SNACK18                          = 0xB640DB75
 #    SNACK19                          =
 #    SNACK190                         =
 #    SNACK191                         =
@@ -1404,17 +1404,17 @@ class Warpgates(Enum):
 #    SNACKBOX1                        =
 #    SNACKBOX10                       =
 #    SNACKBOX11                       =
-#    SNACKBOX1MILLION                 =
-#    SNACKBOX1MILLION1                =
-#    SNACKBOX2                        =
-#    SNACKBOX3                        =
+    SNACKBOX1MILLION                 = 0xCF7E693C
+    SNACKBOX1MILLION1                = 0x2DAFD9E5
+    SNACKBOX2                        = 0x6404B071
+    SNACKBOX3                        = 0x6404B072
 #    SNACKBOX30                       =
-#    SNACKBOX5                        =
+    SNACKBOX5                        = 0x6404B074
 #    SNACKS__040                      =
 #    SNACKS__041                      =
 #    SNACKS__042                      =
 #    Snacks.txt                       =
-#    SS__999                          =
+    SS__999                          = 0x412F5051
 #    SS01                             =
 #    SS010                            =
 #    SS0100                           =
@@ -1569,8 +1569,8 @@ class Warpgates(Enum):
 #    SS093                            =
 #    SS09A                            =
 #    SS09B                            =
-#    SS1                              =
-#    SS10                             =
+    SS1                              = 0x0015E695
+    SS10                             = 0x0B34FE6F
 #    SS100                            =
 #    SS1000                           =
 #    SS1001                           =
@@ -1649,7 +1649,7 @@ class Warpgates(Enum):
 #    SS1090                           =
 #    SS1091                           =
 #    SS1092                           =
-#    SS11                             =
+    SS11                             = 0x0B34FE70
 #    SS110                            =
 #    SS1100                           =
 #    SS11000                          =
@@ -1699,7 +1699,7 @@ class Warpgates(Enum):
 #    SS117                            =
 #    SS119                            =
 #    SS11A                            =
-#    SS12                             =
+    SS12                             = 0x0B34FE71
 #    SS120                            =
 #    SS121                            =
 #    SS1210                           =
@@ -1788,10 +1788,10 @@ class Warpgates(Enum):
 #    SS1891                           =
 #    SS1893                           =
 #    SS1895                           =
-#    SS19                             =
-#    SS190                            =
-#    SS191                            =
-#    SS192                            =
+    SS19                             = 0x0B34FE78
+    SS190                            = 0xBC1E3798
+    SS191                            = 0xBC1E3799
+    SS192                            = 0xBC1E379A
 #    SS1920                           =
 #    SS1921                           =
 #    SS193                            =
@@ -1804,10 +1804,10 @@ class Warpgates(Enum):
 #    SS1963                           =
 #    SS1964                           =
 #    SS1965                           =
-#    SS1972                           =
-#    SS1974                           =
-#    SS2                              =
-#    SS20                             =
+    SS1972                           = 0x4376768F
+    SS1974                           = 0x43767691
+    SS2                              = 0x0015e696
+    SS20                             = 0x0B34FEF2
 #    SS200                            =
 #    SS2000                           =
 #    SS20000                          =
@@ -1826,7 +1826,7 @@ class Warpgates(Enum):
 #    SS207                            =
 #    SS208                            =
 #    SS209                            =
-#    SS21                             =
+    SS21                             = 0x0B34FEF3
 #    SS210                            =
 #    SS211                            =
 #    SS212                            =
@@ -1848,7 +1848,7 @@ class Warpgates(Enum):
 #    SS214                            =
 #    SS215                            =
 #    SS216                            =
-#    SS22                             =
+    SS22                             = 0x0B34FEF4
 #    SS220                            =
 #    SS221                            =
 #    SS222                            =
@@ -1865,15 +1865,15 @@ class Warpgates(Enum):
 #    SS22218                          =
 #    SS223                            =
 #    SS224                            =
-#    SS23                             =
+    SS23                             = 0x0B34FEF5
 #    SS230                            =
 #    SS231                            =
 #    SS233                            =
 #    SS235                            =
 #    SS237                            =
-#    SS24                             =
+    SS24                             = 0x0B34FEF6
 #    SS240                            =
-#    SS2400                           =
+    SS2400                           = 0x43977166
 #    SS241                            =
 #    SS243                            =
 #    SS245                            =
@@ -1910,13 +1910,13 @@ class Warpgates(Enum):
 #    SS28                             =
 #    SS280                            =
 #    SS281                            =
-#    SS29                             =
+    SS29                             = 0x0B34FEFB
 #    SS29300                          =
 #    SS293020                         =
 #    SS2930210                        =
 #    SS29302105                       =
-#    SS3                              =
-#    SS30                             =
+    SS3                              = 0x0015e697
+    SS30                             = 0x0B34FF75
 #    SS300                            =
 #    SS301                            =
 #    SS3010                           =
@@ -1933,8 +1933,8 @@ class Warpgates(Enum):
 #    SS3034                           =
 #    SS304                            =
 #    SS305                            =
-#    SS31                             =
-#    SS32                             =
+    SS31                             = 0x0B34FF76
+    SS32                             = 0x0B34FF77
 #    SS33                             =
 #    SS34                             =
 #    SS35                             =
@@ -1942,7 +1942,7 @@ class Warpgates(Enum):
 #    SS351                            =
 #    SS352                            =
 #    SS353                            =
-#    SS36                             =
+    SS36                             = 0x0B34FF7B
 #    SS360                            =
 #    SS361                            =
 #    SS362                            =
@@ -1964,7 +1964,7 @@ class Warpgates(Enum):
 #    SS386                            =
 #    SS387                            =
 #    SS39                             =
-#    SS4                              =
+    SS4                              = 0x0015e698
 #    SS40                             =
 #    SS400                            =
 #    SS401                            =
@@ -1996,7 +1996,7 @@ class Warpgates(Enum):
 #    SS409                            =
 #    SS41                             =
 #    SS42                             =
-#    SS43                             =
+    SS43                             = 0x0B34FFFB
 #    SS430                            =
 #    SS431                            =
 #    SS4310                           =
@@ -2019,8 +2019,8 @@ class Warpgates(Enum):
 #    SS483                            =
 #    SS484                            =
 #    SS49                             =
-#    SS5                              =
-#    SS50                             =
+    SS5                              = 0x0015e699
+    SS50                             = 0x0B35007B
 #    SS500                            =
 #    SS501                            =
 #    SS502                            =
@@ -2041,13 +2041,13 @@ class Warpgates(Enum):
 #    SS506                            =
 #    SS508                            =
 #    SS509                            =
-#    SS51                             =
-#    SS511                            =
-#    SS512                            =
-#    SS513                            =
-#    SS52                             =
-#    SS53                             =
-#    SS54                             =
+    SS51                             = 0x0B35007C
+    SS511                            = 0xBC1F3FA5
+    SS512                            = 0xBC1F3FA6
+    SS513                            = 0xBC1F3FA7
+    SS52                             = 0x0B35007D
+    SS53                             = 0x0B35007E
+    SS54                             = 0x0B35007F
 #    SS541                            =
 #    SS543_COUNT40                    =
 #    SS55                             =
@@ -2068,11 +2068,11 @@ class Warpgates(Enum):
 #    SS57                             =
 #    SS58                             =
 #    SS59                             =
-#    SS6                              =
-#    SS60                             =
-#    SS600                            =
+    SS6                              = 0x0015e69A
+    SS60                             = 0x0B3500FE
+    SS600                            = 0xBC1F822A
 #    SS6000                           =
-#    SS601                            =
+    SS601                            = 0xBC1F822B
 #    SS602                            =
 #    SS6020                           =
 #    SS60200                          =
@@ -2094,8 +2094,8 @@ class Warpgates(Enum):
 #    SS690                            =
 #    SS691                            =
 #    SS692                            =
-#    SS7                              =
-#    SS70                             =
+    SS7                              = 0x0015e69B
+    SS70                             = 0x0B350181
 #    SS700                            =
 #    SS7000                           =
 #    SS701                            =
@@ -2109,15 +2109,15 @@ class Warpgates(Enum):
 #    SS75                             =
 #    SS76                             =
 #    SS77                             =
-#    SS7741                           =
-#    SS77411                          =
-#    SS77412                          =
-#    SS77413                          =
-#    SS774130                         =
-#    SS77414                          =
+    SS7741                           = 0x4443C095
+    SS77411                          = 0xEEAB8C70
+    SS77412                          = 0xEEAB8C71
+    SS77413                          = 0xEEAB8C72
+    SS774130                         = 0x21C8DE86
+    SS77414                          = 0xEEAB8C73
 #    SS78                             =
 #    SS79                             =
-#    SS8                              =
+    SS8                              = 0x0015e69C
 #    SS80                             =
 #    SS800                            =
 #    SS801                            =
@@ -2130,14 +2130,14 @@ class Warpgates(Enum):
 #    SS83                             =
 #    SS84                             =
 #    SS85                             =
-#    SS850                            =
-#    SS852                            =
-#    SS854                            =
+    SS850                            = 0xBC200ACB
+    SS852                            = 0xBC200ACD
+    SS854                            = 0xBC200ACF
 #    SS86                             =
 #    SS87                             =
 #    SS88                             =
 #    SS89                             =
-#    SS9                              =
+    SS9                              = 0x0015e69D
 #    SS90                             =
 #    SS91                             =
 #    SS910                            =
@@ -2548,6 +2548,133 @@ WARPGATE_PICKUP_IDS = {
     (base_id + 300 + 23): (b'L015', Warpgates.WARPPOINT.value),
     (base_id + 300 + 24): (b'G001', Warpgates.WARPPOINT.value),
     (base_id + 300 + 25): (b'H003', Warpgates.WARPGATE_POWERUP.value),
+}
+
+SNACK_PICKUP_IDS = {
+    (base_id + 400 + 0): (b'B001', Snacks.SS1.value),
+    (base_id + 400 + 1): (b'B001', Snacks.SS2.value),
+    (base_id + 400 + 2): (b'B001', Snacks.SS3.value),
+    (base_id + 400 + 3): (b'B001', Snacks.SS4.value),
+    (base_id + 400 + 4): (b'B001', Snacks.SS5.value),
+    (base_id + 400 + 5): (b'B001', Snacks.SS6.value),
+    (base_id + 400 + 6): (b'B001', Snacks.SS7.value),
+    (base_id + 400 + 7): (b'B001', Snacks.SS8.value),
+    (base_id + 400 + 8): (b'B001', Snacks.SS9.value),
+    (base_id + 400 + 9): (b'B001', Snacks.SS10.value),
+    (base_id + 400 + 10): (b'B001', Snacks.SS11.value),
+    (base_id + 400 + 11): (b'B001', Snacks.SS12.value),
+    (base_id + 400 + 12): (b'B001', Snacks.SS19.value),
+    (base_id + 400 + 13): (b'B001', Snacks.SS190.value),
+    (base_id + 400 + 14): (b'B001', Snacks.SS191.value),
+    (base_id + 400 + 15): (b'B001', Snacks.EX__CLUE__SNACKBOX4.value),
+    (base_id + 400 + 16): (b'B001', Snacks.HIGH__SNACKBOX__1.value),
+    (base_id + 400 + 17): (b'B001', Snacks.HIGH__SNACKBOX__10.value),
+    (base_id + 400 + 18): (b'B001', Snacks.EX__CLUE__SNACKBOX2.value),
+    (base_id + 400 + 19): (b'B001', Snacks.EX__CLUE__SNACKBOX3.value),         # Accessed from B003
+    (base_id + 400 + 20): (b'B001', Snacks.EX__CLUE__SNACKBOX30.value),
+    (base_id + 400 + 21): (b'B001', Snacks.EX__CLUE__SNACKBOX300.value),
+    (base_id + 400 + 22): (b'B001', Snacks.EX__CLUE__SNACKBOX3000.value),
+
+    (base_id + 400 + 23): (b'B002', Snacks.SNACK10.value),
+    (base_id + 400 + 24): (b'B002', Snacks.SNACK1200.value),
+    (base_id + 400 + 25): (b'B002', Snacks.SNACK12.value),
+    (base_id + 400 + 26): (b'B002', Snacks.SNACK1202.value),
+    (base_id + 400 + 27): (b'B002', Snacks.SNACK14.value),
+    (base_id + 400 + 28): (b'B002', Snacks.SNACK1204.value),
+    (base_id + 400 + 29): (b'B002', Snacks.SNACK16.value),
+    (base_id + 400 + 30): (b'B002', Snacks.SNACK1206.value),
+    (base_id + 400 + 31): (b'B002', Snacks.SNACK18.value),
+    (base_id + 400 + 32): (b'B002', Snacks.SNACK1208.value),
+    (base_id + 400 + 33): (b'B002', Snacks.SNACK110.value),
+    (base_id + 400 + 34): (b'B002', Snacks.SNACK12010.value),
+    (base_id + 400 + 35): (b'B002', Snacks.SNACK112.value),
+    (base_id + 400 + 36): (b'B002', Snacks.SNACK12012.value),
+    (base_id + 400 + 37): (b'B002', Snacks.SNACK114.value),
+    (base_id + 400 + 38): (b'B002', Snacks.SNACK12014.value),
+    (base_id + 400 + 39): (b'B002', Snacks.SNACK116.value),
+    (base_id + 400 + 40): (b'B002', Snacks.SNACK12016.value),
+    (base_id + 400 + 41): (b'B002', Snacks.SNACK118.value),
+    (base_id + 400 + 42): (b'B002', Snacks.SNACK12018.value),
+    (base_id + 400 + 43): (b'B002', Snacks.SS4.value),                      # Snacks in the air
+    (base_id + 400 + 44): (b'B002', Snacks.EX__CLUE__SNACKBOX__2.value),
+    (base_id + 400 + 45): (b'B002', Snacks.SS601.value),
+    (base_id + 400 + 46): (b'B002', Snacks.SS60.value),
+    (base_id + 400 + 47): (b'B002', Snacks.SS6.value),
+    (base_id + 400 + 48): (b'B002', Snacks.SS600.value),
+    (base_id + 400 + 49): (b'B002', Snacks.EX__CLUE__SNACKBOX__3.value),
+    (base_id + 400 + 50): (b'B002', Snacks.EX__CLUE__SNACKBOX__1.value),
+
+    (base_id + 400 + 51): (b'B003', Snacks.SS513.value),
+    (base_id + 400 + 52): (b'B003', Snacks.SS512.value),
+    (base_id + 400 + 53): (b'B003', Snacks.SS511.value),
+    (base_id + 400 + 54): (b'B003', Snacks.SS5.value),
+    (base_id + 400 + 55): (b'B003', Snacks.SS50.value),
+    (base_id + 400 + 56): (b'B003', Snacks.SS51.value),
+    (base_id + 400 + 57): (b'B003', Snacks.SS52.value),
+    (base_id + 400 + 58): (b'B003', Snacks.SS53.value),
+    (base_id + 400 + 59): (b'B003', Snacks.SS54.value),
+    (base_id + 400 + 60): (b'B003', Snacks.SNACKBOX1MILLION1.value),
+    (base_id + 400 + 61): (b'B003', Snacks.SS7741.value),
+    (base_id + 400 + 62): (b'B003', Snacks.SS774130.value),
+    (base_id + 400 + 63): (b'B003', Snacks.SS77411.value),
+    (base_id + 400 + 64): (b'B003', Snacks.SS77412.value),
+    (base_id + 400 + 65): (b'B003', Snacks.SS77413.value),
+    (base_id + 400 + 66): (b'B003', Snacks.SS77414.value),
+    (base_id + 400 + 67): (b'B003', Snacks.SS850.value),
+    (base_id + 400 + 68): (b'B003', Snacks.SS852.value),
+    (base_id + 400 + 69): (b'B003', Snacks.SS854.value),
+    (base_id + 400 + 70): (b'B003', Snacks.SS43.value),
+    (base_id + 400 + 71): (b'B003', Snacks.SS36.value),
+    (base_id + 400 + 72): (b'B003', Snacks.SS32.value),
+    (base_id + 400 + 73): (b'B003', Snacks.SS31.value),
+    (base_id + 400 + 74): (b'B003', Snacks.SS30.value),
+    (base_id + 400 + 75): (b'B003', Snacks.SS29.value),
+    (base_id + 400 + 76): (b'B003', Snacks.SNACKBOX1MILLION.value),
+    (base_id + 400 + 77): (b'B003', Snacks.SS__999.value),                  # Helmet Needed
+    (base_id + 400 + 78): (b'B003', Snacks.EX__CLUE__SNACKBOX3.value),
+    (base_id + 400 + 79): (b'B003', Snacks.SS190.value),
+    (base_id + 400 + 80): (b'B003', Snacks.SS191.value),
+    (base_id + 400 + 81): (b'B003', Snacks.SS192.value),
+    (base_id + 400 + 82): (b'B003', Snacks.EX__CLUE__SNACKBOX5.value),
+    (base_id + 400 + 83): (b'B003', Snacks.SS1972.value),
+    (base_id + 400 + 84): (b'B003', Snacks.SS1974.value),
+    (base_id + 400 + 85): (b'B003', Snacks.EX__CLUE__SNACKBOX4.value),
+
+    (base_id + 400 + 86): (b'B004', Snacks.SS6.value),
+    (base_id + 400 + 87): (b'B004', Snacks.SS7.value),
+    (base_id + 400 + 88): (b'B004', Snacks.SS70.value),
+    (base_id + 400 + 89): (b'B004', Snacks.SS24.value),
+    (base_id + 400 + 90): (b'B004', Snacks.SNACKBOX3.value),
+    (base_id + 400 + 91): (b'B004', Snacks.SS5.value),
+    (base_id + 400 + 92): (b'B004', Snacks.SS1.value),
+    (base_id + 400 + 93): (b'B004', Snacks.SS8.value),
+    (base_id + 400 + 94): (b'B004', Snacks.SS2400.value),
+    (base_id + 400 + 95): (b'B004', Snacks.SS4.value),
+    (base_id + 400 + 96): (b'B004', Snacks.SS2.value),
+    (base_id + 400 + 97): (b'B004', Snacks.SS3.value),
+    (base_id + 400 + 98): (b'B004', Snacks.SNACKBOX5.value),
+    (base_id + 400 + 99): (b'B004', Snacks.SS6.value),
+    (base_id + 400 + 100): (b'B004', Snacks.SS9.value),
+    (base_id + 400 + 101): (b'B004', Snacks.SS10.value),
+    (base_id + 400 + 102): (b'B004', Snacks.SNACK10.value),  #Soap Area
+    (base_id + 400 + 103): (b'B004', Snacks.SNACK12.value),
+    (base_id + 400 + 104): (b'B004', Snacks.SNACK14.value),
+    (base_id + 400 + 105): (b'B004', Snacks.SNACK16.value),
+    (base_id + 400 + 106): (b'B004', Snacks.SNACK18.value),
+    (base_id + 400 + 107): (b'B004', Snacks.SNACK110.value),
+    (base_id + 400 + 108): (b'B004', Snacks.SNACK1120.value),
+    (base_id + 400 + 109): (b'B004', Snacks.SNACK1122.value),
+    (base_id + 400 + 110): (b'B004', Snacks.SNACK1124.value),
+    (base_id + 400 + 111): (b'B004', Snacks.SNACK1126.value),
+    (base_id + 400 + 112): (b'B004', Snacks.SNACK1128.value),
+    (base_id + 400 + 113): (b'B004', Snacks.SNACK11210.value),
+    (base_id + 400 + 114): (b'B004', Snacks.SS20.value),
+    (base_id + 400 + 115): (b'B004', Snacks.SS21.value),
+    (base_id + 400 + 116): (b'B004', Snacks.SS22.value),
+    (base_id + 400 + 117): (b'B004', Snacks.SS23.value),
+    (base_id + 400 + 118): (b'B004', Snacks.SNACKBOX2.value),
+    (base_id + 400 + 119): (b'B004', Snacks.DRYER__SNACKBOX__1.value),
+    (base_id + 400 + 120): (b'B004', Snacks.DRYER__SNACKBOX__2.value),
 }
 
 valid_scenes = [

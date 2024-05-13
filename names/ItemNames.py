@@ -100,4 +100,10 @@ MG_Warp = "Monster Gallery Warp"
 
 Warps = "Warps"
 
+#Snacks
+Snack = "Scooby Snack"
+SnackBox = "Scooby Snack Box"
+
+Snacks = "Snacks"
+
 victory = "Victory"
