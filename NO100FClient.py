@@ -3660,12 +3660,12 @@ async def enable_map_warping(ctx: NO100FContext):
     if not fix_ptr == None:
         for i in range(7):
             _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
-    if ctx.use_warpgates:
-        saved_warps = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
-        if not saved_warps & 2**8:  # Haven't found Crypt Warp
-            dolphin_memory_engine.write_word(0x801B7F54, 1)
-            fix_ptr = _find_obj_in_obj_table(0x78A1C3B8, ptr, size)
-            _set_trigger_state(ctx, fix_ptr, 0x1c)
+        if ctx.use_warpgates:
+            saved_warps = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
+            if not saved_warps & 2**8:  # Haven't found Crypt Warp
+                dolphin_memory_engine.write_word(0x801B7F54, 1)
+                fix_ptr = _find_obj_in_obj_table(0x78A1C3B8, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1c)
 
 
 async def apply_level_fixes(ctx: NO100FContext):
