@@ -83,7 +83,7 @@ exit_table: Dict[str, List[str]] = {
 
     # Fishing Village
     RegionNames.f001: [ConnectionNames.f001_f003, ConnectionNames.f001_hub1],
-    RegionNames.f003: [ConnectionNames.f003_f001, ConnectionNames.f003_f004, ConnectionNames.f003_f009,
+    RegionNames.f003: [ConnectionNames.f003_f004, ConnectionNames.f003_f009,
                        ConnectionNames.f003_p001],
     RegionNames.f004: [ConnectionNames.f004_f003, ConnectionNames.f004_f005],
     RegionNames.f005: [ConnectionNames.f005_f004, ConnectionNames.f005_f006],
