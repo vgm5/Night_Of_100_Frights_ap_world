@@ -154,18 +154,18 @@ class Snacks(Enum):
 #    BOX__O__SNACKS__UNDER__SWINGER   =
 #    BOX__O__SNACKS__UNDER__SWINGER0  =
 #    BOX__O__SNACKS__UNDER__SWINGER00 =
-#    BOX__OF__SNACKS__01              =
-#    BOX__OF__SNACKS__02              =
-#    BOX__OF__SNACKS__03              =
-#    BOX__OF__SNACKS__04              =
-#    BOX__OF__SNACKS__05              =
-#    BOX__OF__SNACKS__06              =
-#    BOX__OF__SNACKS__07              =
-#    BOX__OF__SNACKS__1               =
-#    BOX__OF__SNACKS__2               =
-#    BOX__OF__SNACKS__3               =
-#    BOX__OF__SNACKS__4               =
-#    BOX__OF__SNACKS__5               =
+    BOX__OF__SNACKS__01              = 0x19A254BC
+    BOX__OF__SNACKS__02              = 0x19A254BD
+    BOX__OF__SNACKS__03              = 0x19A254BE
+    BOX__OF__SNACKS__04              = 0x19A254BF
+    BOX__OF__SNACKS__05              = 0x19A254C0
+    BOX__OF__SNACKS__06              = 0x19A254C1
+    BOX__OF__SNACKS__07              = 0x19A254C2
+    BOX__OF__SNACKS__1               = 0xAE1E8D5A
+    BOX__OF__SNACKS__2               = 0xAE1E8D5B
+    BOX__OF__SNACKS__3               = 0xAE1E8D5C
+    BOX__OF__SNACKS__4               = 0xAE1E8D5D
+    BOX__OF__SNACKS__5               = 0xAE1E8D5E
 #    BOX__OVER__WITCH                 =
 #    BOX10__SNACKBOX                  =
 #    BOX11__SNACKBOX                  =
@@ -190,12 +190,12 @@ class Snacks(Enum):
 #    CRATE__1__PRIZE                  =
 #    CRATE__2__PRIZE                  =
 #    CRATE__3__PRIZE                  =
-#    CRATE__PRIZE__1                  =
-#    CRATE__PRIZE__10                 =
-#    CRATE__SNACKBOX__1               =
-#    CRATE__SNACKBOX__2               =
-#    CRATE__SNACKBOX__3               =
-#    CRATE__SNACKBOX__4               =
+    CRATE__PRIZE__1                  = 0x29CED7DE
+    CRATE__PRIZE__10                 = 0x64D876CA
+    CRATE__SNACKBOX__1               = 0x90B3757E
+    CRATE__SNACKBOX__2               = 0x90B3757F
+    CRATE__SNACKBOX__3               = 0x90B37580
+    CRATE__SNACKBOX__4               = 0x90B37581
 #    CRATE02__SNACKBOX                =
 #    CRATE03__SNACKBOX                =
 #    CRATE04__SNACKBOX                =
@@ -630,79 +630,79 @@ class Snacks(Enum):
 #    SNACK__0010                      =
 #    SNACK__0012                      =
 #    SNACK__0013                      =
-#    SNACK__01                        =
-#    SNACK__010                       =
-#    SNACK__011                       =
+    SNACK__01                        = 0x432BD55F
+    SNACK__010                       = 0x5F6E2FCD
+    SNACK__011                       = 0x5F6E2FCE
 #    SNACK__0110                      =
-#    SNACK__012                       =
-#    SNACK__013                       =
-#    SNACK__014                       =
-#    SNACK__015                       =
-#    SNACK__016                       =
-#    SNACK__017                       =
-#    SNACK__02                        =
-#    SNACK__020                       =
-#    SNACK__021                       =
-#    SNACK__022                       =
-#    SNACK__023                       =
-#    SNACK__024                       =
-#    SNACK__025                       =
-#    SNACK__03                        =
-#    SNACK__030                       =
-#    SNACK__031                       =
-#    SNACK__032                       =
-#    SNACK__033                       =
+    SNACK__012                       = 0x5F6E2FCF
+    SNACK__013                       = 0x5F6E2FD0
+    SNACK__014                       = 0x5F6E2FD1
+    SNACK__015                       = 0x5F6E2FD2
+    SNACK__016                       = 0x5F6E2FD3
+    SNACK__017                       = 0x5F6E2FD4
+    SNACK__02                        = 0x432BD560
+    SNACK__020                       = 0x5F6E3050
+    SNACK__021                       = 0x5F6E3051
+    SNACK__022                       = 0x5F6E3052
+    SNACK__023                       = 0x5F6E3053
+    SNACK__024                       = 0x5F6E3054
+    SNACK__025                       = 0x5F6E3055
+    SNACK__03                        = 0x432BD561
+    SNACK__030                       = 0x5F6E30D3
+    SNACK__031                       = 0x5F6E30D4
+    SNACK__032                       = 0x5F6E30D5
+    SNACK__033                       = 0x5F6E30D6
 #    SNACK__0330                      =
 #    SNACK__0331                      =
 #    SNACK__0332                      =
 #    SNACK__0333                      =
-#    SNACK__034                       =
-#    SNACK__035                       =
-#    SNACK__036                       =
-#    SNACK__037                       =
-#    SNACK__038                       =
-#    SNACK__039                       =
-#    SNACK__04                        =
-#    SNACK__040                       =
-#    SNACK__041                       =
-#    SNACK__042                       =
+    SNACK__034                       = 0x5F6E30D7
+    SNACK__035                       = 0x5F6E30D8
+    SNACK__036                       = 0x5F6E30D9
+    SNACK__037                       = 0x5F6E30DA
+    SNACK__038                       = 0x5F6E30DB
+    SNACK__039                       = 0x5F6E30DC
+    SNACK__04                        = 0x432BD562
+    SNACK__040                       = 0x5F6E3156
+    SNACK__041                       = 0x5F6E3157
+    SNACK__042                       = 0x5F6E3158
 #    SNACK__0420                      =
 #    SNACK__0421                      =
 #    SNACK__0422                      =
-#    SNACK__043                       =
-#    SNACK__044                       =
-#    SNACK__045                       =
-#    SNACK__046                       =
-#    SNACK__047                       =
-#    SNACK__048                       =
-#    SNACK__049                       =
-#    SNACK__05                        =
-#    SNACK__050                       =
-#    SNACK__051                       =
-#    SNACK__052                       =
-#    SNACK__053                       =
-#    SNACK__054                       =
-#    SNACK__055                       =
-#    SNACK__056                       =
-#    SNACK__06                        =
-#    SNACK__060                       =
-#    SNACK__061                       =
-#    SNACK__0610                      =
-#    SNACK__062                       =
-#    SNACK__063                       =
-#    SNACK__064                       =
-#    SNACK__065                       =
-#    SNACK__066                       =
-#    SNACK__067                       =
-#    SNACK__068                       =
-#    SNACK__07                        =
-#    SNACK__070                       =
-#    SNACK__071                       =
-#    SNACK__072                       =
-#    SNACK__0720                      =
-#    SNACK__0721                      =
-#    SNACK__0722                      =
-#    SNACK__073                       =
+    SNACK__043                       = 0x5F6E3159
+    SNACK__044                       = 0x5F6E315A
+    SNACK__045                       = 0x5F6E315B
+    SNACK__046                       = 0x5F6E315C
+    SNACK__047                       = 0x5F6E315D
+    SNACK__048                       = 0x5F6E315E
+    SNACK__049                       = 0x5F6E315F
+    SNACK__05                        = 0x432BD563
+    SNACK__050                       = 0x5F6E31D9
+    SNACK__051                       = 0x5F6E31DA
+    SNACK__052                       = 0x5F6E31DB
+    SNACK__053                       = 0x5F6E31DC
+    SNACK__054                       = 0x5F6E31DD
+    SNACK__055                       = 0x5F6E31DE
+    SNACK__056                       = 0x5F6E31DF
+    SNACK__06                        = 0x432BD564
+    SNACK__060                       = 0x5F6E325C
+    SNACK__061                       = 0x5F6E325D
+    SNACK__0610                      = 0xD563C5C7
+    SNACK__062                       = 0x5F6E325E
+    SNACK__063                       = 0x5F6E325F
+    SNACK__064                       = 0x5F6E3260
+    SNACK__065                       = 0x5F6E3261
+    SNACK__066                       = 0x5F6E3262
+    SNACK__067                       = 0x5F6E3263
+    SNACK__068                       = 0x5F6E3264
+    SNACK__07                        = 0x432BD565
+    SNACK__070                       = 0x5F6E32DF
+    SNACK__071                       = 0x5F6E32E0
+    SNACK__072                       = 0x5F6E32E1
+    SNACK__0720                      = 0xD5640953
+    SNACK__0721                      = 0xD5640954
+    SNACK__0722                      = 0xD5640955
+    SNACK__073                       = 0x5F6E32E2
 #    SNACK__07330                     =
 #    SNACK__07331                     =
 #    SNACK__07332                     =
@@ -710,18 +710,18 @@ class Snacks(Enum):
 #    SNACK__07334                     =
 #    SNACK__07335                     =
 #    SNACK__07336                     =
-#    SNACK__074                       =
-#    SNACK__075                       =
-#    SNACK__076                       =
-#    SNACK__077                       =
-#    SNACK__078                       =
-#    SNACK__079                       =
-#    SNACK__0790                      =
-#    SNACK__0791                      =
-#    SNACK__0792                      =
-#    SNACK__0793                      =
-#    SNACK__0794                      =
-#    SNACK__08                        =
+    SNACK__074                       = 0x5F6E32E3
+    SNACK__075                       = 0x5F6E32E4
+    SNACK__076                       = 0x5F6E32E5
+    SNACK__077                       = 0x5F6E32E6
+    SNACK__078                       = 0x5F6E32E7
+    SNACK__079                       = 0x5F6E32E8
+    SNACK__0790                      = 0xD5640CE8
+    SNACK__0791                      = 0xD5640CE9
+    SNACK__0792                      = 0xD5640CEA
+    SNACK__0793                      = 0xD5640CEB
+    SNACK__0794                      = 0xD5640CEC
+    SNACK__08                        = 0x432BD566
 #    SNACK__080                       =
 #    SNACK__081                       =
 #    SNACK__082                       =
@@ -735,7 +735,7 @@ class Snacks(Enum):
 #    SNACK__0833                      =
 #    SNACK__084                       =
 #    SNACK__085                       =
-#    SNACK__09                        =
+    SNACK__09                        = 0x432BD567
 #    SNACK__090                       =
 #    SNACK__091                       =
 #    SNACK__092                       =
@@ -743,122 +743,122 @@ class Snacks(Enum):
 #    SNACK__094                       =
 #    SNACK__095                       =
 #    SNACK__096                       =
-#    SNACK__1                         =
+    SNACK__1                         = 0xB640D2BB
 #    SNACK__1__MIL                    =
-#    SNACK__10                        =
-#    SNACK__100                       =
-#    SNACK__101                       =
-#    SNACK__102                       =
-#    SNACK__103                       =
-#    SNACK__104                       =
-#    SNACK__105                       =
-#    SNACK__106                       =
-#    SNACK__107                       =
-#    SNACK__108                       =
-#    SNACK__109                       =
-#    SNACK__11                        =
-#    SNACK__110                       =
-#    SNACK__111                       =
-#    SNACK__112                       =
-#    SNACK__113                       =
+    SNACK__10                        = 0x432BD5E1
+    SNACK__100                       = 0x5F6E7253
+    SNACK__101                       = 0x5F6E7254
+    SNACK__102                       = 0x5F6E7255
+    SNACK__103                       = 0x5F6E7256
+    SNACK__104                       = 0x5F6E7257
+    SNACK__105                       = 0x5F6E7258
+    SNACK__106                       = 0x5F6E7259
+    SNACK__107                       = 0x5F6E725A
+    SNACK__108                       = 0x5F6E725B
+    SNACK__109                       = 0x5F6E725C
+    SNACK__11                        = 0x432BD5E2
+    SNACK__110                       = 0x5F6E72D6
+    SNACK__111                       = 0x5F6E72D7
+    SNACK__112                       = 0x5F6E72D8
+    SNACK__113                       = 0x5F6E72D9
 #    SNACK__1130                      =
 #    SNACK__1131                      =
-#    SNACK__114                       =
-#    SNACK__12                        =
-#    SNACK__120                       =
-#    SNACK__121                       =
-#    SNACK__122                       =
-#    SNACK__123                       =
-#    SNACK__124                       =
-#    SNACK__125                       =
-#    SNACK__126                       =
-#    SNACK__127                       =
-#    SNACK__128                       =
-#    SNACK__129                       =
-#    SNACK__13                        =
-#    SNACK__130                       =
-#    SNACK__131                       =
-#    SNACK__1310                      =
-#    SNACK__132                       =
-#    SNACK__133                       =
+    SNACK__114                       = 0x5F6E72DA
+    SNACK__12                        = 0x432BD5E3
+    SNACK__120                       = 0x5F6E7359
+    SNACK__121                       = 0x5F6E735A
+    SNACK__122                       = 0x5F6E735B
+    SNACK__123                       = 0x5F6E735C
+    SNACK__124                       = 0x5F6E735D
+    SNACK__125                       = 0x5F6E735E
+    SNACK__126                       = 0x5F6E735F
+    SNACK__127                       = 0x5F6E7360
+    SNACK__128                       = 0x5F6E7361
+    SNACK__129                       = 0x5F6E7362
+    SNACK__13                        = 0x432BD5E4
+    SNACK__130                       = 0x5F6E73DC
+    SNACK__131                       = 0x5F6E73DD
+    SNACK__1310                      = 0xD5854A47
+    SNACK__132                       = 0x5F6E73DE
+    SNACK__133                       = 0x5F6E73DF
 #    SNACK__1330                      =
 #    SNACK__1331                      =
 #    SNACK__1332                      =
 #    SNACK__1333                      =
-#    SNACK__138                       =
-#    SNACK__139                       =
-#    SNACK__14                        =
+    SNACK__138                       = 0x5F6E73E4
+    SNACK__139                       = 0x5F6E73E5
+    SNACK__14                        = 0x432BD5E5
 #    SNACK__140                       =
 #    SNACK__141                       =
 #    SNACK__142                       =
 #    SNACK__143                       =
 #    SNACK__144                       =
-#    SNACK__15                        =
-#    SNACK__150                       =
-#    SNACK__151                       =
-#    SNACK__152                       =
-#    SNACK__153                       =
-#    SNACK__154                       =
-#    SNACK__155                       =
-#    SNACK__156                       =
-#    SNACK__157                       =
-#    SNACK__158                       =
-#    SNACK__159                       =
-#    SNACK__16                        =
-#    SNACK__160                       =
-#    SNACK__161                       =
-#    SNACK__162                       =
-#    SNACK__163                       =
-#    SNACK__164                       =
-#    SNACK__165                       =
-#    SNACK__17                        =
-#    SNACK__170                       =
-#    SNACK__171                       =
-#    SNACK__172                       =
-#    SNACK__173                       =
-#    SNACK__174                       =
-#    SNACK__175                       =
-#    SNACK__176                       =
-#    SNACK__177                       =
-#    SNACK__178                       =
-#    SNACK__18                        =
-#    SNACK__180                       =
-#    SNACK__181                       =
-#    SNACK__182                       =
-#    SNACK__183                       =
-#    SNACK__184                       =
-#    SNACK__185                       =
-#    SNACK__186                       =
-#    SNACK__187                       =
-#    SNACK__188                       =
-#    SNACK__189                       =
-#    SNACK__19                        =
-#    SNACK__190                       =
-#    SNACK__191                       =
-#    SNACK__1910                      =
-#    SNACK__1911                      =
-#    SNACK__1912                      =
-#    SNACK__1913                      =
-#    SNACK__1914                      =
-#    SNACK__1915                      =
-#    SNACK__1916                      =
-#    SNACK__1917                      =
-#    SNACK__1918                      =
-#    SNACK__1919                      =
-#    SNACK__192                       =
-#    SNACK__193                       =
-#    SNACK__194                       =
-#    SNACK__195                       =
-#    SNACK__196                       =
-#    SNACK__197                       =
-#    SNACK__198                       =
-#    SNACK__199                       =
+    SNACK__15                        = 0x432BD5E6
+    SNACK__150                       = 0x5F6E74E2
+    SNACK__151                       = 0x5F6E74E3
+    SNACK__152                       = 0x5F6E74E4
+    SNACK__153                       = 0x5F6E74E5
+    SNACK__154                       = 0x5F6E74E6
+    SNACK__155                       = 0x5F6E74E7
+    SNACK__156                       = 0x5F6E74E8
+    SNACK__157                       = 0x5F6E74E9
+    SNACK__158                       = 0x5F6E74EA
+    SNACK__159                       = 0x5F6E74EB
+    SNACK__16                        = 0x432BD5E7
+    SNACK__160                       = 0x5F6E7565
+    SNACK__161                       = 0x5F6E7566
+    SNACK__162                       = 0x5F6E7567
+    SNACK__163                       = 0x5F6E7568
+    SNACK__164                       = 0x5F6E7569
+    SNACK__165                       = 0x5F6E756A
+    SNACK__17                        = 0x432BD5E8
+    SNACK__170                       = 0x5F6E75E8
+    SNACK__171                       = 0x5F6E75E9
+    SNACK__172                       = 0x5F6E75EA
+    SNACK__173                       = 0x5F6E75EB
+    SNACK__174                       = 0x5F6E75EC
+    SNACK__175                       = 0x5F6E75ED
+    SNACK__176                       = 0x5F6E75EE
+    SNACK__177                       = 0x5F6E75EF
+    SNACK__178                       = 0x5F6E75F0
+    SNACK__18                        = 0x432BD5E9
+    SNACK__180                       = 0x5F6E766B
+    SNACK__181                       = 0x5F6E766C
+    SNACK__182                       = 0x5F6E766D
+    SNACK__183                       = 0x5F6E766E
+    SNACK__184                       = 0x5F6E766F
+    SNACK__185                       = 0x5F6E7670
+    SNACK__186                       = 0x5F6E7671
+    SNACK__187                       = 0x5F6E7672
+    SNACK__188                       = 0x5F6E7673
+    SNACK__189                       = 0x5F6E7674
+    SNACK__19                        = 0x432BD5EA
+    SNACK__190                       = 0x5F6E76EE
+    SNACK__191                       = 0x5F6E76EF
+    SNACK__1910                      = 0xD586DC7D
+    SNACK__1911                      = 0xD586DC7E
+    SNACK__1912                      = 0xD586DC7F
+    SNACK__1913                      = 0xD586DC80
+    SNACK__1914                      = 0xD586DC81
+    SNACK__1915                      = 0xD586DC82
+    SNACK__1916                      = 0xD586DC83
+    SNACK__1917                      = 0xD586DC84
+    SNACK__1918                      = 0xD586DC85
+    SNACK__1919                      = 0xD586DC86
+    SNACK__192                       = 0x5F6E76F0
+    SNACK__193                       = 0x5F6E76F1
+    SNACK__194                       = 0x5F6E76F2
+    SNACK__195                       = 0x5F6E76F3
+    SNACK__196                       = 0x5F6E76F4
+    SNACK__197                       = 0x5F6E76F5
+    SNACK__198                       = 0x5F6E76F6
+    SNACK__199                       = 0x5F6E76F7
 #    SNACK__2                         =
-#    SNACK__20                        =
-#    SNACK__200                       =
-#    SNACK__201                       =
-#    SNACK__202                       =
-#    SNACK__203                       =
+    SNACK__20                        = 0X432BD664
+    SNACK__200                       = 0x5F6EB55C
+    SNACK__201                       = 0x5F6EB55D
+    SNACK__202                       = 0x5F6EB55E
+    SNACK__203                       = 0x5F6EB55F
 #    SNACK__2030                      =
 #    SNACK__2031                      =
 #    SNACK__2032                      =
@@ -874,52 +874,52 @@ class Snacks(Enum):
 #    SNACK__20340402                  =
 #    SNACK__20340403                  =
 #    SNACK__20340404                  =
-#    SNACK__204                       =
-#    SNACK__21                        =
-#    SNACK__210                       =
-#    SNACK__211                       =
-#    SNACK__2110                      =
-#    SNACK__2112                      =
-#    SNACK__2114                      =
-#    SNACK__2116                      =
-#    SNACK__212                       =
-#    SNACK__213                       =
-#    SNACK__214                       =
+    SNACK__204                       = 0x5F6EB560
+    SNACK__21                        = 0x432BD665
+    SNACK__210                       = 0x5F6EB5DF
+    SNACK__211                       = 0x5F6EB5E0
+    SNACK__2110                      = 0xD5A711D0
+    SNACK__2112                      = 0xD5A711D2
+    SNACK__2114                      = 0xD5A711D4
+    SNACK__2116                      = 0xD5A711D6
+    SNACK__212                       = 0x5F6EB5E1
+    SNACK__213                       = 0x5F6EB5E2
+    SNACK__214                       = 0x5F6EB5E3
 #    SNACK__2140                      =
 #    SNACK__21400                     =
 #    SNACK__21401                     =
 #    SNACK__21402                     =
 #    SNACK__21403                     =
 #    SNACK__21404                     =
-#    SNACK__216                       =
-#    SNACK__217                       =
-#    SNACK__22                        =
-#    SNACK__220                       =
-#    SNACK__221                       =
-#    SNACK__2210                      =
-#    SNACK__2212                      =
-#    SNACK__2214                      =
-#    SNACK__2216                      =
-#    SNACK__2218                      =
-#    SNACK__222                       =
-#    SNACK__223                       =
-#    SNACK__224                       =
-#    SNACK__226                       =
-#    SNACK__228                       =
-#    SNACK__23                        =
-#    SNACK__230                       =
-#    SNACK__231                       =
-#    SNACK__232                       =
-#    SNACK__233                       =
-#    SNACK__24                        =
-#    SNACK__243                       =
-#    SNACK__244                       =
-#    SNACK__245                       =
-#    SNACK__246                       =
-#    SNACK__25                        =
-#    SNACK__250                       =
-#    SNACK__251                       =
-#    SNACK__252                       =
+    SNACK__216                       = 0x5F6EB5E5
+    SNACK__217                       = 0x5F6EB5E6
+    SNACK__22                        = 0x432BD666
+    SNACK__220                       = 0x5F6EB662
+    SNACK__221                       = 0x5F6EB663
+    SNACK__2210                      = 0xD5A754D9
+    SNACK__2212                      = 0xD5A754DB
+    SNACK__2214                      = 0xD5A754DD
+    SNACK__2216                      = 0xD5A754DF
+    SNACK__2218                      = 0xD5A754E1
+    SNACK__222                       = 0x5F6EB664
+    SNACK__223                       = 0x5F6EB665
+    SNACK__224                       = 0x5F6EB666
+    SNACK__226                       = 0x5F6EB668
+    SNACK__228                       = 0x5F6EB66A
+    SNACK__23                        = 0x432BD667
+    SNACK__230                       = 0x5F6EB6E5
+    SNACK__231                       = 0x5F6EB6E6
+    SNACK__232                       = 0x5F6EB6E7
+    SNACK__233                       = 0x5F6EB6E8
+    SNACK__24                        = 0x432BD668
+    SNACK__243                       = 0x5F6EB76B
+    SNACK__244                       = 0x5F6EB76C
+    SNACK__245                       = 0x5F6EB76D
+    SNACK__246                       = 0x5F6EB76E
+    SNACK__25                        = 0X432BD669
+    SNACK__250                       = 0x5F6EB7EB
+    SNACK__251                       = 0x5F6EB7EC
+    SNACK__252                       = 0x5F6EB7ED
 #    SNACK__2520                      =
 #    SNACK__2521                      =
 #    SNACK__2522                      =
@@ -938,29 +938,29 @@ class Snacks(Enum):
 #    SNACK__252222221                 =
 #    SNACK__252222222                 =
 #    SNACK__2523                      =
-#    SNACK__253                       =
-#    SNACK__2530                      =
-#    SNACK__2531                      =
-#    SNACK__2532                      =
-#    SNACK__254                       =
-#    SNACK__255                       =
-#    SNACK__256                       =
-#    SNACK__257                       =
-#    SNACK__258                       =
-#    SNACK__259                       =
-#    SNACK__260                       =
-#    SNACK__2610                      =
-#    SNACK__2612                      =
-#    SNACK__2614                      =
-#    SNACK__2616                      =
-#    SNACK__2618                      =
-#    SNACK__262                       =
-#    SNACK__2620                      =
-#    SNACK__2622                      =
-#    SNACK__264                       =
-#    SNACK__266                       =
-#    SNACK__268                       =
-#    SNACK__27                        =
+    SNACK__253                       = 0x5F6EB7EE
+    SNACK__2530                      = 0xD5A81EFA
+    SNACK__2531                      = 0xD5A81EFB
+    SNACK__2532                      = 0xD5A81EFC
+    SNACK__254                       = 0x5F6EB7EF
+    SNACK__255                       = 0x5F6EB7F0
+    SNACK__256                       = 0x5F6EB7F1
+    SNACK__257                       = 0x5F6EB7F2
+    SNACK__258                       = 0x5F6EB7F3
+    SNACK__259                       = 0x5F6EB7F4
+    SNACK__260                       = 0x5F6EB86E
+    SNACK__2610                      = 0xD5A860FD
+    SNACK__2612                      = 0xD5A860FF
+    SNACK__2614                      = 0xD5A86001
+    SNACK__2616                      = 0xD5A86003
+    SNACK__2618                      = 0xD5A86005
+    SNACK__262                       = 0x5F6EB870
+    SNACK__2620                      = 0xD5A86103
+    SNACK__2622                      = 0xD5A86105
+    SNACK__264                       = 0x5F6EB872
+    SNACK__266                       = 0x5F6EB874
+    SNACK__268                       = 0x5F6EB876
+    SNACK__27                        = 0X432BD66B
 #    SNACK__270                       =
 #    SNACK__271                       =
 #    SNACK__272                       =
@@ -970,62 +970,62 @@ class Snacks(Enum):
 #    SNACK__276                       =
 #    SNACK__277                       =
 #    SNACK__278                       =
-#    SNACK__28                        =
+    SNACK__28                        = 0X432BD66C
 #    SNACK__280                       =
 #    SNACK__281                       =
 #    SNACK__282                       =
 #    SNACK__283                       =
-#    SNACK__29                        =
+    SNACK__29                        = 0X432BD66D
 #    SNACK__292                       =
 #    SNACK__3                         =
-#    SNACK__30                        =
-#    SNACK__300                       =
-#    SNACK__301                       =
-#    SNACK__3010                      =
-#    SNACK__3011                      =
-#    SNACK__3012                      =
-#    SNACK__3013                      =
-#    SNACK__3014                      =
-#    SNACK__302                       =
+    SNACK__30                        = 0x432BD6E7
+    SNACK__300                       = 0x5F6EF685
+    SNACK__301                       = 0x5F6EF686
+    SNACK__3010                      = 0xD5C91C62
+    SNACK__3011                      = 0xD5C91C63
+    SNACK__3012                      = 0xD5C91C64
+    SNACK__3013                      = 0xD5C91C65
+    SNACK__3014                      = 0xD5C91C66
+    SNACK__302                       = 0x5F6EF687
 #    SNACK__3020                      =
 #    SNACK__3021                      =
 #    SNACK__3022                      =
 #    SNACK__30220                     =
 #    SNACK__30221                     =
 #    SNACK__30222                     =
-#    SNACK__303                       =
+    SNACK__303                       = 0x5F6EF688
 #    SNACK__3030                      =
 #    SNACK__30300                     =
 #    SNACK__30301                     =
 #    SNACK__30302                     =
 #    SNACK__30303                     =
-#    SNACK__304                       =
-#    SNACK__305                       =
-#    SNACK__306                       =
-#    SNACK__307                       =
-#    SNACK__308                       =
-#    SNACK__309                       =
-#    SNACK__31                        =
-#    SNACK__310                       =
-#    SNACK__311                       =
-#    SNACK__312                       =
-#    SNACK__313                       =
-#    SNACK__3130                      =
-#    SNACK__31300                     =
-#    SNACK__31301                     =
-#    SNACK__31302                     =
-#    SNACK__31303                     =
-#    SNACK__313030                    =
-#    SNACK__313031                    =
-#    SNACK__313032                    =
-#    SNACK__313033                    =
-#    SNACK__314                       =
-#    SNACK__32                        =
-#    SNACK__320                       =
-#    SNACK__321                       =
-#    SNACK__3211                      =
-#    SNACK__3213                      =
-#    SNACK__322                       =
+    SNACK__304                       = 0x5F6EF689
+    SNACK__305                       = 0x5F6EF68A
+    SNACK__306                       = 0x5F6EF68B
+    SNACK__307                       = 0x5F6EF68C
+    SNACK__308                       = 0x5F6EF68D
+    SNACK__309                       = 0x5F6EF68E
+    SNACK__31                        = 0x432BD6E8
+    SNACK__310                       = 0x5F6EF8E8
+    SNACK__311                       = 0x5F6EF8E9
+    SNACK__312                       = 0x5F6EF8EA
+    SNACK__313                       = 0x5F6EF8EB
+    SNACK__3130                      = 0xD5C96071
+    SNACK__31300                     = 0x660C5A03
+    SNACK__31301                     = 0x660C5A04
+    SNACK__31302                     = 0x660C5A05
+    SNACK__31303                     = 0x660C5A06
+    SNACK__313030                    = 0x38521142
+    SNACK__313031                    = 0x38521143
+    SNACK__313032                    = 0x38521144
+    SNACK__313033                    = 0x38521145
+    SNACK__314                       = 0x5F6EF8EC
+    SNACK__32                        = 0x432BD6E9
+    SNACK__320                       = 0x5F6EF96B
+    SNACK__321                       = 0x5F6EF96C
+    SNACK__3211                      = 0xD5C9A275
+    SNACK__3213                      = 0xD5C9A277
+    SNACK__322                       = 0x5F6EF96D
 #    SNACK__3220                      =
 #    SNACK__3221                      =
 #    SNACK__3222                      =
@@ -1035,11 +1035,11 @@ class Snacks(Enum):
 #    SNACK__322220                    =
 #    SNACK__322221                    =
 #    SNACK__322222                    =
-#    SNACK__323                       =
-#    SNACK__325                       =
-#    SNACK__327                       =
-#    SNACK__329                       =
-#    SNACK__33                        =
+    SNACK__323                       = 0x5F6EF96E
+    SNACK__325                       = 0x5F6EF970
+    SNACK__327                       = 0x5F6EF972
+    SNACK__329                       = 0x5F6EF974
+    SNACK__33                        = 0x432BD6EA
 #    SNACK__330                       =
 #    SNACK__331                       =
 #    SNACK__332                       =
@@ -1048,39 +1048,39 @@ class Snacks(Enum):
 #    SNACK__3322                      =
 #    SNACK__333                       =
 #    SNACK__334                       =
-#    SNACK__340                       =
-#    SNACK__341                       =
-#    SNACK__3410                      =
-#    SNACK__342                       =
-#    SNACK__343                       =
-#    SNACK__344                       =
-#    SNACK__345                       =
-#    SNACK__346                       =
-#    SNACK__347                       =
-#    SNACK__348                       =
-#    SNACK__349                       =
-#    SNACK__355                       =
-#    SNACK__3550                      =
-#    SNACK__3552                      =
-#    SNACK__3554                      =
-#    SNACK__3556                      =
-#    SNACK__36                        =
-#    SNACK__361                       =
-#    SNACK__363                       =
+    SNACK__340                       = 0x5F6EFA71
+    SNACK__341                       = 0x5F6EFA72
+    SNACK__3410                      = 0xD5CA2886
+    SNACK__342                       = 0x5F6EFA73
+    SNACK__343                       = 0x5F6EFA74
+    SNACK__344                       = 0x5F6EFA75
+    SNACK__345                       = 0x5F6EFA76
+    SNACK__346                       = 0x5F6EFA77
+    SNACK__347                       = 0x5F6EFA78
+    SNACK__348                       = 0x5F6EFA79
+    SNACK__349                       = 0x5F6EFA7A
+    SNACK__355                       = 0x5F6EFAF9
+    SNACK__3550                      = 0xD5CA6D9B
+    SNACK__3552                      = 0xD5CA6D9D
+    SNACK__3554                      = 0xD5CA6D9F
+    SNACK__3556                      = 0xD5CA6DA1
+    SNACK__36                        = 0x432BD6ED
+    SNACK__361                       = 0x5F6EFB78
+    SNACK__363                       = 0x5F6EFB7A
 #    SNACK__374                       =
-#    SNACK__380                       =
-#    SNACK__381                       =
-#    SNACK__382                       =
-#    SNACK__383                       =
-#    SNACK__390                       =
-#    SNACK__391                       =
-#    SNACK__392                       =
-#    SNACK__393                       =
+    SNACK__380                       = 0x5F6EFC7D
+    SNACK__381                       = 0x5F6EFC7E
+    SNACK__382                       = 0x5F6EFC7F
+    SNACK__383                       = 0x5F6EFC80
+    SNACK__390                       = 0x5F6EFD00
+    SNACK__391                       = 0x5F6EFD01
+    SNACK__392                       = 0x5F6EFD02
+    SNACK__393                       = 0x5F6EFD03
 #    SNACK__4                         =
-#    SNACK__40                        =
-#    SNACK__41                        =
-#    SNACK__42                        =
-#    SNACK__43                        =
+    SNACK__40                        = 0x432BD76A
+    SNACK__41                        = 0x432BD76B
+    SNACK__42                        = 0x432BD76C
+    SNACK__43                        = 0x432BD76D
 #    SNACK__5                         =
 #    SNACK__50                        =
 #    SNACK__51                        =
@@ -1089,47 +1089,47 @@ class Snacks(Enum):
 #    SNACK__530                       =
 #    SNACK__531                       =
 #    SNACK__6                         =
-#    SNACK__60                        =
-#    SNACK__600                       =
-#    SNACK__602                       =
-#    SNACK__603                       =
-#    SNACK__606                       =
-#    SNACK__608                       =
-#    SNACK__61                        =
+    SNACK__60                        = 0x432BD76B
+    SNACK__600                       = 0x5F6FC180
+    SNACK__602                       = 0x5F6FC182
+    SNACK__603                       = 0x5F6FC183
+    SNACK__606                       = 0x5F6FC186
+    SNACK__608                       = 0x5F6FC188
+    SNACK__61                        = 0x432BD76C
 #    SNACK__666                       =
 #    SNACK__7                         =
-#    SNACK__70                        =
-#    SNACK__700                       =
-#    SNACK__701                       =
-#    SNACK__702                       =
-#    SNACK__703                       =
-#    SNACK__704                       =
-#    SNACK__705                       =
-#    SNACK__706                       =
-#    SNACK__71                        =
-#    SNACK__72                        =
-#    SNACK__73                        =
-#    SNACK__74                        =
+    SNACK__70                        = 0x432BD8F3
+    SNACK__700                       = 0x5F700489
+    SNACK__701                       = 0x5F70048A
+    SNACK__702                       = 0x5F70048B
+    SNACK__703                       = 0x5F70048C
+    SNACK__704                       = 0x5F70048D
+    SNACK__705                       = 0x5F70048E
+    SNACK__706                       = 0x5F70048F
+    SNACK__71                        = 0x432BD8F4
+    SNACK__72                        = 0x432BD8F5
+    SNACK__73                        = 0x432BD8F6
+    SNACK__74                        = 0x432BD8F7
 #    SNACK__8                         =
-#    SNACK__80                        =
-#    SNACK__800                       =
-#    SNACK__801                       =
-#    SNACK__802                       =
-#    SNACK__803                       =
-#    SNACK__804                       =
-#    SNACK__805                       =
-#    SNACK__806                       =
-#    SNACK__807                       =
-#    SNACK__808                       =
-#    SNACK__809                       =
-#    SNACK__81                        =
+    SNACK__80                        = 0x432BD976
+    SNACK__800                       = 0x5F704792
+    SNACK__801                       = 0x5F704793
+    SNACK__802                       = 0x5F704794
+    SNACK__803                       = 0x5F704795
+    SNACK__804                       = 0x5F704796
+    SNACK__805                       = 0x5F704797
+    SNACK__806                       = 0x5F704798
+    SNACK__807                       = 0x5F704799
+    SNACK__808                       = 0x5F70479A
+    SNACK__809                       = 0x5F70479B
+    SNACK__81                        = 0x432BD977
 #    SNACK__9                         =
 #    SNACK__90                        =
 #    SNACK__91                        =
-#    SNACK__BOX__1                    =
+    SNACK__BOX__1                    = 0x7168C90A
 #    SNACK__BOX__1__MILLION           =
 #    SNACK__BOX__10                   =
-#    SNACK__BOX__2                    =
+    SNACK__BOX__2                    = 0x7168C90B
 #    SNACK__BOX__BEHIND__MOODY        =
 #    SNACK__BOX__IN__SECRET           =
 #    SNACK__BOX__LEFT__CORRIDOR       =
@@ -1369,30 +1369,30 @@ class Snacks(Enum):
 #    SNACK72                          =
 #    SNACK73                          =
 #    SNACKBOX                         =
-#    SNACKBOX__0                      =
-#    SNACKBOX__1                      =
+    SNACKBOX__0                      = 0x2E6640CD
+    SNACKBOX__1                      = 0x2E6640CE
 #    SNACKBOX__1__1                   =
 #    SNACKBOX__1__10                  =
 #    SNACKBOX__1__11                  =
 #    SNACKBOX__1__12                  =
-#    SNACKBOX__2                      =
+    SNACKBOX__2                      = 0x2E6640CF
 #    SNACKBOX__2__1                   =
 #    SNACKBOX__2__10                  =
 #    SNACKBOX__2__11                  =
 #    SNACKBOX__2__12                  =
 #    SNACKBOX__2ND__LEVEL__1          =
 #    SNACKBOX__2ND__LEVEL__2          =
-#    SNACKBOX__3                      =
+    SNACKBOX__3                      = 0x2E6640D0
 #    SNACKBOX__3__1                   =
 #    SNACKBOX__3__10                  =
 #    SNACKBOX__3__11                  =
 #    SNACKBOX__3__12                  =
-#    SNACKBOX__4                      =
+    SNACKBOX__4                      = 0x2E6640D1
 #    SNACKBOX__4__1                   =
 #    SNACKBOX__4__10                  =
 #    SNACKBOX__4__11                  =
 #    SNACKBOX__4__12                  =
-#    SNACKBOX__5                      =
+    SNACKBOX__5                      = 0x2E6640D2
 #    SNACKBOX__CHAND__2               =
 #    SNACKBOX__FOR__TOKEN2            =
 #    SNACKBOX__FOR__TOKEN3            =
@@ -1410,10 +1410,9 @@ class Snacks(Enum):
     SNACKBOX3                        = 0x6404B072
 #    SNACKBOX30                       =
     SNACKBOX5                        = 0x6404B074
-#    SNACKS__040                      =
-#    SNACKS__041                      =
-#    SNACKS__042                      =
-#    Snacks.txt                       =
+    SNACKS__040                      = 0x5278AD8D
+    SNACKS__041                      = 0x5278AD8E
+    SNACKS__042                      = 0x5278AD8F
     SS__999                          = 0x412F5051
 #    SS01                             =
 #    SS010                            =
@@ -1571,14 +1570,14 @@ class Snacks(Enum):
 #    SS09B                            =
     SS1                              = 0x0015E695
     SS10                             = 0x0B34FE6F
-#    SS100                            =
-#    SS1000                           =
-#    SS1001                           =
-#    SS1002                           =
+    SS100                            = 0xBC1E32FD
+    SS1000                           = 0x437417A7
+    SS1001                           = 0x437417A8
+    SS1002                           = 0x437417A9
 #    SS10020                          =
 #    SS10021                          =
 #    SS10022                          =
-#    SS1003                           =
+    SS1003                           = 0x437417AA
 #    SS1004                           =
 #    SS10040                          =
 #    SS1005                           =
@@ -1600,7 +1599,7 @@ class Snacks(Enum):
 #    SS10091                          =
 #    SS10092                          =
 #    SS10093                          =
-#    SS101                            =
+    SS101                            = 0xBC1E32FE
 #    SS1010                           =
 #    SS1011                           =
 #    SS1012                           =
@@ -1610,7 +1609,7 @@ class Snacks(Enum):
 #    SS10123                          =
 #    SS10124                          =
 #    SS10125                          =
-#    SS102                            =
+    SS102                            = 0xBC1E32FF
 #    SS1020                           =
 #    SS1021                           =
 #    SS1022                           =
@@ -1620,16 +1619,16 @@ class Snacks(Enum):
 #    SS103                            =
 #    SS1030                           =
 #    SS1031                           =
-#    SS104                            =
-#    SS1040                           =
-#    SS1041                           =
-#    SS1042                           =
-#    SS1043                           =
-#    SS105                            =
-#    SS1050                           =
-#    SS1051                           =
-#    SS1052                           =
-#    SS1053                           =
+    SS104                            = 0xBC1E3301
+    SS1040                           = 0x437419B3
+    SS1041                           = 0x437419B4
+    SS1042                           = 0x437419B5
+    SS1043                           = 0x437419B6
+    SS105                            = 0xBC1E3302
+    SS1050                           = 0x43741A36
+    SS1051                           = 0x43741A37
+    SS1052                           = 0x43741A38
+    SS1053                           = 0x43741A39
 #    SS106                            =
 #    SS1060                           =
 #    SS1061                           =
@@ -1750,7 +1749,7 @@ class Snacks(Enum):
 #    SS1540                           =
 #    SS155                            =
 #    SS157                            =
-#    SS16                             =
+    SS16                             = 0x0B34FE75
 #    SS160                            =
 #    SS1600                           =
 #    SS161                            =
@@ -1794,9 +1793,9 @@ class Snacks(Enum):
     SS192                            = 0xBC1E379A
 #    SS1920                           =
 #    SS1921                           =
-#    SS193                            =
-#    SS194                            =
-#    SS195                            =
+    SS193                            = 0xBC1E379B
+    SS194                            = 0xBC1E379C
+    SS195                            = 0xBC1E379D
 #    SS196                            =
 #    SS1960                           =
 #    SS1961                           =
@@ -1905,10 +1904,10 @@ class Snacks(Enum):
 #    SS271                            =
 #    SS2711                           =
 #    SS272                            =
-#    SS274                            =
-#    SS275                            =
-#    SS28                             =
-#    SS280                            =
+    SS274                            = 0xBC1E799F
+    SS275                            = 0xBC1E79A0
+    SS28                             = 0x0B34FEFA
+    SS280                            = 0xBC1E7A1E
 #    SS281                            =
     SS29                             = 0x0B34FEFB
 #    SS29300                          =
@@ -1937,11 +1936,11 @@ class Snacks(Enum):
     SS32                             = 0x0B34FF77
 #    SS33                             =
 #    SS34                             =
-#    SS35                             =
-#    SS350                            =
-#    SS351                            =
-#    SS352                            =
-#    SS353                            =
+    SS35                             = 0x0B34FF7A
+    SS350                            = 0xBC1EBB9E
+    SS351                            = 0xBC1EBB9F
+    SS352                            = 0xBC1EBBA0
+    SS353                            = 0xBC1EBBA1
     SS36                             = 0x0B34FF7B
 #    SS360                            =
 #    SS361                            =
@@ -1949,23 +1948,23 @@ class Snacks(Enum):
 #    SS363                            =
 #    SS364                            =
 #    SS365                            =
-#    SS37                             =
-#    SS370                            =
-#    SS371                            =
-#    SS372                            =
-#    SS373                            =
-#    SS38                             =
-#    SS380                            =
-#    SS381                            =
-#    SS382                            =
-#    SS383                            =
-#    SS384                            =
-#    SS385                            =
-#    SS386                            =
-#    SS387                            =
+    SS37                             = 0x0B34FF7C
+    SS370                            = 0xBC1EBCA4
+    SS371                            = 0xBC1EBCA5
+    SS372                            = 0xBC1EBCA6
+    SS373                            = 0xBC1EBCA7
+    SS38                             = 0x0B34FF7D
+    SS380                            = 0xBC1EBD27
+    SS381                            = 0xBC1EBD27
+    SS382                            = 0xBC1EBD27
+    SS383                            = 0xBC1EBD27
+    SS384                            = 0xBC1EBD27
+    SS385                            = 0xBC1EBD27
+    SS386                            = 0xBC1EBD27
+    SS387                            = 0xBC1EBD27
 #    SS39                             =
     SS4                              = 0x0015e698
-#    SS40                             =
+    SS40                             = 0x0B34FFF8
 #    SS400                            =
 #    SS401                            =
 #    SS4010                           =
@@ -1994,8 +1993,8 @@ class Snacks(Enum):
 #    SS407                            =
 #    SS408                            =
 #    SS409                            =
-#    SS41                             =
-#    SS42                             =
+    SS41                             = 0x0B34FFF9
+    SS42                             = 0x0B34FFFA
     SS43                             = 0x0B34FFFB
 #    SS430                            =
 #    SS431                            =
@@ -2004,7 +2003,7 @@ class Snacks(Enum):
 #    SS43110                          =
 #    SS43111                          =
 #    SS431110                         =
-#    SS44                             =
+    SS44                             = 0x0B34FFFC
 #    SS45                             =
 #    SS46                             =
 #    SS47                             =
@@ -2051,19 +2050,19 @@ class Snacks(Enum):
 #    SS541                            =
 #    SS543_COUNT40                    =
 #    SS55                             =
-#    SS550                            =
-#    SS551                            =
-#    SS5510                           =
-#    SS5511                           =
-#    SS5512                           =
-#    SS552                            =
-#    SS553                            =
-#    SS554                            =
-#    SS555                            =
-#    SS556                            =
-#    SS557                            =
-#    SS558                            =
-#    SS559                            =
+    SS550                            = 0xBC1F41B0
+    SS551                            = 0xBC1F41B1
+    SS5510                           = 0x43FE9DC3
+    SS5511                           = 0x43FE9DC4
+    SS5512                           = 0x43FE9DC5
+    SS552                            = 0xBC1F41B2
+    SS553                            = 0xBC1F41B3
+    SS554                            = 0xBC1F41B4
+    SS555                            = 0xBC1F41B5
+    SS556                            = 0xBC1F41B6
+    SS557                            = 0xBC1F41B7
+    SS558                            = 0xBC1F41B8
+    SS559                            = 0xBC1F41B9
 #    SS56                             =
 #    SS57                             =
 #    SS58                             =
@@ -2675,6 +2674,556 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 118): (b'B004', Snacks.SNACKBOX2.value),
     (base_id + 400 + 119): (b'B004', Snacks.DRYER__SNACKBOX__1.value),
     (base_id + 400 + 120): (b'B004', Snacks.DRYER__SNACKBOX__2.value),
+
+    (base_id + 400 + 121): (b'C001', Snacks.SS2.value),
+    (base_id + 400 + 122): (b'C001', Snacks.SS20.value),
+    (base_id + 400 + 123): (b'C001', Snacks.SS21.value),
+    (base_id + 400 + 124): (b'C001', Snacks.SS42.value),
+    (base_id + 400 + 125): (b'C001', Snacks.SS23.value),
+    (base_id + 400 + 126): (b'C001', Snacks.SS24.value),
+    (base_id + 400 + 127): (b'C001', Snacks.SS3.value),
+    (base_id + 400 + 128): (b'C001', Snacks.SS4.value),
+    (base_id + 400 + 129): (b'C001', Snacks.SS40.value),
+    (base_id + 400 + 130): (b'C001', Snacks.SS41.value),
+    (base_id + 400 + 131): (b'C001', Snacks.SNACK__1.value),
+    (base_id + 400 + 132): (b'C001', Snacks.SS43.value),
+    (base_id + 400 + 133): (b'C001', Snacks.SS44.value),
+    (base_id + 400 + 134): (b'C001', Snacks.SS5.value),
+    (base_id + 400 + 135): (b'C001', Snacks.SS100.value),
+    (base_id + 400 + 136): (b'C001', Snacks.SS1000.value),
+    (base_id + 400 + 137): (b'C001', Snacks.SS1001.value),
+    (base_id + 400 + 138): (b'C001', Snacks.SS1002.value),
+    (base_id + 400 + 139): (b'C001', Snacks.SS1003.value),
+    (base_id + 400 + 140): (b'C001', Snacks.SS101.value),
+    (base_id + 400 + 141): (b'C001', Snacks.SS102.value),
+    (base_id + 400 + 142): (b'C001', Snacks.BOX__OF__SNACKS__3.value),
+    (base_id + 400 + 143): (b'C001', Snacks.SS104.value),
+    (base_id + 400 + 144): (b'C001', Snacks.SS1040.value),
+    (base_id + 400 + 145): (b'C001', Snacks.SS1041.value),
+    (base_id + 400 + 146): (b'C001', Snacks.SS1042.value),
+    (base_id + 400 + 147): (b'C001', Snacks.SS1043.value),  #Helmet
+    (base_id + 400 + 148): (b'C001', Snacks.SS550.value),
+    (base_id + 400 + 149): (b'C001', Snacks.SS551.value),
+    (base_id + 400 + 150): (b'C001', Snacks.SS552.value),
+    (base_id + 400 + 151): (b'C001', Snacks.SS553.value),
+    (base_id + 400 + 152): (b'C001', Snacks.SS554.value),
+    (base_id + 400 + 153): (b'C001', Snacks.SS555.value),
+    (base_id + 400 + 154): (b'C001', Snacks.SS556.value),
+    (base_id + 400 + 155): (b'C001', Snacks.SS557.value),
+    (base_id + 400 + 156): (b'C001', Snacks.SS558.value),
+    (base_id + 400 + 157): (b'C001', Snacks.SS559.value),
+    (base_id + 400 + 158): (b'C001', Snacks.SS5510.value),
+    (base_id + 400 + 159): (b'C001', Snacks.SS5511.value),
+    (base_id + 400 + 160): (b'C001', Snacks.SS5512.value),
+    (base_id + 400 + 161): (b'C001', Snacks.SS16.value),
+    (base_id + 400 + 162): (b'C001', Snacks.BOX__OF__SNACKS__2.value),
+    (base_id + 400 + 163): (b'C001', Snacks.SS19.value),
+    (base_id + 400 + 164): (b'C001', Snacks.SS190.value),
+    (base_id + 400 + 165): (b'C001', Snacks.SS191.value),
+    (base_id + 400 + 166): (b'C001', Snacks.SS192.value),
+    (base_id + 400 + 167): (b'C001', Snacks.SS193.value),
+    (base_id + 400 + 168): (b'C001', Snacks.SS194.value),
+    (base_id + 400 + 169): (b'C001', Snacks.SS195.value),
+    (base_id + 400 + 170): (b'C001', Snacks.SS22.value),
+    (base_id + 400 + 171): (b'C001', Snacks.SS274.value),
+    (base_id + 400 + 172): (b'C001', Snacks.SS275.value),
+    (base_id + 400 + 173): (b'C001', Snacks.SS28.value),
+    (base_id + 400 + 174): (b'C001', Snacks.SS280.value),
+    (base_id + 400 + 175): (b'C001', Snacks.SS29.value),
+    (base_id + 400 + 176): (b'C001', Snacks.BOX__OF__SNACKS__4.value),
+    (base_id + 400 + 177): (b'C001', Snacks.SS387.value),
+    (base_id + 400 + 178): (b'C001', Snacks.SS386.value),
+    (base_id + 400 + 179): (b'C001', Snacks.SS385.value),
+    (base_id + 400 + 180): (b'C001', Snacks.SS384.value),
+    (base_id + 400 + 181): (b'C001', Snacks.SS383.value),
+    (base_id + 400 + 182): (b'C001', Snacks.SS382.value),
+    (base_id + 400 + 183): (b'C001', Snacks.SS381.value),
+    (base_id + 400 + 184): (b'C001', Snacks.SS380.value),
+    (base_id + 400 + 185): (b'C001', Snacks.SS38.value),
+    (base_id + 400 + 186): (b'C001', Snacks.SS35.value),
+    (base_id + 400 + 187): (b'C001', Snacks.SS350.value),
+    (base_id + 400 + 188): (b'C001', Snacks.SS351.value),
+    (base_id + 400 + 189): (b'C001', Snacks.SS352.value),
+    (base_id + 400 + 190): (b'C001', Snacks.SS353.value),
+    (base_id + 400 + 191): (b'C001', Snacks.SS36.value),
+    (base_id + 400 + 192): (b'C001', Snacks.SS373.value),
+    (base_id + 400 + 193): (b'C001', Snacks.SS372.value),
+    (base_id + 400 + 194): (b'C001', Snacks.SS371.value),
+    (base_id + 400 + 195): (b'C001', Snacks.SS370.value),
+    (base_id + 400 + 196): (b'C001', Snacks.SS37.value),
+    (base_id + 400 + 197): (b'C001', Snacks.SS1053.value),
+    (base_id + 400 + 198): (b'C001', Snacks.SS1052.value),
+    (base_id + 400 + 199): (b'C001', Snacks.SS1051.value),
+    (base_id + 400 + 200): (b'C001', Snacks.SS1050.value),
+    (base_id + 400 + 201): (b'C001', Snacks.SS105.value),
+
+    (base_id + 400 + 202): (b'C002', Snacks.SNACK__01.value),
+    (base_id + 400 + 203): (b'C002', Snacks.SNACK__02.value),
+    (base_id + 400 + 204): (b'C002', Snacks.SNACK__03.value),
+    (base_id + 400 + 205): (b'C002', Snacks.SNACK__04.value),
+    (base_id + 400 + 206): (b'C002', Snacks.BOX__OF__SNACKS__1.value),
+    (base_id + 400 + 207): (b'C002', Snacks.SNACK__06.value),
+    (base_id + 400 + 208): (b'C002', Snacks.SNACK__07.value),
+    (base_id + 400 + 209): (b'C002', Snacks.SNACK__08.value),
+    (base_id + 400 + 210): (b'C002', Snacks.SNACK__09.value),
+    (base_id + 400 + 211): (b'C002', Snacks.SNACK__10.value),
+    (base_id + 400 + 212): (b'C002', Snacks.SNACK__112.value),
+    (base_id + 400 + 213): (b'C002', Snacks.SNACK__111.value),
+    (base_id + 400 + 214): (b'C002', Snacks.SNACK__110.value),
+    (base_id + 400 + 215): (b'C002', Snacks.SNACK__11.value),
+    (base_id + 400 + 216): (b'C002', Snacks.SNACK__12.value),
+    (base_id + 400 + 217): (b'C002', Snacks.SNACK__13.value),
+    (base_id + 400 + 218): (b'C002', Snacks.SNACK__14.value),
+    (base_id + 400 + 219): (b'C002', Snacks.SNACK__15.value),
+    (base_id + 400 + 220): (b'C002', Snacks.SNACK__150.value),
+    (base_id + 400 + 221): (b'C002', Snacks.SNACK__151.value),
+    (base_id + 400 + 222): (b'C002', Snacks.SNACK__152.value),
+    (base_id + 400 + 223): (b'C002', Snacks.SNACK__153.value),
+    (base_id + 400 + 224): (b'C002', Snacks.SNACK__154.value),
+    (base_id + 400 + 225): (b'C002', Snacks.SNACK__155.value),
+    (base_id + 400 + 226): (b'C002', Snacks.SNACK__156.value),
+    (base_id + 400 + 227): (b'C002', Snacks.SNACK__157.value),
+    (base_id + 400 + 228): (b'C002', Snacks.SNACK__158.value),
+    (base_id + 400 + 229): (b'C002', Snacks.SNACK__159.value),
+    (base_id + 400 + 230): (b'C002', Snacks.SNACK__165.value),
+    (base_id + 400 + 231): (b'C002', Snacks.SNACK__164.value),
+    (base_id + 400 + 232): (b'C002', Snacks.SNACK__163.value),
+    (base_id + 400 + 233): (b'C002', Snacks.SNACK__162.value),
+    (base_id + 400 + 234): (b'C002', Snacks.SNACK__161.value),
+    (base_id + 400 + 235): (b'C002', Snacks.SNACK__160.value),
+    (base_id + 400 + 236): (b'C002', Snacks.SNACK__16.value),
+    (base_id + 400 + 237): (b'C002', Snacks.SNACK__17.value),
+    (base_id + 400 + 238): (b'C002', Snacks.SNACK__18.value),
+    (base_id + 400 + 239): (b'C002', Snacks.SNACK__19.value),
+    (base_id + 400 + 240): (b'C002', Snacks.SNACK__20.value),
+    (base_id + 400 + 241): (b'C002', Snacks.BOX__OF__SNACKS__2.value),
+    (base_id + 400 + 242): (b'C002', Snacks.SNACK__25.value),
+    (base_id + 400 + 243): (b'C002', Snacks.SNACK__250.value),
+    (base_id + 400 + 244): (b'C002', Snacks.SNACK__251.value),
+    (base_id + 400 + 245): (b'C002', Snacks.SNACK__252.value),
+    (base_id + 400 + 246): (b'C002', Snacks.SNACK__253.value),
+    (base_id + 400 + 247): (b'C002', Snacks.SNACK__2530.value),
+    (base_id + 400 + 248): (b'C002', Snacks.SNACK__2531.value),
+    (base_id + 400 + 249): (b'C002', Snacks.SNACK__2532.value),
+    (base_id + 400 + 250): (b'C002', Snacks.SNACK__067.value),  #Umbrella
+    (base_id + 400 + 251): (b'C002', Snacks.SNACK__060.value),
+    (base_id + 400 + 252): (b'C002', Snacks.SNACK__061.value),
+    (base_id + 400 + 253): (b'C002', Snacks.SNACK__062.value),
+    (base_id + 400 + 254): (b'C002', Snacks.SNACK__063.value),
+    (base_id + 400 + 255): (b'C002', Snacks.SNACK__064.value),
+    (base_id + 400 + 256): (b'C002', Snacks.SNACK__065.value),
+    (base_id + 400 + 257): (b'C002', Snacks.SNACK__066.value),
+
+    (base_id + 400 + 258): (b'C003', Snacks.SNACK__01.value),
+    (base_id + 400 + 259): (b'C003', Snacks.SNACK__010.value),
+    (base_id + 400 + 260): (b'C003', Snacks.SNACK__011.value),
+    (base_id + 400 + 261): (b'C003', Snacks.SNACK__012.value),
+    (base_id + 400 + 262): (b'C003', Snacks.SNACK__013.value),
+    (base_id + 400 + 263): (b'C003', Snacks.SNACK__014.value),
+    (base_id + 400 + 264): (b'C003', Snacks.SNACK__015.value),
+    (base_id + 400 + 265): (b'C003', Snacks.SNACK__016.value),
+    (base_id + 400 + 266): (b'C003', Snacks.SNACK__017.value),
+    (base_id + 400 + 267): (b'C003', Snacks.SNACK__06.value),
+    (base_id + 400 + 268): (b'C003', Snacks.SNACK__18.value),
+    (base_id + 400 + 269): (b'C003', Snacks.SNACK__19.value),
+    (base_id + 400 + 270): (b'C003', Snacks.SNACK__190.value),
+    (base_id + 400 + 271): (b'C003', Snacks.SNACK__191.value),
+    (base_id + 400 + 272): (b'C003', Snacks.SNACK__192.value),
+    (base_id + 400 + 273): (b'C003', Snacks.SNACK__193.value),
+    (base_id + 400 + 274): (b'C003', Snacks.BOX__OF__SNACKS__1.value),
+    (base_id + 400 + 275): (b'C003', Snacks.SNACK__04.value),
+    (base_id + 400 + 276): (b'C003', Snacks.SNACKS__040.value),
+    (base_id + 400 + 277): (b'C003', Snacks.SNACKS__041.value),
+    (base_id + 400 + 278): (b'C003', Snacks.SNACKS__042.value),
+    (base_id + 400 + 279): (b'C003', Snacks.SNACK__05.value),
+    (base_id + 400 + 280): (b'C003', Snacks.SNACK__050.value),
+    (base_id + 400 + 281): (b'C003', Snacks.SNACK__051.value),
+    (base_id + 400 + 282): (b'C003', Snacks.SNACK__052.value),
+    (base_id + 400 + 283): (b'C003', Snacks.BOX__OF__SNACKS__2.value),
+    (base_id + 400 + 284): (b'C003', Snacks.SNACK__14.value),   # To Button
+    (base_id + 400 + 285): (b'C003', Snacks.SNACK__15.value),
+    (base_id + 400 + 286): (b'C003', Snacks.SNACK__16.value),
+    (base_id + 400 + 287): (b'C003', Snacks.SNACK__17.value),   # End To Button
+    (base_id + 400 + 288): (b'C003', Snacks.SNACK__220.value),
+    (base_id + 400 + 289): (b'C003', Snacks.SNACK__222.value),
+    (base_id + 400 + 290): (b'C003', Snacks.SNACK__224.value),
+    (base_id + 400 + 291): (b'C003', Snacks.SNACK__226.value),
+    (base_id + 400 + 292): (b'C003', Snacks.SNACK__228.value),
+    (base_id + 400 + 293): (b'C003', Snacks.SNACK__2210.value),
+    (base_id + 400 + 294): (b'C003', Snacks.SNACK__2212.value),
+    (base_id + 400 + 295): (b'C003', Snacks.SNACK__2214.value),
+    (base_id + 400 + 296): (b'C003', Snacks.SNACK__2216.value),
+    (base_id + 400 + 297): (b'C003', Snacks.SNACK__2218.value),
+    (base_id + 400 + 298): (b'C003', Snacks.SNACK__07.value),
+    (base_id + 400 + 299): (b'C003', Snacks.SNACK__2116.value),
+    (base_id + 400 + 300): (b'C003', Snacks.SNACK__2114.value),
+    (base_id + 400 + 301): (b'C003', Snacks.SNACK__2112.value),
+    (base_id + 400 + 302): (b'C003', Snacks.SNACK__2110.value),
+    (base_id + 400 + 303): (b'C003', Snacks.SNACK__217.value),
+    (base_id + 400 + 304): (b'C003', Snacks.SNACK__216.value),
+    (base_id + 400 + 305): (b'C003', Snacks.SNACK__214.value),
+    (base_id + 400 + 306): (b'C003', Snacks.SNACK__212.value),
+    (base_id + 400 + 307): (b'C003', Snacks.SNACK__210.value),
+    (base_id + 400 + 308): (b'C003', Snacks.SNACK__246.value),  # Button Ledge
+    (base_id + 400 + 309): (b'C003', Snacks.SNACK__245.value),
+    (base_id + 400 + 310): (b'C003', Snacks.SNACK__244.value),
+    (base_id + 400 + 311): (b'C003', Snacks.SNACK__243.value),
+    (base_id + 400 + 312): (b'C003', Snacks.SNACK__231.value),
+    (base_id + 400 + 313): (b'C003', Snacks.SNACK__230.value),
+    (base_id + 400 + 314): (b'C003', Snacks.SNACK__23.value),
+    (base_id + 400 + 315): (b'C003', Snacks.SNACK__1310.value),
+    (base_id + 400 + 316): (b'C003', Snacks.SNACK__139.value),
+    (base_id + 400 + 317): (b'C003', Snacks.SNACK__138.value),
+    (base_id + 400 + 318): (b'C003', Snacks.SNACK__130.value),
+    (base_id + 400 + 319): (b'C003', Snacks.SNACK__131.value),
+    (base_id + 400 + 320): (b'C003', Snacks.SNACK__132.value),
+    (base_id + 400 + 321): (b'C003', Snacks.SNACK__13.value),   # End Button Ledge
+    (base_id + 400 + 322): (b'C003', Snacks.BOX__OF__SNACKS__3.value),
+    (base_id + 400 + 323): (b'C003', Snacks.SNACK__30.value),
+    (base_id + 400 + 324): (b'C003', Snacks.SNACK__300.value),
+    (base_id + 400 + 325): (b'C003', Snacks.SNACK__301.value),
+    (base_id + 400 + 326): (b'C003', Snacks.SNACK__302.value),
+    (base_id + 400 + 327): (b'C003', Snacks.SNACK__303.value),
+    (base_id + 400 + 328): (b'C003', Snacks.SNACK__304.value),
+    (base_id + 400 + 329): (b'C003', Snacks.SNACK__305.value),
+    (base_id + 400 + 330): (b'C003', Snacks.SNACK__306.value),
+    (base_id + 400 + 331): (b'C003', Snacks.SNACK__307.value),
+    (base_id + 400 + 332): (b'C003', Snacks.SNACK__308.value),
+    (base_id + 400 + 333): (b'C003', Snacks.SNACK__309.value),
+    (base_id + 400 + 334): (b'C003', Snacks.SNACK__3010.value),
+    (base_id + 400 + 335): (b'C003', Snacks.SNACK__3011.value),
+    (base_id + 400 + 336): (b'C003', Snacks.SNACK__3012.value),
+    (base_id + 400 + 337): (b'C003', Snacks.SNACK__3013.value),
+    (base_id + 400 + 338): (b'C003', Snacks.SNACK__3014.value),
+
+    (base_id + 400 + 339): (b'C004', Snacks.SNACK__07.value),
+    (base_id + 400 + 340): (b'C004', Snacks.SNACK__071.value),
+    (base_id + 400 + 341): (b'C004', Snacks.SNACK__073.value),
+    (base_id + 400 + 342): (b'C004', Snacks.SNACK__075.value),
+    (base_id + 400 + 343): (b'C004', Snacks.SNACK__076.value),
+    (base_id + 400 + 344): (b'C004', Snacks.BOX__OF__SNACKS__01.value),
+    (base_id + 400 + 345): (b'C004', Snacks.SNACK__06.value),
+    (base_id + 400 + 346): (b'C004', Snacks.SNACK__061.value),
+    (base_id + 400 + 347): (b'C004', Snacks.SNACK__064.value),
+    (base_id + 400 + 348): (b'C004', Snacks.SNACK__066.value),
+    (base_id + 400 + 349): (b'C004', Snacks.SNACK__068.value),
+    (base_id + 400 + 350): (b'C004', Snacks.SNACK__0610.value),
+    (base_id + 400 + 351): (b'C004', Snacks.SNACK__12.value),
+    (base_id + 400 + 352): (b'C004', Snacks.SNACK__121.value),
+    (base_id + 400 + 353): (b'C004', Snacks.SNACK__123.value),
+    (base_id + 400 + 354): (b'C004', Snacks.SNACK__13.value),
+    (base_id + 400 + 355): (b'C004', Snacks.SNACK__14.value),
+    (base_id + 400 + 356): (b'C004', Snacks.SNACK__380.value),
+    (base_id + 400 + 357): (b'C004', Snacks.SNACK__381.value),
+    (base_id + 400 + 358): (b'C004', Snacks.SNACK__382.value),
+    (base_id + 400 + 359): (b'C004', Snacks.SNACK__383.value),
+    (base_id + 400 + 360): (b'C004', Snacks.SNACK__150.value),
+    (base_id + 400 + 361): (b'C004', Snacks.SNACK__151.value),
+    (base_id + 400 + 362): (b'C004', Snacks.SNACK__152.value),
+    (base_id + 400 + 363): (b'C004', Snacks.SNACK__390.value),
+    (base_id + 400 + 364): (b'C004', Snacks.SNACK__391.value),
+    (base_id + 400 + 365): (b'C004', Snacks.SNACK__392.value),
+    (base_id + 400 + 366): (b'C004', Snacks.SNACK__393.value),
+    (base_id + 400 + 367): (b'C004', Snacks.BOX__OF__SNACKS__02.value),
+    (base_id + 400 + 368): (b'C004', Snacks.SNACK__171.value),
+    (base_id + 400 + 369): (b'C004', Snacks.SNACK__172.value),
+    (base_id + 400 + 370): (b'C004', Snacks.SNACK__173.value),
+    (base_id + 400 + 371): (b'C004', Snacks.SNACK__174.value),
+    (base_id + 400 + 372): (b'C004', Snacks.SNACK__175.value),
+    (base_id + 400 + 373): (b'C004', Snacks.SNACK__176.value),
+    (base_id + 400 + 374): (b'C004', Snacks.SNACK__177.value),
+    (base_id + 400 + 375): (b'C004', Snacks.SNACK__178.value),
+    (base_id + 400 + 376): (b'C004', Snacks.SNACK__180.value),
+    (base_id + 400 + 377): (b'C004', Snacks.SNACK__182.value),
+    (base_id + 400 + 378): (b'C004', Snacks.SNACK__184.value),
+    (base_id + 400 + 379): (b'C004', Snacks.SNACK__186.value),
+    (base_id + 400 + 380): (b'C004', Snacks.SNACK__188.value),
+    (base_id + 400 + 381): (b'C004', Snacks.SNACK__19.value),
+    (base_id + 400 + 382): (b'C004', Snacks.BOX__OF__SNACKS__03.value),
+    (base_id + 400 + 383): (b'C004', Snacks.SNACK__60.value),    # Umbrella
+    (base_id + 400 + 384): (b'C004', Snacks.SNACK__600.value),
+    (base_id + 400 + 385): (b'C004', Snacks.SNACK__602.value),
+    (base_id + 400 + 386): (b'C004', Snacks.SNACK__603.value),
+    (base_id + 400 + 387): (b'C004', Snacks.SNACK__606.value),
+    (base_id + 400 + 388): (b'C004', Snacks.SNACK__608.value),
+    (base_id + 400 + 389): (b'C004', Snacks.SNACK__70.value),
+    (base_id + 400 + 390): (b'C004', Snacks.SNACK__700.value),
+    (base_id + 400 + 391): (b'C004', Snacks.SNACK__701.value),
+    (base_id + 400 + 392): (b'C004', Snacks.SNACK__702.value),
+    (base_id + 400 + 393): (b'C004', Snacks.SNACK__703.value),
+    (base_id + 400 + 394): (b'C004', Snacks.SNACK__704.value),
+    (base_id + 400 + 395): (b'C004', Snacks.SNACK__705.value),
+    (base_id + 400 + 396): (b'C004', Snacks.SNACK__706.value),  # End Umbrella
+    (base_id + 400 + 397): (b'C004', Snacks.SNACK__32.value),
+    (base_id + 400 + 398): (b'C004', Snacks.SNACK__321.value),
+    (base_id + 400 + 399): (b'C004', Snacks.SNACK__323.value),
+    (base_id + 400 + 400): (b'C004', Snacks.SNACK__325.value),
+    (base_id + 400 + 401): (b'C004', Snacks.SNACK__327.value),
+    (base_id + 400 + 402): (b'C004', Snacks.SNACK__329.value),
+    (base_id + 400 + 403): (b'C004', Snacks.SNACK__3211.value),
+    (base_id + 400 + 404): (b'C004', Snacks.SNACK__3213.value),
+    (base_id + 400 + 405): (b'C004', Snacks.SNACK__36.value),
+    (base_id + 400 + 406): (b'C004', Snacks.SNACK__361.value),
+    (base_id + 400 + 407): (b'C004', Snacks.SNACK__363.value),
+    (base_id + 400 + 408): (b'C004', Snacks.SNACK__41.value),
+    (base_id + 400 + 409): (b'C004', Snacks.BOX__OF__SNACKS__05.value),
+    (base_id + 400 + 410): (b'C004', Snacks.BOX__OF__SNACKS__04.value),
+    (base_id + 400 + 411): (b'C004', Snacks.BOX__OF__SNACKS__06.value),
+    (base_id + 400 + 412): (b'C004', Snacks.SNACK__260.value),
+    (base_id + 400 + 413): (b'C004', Snacks.SNACK__262.value),
+    (base_id + 400 + 414): (b'C004', Snacks.SNACK__264.value),
+    (base_id + 400 + 415): (b'C004', Snacks.SNACK__266.value),
+    (base_id + 400 + 416): (b'C004', Snacks.SNACK__268.value),
+    (base_id + 400 + 417): (b'C004', Snacks.SNACK__2610.value),
+    (base_id + 400 + 418): (b'C004', Snacks.SNACK__2612.value),
+    (base_id + 400 + 419): (b'C004', Snacks.SNACK__2614.value),
+    (base_id + 400 + 420): (b'C004', Snacks.SNACK__2616.value),
+    (base_id + 400 + 421): (b'C004', Snacks.SNACK__2618.value),
+    (base_id + 400 + 422): (b'C004', Snacks.SNACK__2620.value),
+    (base_id + 400 + 423): (b'C004', Snacks.SNACK__2622.value),
+    (base_id + 400 + 424): (b'C004', Snacks.BOX__OF__SNACKS__07.value),
+    (base_id + 400 + 425): (b'C004', Snacks.SNACK__31.value),
+    (base_id + 400 + 426): (b'C004', Snacks.SNACK__310.value),
+    (base_id + 400 + 427): (b'C004', Snacks.SNACK__311.value),
+    (base_id + 400 + 428): (b'C004', Snacks.SNACK__312.value),
+    (base_id + 400 + 429): (b'C004', Snacks.SNACK__313.value),
+    (base_id + 400 + 430): (b'C004', Snacks.SNACK__3130.value),
+    (base_id + 400 + 431): (b'C004', Snacks.SNACK__31300.value),
+    (base_id + 400 + 432): (b'C004', Snacks.SNACK__31301.value),
+    (base_id + 400 + 433): (b'C004', Snacks.SNACK__31302.value),
+    (base_id + 400 + 434): (b'C004', Snacks.SNACK__313030.value),
+    (base_id + 400 + 435): (b'C004', Snacks.SNACK__31303.value),
+    (base_id + 400 + 436): (b'C004', Snacks.SNACK__313031.value),
+    (base_id + 400 + 437): (b'C004', Snacks.SNACK__313032.value),
+    (base_id + 400 + 438): (b'C004', Snacks.SNACK__313033.value),
+    (base_id + 400 + 439): (b'C004', Snacks.SNACK__355.value),
+    (base_id + 400 + 440): (b'C004', Snacks.SNACK__3550.value),
+    (base_id + 400 + 441): (b'C004', Snacks.SNACK__3552.value),
+    (base_id + 400 + 442): (b'C004', Snacks.SNACK__3554.value),
+    (base_id + 400 + 443): (b'C004', Snacks.SNACK__3556.value),
+    (base_id + 400 + 444): (b'C004', Snacks.SNACK__340.value),
+    (base_id + 400 + 445): (b'C004', Snacks.SNACK__341.value),
+    (base_id + 400 + 446): (b'C004', Snacks.SNACK__342.value),
+    (base_id + 400 + 447): (b'C004', Snacks.SNACK__343.value),
+    (base_id + 400 + 448): (b'C004', Snacks.SNACK__344.value),
+    (base_id + 400 + 449): (b'C004', Snacks.SNACK__345.value),
+    (base_id + 400 + 450): (b'C004', Snacks.SNACK__346.value),
+    (base_id + 400 + 451): (b'C004', Snacks.SNACK__347.value),
+    (base_id + 400 + 452): (b'C004', Snacks.SNACK__348.value),
+    (base_id + 400 + 453): (b'C004', Snacks.SNACK__349.value),
+    (base_id + 400 + 454): (b'C004', Snacks.SNACK__3410.value),
+
+    (base_id + 400 + 456): (b'C005', Snacks.SNACKBOX__1.value),
+    (base_id + 400 + 457): (b'C005', Snacks.SNACK__01.value),
+    (base_id + 400 + 458): (b'C005', Snacks.SNACK__02.value),
+    (base_id + 400 + 459): (b'C005', Snacks.SNACK__03.value),
+    (base_id + 400 + 460): (b'C005', Snacks.SNACK__04.value),
+    (base_id + 400 + 461): (b'C005', Snacks.SNACK__05.value),
+    (base_id + 400 + 462): (b'C005', Snacks.SNACK__06.value),
+    (base_id + 400 + 463): (b'C005', Snacks.SNACK__07.value),
+    (base_id + 400 + 464): (b'C005', Snacks.SNACK__08.value),
+    (base_id + 400 + 465): (b'C005', Snacks.SNACK__09.value),
+    (base_id + 400 + 466): (b'C005', Snacks.SNACK__10.value),
+    (base_id + 400 + 467): (b'C005', Snacks.SNACK__100.value),
+    (base_id + 400 + 468): (b'C005', Snacks.SNACK__101.value),
+    (base_id + 400 + 469): (b'C005', Snacks.SNACK__102.value),
+    (base_id + 400 + 470): (b'C005', Snacks.SNACK__103.value),
+    (base_id + 400 + 471): (b'C005', Snacks.SNACK__104.value),
+    (base_id + 400 + 472): (b'C005', Snacks.SNACK__105.value),
+    (base_id + 400 + 473): (b'C005', Snacks.SNACK__106.value),
+    (base_id + 400 + 474): (b'C005', Snacks.SNACK__107.value),
+    (base_id + 400 + 475): (b'C005', Snacks.SNACK__108.value),
+    (base_id + 400 + 476): (b'C005', Snacks.SNACK__109.value),
+    (base_id + 400 + 477): (b'C005', Snacks.SNACK__12.value),
+    (base_id + 400 + 478): (b'C005', Snacks.SNACK__120.value),
+    (base_id + 400 + 479): (b'C005', Snacks.SNACK__121.value),
+    (base_id + 400 + 480): (b'C005', Snacks.SNACK__122.value),
+    (base_id + 400 + 481): (b'C005', Snacks.SNACK__123.value),
+    (base_id + 400 + 482): (b'C005', Snacks.SNACK__124.value),
+    (base_id + 400 + 483): (b'C005', Snacks.SNACK__125.value),
+    (base_id + 400 + 484): (b'C005', Snacks.SNACK__126.value),
+    (base_id + 400 + 485): (b'C005', Snacks.SNACK__127.value),
+    (base_id + 400 + 486): (b'C005', Snacks.SNACK__128.value),
+    (base_id + 400 + 487): (b'C005', Snacks.SNACK__129.value),
+    (base_id + 400 + 488): (b'C005', Snacks.SNACKBOX__2.value),
+    (base_id + 400 + 489): (b'C005', Snacks.SNACKBOX__3.value),
+    (base_id + 400 + 490): (b'C005', Snacks.SNACK__19.value),
+    (base_id + 400 + 491): (b'C005', Snacks.SNACK__190.value),
+    (base_id + 400 + 492): (b'C005', Snacks.SNACK__191.value),
+    (base_id + 400 + 493): (b'C005', Snacks.SNACK__192.value),
+    (base_id + 400 + 494): (b'C005', Snacks.SNACK__193.value),
+    (base_id + 400 + 495): (b'C005', Snacks.SNACK__194.value),
+    (base_id + 400 + 496): (b'C005', Snacks.SNACK__195.value),
+    (base_id + 400 + 497): (b'C005', Snacks.SNACK__196.value),
+    (base_id + 400 + 498): (b'C005', Snacks.SNACK__197.value),
+    (base_id + 400 + 499): (b'C005', Snacks.SNACK__198.value),
+    (base_id + 400 + 500): (b'C005', Snacks.SNACK__199.value),
+    (base_id + 400 + 501): (b'C005', Snacks.SNACK__1910.value),
+    (base_id + 400 + 502): (b'C005', Snacks.SNACK__1911.value),
+    (base_id + 400 + 503): (b'C005', Snacks.SNACK__1912.value),
+    (base_id + 400 + 504): (b'C005', Snacks.SNACK__1913.value),
+    (base_id + 400 + 505): (b'C005', Snacks.SNACK__1914.value),
+    (base_id + 400 + 506): (b'C005', Snacks.SNACK__1915.value),
+    (base_id + 400 + 507): (b'C005', Snacks.SNACK__1916.value),
+    (base_id + 400 + 508): (b'C005', Snacks.SNACK__1917.value),
+    (base_id + 400 + 509): (b'C005', Snacks.SNACK__1918.value),
+    (base_id + 400 + 510): (b'C005', Snacks.SNACK__1919.value),
+
+    (base_id + 400 + 511): (b'C006', Snacks.SNACK__01.value),
+    (base_id + 400 + 512): (b'C006', Snacks.SNACK__010.value),
+    (base_id + 400 + 513): (b'C006', Snacks.SNACK__011.value),
+    (base_id + 400 + 514): (b'C006', Snacks.SNACK__012.value),
+    (base_id + 400 + 515): (b'C006', Snacks.SNACK__013.value),
+    (base_id + 400 + 516): (b'C006', Snacks.SNACK__014.value),
+    (base_id + 400 + 517): (b'C006', Snacks.SNACK__02.value),
+    (base_id + 400 + 518): (b'C006', Snacks.SNACK__020.value),
+    (base_id + 400 + 519): (b'C006', Snacks.SNACK__021.value),
+    (base_id + 400 + 520): (b'C006', Snacks.SNACK__022.value),
+    (base_id + 400 + 521): (b'C006', Snacks.SNACK__023.value),
+    (base_id + 400 + 522): (b'C006', Snacks.SNACK__024.value),
+    (base_id + 400 + 523): (b'C006', Snacks.CRATE__SNACKBOX__1.value),
+    (base_id + 400 + 524): (b'C006', Snacks.CRATE__SNACKBOX__2.value),
+    (base_id + 400 + 525): (b'C006', Snacks.SNACK__03.value),
+    (base_id + 400 + 526): (b'C006', Snacks.SNACK__030.value),
+    (base_id + 400 + 527): (b'C006', Snacks.SNACK__031.value),
+    (base_id + 400 + 528): (b'C006', Snacks.SNACK__032.value),
+    (base_id + 400 + 529): (b'C006', Snacks.SNACK__033.value),
+    (base_id + 400 + 530): (b'C006', Snacks.SNACK__034.value),
+    (base_id + 400 + 531): (b'C006', Snacks.SNACK__05.value),
+    (base_id + 400 + 532): (b'C006', Snacks.SNACK__050.value),
+    (base_id + 400 + 533): (b'C006', Snacks.SNACK__051.value),
+    (base_id + 400 + 534): (b'C006', Snacks.SNACK__052.value),
+    (base_id + 400 + 535): (b'C006', Snacks.SNACK__053.value),
+    (base_id + 400 + 536): (b'C006', Snacks.SNACK__07.value),
+    (base_id + 400 + 537): (b'C006', Snacks.SNACK__070.value),
+    (base_id + 400 + 538): (b'C006', Snacks.SNACK__071.value),
+    (base_id + 400 + 539): (b'C006', Snacks.SNACK__072.value),
+    (base_id + 400 + 540): (b'C006', Snacks.SNACK__0720.value),
+    (base_id + 400 + 541): (b'C006', Snacks.SNACK__0721.value),
+    (base_id + 400 + 542): (b'C006', Snacks.SNACK__0722.value),
+    (base_id + 400 + 543): (b'C006', Snacks.SNACK__804.value),
+    (base_id + 400 + 544): (b'C006', Snacks.SNACK__803.value),
+    (base_id + 400 + 545): (b'C006', Snacks.SNACK__802.value),
+    (base_id + 400 + 546): (b'C006', Snacks.SNACK__801.value),
+    (base_id + 400 + 547): (b'C006', Snacks.SNACK__800.value),
+    (base_id + 400 + 548): (b'C006', Snacks.SNACK__80.value),
+    (base_id + 400 + 549): (b'C006', Snacks.SNACK__805.value),
+    (base_id + 400 + 550): (b'C006', Snacks.SNACK__806.value),
+    (base_id + 400 + 551): (b'C006', Snacks.SNACK__807.value),
+    (base_id + 400 + 552): (b'C006', Snacks.SNACK__808.value),
+    (base_id + 400 + 553): (b'C006', Snacks.SNACK__809.value),
+    (base_id + 400 + 554): (b'C006', Snacks.SNACKBOX__3.value),
+    (base_id + 400 + 555): (b'C006', Snacks.SNACK__BOX__2.value),
+
+    (base_id + 400 + 556): (b'C007', Snacks.BOX__OF__SNACKS__1.value),
+    (base_id + 400 + 557): (b'C007', Snacks.SNACK__01.value),
+    (base_id + 400 + 558): (b'C007', Snacks.SNACK__010.value),
+    (base_id + 400 + 559): (b'C007', Snacks.SNACK__011.value),
+    (base_id + 400 + 560): (b'C007', Snacks.SNACK__012.value),
+    (base_id + 400 + 561): (b'C007', Snacks.SNACK__013.value),
+    (base_id + 400 + 562): (b'C007', Snacks.SNACK__014.value),
+    (base_id + 400 + 563): (b'C007', Snacks.SNACK__015.value),
+    (base_id + 400 + 564): (b'C007', Snacks.SNACK__03.value),
+    (base_id + 400 + 565): (b'C007', Snacks.SNACK__030.value),
+    (base_id + 400 + 566): (b'C007', Snacks.SNACK__031.value),
+    (base_id + 400 + 567): (b'C007', Snacks.SNACK__032.value),
+    (base_id + 400 + 568): (b'C007', Snacks.SNACK__033.value),
+    (base_id + 400 + 569): (b'C007', Snacks.SNACK__034.value),
+    (base_id + 400 + 570): (b'C007', Snacks.SNACK__04.value),
+    (base_id + 400 + 571): (b'C007', Snacks.SNACK__040.value),
+    (base_id + 400 + 572): (b'C007', Snacks.SNACK__041.value),
+    (base_id + 400 + 573): (b'C007', Snacks.SNACK__042.value),
+    (base_id + 400 + 574): (b'C007', Snacks.SNACK__043.value),
+    (base_id + 400 + 575): (b'C007', Snacks.SNACK__044.value),
+    (base_id + 400 + 576): (b'C007', Snacks.SNACK__045.value),
+    (base_id + 400 + 577): (b'C007', Snacks.BOX__OF__SNACKS__3.value),
+    (base_id + 400 + 578): (b'C007', Snacks.SNACK__074.value),
+    (base_id + 400 + 579): (b'C007', Snacks.SNACK__073.value),
+    (base_id + 400 + 580): (b'C007', Snacks.SNACK__072.value),
+    (base_id + 400 + 581): (b'C007', Snacks.SNACK__071.value),
+    (base_id + 400 + 582): (b'C007', Snacks.SNACK__070.value),
+    (base_id + 400 + 583): (b'C007', Snacks.SNACK__07.value),
+    (base_id + 400 + 584): (b'C007', Snacks.SNACK__075.value),
+    (base_id + 400 + 585): (b'C007', Snacks.SNACK__076.value),
+    (base_id + 400 + 586): (b'C007', Snacks.SNACK__077.value),
+    (base_id + 400 + 587): (b'C007', Snacks.SNACK__078.value),
+    (base_id + 400 + 588): (b'C007', Snacks.SNACK__079.value),
+    (base_id + 400 + 589): (b'C007', Snacks.SNACK__0790.value),
+    (base_id + 400 + 590): (b'C007', Snacks.SNACK__0791.value),
+    (base_id + 400 + 591): (b'C007', Snacks.SNACK__0792.value),
+    (base_id + 400 + 592): (b'C007', Snacks.SNACK__0793.value),
+    (base_id + 400 + 593): (b'C007', Snacks.SNACK__0794.value),
+    (base_id + 400 + 594): (b'C007', Snacks.SNACK__10.value),
+    (base_id + 400 + 595): (b'C007', Snacks.SNACK__100.value),
+    (base_id + 400 + 596): (b'C007', Snacks.SNACK__101.value),
+    (base_id + 400 + 597): (b'C007', Snacks.SNACK__102.value),
+    (base_id + 400 + 598): (b'C007', Snacks.SNACK__103.value),
+    (base_id + 400 + 599): (b'C007', Snacks.SNACK__104.value),
+    (base_id + 400 + 600): (b'C007', Snacks.SNACK__105.value),
+    (base_id + 400 + 601): (b'C007', Snacks.SNACK__106.value),
+    (base_id + 400 + 602): (b'C007', Snacks.SNACK__12.value),
+    (base_id + 400 + 603): (b'C007', Snacks.SNACK__120.value),
+    (base_id + 400 + 604): (b'C007', Snacks.SNACK__121.value),
+    (base_id + 400 + 605): (b'C007', Snacks.SNACK__122.value),
+    (base_id + 400 + 606): (b'C007', Snacks.SNACK__123.value),
+    (base_id + 400 + 607): (b'C007', Snacks.SNACK__124.value),
+    (base_id + 400 + 608): (b'C007', Snacks.SNACK__125.value),
+    (base_id + 400 + 609): (b'C007', Snacks.SNACK__164.value),
+    (base_id + 400 + 610): (b'C007', Snacks.SNACK__163.value),
+    (base_id + 400 + 611): (b'C007', Snacks.SNACK__162.value),
+    (base_id + 400 + 612): (b'C007', Snacks.SNACK__161.value),
+    (base_id + 400 + 613): (b'C007', Snacks.SNACK__160.value),
+    (base_id + 400 + 614): (b'C007', Snacks.SNACK__16.value),
+    (base_id + 400 + 615): (b'C007', Snacks.SNACK__17.value),
+    (base_id + 400 + 616): (b'C007', Snacks.SNACK__174.value),
+    (base_id + 400 + 617): (b'C007', Snacks.SNACK__175.value),
+    (base_id + 400 + 618): (b'C007', Snacks.SNACK__176.value),
+    (base_id + 400 + 619): (b'C007', Snacks.SNACK__177.value),
+    (base_id + 400 + 620): (b'C007', Snacks.SNACK__178.value),
+    (base_id + 400 + 621): (b'C007', Snacks.BOX__OF__SNACKS__4.value),
+    (base_id + 400 + 622): (b'C007', Snacks.SNACK__180.value),
+    (base_id + 400 + 623): (b'C007', Snacks.SNACK__181.value),
+    (base_id + 400 + 624): (b'C007', Snacks.SNACK__182.value),
+    (base_id + 400 + 625): (b'C007', Snacks.SNACK__183.value),
+    (base_id + 400 + 626): (b'C007', Snacks.SNACK__184.value),
+    (base_id + 400 + 627): (b'C007', Snacks.SNACK__185.value),
+    (base_id + 400 + 628): (b'C007', Snacks.SNACK__186.value),
+    (base_id + 400 + 629): (b'C007', Snacks.SNACK__187.value),
+    (base_id + 400 + 630): (b'C007', Snacks.SNACK__188.value),
+    (base_id + 400 + 631): (b'C007', Snacks.SNACK__189.value),
+    (base_id + 400 + 632): (b'C007', Snacks.SNACK__193.value),
+    (base_id + 400 + 633): (b'C007', Snacks.SNACK__192.value),
+    (base_id + 400 + 634): (b'C007', Snacks.SNACK__191.value),
+    (base_id + 400 + 635): (b'C007', Snacks.SNACK__190.value),
+    (base_id + 400 + 636): (b'C007', Snacks.SNACK__19.value),
+    (base_id + 400 + 637): (b'C007', Snacks.SNACK__194.value),
+    (base_id + 400 + 638): (b'C007', Snacks.SNACK__195.value),
+    (base_id + 400 + 639): (b'C007', Snacks.SNACK__196.value),
+    (base_id + 400 + 640): (b'C007', Snacks.SNACK__197.value),
+    (base_id + 400 + 641): (b'C007', Snacks.SNACK__198.value),
+    (base_id + 400 + 642): (b'C007', Snacks.BOX__OF__SNACKS__2.value),
+    (base_id + 400 + 643): (b'C007', Snacks.SNACK__204.value),
+    (base_id + 400 + 644): (b'C007', Snacks.SNACK__203.value),
+    (base_id + 400 + 645): (b'C007', Snacks.SNACK__202.value),
+    (base_id + 400 + 646): (b'C007', Snacks.SNACK__201.value),
+    (base_id + 400 + 647): (b'C007', Snacks.SNACK__200.value),
+    (base_id + 400 + 648): (b'C007', Snacks.SNACK__20.value),
+    (base_id + 400 + 649): (b'C007', Snacks.SNACK__213.value),
+    (base_id + 400 + 650): (b'C007', Snacks.SNACK__212.value),
+    (base_id + 400 + 651): (b'C007', Snacks.SNACK__211.value),
+    (base_id + 400 + 652): (b'C007', Snacks.SNACK__210.value),
+    (base_id + 400 + 653): (b'C007', Snacks.SNACK__21.value),
+    (base_id + 400 + 654): (b'C007', Snacks.SNACK__223.value),
+    (base_id + 400 + 655): (b'C007', Snacks.SNACK__222.value),
+    (base_id + 400 + 656): (b'C007', Snacks.SNACK__221.value),
+    (base_id + 400 + 657): (b'C007', Snacks.SNACK__220.value),
+    (base_id + 400 + 658): (b'C007', Snacks.SNACK__22.value),
+    (base_id + 400 + 659): (b'C007', Snacks.CRATE__PRIZE__1.value),
+    (base_id + 400 + 660): (b'C007', Snacks.CRATE__PRIZE__10.value),
+
+
+
+
 }
 
 valid_scenes = [
