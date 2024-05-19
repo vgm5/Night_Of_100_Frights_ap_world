@@ -2672,7 +2672,7 @@ class NO100FContext(CommonContext):
         self.last_death_link_send = time.time()
         self.current_scene_key = None
         self.use_tokens = False
-        self.use_keys = False
+        self.use_keys = 0
         self.use_warpgates = False
         self.use_snacks = False
         self.current_scene = None
@@ -2714,14 +2714,18 @@ class NO100FContext(CommonContext):
                 Utils.async_start(self.update_death_link(bool(args['slot_data']['death_link'])))
             if 'include_monster_tokens' in args['slot_data'] and args['slot_data']['include_monster_tokens']:
                 self.use_tokens = True
-            if 'include_keys' in args['slot_data'] and args['slot_data']['include_keys']:
-                self.use_keys = True
+            if 'include_keys' in args['slot_data']:
+                self.use_keys = args['slot_data']['include_keys']
             if 'include_warpgates' in args['slot_data'] and args['slot_data']['include_warpgates']:
                 self.use_warpgates = True
             if 'include_snacks' in args['slot_data'] and args['slot_data']['include_snacks']:
                 self.use_snacks = True
             if 'completion_goal' in args['slot_data']:
                 self.completion_goal = args['slot_data']['completion_goal']
+            if 'boss_count' in args['slot_data']:
+                self.boss_count = args['slot_data']['boss_count']
+            if 'token_count' in args['slot_data']:
+                self.token_count = args['slot_data']['token_count']
         if cmd == 'ReceivedItems':
             if args["index"] >= self.last_rev_index:
                 self.last_rev_index = args["index"]
@@ -2817,11 +2821,12 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
         return None
 
 
-# def _give_snack(ctx: NO100FContext):
-#    cur_snack_count = dolphin_memory_engine.read_word(SNACK_COUNT_ADDR)
-#    dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_snack_count + 1)
-#    if cur_snack_count > ctx.snack_count:
-#        logger.info("!Some went wrong with the snack count!")
+def _give_snack(ctx: NO100FContext):
+    cur_snack_count = dolphin_memory_engine.read_word(SNACK_COUNT_ADDR)
+    dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_snack_count + 1)
+
+    #if cur_snack_count > ctx.snack_count:
+    #    logger.info("!Something went wrong with the snack count!")
 
 def _give_powerup(ctx: NO100FContext, bit: int):
     cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
@@ -2870,6 +2875,11 @@ def _give_key(ctx: NO100FContext, offset: int):
     cur_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + offset)
     dolphin_memory_engine.write_byte(KEY_COUNT_ADDR + offset, cur_count + 1)
 
+def _give_keyring(ctx: NO100FContext, offset: int):
+    i = 6
+    while i > 0:
+        _give_key(ctx, offset)
+        i -= 1
 
 def _give_warp(ctx: NO100FContext, offset: int):
     cur_warps = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
@@ -2891,7 +2901,7 @@ def _check_cur_scene(ctx: NO100FContext, scene_id: bytes, scene_ptr: Optional[in
 
 def _give_item(ctx: NO100FContext, item_id: int):
     true_id = item_id - base_id  # Use item_id to generate offset for use with functions
-    if 0 <= true_id <= 82:  # ID is expected value
+    if 0 <= true_id <= 104:  # ID is expected value
 
         if true_id < 7:
             _give_powerup(ctx, true_id)
@@ -2913,6 +2923,10 @@ def _give_item(ctx: NO100FContext, item_id: int):
 
         if 57 <= true_id <= 82:
             _give_warp(ctx, true_id - 57)
+        if 83 <= true_id <= 103:
+            _give_keyring(ctx, true_id - 83)
+        if true_id == 104:
+            _give_snack(ctx)
 
     else:
         logger.warning(f"Received unknown item with id {item_id}")
@@ -3468,7 +3482,7 @@ async def update_key_items(ctx: NO100FContext):
 
 
 async def give_items(ctx: NO100FContext):
-    if ctx.use_keys:
+    if not ctx.use_keys == 0:
         await update_key_items(ctx)
     expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
     # we need to loop some items
@@ -3756,7 +3770,7 @@ async def apply_level_fixes(ctx: NO100FContext):
             fix_ptr = _find_obj_in_obj_table(0xD7924F8A, ptr, size)
             _set_trigger_state(ctx, fix_ptr, 0x1f)
 
-        if not ctx.use_keys:
+        if ctx.use_keys == 0:
             fix_ptr = _find_obj_in_obj_table(0xBBFA4948, ptr, size)
             if not fix_ptr == None:
                 if _check_pickup_state(ctx, fix_ptr):  #The Hedge key is collected, open the gate
@@ -3797,13 +3811,32 @@ async def apply_level_fixes(ctx: NO100FContext):
                 conditions_met = False
                 if ctx.completion_goal == 1:    #Fixes for all bosses
                     bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
-                    if bosseskilled == 3:
+                    if bosseskilled >= ctx.boss_count:
                         conditions_met = True
 
                 if ctx.completion_goal == 2:
                     tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
-                    if tokens == 0x1FFFFF:
+
+                    sum_tokens = 0
+                    for i in range(20):
+                        if tokens & 2 ** i == 2 ** i:
+                            sum_tokens += 1
+
+                    if sum_tokens >= ctx.token_count:
                         conditions_met = True
+
+                if ctx.completion_goal == 3:
+                    bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
+                    tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
+
+                    sum_tokens = 0
+                    for i in range(20):
+                        if tokens & 2 ** i == 2 ** i:
+                            sum_tokens += 1
+
+                    if bosseskilled >= ctx.boss_count and sum_tokens >= ctx.token_count:
+                        conditions_met = True
+
 
                 if conditions_met and in_arena == 0x1d:
                     fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
@@ -3857,7 +3890,7 @@ async def check_locations(ctx: NO100FContext):
     await _check_upgrades(ctx, ctx.locations_checked)
     if ctx.use_tokens:
         await _check_monstertokens(ctx, ctx.locations_checked)
-    if ctx.use_keys:
+    if not ctx.use_keys == 0:
         await _check_keys(ctx, ctx.locations_checked)
     if ctx.use_warpgates:
         await _check_warpgates(ctx, ctx.locations_checked)
@@ -4016,13 +4049,12 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     await apply_level_fixes(ctx)
                     if not ctx.use_warpgates:
                         await save_warp_gates(ctx)
-                    if ctx.use_keys:
+                    if not ctx.use_keys == 0:
                         await apply_key_fixes(ctx)
                     await force_death(ctx)
                     await enable_map_warping(ctx)
-                    if not (_check_cur_scene(ctx, b'O008') or _check_cur_scene(ctx, b'S005') or _check_cur_scene(ctx,
-                                                                                                                 b'G009') or _check_cur_scene(
-                            ctx, b'W028')):
+                    if not (_check_cur_scene(ctx, b'O008') or _check_cur_scene(ctx, b'S005') or
+                            _check_cur_scene(ctx, b'G009') or _check_cur_scene(ctx, b'W028')):
                         ctx.post_boss = False
                 else:
                     if not ctx.auth:

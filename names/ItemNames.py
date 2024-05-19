@@ -69,6 +69,29 @@ Gusts2_Key     = "Gusts 2 Key"
 DLD_Key        = "Don't Look Down Key"
 Shiver_Key     = "Shiver Key"
 
+#Keys
+Clamor1_KeyRing    = "Clamor 1 Key Ring"
+Hedge_KeyRing      = "Hedge Maze Key Ring"
+Fishing_KeyRing    = "Fishing Village Key Ring"
+Cellar2_KeyRing    = "Cellar 2 Key Ring"
+Cellar3_KeyRing    = "Cellar 3 Key Ring"
+Cavein_KeyRing     = "Cave-in Key Ring"
+FishyClues_KeyRing = "Fishy Clues Key Ring"
+Graveplot_KeyRing  = "Graveplot Key Ring"
+Tomb1_KeyRing      = "Tomb 1 Key Ring"
+Tomb3_KeyRing      = "Tomb 3 Key Ring"
+Clamor4_KeyRing    = "Clamor 4 Key Ring"
+MYM_KeyRing        = "Mind Your Manors Key Ring"
+Coast_KeyRing      = "Coast Key Ring"
+Attic_KeyRing      = "Attic Key Ring"
+Knight_KeyRing     = "Knight Key Ring"
+Creepy2_KeyRing    = "Creepy 2 Key Ring"
+Creepy3_KeyRing    = "Creepy 3 Key Ring"
+Gusts1_KeyRing     = "Gusts 1 Key Ring"
+Gusts2_KeyRing     = "Gusts 2 Key Ring"
+DLD_KeyRing        = "Don't Look Down Key Ring"
+Shiver_KeyRing     = "Shiver Key Ring"
+
 Keys = "Keys"
 
 #Warp Gates
@@ -97,6 +120,8 @@ SL2_Warp = "Little Lab of Horrors 2 Warp"
 Wreck22_Warp = "Wreck on the Deck! 3 Warp"
 Wreck26_Warp = "Aghast by the Mast! 3 Warp"
 MG_Warp = "Monster Gallery Warp"
+
+FillerSnack = "Spare Snack"
 
 Warps = "Warps"
 
