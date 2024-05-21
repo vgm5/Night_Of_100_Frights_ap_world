@@ -92,6 +92,7 @@ class NightOf100FrightsWorld(World):
                          ItemNames.Graveplot_KeyRing, ItemNames.Attic_KeyRing, ItemNames.Creepy3_KeyRing,
                          ItemNames.DLD_KeyRing, ItemNames.Cellar3_KeyRing, ItemNames.Cavein_KeyRing, ItemNames.FishyClues_KeyRing, ItemNames.MYM_KeyRing,
                          ItemNames.Coast_KeyRing, ItemNames.Knight_KeyRing, ItemNames.Gusts2_KeyRing, ItemNames.Shiver_KeyRing, ItemNames.Creepy2_KeyRing]
+            itempool += [ItemNames.FillerSnack] * 39
         if self.options.include_warpgates:
             itempool += [ItemNames.Cellar4_Warp, ItemNames.Cliff4_Warp, ItemNames.Hedge4_Warp, ItemNames.Hedge6_Warp,
                          ItemNames.Hedge9_Warp, ItemNames.Fish3_Warp, ItemNames.Fish7_Warp, ItemNames.Balc1_Warp,
