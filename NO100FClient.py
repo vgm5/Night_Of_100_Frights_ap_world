@@ -3668,7 +3668,15 @@ async def enable_map_warping(ctx: NO100FContext):
     fix_ptr = _find_obj_in_obj_table(0x8542BAD4, ptr, size)
     if not fix_ptr == None:
         for i in range(18):
-            _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
+            if i == 6:
+                saved_warps = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
+                if not saved_warps & 2**8:
+                    _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1c)
+                else:
+                    _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
+
+            else:
+                _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
 
     fix_ptr = _find_obj_in_obj_table(0x6887e731, ptr, size)
     if not fix_ptr == None:
@@ -3676,11 +3684,10 @@ async def enable_map_warping(ctx: NO100FContext):
             _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
         if ctx.use_warpgates:
             saved_warps = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
-            if not saved_warps & 2**8:  # Haven't found Crypt Warp
-                dolphin_memory_engine.write_word(0x801B7F54, 1)
+            if ((not saved_warps & 2**8) and saved_warps & 2**9):  # Give G005 Warp if we have received G008 as an item (Thanks Heavy Iron)
                 fix_ptr = _find_obj_in_obj_table(0x78A1C3B8, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1c)
-
+                dolphin_memory_engine.write_word(0x801B7F54, 1)
 
 async def apply_level_fixes(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
