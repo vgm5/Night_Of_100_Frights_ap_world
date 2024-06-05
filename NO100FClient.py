@@ -3649,14 +3649,7 @@ async def _check_warpgates_location(ctx: NO100FContext, locations_checked: set, 
         if value == 1:
             locations_checked.add(k)
 
-    warp_gates = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
-    if warp_gates == 0:
-        dolphin_memory_engine.write_word(SAVED_WARP_ADDR, 0X400)
-    for i in range(26):
-        if warp_gates & 2 ** i == 2 ** i:
-            dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 1)
-        else:
-            dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 0)
+    await load_warp_gates(ctx)
 
 async def enable_map_warping(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
@@ -3976,18 +3969,19 @@ async def save_warp_gates(ctx: NO100FContext):
         if cur_gate == 1:
             warp_gate_map += 2 ** i
 
-    if warp_gate_map == 0x400:  # The game is at the default state, attempt to load instead of saving
-        if not dolphin_memory_engine.read_word(SAVED_WARP_ADDR) == 0 and not _check_cur_scene(ctx, b'MNU3'):
-            await load_warp_gates(ctx)
-        return
+    if warp_gate_map & 0x400 == 0:
+        warp_gate_map += 0x400
 
     dolphin_memory_engine.write_word(SAVED_WARP_ADDR, warp_gate_map)
 
 
 async def load_warp_gates(ctx: NO100FContext):
     warp_gates = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
-    if warp_gates == 0:
-        dolphin_memory_engine.write_word(SAVED_WARP_ADDR, 0X400)
+    if warp_gates & 0x400 == 0:
+        warp_gates += 0x400
+        
+    dolphin_memory_engine.write_word(SAVED_WARP_ADDR, warp_gates)
+
     for i in range(26):
         if warp_gates & 2 ** i == 2 ** i:
             dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 1)
@@ -4027,6 +4021,7 @@ async def dolphin_sync_task(ctx: NO100FContext):
                 if not check_ingame(ctx):
                     # reset AP values when on main menu
                     if _check_cur_scene(ctx, b'MNU3'):
+                        ctx.current_scene = b'MNU3'
                         for i in range(0, 0x80, 0x4):
                             cur_val = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR + i)
                             if cur_val != 0:
@@ -4055,7 +4050,10 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     await check_locations(ctx)
                     await apply_level_fixes(ctx)
                     if not ctx.use_warpgates:
-                        await save_warp_gates(ctx)
+                        if ctx.previous_scene == b'MNU3':
+                            await load_warp_gates(ctx)
+                        else:
+                            await save_warp_gates(ctx)
                     if not ctx.use_keys == 0:
                         await apply_key_fixes(ctx)
                     await force_death(ctx)
