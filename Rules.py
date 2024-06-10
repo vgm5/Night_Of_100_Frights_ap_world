@@ -76,7 +76,8 @@ upgrade_rules = [
 
         # Wrecked Ships
         ConnectionNames.w020_w021: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
-        ConnectionNames.w025_w026: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 2),
+        ConnectionNames.w023_w025: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
+        ConnectionNames.w025_w026: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
     },
     # locations
     {
