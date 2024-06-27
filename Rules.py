@@ -286,7 +286,7 @@ key_rules = [
         ItemNames.MonsterTokens:
             {
                 # Manor
-                LocationNames.geronimo_token_i005: lambda player: lambda state: state.has(ItemNames.MYM_Key, player, 4) or state.has(ItemNames.ProgressiveJump, player, 2) or state.has(ItemNames.Hedge_Key, player, 1),
+                LocationNames.geronimo_token_i005: lambda player: lambda state: state.has(ItemNames.MYM_Key, player, 4) or state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.HelmetPower, player, 1),
 
                 # Balcony
                 LocationNames.blackknight_token_o001: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) or (state.has(ItemNames.Attic_Key, player, 3) and state.has(ItemNames.Knight_Key, player, 4) or state.has(ItemNames.Attic_KeyRing, player, 1) and state.has(ItemNames.Knight_KeyRing, player, 1)),
