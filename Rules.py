@@ -200,6 +200,11 @@ upgrade_rules = [
                 # Rooftops
                 LocationNames.key3_r005: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
+                # Basement
+                LocationNames.key1_b002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.key2_b002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.key3_b002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
+
                 # Lighthouse
                 LocationNames.key1_w027: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
                 LocationNames.key2_w027: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
