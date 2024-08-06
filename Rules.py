@@ -212,6 +212,11 @@ upgrade_rules = [
                 LocationNames.key4_w027: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
             },
 
+        ItemNames.Warps:
+            {
+                LocationNames.warp_gate_o001: lambda player: lambda state: state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
+            },
+
         ItemNames.victory:
         {
             #   LocationNames.Credits: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
@@ -350,7 +355,8 @@ warpgate_rules = [
             },
         ItemNames.Warps:
             {
-                LocationNames.warp_gate_i003: lambda player: lambda state: state.has(ItemNames.Manor3_Warp, player, 1)
+                LocationNames.warp_gate_i003: lambda player: lambda state: state.has(ItemNames.Manor3_Warp, player, 1),
+                LocationNames.warp_gate_o001: lambda player: lambda state: state.has(ItemNames.Balc1_Warp, player, 1),
             },
         ItemNames.MonsterTokens:
             {
