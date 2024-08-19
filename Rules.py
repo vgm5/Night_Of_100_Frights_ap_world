@@ -535,7 +535,18 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
         add_rule(multiworld.get_entrance(ConnectionNames.hub1_w026, player), lambda state: state.has(ItemNames.ShockwavePower, player, 2))
 
     if options.advanced_logic.value:
-        None
-        # TODO
+        add_rule(multiworld.get_entrance(ConnectionNames.e002_e003, player), lambda state: state.can_reach(RegionNames.e002, "Region", player))
+        add_rule(multiworld.get_entrance(ConnectionNames.e004_e005, player), lambda state: state.can_reach(RegionNames.e004, "Region", player))
+        add_rule(multiworld.get_entrance(ConnectionNames.e006_e005, player), lambda state: state.can_reach(RegionNames.e006, "Region", player))
 
+        if options.include_monster_tokens.value:
+            add_rule(multiworld.get_location(LocationNames.moody_token_w022, player), lambda state: state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.PoundPower, player, 1))
+            add_rule(multiworld.get_location(LocationNames.moody_token_w022, player), lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)))
+            add_rule(multiworld.get_location(LocationNames.headless_token_i001, player), lambda state: state.can_reach(RegionNames.i001, "Region", player))
+
+        if options.include_keys.value:
+            add_rule(multiworld.get_location(LocationNames.key1_w027, player), lambda state: state.can_reach(RegionNames.w027, "Region", player))
+            add_rule(multiworld.get_location(LocationNames.key2_w027, player), lambda state: state.can_reach(RegionNames.w027, "Region", player))
+            add_rule(multiworld.get_location(LocationNames.key3_w027, player), lambda state: state.can_reach(RegionNames.w027, "Region", player))
+            add_rule(multiworld.get_location(LocationNames.key4_w027, player), lambda state: state.has(ItemNames.PoundPower, player, 1))
     multiworld.completion_condition[player] = lambda state: state.has("Victory", player)

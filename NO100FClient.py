@@ -3681,6 +3681,9 @@ async def enable_map_warping(ctx: NO100FContext):
                 fix_ptr = _find_obj_in_obj_table(0x78A1C3B8, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1c)
                 dolphin_memory_engine.write_word(0x801B7F54, 1)
+            if (saved_warps & 2**8 and (not saved_warps & 2**9)):  # Prevent G008 Warp if we have received G005 as an item (Thanks Heavy Iron)
+                fix_ptr = _find_obj_in_obj_table(0x6B2EA611, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1c)
 
 async def apply_level_fixes(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
