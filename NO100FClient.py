@@ -3535,7 +3535,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)  # Force Shovel Pickup Availability
 
             # Slippers Fix
-            if v[1] == Upgrades.SlippersPower.value:  # Only do this for the Shovel Power Up in H001
+            if v[1] == Upgrades.SlippersPower.value:  # Only do this for the Slippers Powerup in E002
 
                 fix_ptr = _find_obj_in_obj_table(0xF08C8F07, ptr, size)
                 if fix_ptr is None: break
@@ -3812,12 +3812,12 @@ async def apply_level_fixes(ctx: NO100FContext):
             if fix_ptr is not None:
                 in_arena = dolphin_memory_engine.read_byte(fix_ptr + 0x7)
                 conditions_met = False
-                if ctx.completion_goal == 1:    #Fixes for all bosses
+                if ctx.completion_goal == 1 or (ctx.completion_goal == 3 and not ctx.use_tokens):    #Fixes for all bosses
                     bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
                     if bosseskilled >= ctx.boss_count:
                         conditions_met = True
 
-                if ctx.completion_goal == 2:
+                if ctx.completion_goal == 2 and ctx.use_tokens:
                     tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
 
                     sum_tokens = 0
@@ -3828,7 +3828,10 @@ async def apply_level_fixes(ctx: NO100FContext):
                     if sum_tokens >= ctx.token_count:
                         conditions_met = True
 
-                if ctx.completion_goal == 3:
+                else:
+                    conditions_met = True
+
+                if ctx.completion_goal == 3 and ctx.use_tokens:
                     bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
                     tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
 

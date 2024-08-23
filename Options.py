@@ -38,6 +38,7 @@ class CompletionGoal(Choice):
     2 = Monster Tokens
     3 = Bosses/Tokens
     For Non-Vanilla options, Mastermind still needs to be defeated - you just can't fight him until the goal has been met
+    For Token Goals, Tokens need to be randomized.
     """
     display_name = "Completion Goal"
     option_vanilla = 0
@@ -47,7 +48,7 @@ class CompletionGoal(Choice):
     default = 0
 
 class BossesCount(Range):
-    """Sets the number of tokens needed if Token Completion Goal is being used"""
+    """Sets the number of bosses needed if Boss Completion Goal is being used"""
     display_name = "Boss Kills Count"
     range_start = 1
     range_end = 3
