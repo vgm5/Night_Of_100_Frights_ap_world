@@ -71,12 +71,7 @@ class NightOf100FrightsWorld(World):
        #     itempool += [ItemNames.Snack] * way too much
        #     itempool += [ItemNames.SnackBox] * also alot
         if self.options.include_monster_tokens:
-            itempool += [ItemNames.MT_BLACKKNIGHT, ItemNames.MT_MOODY, ItemNames.MT_CAVEMAN, ItemNames.MT_CREEPER,
-                         ItemNames.MT_GARGOYLE, ItemNames.MT_GERONIMO, ItemNames.MT_GHOST,
-                         ItemNames.MT_GHOSTDIVER, ItemNames.MT_GREENGHOST, ItemNames.MT_HEADLESS,
-                         ItemNames.MT_MASTERMIND, ItemNames.MT_ROBOT, ItemNames.MT_REDBEARD, ItemNames.MT_SCARECROW,
-                         ItemNames.MT_SEACREATURE, ItemNames.MT_SPACEKOOK, ItemNames.MT_TARMONSTER, ItemNames.MT_WITCH,
-                         ItemNames.MT_WITCHDOC, ItemNames.MT_WOLFMAN, ItemNames.MT_ZOMBIE]
+            itempool += [ItemNames.MT_PROGRESSIVE] * 21
         if self.options.include_keys == 1:
             itempool += [ItemNames.Hedge_Key, ItemNames.Fishing_Key, ItemNames.Clamor1_Key, ItemNames.Clamor4_Key,
                          ItemNames.Gusts1_Key, ItemNames.Tomb1_Key]  # Single Keys

@@ -432,17 +432,7 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
         add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
     if goal == 2:
         if options.include_monster_tokens.value:
-            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_BLACKKNIGHT, player, 1) and
-                state.has(ItemNames.MT_MOODY, player, 1) and state.has(ItemNames.MT_CAVEMAN, player, 1) and
-                state.has(ItemNames.MT_CREEPER, player, 1) and state.has(ItemNames.MT_GARGOYLE, player, 1) and
-                state.has(ItemNames.MT_GERONIMO, player, 1) and state.has(ItemNames.MT_GHOST, player, 1) and
-                state.has(ItemNames.MT_GHOSTDIVER, player, 1) and state.has(ItemNames.MT_GREENGHOST, player, 1) and
-                state.has(ItemNames.MT_HEADLESS, player, 1) and state.has(ItemNames.MT_MASTERMIND, player, 1) and
-                state.has(ItemNames.MT_ROBOT, player, 1) and state.has(ItemNames.MT_REDBEARD, player, 1) and
-                state.has(ItemNames.MT_SCARECROW, player, 1) and state.has(ItemNames.MT_SEACREATURE, player, 1) and
-                state.has(ItemNames.MT_SPACEKOOK, player, 1) and state.has(ItemNames.MT_TARMONSTER, player, 1) and
-                state.has(ItemNames.MT_WITCH, player, 1) and state.has(ItemNames.MT_WITCHDOC, player, 1) and
-                state.has(ItemNames.MT_WOLFMAN, player, 1) and state.has(ItemNames.MT_ZOMBIE, player, 1))
+            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count))
         else:
             add_rule(multiworld.get_location(LocationNames.Credits, player),lambda state: state.can_reach(RegionNames.o001, "Region", player) and
                 state.can_reach(RegionNames.w022, "Region", player) and state.can_reach(RegionNames.l013, "Region", player) and
@@ -459,17 +449,7 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
                 state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1))
     if goal == 3:
         if options.include_monster_tokens.value:
-            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_BLACKKNIGHT, player, 1) and
-                state.has(ItemNames.MT_MOODY, player, 1) and state.has(ItemNames.MT_CAVEMAN, player, 1) and
-                state.has(ItemNames.MT_CREEPER, player, 1) and state.has(ItemNames.MT_GARGOYLE, player, 1) and
-                state.has(ItemNames.MT_GERONIMO, player, 1) and state.has(ItemNames.MT_GHOST, player, 1) and
-                state.has(ItemNames.MT_GHOSTDIVER, player, 1) and state.has(ItemNames.MT_GREENGHOST, player, 1) and
-                state.has(ItemNames.MT_HEADLESS, player, 1) and state.has(ItemNames.MT_MASTERMIND, player, 1) and
-                state.has(ItemNames.MT_ROBOT, player, 1) and state.has(ItemNames.MT_REDBEARD, player, 1) and
-                state.has(ItemNames.MT_SCARECROW, player, 1) and state.has(ItemNames.MT_SEACREATURE, player, 1) and
-                state.has(ItemNames.MT_SPACEKOOK, player, 1) and state.has(ItemNames.MT_TARMONSTER, player, 1) and
-                state.has(ItemNames.MT_WITCH, player, 1) and state.has(ItemNames.MT_WITCHDOC, player, 1) and
-                state.has(ItemNames.MT_WOLFMAN, player, 1) and state.has(ItemNames.MT_ZOMBIE, player, 1) and
+            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count) and
                 state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
         else:
             add_rule(multiworld.get_location(LocationNames.Credits, player),lambda state: state.can_reach(RegionNames.o001, "Region", player) and

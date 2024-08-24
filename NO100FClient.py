@@ -2589,66 +2589,108 @@ class NO100FCommandProcessor(ClientCommandProcessor):
     def _cmd_keys(self):
         """Displays current key counts and the number expected in a room"""
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
+        if count > 1:
+            count = 1
         logger.info(f"Clamor 1 Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
+        if count > 1:
+            count = 1
         logger.info(f"Hedge Maze Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
+        if count > 1:
+            count = 1
         logger.info(f"Fishing Village Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
+        if count > 3:
+            count = 3
         logger.info(f"Cellar 2 Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
+        if count > 4:
+            count = 4
         logger.info(f"Cellar 3 Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
+        if count > 4:
+            count = 4
         logger.info(f"Cavein Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
+        if count > 4:
+            count = 4
         logger.info(f"Fishy Clues Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
+        if count > 3:
+            count = 3
         logger.info(f"Graveplot Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
+        if count > 1:
+            count = 1
         logger.info(f"Tomb 1 Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
+        if count > 2:
+            count = 2
         logger.info(f"Tomb 3 Keys {count}/2")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10)
+        if count > 1:
+            count = 1
         logger.info(f"Clamor 4 Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 11)
+        if count > 4:
+            count = 4
         logger.info(f"MYM Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 12)
+        if count > 4:
+            count = 4
         logger.info(f"Coast Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 13)
+        if count > 3:
+            count = 3
         logger.info(f"Attic Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 14)
+        if count > 4:
+            count = 4
         logger.info(f"Knight Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 15)
+        if count > 5:
+            count = 5
         logger.info(f"Creepy 2 Keys {count}/5")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 16)
+        if count > 3:
+            count = 3
         logger.info(f"Creepy 3 Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 17)
+        if count > 1:
+            count = 1
         logger.info(f"Gusts 1 Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 18)
+        if count > 4:
+            count = 4
         logger.info(f"Gusts 2 Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 19)
+        if count > 3:
+            count = 3
         logger.info(f"DLD Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 20)
+        if count > 4:
+            count = 4
         logger.info(f"Shiver Keys {count}/4")
 
 
@@ -2865,10 +2907,13 @@ def _give_soap_upgrade(ctx: NO100FContext):
     dolphin_memory_engine.write_word(MAX_SOAP_COUNT_ADDR, cur_max_soap + 5)
 
 
-def _give_monstertoken(ctx: NO100FContext, bit: int):
+def _give_monstertoken(ctx: NO100FContext):
     cur_monster_tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
-    if cur_monster_tokens & 2 ** bit == 0:
-        dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, cur_monster_tokens + 2 ** bit)
+    i = 0
+    while cur_monster_tokens & 2 ** i and i < 21:  #Advance Index to the smallest non-high bit
+        i += 1
+
+    dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, cur_monster_tokens + 2 ** i)
 
 
 def _give_key(ctx: NO100FContext, offset: int):
@@ -2915,8 +2960,8 @@ def _give_item(ctx: NO100FContext, item_id: int):
         elif true_id == 14:
             _give_soap_upgrade(ctx)
 
-        if 14 < true_id < 36:
-            _give_monstertoken(ctx, true_id - 15)
+        if true_id == 35:
+            _give_monstertoken(ctx)
 
         if 36 <= true_id <= 56:
             _give_key(ctx, true_id - 36)
@@ -3812,37 +3857,33 @@ async def apply_level_fixes(ctx: NO100FContext):
             if fix_ptr is not None:
                 in_arena = dolphin_memory_engine.read_byte(fix_ptr + 0x7)
                 conditions_met = False
-                if ctx.completion_goal == 1 or (ctx.completion_goal == 3 and not ctx.use_tokens):    #Fixes for all bosses
+                if ctx.completion_goal == 1:    #Fixes for all bosses
                     bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
                     if bosseskilled >= ctx.boss_count:
                         conditions_met = True
 
-                if ctx.completion_goal == 2 and ctx.use_tokens:
+                if ctx.completion_goal == 2:
                     tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
 
                     sum_tokens = 0
-                    for i in range(20):
+                    for i in range(21):
                         if tokens & 2 ** i == 2 ** i:
                             sum_tokens += 1
 
                     if sum_tokens >= ctx.token_count:
                         conditions_met = True
 
-                else:
-                    conditions_met = True
-
                 if ctx.completion_goal == 3 and ctx.use_tokens:
                     bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
                     tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
 
                     sum_tokens = 0
-                    for i in range(20):
+                    for i in range(21):
                         if tokens & 2 ** i == 2 ** i:
                             sum_tokens += 1
 
                     if bosseskilled >= ctx.boss_count and sum_tokens >= ctx.token_count:
                         conditions_met = True
-
 
                 if conditions_met and in_arena == 0x1d:
                     fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
@@ -3875,8 +3916,6 @@ async def apply_level_fixes(ctx: NO100FContext):
                 if conditions_met and in_arena == 0x1c:
                     fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
                     _set_trigger_state(ctx, fix_ptr, 0x1e)
-
-
 
         if not ctx.finished_game:  # We have not finished
             fix_ptr = _find_obj_in_obj_table(0x21D3EDA4, ptr, size)

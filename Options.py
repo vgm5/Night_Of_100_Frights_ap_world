@@ -38,7 +38,6 @@ class CompletionGoal(Choice):
     2 = Monster Tokens
     3 = Bosses/Tokens
     For Non-Vanilla options, Mastermind still needs to be defeated - you just can't fight him until the goal has been met
-    For Token Goals, Tokens need to be randomized.
     """
     display_name = "Completion Goal"
     option_vanilla = 0
