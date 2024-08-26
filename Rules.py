@@ -204,6 +204,10 @@ upgrade_rules = [
                 LocationNames.key1_b002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
                 LocationNames.key2_b002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
                 LocationNames.key3_b002: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.key1_b003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+                LocationNames.key2_b003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+                LocationNames.key3_b003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+                LocationNames.key4_b003: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
 
                 # Lighthouse
                 LocationNames.key1_w027: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
