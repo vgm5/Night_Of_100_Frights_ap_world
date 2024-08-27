@@ -73,7 +73,7 @@ exit_table: Dict[str, List[str]] = {
     # H(e)dge Maze
     RegionNames.e001: [ConnectionNames.e001_e002, ConnectionNames.e001_hub1],
     RegionNames.e002: [ConnectionNames.e002_e001, ConnectionNames.e002_e003],
-    RegionNames.e003: [ConnectionNames.e003_e002, ConnectionNames.e003_e004],
+    RegionNames.e003: [ConnectionNames.e003_e002, ConnectionNames.e003_e004, ConnectionNames.e003_c005],
     RegionNames.e004: [ConnectionNames.e004_e005],
     RegionNames.e005: [ConnectionNames.e005_e004, ConnectionNames.e005_e006],
     RegionNames.e006: [ConnectionNames.e006_e005, ConnectionNames.e006_e007],
@@ -163,7 +163,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.w022: [ConnectionNames.w022_w021, ConnectionNames.w022_w023],
     RegionNames.w023: [ConnectionNames.w023_w022, ConnectionNames.w023_w025],
     RegionNames.w025: [ConnectionNames.w025_w023, ConnectionNames.w025_w026],
-    RegionNames.w026: [ConnectionNames.w026_w020, ConnectionNames.w026_w027],
+    RegionNames.w026: [ConnectionNames.w026_w020, ConnectionNames.w026_w027, ConnectionNames.w026_w028],
     RegionNames.w027: [ConnectionNames.w027_w026, ConnectionNames.w027_w028],
     RegionNames.w028: [ConnectionNames.w028_w026],
 

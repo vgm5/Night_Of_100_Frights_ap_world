@@ -65,6 +65,16 @@ class AdvancedLogic(Toggle):
     display_name = "Advanced Logic"
     default = 0
 
+class ExpertLogic(Toggle):
+    """Changes generation to expect certain tricks to be performed, intended for even MORE experienced players"""
+    display_name = "Expert Logic"
+    default = 0
+
+class CreepyEarly(Toggle):
+    """Changes generation to expect certain tricks to be performed (CREEPY EARLY [GCN]), intended for less sane players"""
+    display_name = "Creepy Early"
+    default = 0
+
 class NoLogic(Toggle):
     """Disables all item Logic | USE AT YOUR OWN RISK"""
     display_name = "Disable Logic"
@@ -81,4 +91,6 @@ class NO100FOptions(PerGameCommonOptions):
     boss_count: BossesCount
     token_count: MonsterTokensCount
     advanced_logic: AdvancedLogic
+    expert_logic: ExpertLogic
+    creepy_early: CreepyEarly
     no_logic: NoLogic

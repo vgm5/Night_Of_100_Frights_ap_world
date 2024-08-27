@@ -130,6 +130,8 @@ class NightOf100FrightsWorld(World):
             "boss_count": self.options.boss_count.value,
             "token_count": self.options.token_count.value,
             "advanced_logic": self.options.advanced_logic.value,
+            "expert_logic": self.options.expert_logic.value,
+            "creepy_early": self.options.creepy_early.value,
             "no_logic": self.options.no_logic.value,
         }
 
