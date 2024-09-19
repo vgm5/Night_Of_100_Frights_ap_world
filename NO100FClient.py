@@ -3856,6 +3856,13 @@ async def apply_level_fixes(ctx: NO100FContext):
             fix_ptr = _find_obj_in_obj_table(0x79f90e17, ptr, size)
             if fix_ptr is not None:
                 in_arena = dolphin_memory_engine.read_byte(fix_ptr + 0x7)
+                fix_ptr = _find_obj_in_obj_table(0x11498CF8, ptr, size)
+                cutscene_played = dolphin_memory_engine.read_byte(fix_ptr + 0x23)
+
+                if cutscene_played == 2:
+                    fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
+                    _set_trigger_state(ctx, fix_ptr, 0x1e)
+
                 conditions_met = False
                 if ctx.completion_goal == 1:    #Fixes for all bosses
                     bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
@@ -3873,7 +3880,7 @@ async def apply_level_fixes(ctx: NO100FContext):
                     if sum_tokens >= ctx.token_count:
                         conditions_met = True
 
-                if ctx.completion_goal == 3 and ctx.use_tokens:
+                if ctx.completion_goal == 3:
                     bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
                     tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
 
@@ -3885,7 +3892,7 @@ async def apply_level_fixes(ctx: NO100FContext):
                     if bosseskilled >= ctx.boss_count and sum_tokens >= ctx.token_count:
                         conditions_met = True
 
-                if conditions_met and in_arena == 0x1d:
+                if conditions_met and in_arena == 0x1d and cutscene_played == 0:
                     fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
                     _set_trigger_state(ctx, fix_ptr, 0x1f)
                 elif not conditions_met:
@@ -3912,10 +3919,6 @@ async def apply_level_fixes(ctx: NO100FContext):
                     fix_ptr = _find_obj_in_obj_table(0x2854c118, ptr, size)
                     _set_platform_collision_state(ctx, fix_ptr, 0)
                     _set_platform_state(ctx, fix_ptr, 0)
-
-                if conditions_met and in_arena == 0x1c:
-                    fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
-                    _set_trigger_state(ctx, fix_ptr, 0x1e)
 
         if not ctx.finished_game:  # We have not finished
             fix_ptr = _find_obj_in_obj_table(0x21D3EDA4, ptr, size)
