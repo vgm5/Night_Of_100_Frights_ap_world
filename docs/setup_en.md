@@ -4,7 +4,7 @@
 
 - [Archipelago](https://github.com/ArchipelagoMW/Archipelago/releases) v0.4.1 or higher. Make sure to install the
   Generator.
-- [This AP world](https://github.com/Night_Of_100_Frights_ap_world/releases)
+- [This AP world](https://github.com/vgm5/Night_Of_100_Frights_ap_world/releases)
 - Microsoft .NET Framework 4.8 or higher
 - [Dolphin](https://dolphin-emu.org/download/)
 - Your US Version of Night of 100 Frights Revision 0(The original 1.0 release), probably
