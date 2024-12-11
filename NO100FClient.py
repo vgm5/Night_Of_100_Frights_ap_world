@@ -2726,6 +2726,7 @@ class NO100FContext(CommonContext):
         self.use_tokens = False
         self.use_keys = 0
         self.use_warpgates = False
+        self.use_speedster = False
         self.use_snacks = False
         self.current_scene = None
         self.previous_scene = None
