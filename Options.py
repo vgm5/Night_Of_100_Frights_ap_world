@@ -80,6 +80,11 @@ class NoLogic(Toggle):
     display_name = "Disable Logic"
     default = 0
 
+class Speedster(Toggle):
+    """For Fun Setting, permanently makes scooby move at mach speed"""
+    display_name = "Speedster"
+    default = 0
+
 @dataclass
 class NO100FOptions(PerGameCommonOptions):
     include_monster_tokens: IncludeMonsterTokens
@@ -94,3 +99,4 @@ class NO100FOptions(PerGameCommonOptions):
     expert_logic: ExpertLogic
     creepy_early: CreepyEarly
     no_logic: NoLogic
+    speedster: Speedster

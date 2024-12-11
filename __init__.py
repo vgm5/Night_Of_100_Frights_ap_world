@@ -133,6 +133,7 @@ class NightOf100FrightsWorld(World):
             "expert_logic": self.options.expert_logic.value,
             "creepy_early": self.options.creepy_early.value,
             "no_logic": self.options.no_logic.value,
+            "speedster": self.options.speedster.value,
         }
 
     def create_item(self, name: str,) -> Item:

@@ -101,7 +101,7 @@ upgrade_rules = [
             LocationNames.gumammo_f003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.has(ItemNames.PoundPower, player, 1),
             LocationNames.soapammo_f001: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2) or (state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1))),
             # Cliffs
-            LocationNames.gumammo_c003: lambda player: lambda state: state.has(ItemNames.GumPower, player, 1) or (state.has(ItemNames.SoapPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 2)),
+            LocationNames.gumammo_c003: lambda player: lambda state: (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)) and state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.HelmetPower, player, 1),
             LocationNames.shockwave_c007: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
 
             # Passage

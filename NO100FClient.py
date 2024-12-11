@@ -2586,6 +2586,16 @@ class NO100FCommandProcessor(ClientCommandProcessor):
             dolphin_memory_engine.write_word(HEALTH_ADDR, 69)
             logger.info("Killing Scooby :(")
 
+    def _cmd_resend(self):
+        """Use this command if somehow an item has erroneously not made it to your game"""
+        if dolphin_memory_engine.is_hooked():
+            dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, 0x0000)
+            dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, 0x0000)
+            for i in range (0,21):
+                dolphin_memory_engine.write_word(KEY_COUNT_ADDR + i, 0x0)
+            dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR, 0x0000)
+            logger.info("Resending Inventory")
+
     def _cmd_keys(self):
         """Displays current key counts and the number expected in a room"""
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
@@ -2762,6 +2772,8 @@ class NO100FContext(CommonContext):
                 self.use_warpgates = True
             if 'include_snacks' in args['slot_data'] and args['slot_data']['include_snacks']:
                 self.use_snacks = True
+            if 'speedster' in args['slot_data'] and args['slot_data']['speedster']:
+                self.use_speedster = True
             if 'completion_goal' in args['slot_data']:
                 self.completion_goal = args['slot_data']['completion_goal']
             if 'boss_count' in args['slot_data']:
@@ -4106,6 +4118,8 @@ async def dolphin_sync_task(ctx: NO100FContext):
                         await apply_key_fixes(ctx)
                     await force_death(ctx)
                     await enable_map_warping(ctx)
+                    if(ctx.use_speedster):
+                        dolphin_memory_engine.write_word(0x80235084, 0xFFFF)
                     if not (_check_cur_scene(ctx, b'O008') or _check_cur_scene(ctx, b'S005') or
                             _check_cur_scene(ctx, b'G009') or _check_cur_scene(ctx, b'W028')):
                         ctx.post_boss = False
