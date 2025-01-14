@@ -71,13 +71,8 @@ class NightOf100FrightsWorld(World):
        #     itempool += [ItemNames.Snack] * way too much
        #     itempool += [ItemNames.SnackBox] * also alot
         if self.options.include_monster_tokens:
-            itempool += [ItemNames.MT_BLACKKNIGHT, ItemNames.MT_MOODY, ItemNames.MT_CAVEMAN, ItemNames.MT_CREEPER,
-                         ItemNames.MT_GARGOYLE, ItemNames.MT_GERONIMO, ItemNames.MT_GHOST,
-                         ItemNames.MT_GHOSTDIVER, ItemNames.MT_GREENGHOST, ItemNames.MT_HEADLESS,
-                         ItemNames.MT_MASTERMIND, ItemNames.MT_ROBOT, ItemNames.MT_REDBEARD, ItemNames.MT_SCARECROW,
-                         ItemNames.MT_SEACREATURE, ItemNames.MT_SPACEKOOK, ItemNames.MT_TARMONSTER, ItemNames.MT_WITCH,
-                         ItemNames.MT_WITCHDOC, ItemNames.MT_WOLFMAN, ItemNames.MT_ZOMBIE]
-        if self.options.include_keys:
+            itempool += [ItemNames.MT_PROGRESSIVE] * 21
+        if self.options.include_keys == 1:
             itempool += [ItemNames.Hedge_Key, ItemNames.Fishing_Key, ItemNames.Clamor1_Key, ItemNames.Clamor4_Key,
                          ItemNames.Gusts1_Key, ItemNames.Tomb1_Key]  # Single Keys
             itempool += [ItemNames.Tomb3_Key] * 2  # Double Keys
@@ -86,6 +81,13 @@ class NightOf100FrightsWorld(World):
             itempool += [ItemNames.Cellar3_Key, ItemNames.Cavein_Key, ItemNames.FishyClues_Key, ItemNames.MYM_Key,
                          ItemNames.Coast_Key, ItemNames.Knight_Key, ItemNames.Gusts2_Key, ItemNames.Shiver_Key] * 4  # Quad Keys
             itempool += [ItemNames.Creepy2_Key] * 5  # Penta Keys
+        if self.options.include_keys == 2:
+            itempool+=[ItemNames.Hedge_Key, ItemNames.Fishing_Key, ItemNames.Clamor1_Key, ItemNames.Clamor4_Key,
+                         ItemNames.Gusts1_KeyRing, ItemNames.Tomb1_KeyRing, ItemNames.Tomb3_KeyRing, ItemNames.Cellar2_KeyRing,
+                         ItemNames.Graveplot_KeyRing, ItemNames.Attic_KeyRing, ItemNames.Creepy3_KeyRing,
+                         ItemNames.DLD_KeyRing, ItemNames.Cellar3_KeyRing, ItemNames.Cavein_KeyRing, ItemNames.FishyClues_KeyRing, ItemNames.MYM_KeyRing,
+                         ItemNames.Coast_KeyRing, ItemNames.Knight_KeyRing, ItemNames.Gusts2_KeyRing, ItemNames.Shiver_KeyRing, ItemNames.Creepy2_KeyRing]
+            itempool += [ItemNames.FillerSnack] * 39
         if self.options.include_warpgates:
             itempool += [ItemNames.Cellar4_Warp, ItemNames.Cliff4_Warp, ItemNames.Hedge4_Warp, ItemNames.Hedge6_Warp,
                          ItemNames.Hedge9_Warp, ItemNames.Fish3_Warp, ItemNames.Fish7_Warp, ItemNames.Balc1_Warp,
@@ -125,7 +127,13 @@ class NightOf100FrightsWorld(World):
             "include_warpgates": self.options.include_warpgates.value,
             #"include_snacks": self.options.include_snacks.value,
             "completion_goal": self.options.completion_goal.value,
+            "boss_count": self.options.boss_count.value,
+            "token_count": self.options.token_count.value,
+            "advanced_logic": self.options.advanced_logic.value,
+            "expert_logic": self.options.expert_logic.value,
+            "creepy_early": self.options.creepy_early.value,
             "no_logic": self.options.no_logic.value,
+            "speedster": self.options.speedster.value,
         }
 
     def create_item(self, name: str,) -> Item:

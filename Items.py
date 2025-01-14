@@ -30,14 +30,9 @@ item_table = {
     ItemNames.BootsPower       : ItemData(base_id + 2, ItemClassification.progression),
     ItemNames.PlungerPower     : ItemData(base_id + 3, ItemClassification.progression),
     ItemNames.ProgressiveSneak : ItemData(base_id + 4, ItemClassification.useful),
-   #ItemNames.SlipperPower     : ItemData(base_id + 4, ItemClassification.useful),
-   #ItemNames.LampshadePower   : ItemData(base_id + 5, ItemClassification.useful),
-   #ItemNames.BlackknightPower : ItemData(base_id + 6, ItemClassification.useful),
-   #ItemNames.SpringPower      : ItemData(base_id + 7, ItemClassification.progression),
     ItemNames.ProgressiveJump  : ItemData(base_id + 7, ItemClassification.progression),
     ItemNames.PoundPower       : ItemData(base_id + 8, ItemClassification.progression),
     ItemNames.HelmetPower      : ItemData(base_id + 9, ItemClassification.progression),
-   #ItemNames.UmbrellaPower    : ItemData(base_id + 10, ItemClassification.progression),
     ItemNames.ShovelPower      : ItemData(base_id + 11, ItemClassification.progression),
     ItemNames.ShockwavePower   : ItemData(base_id + 12, ItemClassification.useful),
 
@@ -46,27 +41,7 @@ item_table = {
     ItemNames.SoapAmmoUpgrade  : ItemData(base_id + 14, ItemClassification.useful),
 
     #Monster Tokens
-    ItemNames.MT_BLACKKNIGHT   : ItemData(base_id + 15, ItemClassification.progression),
-    ItemNames.MT_MOODY         : ItemData(base_id + 16, ItemClassification.progression),
-    ItemNames.MT_CAVEMAN       : ItemData(base_id + 17, ItemClassification.progression),
-    ItemNames.MT_CREEPER       : ItemData(base_id + 18, ItemClassification.progression),
-    ItemNames.MT_GARGOYLE      : ItemData(base_id + 19, ItemClassification.progression),
-    ItemNames.MT_GERONIMO      : ItemData(base_id + 20, ItemClassification.progression),
-    ItemNames.MT_GHOST         : ItemData(base_id + 21, ItemClassification.progression),
-    ItemNames.MT_GHOSTDIVER    : ItemData(base_id + 22, ItemClassification.progression),
-    ItemNames.MT_GREENGHOST    : ItemData(base_id + 23, ItemClassification.progression),
-    ItemNames.MT_HEADLESS      : ItemData(base_id + 24, ItemClassification.progression),
-    ItemNames.MT_MASTERMIND    : ItemData(base_id + 25, ItemClassification.progression),
-    ItemNames.MT_ROBOT         : ItemData(base_id + 26, ItemClassification.progression),
-    ItemNames.MT_REDBEARD      : ItemData(base_id + 27, ItemClassification.progression),
-    ItemNames.MT_SCARECROW     : ItemData(base_id + 28, ItemClassification.progression),
-    ItemNames.MT_SEACREATURE   : ItemData(base_id + 29, ItemClassification.progression),
-    ItemNames.MT_SPACEKOOK     : ItemData(base_id + 30, ItemClassification.progression),
-    ItemNames.MT_TARMONSTER    : ItemData(base_id + 31, ItemClassification.progression),
-    ItemNames.MT_WITCH         : ItemData(base_id + 32, ItemClassification.progression),
-    ItemNames.MT_WITCHDOC      : ItemData(base_id + 33, ItemClassification.progression),
-    ItemNames.MT_WOLFMAN       : ItemData(base_id + 34, ItemClassification.progression),
-    ItemNames.MT_ZOMBIE        : ItemData(base_id + 35, ItemClassification.progression),
+    ItemNames.MT_PROGRESSIVE   : ItemData(base_id + 35, ItemClassification.progression),
 
     #Keys
     ItemNames.Clamor1_Key      : ItemData(base_id + 36, ItemClassification.progression),
@@ -119,9 +94,33 @@ item_table = {
     ItemNames.Grave1_Warp      : ItemData(base_id + 81, ItemClassification.progression),
     ItemNames.MG_Warp          : ItemData(base_id + 82, ItemClassification.progression),
 
-    #Snacks
-    ItemNames.Snack            : ItemData(base_id + 83, ItemClassification.progression),
-    ItemNames.SnackBox         : ItemData(base_id + 84, ItemClassification.progression),
+    #Keyrings
+    ItemNames.Clamor1_KeyRing    : ItemData(base_id + 83, ItemClassification.progression),
+    ItemNames.Hedge_KeyRing      : ItemData(base_id + 84, ItemClassification.progression),
+    ItemNames.Fishing_KeyRing    : ItemData(base_id + 85, ItemClassification.progression),
+    ItemNames.Cellar2_KeyRing    : ItemData(base_id + 86, ItemClassification.progression),
+    ItemNames.Cellar3_KeyRing    : ItemData(base_id + 87, ItemClassification.progression),
+    ItemNames.Cavein_KeyRing     : ItemData(base_id + 88, ItemClassification.progression),
+    ItemNames.FishyClues_KeyRing : ItemData(base_id + 89, ItemClassification.progression),
+    ItemNames.Graveplot_KeyRing  : ItemData(base_id + 90, ItemClassification.progression),
+    ItemNames.Tomb1_KeyRing      : ItemData(base_id + 91, ItemClassification.progression),
+    ItemNames.Tomb3_KeyRing      : ItemData(base_id + 92, ItemClassification.progression),
+    ItemNames.Clamor4_KeyRing    : ItemData(base_id + 93, ItemClassification.progression),
+    ItemNames.MYM_KeyRing        : ItemData(base_id + 94, ItemClassification.progression),
+    ItemNames.Coast_KeyRing      : ItemData(base_id + 95, ItemClassification.progression),
+    ItemNames.Attic_KeyRing      : ItemData(base_id + 96, ItemClassification.progression),
+    ItemNames.Knight_KeyRing     : ItemData(base_id + 97, ItemClassification.progression),
+    ItemNames.Creepy2_KeyRing    : ItemData(base_id + 98, ItemClassification.progression),
+    ItemNames.Creepy3_KeyRing    : ItemData(base_id + 99, ItemClassification.progression),
+    ItemNames.Gusts1_KeyRing     : ItemData(base_id + 100, ItemClassification.progression),
+    ItemNames.Gusts2_KeyRing     : ItemData(base_id + 101, ItemClassification.progression),
+    ItemNames.DLD_KeyRing        : ItemData(base_id + 102, ItemClassification.progression),
+    ItemNames.Shiver_KeyRing     : ItemData(base_id + 103, ItemClassification.progression),
+
+    ItemNames.FillerSnack        : ItemData(base_id + 104, ItemClassification.filler),
+
+    ItemNames.Snack              : ItemData(base_id + 105, ItemClassification.progression),
+    ItemNames.SnackBox           : ItemData(base_id + 106, ItemClassification.progression),
 
     # events
     ItemNames.victory: ItemData(None, ItemClassification.progression)

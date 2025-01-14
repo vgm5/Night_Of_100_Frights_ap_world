@@ -56,6 +56,8 @@ SEED_ADDR = SLOT_NAME_ADDR + 0x40
 # expected received item index
 EXPECTED_INDEX_ADDR = 0x817f0000
 KEY_COUNT_ADDR = 0x817f0004
+# Free space for 0F-14
+STORED_SNACK_ADDR = 0x817f0015
 BOSS_KILLS_ADDR = 0x817f0019
 # Free space for 1A and 1B
 SAVED_WARP_ADDR = 0x817f001C
@@ -7913,67 +7915,67 @@ class NO100FCommandProcessor(ClientCommandProcessor):
 
     def _cmd_keys(self):
         """Displays current key counts and the number expected in a room"""
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) % 0x10
         logger.info(f"Clamor 1 Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) / 0x10
         logger.info(f"Hedge Maze Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) % 0x10
         logger.info(f"Fishing Village Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) / 0x10
         logger.info(f"Cellar 2 Keys {count}/3")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) % 0x10
         logger.info(f"Cellar 3 Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) / 0x10
         logger.info(f"Cavein Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) % 0x10
         logger.info(f"Fishy Clues Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) / 0x10
         logger.info(f"Graveplot Keys {count}/3")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) % 0x10
         logger.info(f"Tomb 1 Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) / 0x10
         logger.info(f"Tomb 3 Keys {count}/2")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) % 0x10
         logger.info(f"Clamor 4 Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 11)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) / 0x10
         logger.info(f"MYM Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 12)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) % 0x10
         logger.info(f"Coast Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 13)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) / 0x10
         logger.info(f"Attic Keys {count}/3")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 14)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) % 0x10
         logger.info(f"Knight Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 15)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) / 0x10
         logger.info(f"Creepy 2 Keys {count}/5")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 16)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) % 0x10
         logger.info(f"Creepy 3 Keys {count}/3")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 17)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) / 0x10
         logger.info(f"Gusts 1 Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 18)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) % 0x10
         logger.info(f"Gusts 2 Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 19)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) / 0x10
         logger.info(f"DLD Keys {count}/3")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 20)
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10) % 0x10
         logger.info(f"Shiver Keys {count}/4")
 
 
@@ -8142,11 +8144,16 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
         return None
 
 
-# def _give_snack(ctx: NO100FContext):
-#    cur_snack_count = dolphin_memory_engine.read_word(SNACK_COUNT_ADDR)
-#    dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_snack_count + 1)
-#    if cur_snack_count > ctx.snack_count:
-#        logger.info("!Some went wrong with the snack count!")
+def _give_snack(ctx: NO100FContext, offset: int):
+    cur_snack_count = dolphin_memory_engine.read_word(STORED_SNACK_ADDR)
+    if offset == 1:
+        cur_snack_count += 5
+    else:
+        cur_snack_count += 1
+
+    dolphin_memory_engine.write_word(STORED_SNACK_ADDR, cur_snack_count)
+    if cur_snack_count > ctx.snack_count:
+        logger.info("!Some went wrong with the snack count!")
 
 def _give_powerup(ctx: NO100FContext, bit: int):
     cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
@@ -8192,8 +8199,15 @@ def _give_monstertoken(ctx: NO100FContext, bit: int):
 
 
 def _give_key(ctx: NO100FContext, offset: int):
-    cur_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + offset)
-    dolphin_memory_engine.write_byte(KEY_COUNT_ADDR + offset, cur_count + 1)
+
+    cur_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + offset / 2)
+
+    if (offset % 2) > 0:    # The Key is in an Odd Position in Memory
+        cur_count += 0x10
+    else:
+        cur_count += 1
+
+    dolphin_memory_engine.write_byte(KEY_COUNT_ADDR + offset / 2, cur_count)
 
 
 def _give_warp(ctx: NO100FContext, offset: int):
@@ -8238,6 +8252,9 @@ def _give_item(ctx: NO100FContext, item_id: int):
 
         if 57 <= true_id <= 82:
             _give_warp(ctx, true_id - 57)
+
+        if 105 <= true_id <= 106:
+            _give_snack(ctx, true_id - 105)
 
     else:
         logger.warning(f"Received unknown item with id {item_id}")
@@ -8731,64 +8748,64 @@ async def update_key_items(ctx: NO100FContext):
     count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
     ctx.CitM1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
     ctx.hedge_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
     ctx.fish_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
     ctx.WYitC2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
     ctx.WYitC3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
     ctx.MCaC_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
     ctx.FCfS_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
     ctx.TSfaGP_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
     ctx.GDDitT1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
     ctx.GDDitT3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
     ctx.CitM4_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 11)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
     ctx.MyM2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 12)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
     ctx.CfsG1_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 13)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
     ctx.PitA2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 14)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
     ctx.ADaSK2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 15)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
     ctx.CCitH2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 16)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
     ctx.CCitH3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 17)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
     ctx.GAU1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 18)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
     ctx.GAU2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 19)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
     ctx.DLDS2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 20)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10)
     ctx.SYTS1_keys = count
 
 
@@ -8940,8 +8957,9 @@ async def _check_warpgates(ctx: NO100FContext, locations_checked: set):
     await _check_warpgates_location(ctx, locations_checked, WARPGATE_PICKUP_IDS)
 
 
-# async def _check_snacks(ctx: NO100FContext, locations_checked: set):
-#    await _check_objects_by_id(ctx, locations_checked, SNACKIDS, _check_pickup_state)
+async def _check_snacks(ctx: NO100FContext, locations_checked: set):
+    await _check_objects_by_id(ctx, locations_checked, SNACK_PICKUP_IDS, _check_pickup_state)
+
 
 async def _check_warpgates_location(ctx: NO100FContext, locations_checked: set, id_table : dict):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
@@ -9186,6 +9204,8 @@ async def check_locations(ctx: NO100FContext):
         await _check_keys(ctx, ctx.locations_checked)
     if ctx.use_warpgates:
         await _check_warpgates(ctx, ctx.locations_checked)
+    if ctx.use_snacks:
+        await _check_snacks(ctx, ctx.locations_checked)
 
     # ignore already in server state
     locations_checked = ctx.locations_checked.difference(ctx.checked_locations)
@@ -9343,11 +9363,13 @@ async def dolphin_sync_task(ctx: NO100FContext):
                         await save_warp_gates(ctx)
                     if ctx.use_keys:
                         await apply_key_fixes(ctx)
+                    if ctx.use_snacks:
+                        cur_snacks = dolphin_memory_engine.read_word(STORED_SNACK_ADDR)
+                        dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_snacks)
                     await force_death(ctx)
                     await enable_map_warping(ctx)
-                    if not (_check_cur_scene(ctx, b'O008') or _check_cur_scene(ctx, b'S005') or _check_cur_scene(ctx,
-                                                                                                                 b'G009') or _check_cur_scene(
-                            ctx, b'W028')):
+                    if not (_check_cur_scene(ctx, b'O008') or _check_cur_scene(ctx, b'S005') or
+                            _check_cur_scene(ctx,b'G009') or _check_cur_scene(ctx, b'W028')):
                         ctx.post_boss = False
                 else:
                     if not ctx.auth:
