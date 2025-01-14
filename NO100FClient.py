@@ -8253,6 +8253,9 @@ def _give_item(ctx: NO100FContext, item_id: int):
         if 57 <= true_id <= 82:
             _give_warp(ctx, true_id - 57)
 
+        if true_id == 104:
+            _give_snack(ctx, 0)
+
         if 105 <= true_id <= 106:
             _give_snack(ctx, true_id - 105)
 
@@ -8810,7 +8813,7 @@ async def update_key_items(ctx: NO100FContext):
 
 
 async def give_items(ctx: NO100FContext):
-    if ctx.use_keys:
+    if not ctx.use_keys == 0:
         await update_key_items(ctx)
     expected_idx = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR)
     # we need to loop some items
@@ -8863,7 +8866,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                 dolphin_memory_engine.write_byte(fix_ptr + 0x7, 0x1d)  # Force Shovel Pickup Availability
 
             # Slippers Fix
-            if v[1] == Upgrades.SlippersPower.value:  # Only do this for the Shovel Power Up in H001
+            if v[1] == Upgrades.SlippersPower.value:  # Only do this for the Slippers Powerup in E002
 
                 fix_ptr = _find_obj_in_obj_table(0xF08C8F07, ptr, size)
                 if fix_ptr is None: break
@@ -8984,8 +8987,7 @@ async def _check_warpgates_location(ctx: NO100FContext, locations_checked: set, 
     for i in range(26):
         if warp_gates & 2 ** i == 2 ** i:
             dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 1)
-        else:
-            dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 0)
+    await load_warp_gates(ctx)
 
 async def enable_map_warping(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
@@ -8999,6 +9001,9 @@ async def enable_map_warping(ctx: NO100FContext):
         for i in range(18):
             _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
 
+            else:
+                _set_trigger_state(ctx, fix_ptr + (0x14 * i), 0x1d)
+
     fix_ptr = _find_obj_in_obj_table(0x6887e731, ptr, size)
     if not fix_ptr == None:
         for i in range(7):
@@ -9010,6 +9015,9 @@ async def enable_map_warping(ctx: NO100FContext):
             fix_ptr = _find_obj_in_obj_table(0x78A1C3B8, ptr, size)
             _set_trigger_state(ctx, fix_ptr, 0x1c)
 
+            if (saved_warps & 2**8 and (not saved_warps & 2**9)):  # Prevent G008 Warp if we have received G005 as an item (Thanks Heavy Iron)
+                fix_ptr = _find_obj_in_obj_table(0x6B2EA611, ptr, size)
+                _set_trigger_state(ctx, fix_ptr, 0x1c)
 
 async def apply_level_fixes(ctx: NO100FContext):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
@@ -9099,7 +9107,7 @@ async def apply_level_fixes(ctx: NO100FContext):
             fix_ptr = _find_obj_in_obj_table(0xD7924F8A, ptr, size)
             _set_trigger_state(ctx, fix_ptr, 0x1f)
 
-        if not ctx.use_keys:
+        if ctx.use_keys == 0:
             fix_ptr = _find_obj_in_obj_table(0xBBFA4948, ptr, size)
             if not fix_ptr == None:
                 if _check_pickup_state(ctx, fix_ptr):  #The Hedge key is collected, open the gate
@@ -9137,18 +9145,23 @@ async def apply_level_fixes(ctx: NO100FContext):
             fix_ptr = _find_obj_in_obj_table(0x79f90e17, ptr, size)
             if fix_ptr is not None:
                 in_arena = dolphin_memory_engine.read_byte(fix_ptr + 0x7)
+                    fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
+                    _set_trigger_state(ctx, fix_ptr, 0x1e)
+
                 conditions_met = False
                 if ctx.completion_goal == 1:    #Fixes for all bosses
                     bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
-                    if bosseskilled == 3:
+                    if bosseskilled >= ctx.boss_count:
                         conditions_met = True
 
                 if ctx.completion_goal == 2:
                     tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
                     if tokens == 0x1FFFFF:
+                            sum_tokens += 1
+
                         conditions_met = True
 
-                if conditions_met and in_arena == 0x1d:
+                if conditions_met and in_arena == 0x1d and cutscene_played == 0:
                     fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
                     _set_trigger_state(ctx, fix_ptr, 0x1f)
                 elif not conditions_met:
@@ -9179,9 +9192,6 @@ async def apply_level_fixes(ctx: NO100FContext):
                 if conditions_met and in_arena == 0x1c:
                     fix_ptr = _find_obj_in_obj_table(0x2b2cea8a, ptr, size)
                     _set_trigger_state(ctx, fix_ptr, 0x1e)
-
-
-
         if not ctx.finished_game:  # We have not finished
             fix_ptr = _find_obj_in_obj_table(0x21D3EDA4, ptr, size)
             if fix_ptr is not None:
@@ -9200,7 +9210,7 @@ async def check_locations(ctx: NO100FContext):
     await _check_upgrades(ctx, ctx.locations_checked)
     if ctx.use_tokens:
         await _check_monstertokens(ctx, ctx.locations_checked)
-    if ctx.use_keys:
+    if not ctx.use_keys == 0:
         await _check_keys(ctx, ctx.locations_checked)
     if ctx.use_warpgates:
         await _check_warpgates(ctx, ctx.locations_checked)
@@ -9284,7 +9294,8 @@ async def save_warp_gates(ctx: NO100FContext):
     if warp_gate_map == 0x400:  # The game is at the default state, attempt to load instead of saving
         if not dolphin_memory_engine.read_word(SAVED_WARP_ADDR) == 0 and not _check_cur_scene(ctx, b'MNU3'):
             await load_warp_gates(ctx)
-        return
+    if warp_gate_map & 0x400 == 0:
+        warp_gate_map += 0x400
 
     dolphin_memory_engine.write_word(SAVED_WARP_ADDR, warp_gate_map)
 
@@ -9293,6 +9304,9 @@ async def load_warp_gates(ctx: NO100FContext):
     warp_gates = dolphin_memory_engine.read_word(SAVED_WARP_ADDR)
     if warp_gates == 0:
         dolphin_memory_engine.write_word(SAVED_WARP_ADDR, 0X400)
+        
+    dolphin_memory_engine.write_word(SAVED_WARP_ADDR, warp_gates)
+
     for i in range(26):
         if warp_gates & 2 ** i == 2 ** i:
             dolphin_memory_engine.write_word(WARP_ADDR + (12 * i), 1)
@@ -9332,6 +9346,7 @@ async def dolphin_sync_task(ctx: NO100FContext):
                 if not check_ingame(ctx):
                     # reset AP values when on main menu
                     if _check_cur_scene(ctx, b'MNU3'):
+                        ctx.current_scene = b'MNU3'
                         for i in range(0, 0x80, 0x4):
                             cur_val = dolphin_memory_engine.read_word(EXPECTED_INDEX_ADDR + i)
                             if cur_val != 0:
@@ -9362,14 +9377,19 @@ async def dolphin_sync_task(ctx: NO100FContext):
                     if not ctx.use_warpgates:
                         await save_warp_gates(ctx)
                     if ctx.use_keys:
+                        else:
+                            await save_warp_gates(ctx)
+                    if not ctx.use_keys == 0:
                         await apply_key_fixes(ctx)
                     if ctx.use_snacks:
                         cur_snacks = dolphin_memory_engine.read_word(STORED_SNACK_ADDR)
                         dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, cur_snacks)
                     await force_death(ctx)
                     await enable_map_warping(ctx)
+                    if(ctx.use_speedster):
                     if not (_check_cur_scene(ctx, b'O008') or _check_cur_scene(ctx, b'S005') or
-                            _check_cur_scene(ctx,b'G009') or _check_cur_scene(ctx, b'W028')):
+                            _check_cur_scene(ctx, b'G009') or _check_cur_scene(ctx, b'W028')):
+
                         ctx.post_boss = False
                 else:
                     if not ctx.auth:
