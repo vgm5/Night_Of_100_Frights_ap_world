@@ -320,6 +320,16 @@ key_rules = [
             },
      }
 ]
+
+snack_rules = [
+    # connections
+    {
+        ConnectionNames.s002_s004: lambda player: lambda state: state.has(ItemNames.Snack, player, 850),
+    },
+    # locations
+    {}
+]
+
 warpgate_rules = [
     # connections
     {
@@ -421,6 +431,8 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
         allowed_loc_types += [ItemNames.Keys]
     if options.include_warpgates.value:
         allowed_loc_types += [ItemNames.Warps]
+    if options.include_snacks.value:
+        allowed_loc_types += [ItemNames.Snacks]
 
     _add_rules(multiworld, player, upgrade_rules, allowed_loc_types)
     if options.include_monster_tokens.value:
@@ -429,6 +441,8 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
         _add_rules(multiworld, player, key_rules, allowed_loc_types)
     if options.include_warpgates.value:
         _add_rules(multiworld, player, warpgate_rules, allowed_loc_types)
+    if options.include_snacks.value:
+        _add_rules(multiworld, player, snack_rules, allowed_loc_types)
 
     goal = options.completion_goal.value
     if goal == 0:

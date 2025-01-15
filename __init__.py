@@ -57,7 +57,7 @@ class NightOf100FrightsWorld(World):
 
     def __init__(self, multiworld: "MultiWorld", player: int):
         super().__init__(multiworld, player)
-        #self.snack_counter: int = 0
+        self.snack_counter: int = 0
 
     def get_items(self):
         # Generate item pool
@@ -67,9 +67,9 @@ class NightOf100FrightsWorld(World):
         itempool += [ItemNames.ProgressiveSneak] * 3
         itempool += [ItemNames.SoapAmmoUpgrade] * 8
         itempool += [ItemNames.GumAmmoUpgrade] * 7
-       # if self.options.include_snacks:
-       #     itempool += [ItemNames.Snack] * way too much
-       #     itempool += [ItemNames.SnackBox] * also alot
+        if self.options.include_snacks:
+            itempool += [ItemNames.Snack] * 4993
+            itempool += [ItemNames.SnackBox] * 350
         if self.options.include_monster_tokens:
             itempool += [ItemNames.MT_PROGRESSIVE] * 21
         if self.options.include_keys == 1:
@@ -125,7 +125,7 @@ class NightOf100FrightsWorld(World):
             "include_monster_tokens": self.options.include_monster_tokens.value,
             "include_keys": self.options.include_keys.value,
             "include_warpgates": self.options.include_warpgates.value,
-            #"include_snacks": self.options.include_snacks.value,
+            "include_snacks": self.options.include_snacks.value,
             "completion_goal": self.options.completion_goal.value,
             "boss_count": self.options.boss_count.value,
             "token_count": self.options.token_count.value,
@@ -140,10 +140,15 @@ class NightOf100FrightsWorld(World):
         item_data = item_table[name]
         classification = item_data.classification
 
-        #if name == ItemNames.snack:
-            #self.snack_counter += 1
-            #if self.snack_counter > required number for all SnackGates:
-            #    classification = ItemClassification.progression_skip_balancing
+        if name == ItemNames.Snack:
+            self.snack_counter += 1
+            if self.snack_counter > 850:
+                classification = ItemClassification.filler
+
+        if name == ItemNames.SnackBox:
+            self.snack_counter += 5
+            if self.snack_counter > 850:
+                classification = ItemClassification.filler
 
         item = NO100FItem(name, classification, item_data.id, self.player)
 
@@ -157,7 +162,7 @@ class NightOf100FrightsWorld(World):
                                                  f"{self.multiworld.get_out_file_name_base(self.player)}{NO100FDeltaPatch.patch_file_ending}"),
                                player=self.player,
                                player_name=self.multiworld.get_player_name(self.player),
-                               #include_snacks=bool(self.options.include_snacks),
+                               include_snacks=bool(self.options.include_snacks),
                                include_keys=bool(self.options.include_keys.value),
                                include_monster_tokens=bool(self.options.include_monster_tokens.value),
                                include_warpgates=bool(self.options.include_warpgates.value),

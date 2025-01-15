@@ -24,10 +24,10 @@ class IncludeWarpGates(Toggle):
     display_name = "Include Warp Gates"
     default = 0
 
-#class IncludeSnacks(Toggle):
-#    """Include Snacks as AP Locations/Items (WIP)"""
-#    display_name = "Include Snacks"
-#    default = 0
+class IncludeSnacks(Toggle):
+    """Include Snacks as AP Locations/Items (WIP)"""
+    display_name = "Include Snacks"
+    default = 0
 
 
 class CompletionGoal(Choice):
@@ -90,7 +90,7 @@ class NO100FOptions(PerGameCommonOptions):
     include_monster_tokens: IncludeMonsterTokens
     include_keys: IncludeKeys
     include_warpgates: IncludeWarpGates
-    #  include_snacks: IncludeSnacks
+    include_snacks: IncludeSnacks
     death_link: DeathLink
     completion_goal: CompletionGoal
     boss_count: BossesCount

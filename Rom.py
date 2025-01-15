@@ -26,13 +26,13 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
 
     def __init__(self, *args: Any, **kwargs: Any):
         self.include_monster_tokens: int = kwargs['include_monster_tokens']
-        #self.include_snacks: int = kwargs['include_snacks']
+        self.include_snacks: int = kwargs['include_snacks']
         self.include_keys: int = kwargs['include_keys']
         self.include_warpgates: int = kwargs['include_warpgates']
         self.completion_goal: int = kwargs['completion_goal']
         self.seed: bytes = kwargs['seed']
         del kwargs['include_monster_tokens']
-        #del kwargs['include_snacks']
+        del kwargs['include_snacks']
         del kwargs['include_keys']
         del kwargs['include_warpgates']
         del kwargs['completion_goal']
@@ -47,9 +47,9 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         opened_zipfile.writestr("include_monster_tokens",
                                 self.include_monster_tokens.to_bytes(1, "little"),
                                 compress_type=zipfile.ZIP_STORED)
-        #opened_zipfile.writestr("include_snacks",
-        #                        self.include_snacks.to_bytes(1, "little"),
-        #                        compress_type=zipfile.ZIP_STORED)
+        opened_zipfile.writestr("include_snacks",
+                                self.include_snacks.to_bytes(1, "little"),
+                                compress_type=zipfile.ZIP_STORED)
         opened_zipfile.writestr("include_keys",
                                 self.include_keys.to_bytes(1, "little"),
                                compress_type=zipfile.ZIP_STORED)
@@ -109,11 +109,11 @@ class NO100FDeltaPatch(APContainer, metaclass=AutoPatchRegister):
         patches = [Patches.AP_SAVE_LOAD, Patches.UPGRADE_REWARD_FIX]
         # conditional patches
         include_monster_tokens = NO100FDeltaPatch.get_bool(opened_zipfile, "include_monster_tokens")
-        #include_snacks = NO100FDeltaPatch.get_bool(opened_zipfile, "include_snacks")
+        include_snacks = NO100FDeltaPatch.get_bool(opened_zipfile, "include_snacks")
         if include_monster_tokens:
             patches += [Patches.MONSTER_TOKEN_FIX]
-        #if include_snacks:
-        #    patches += [Patches.SNACK_REWARD_FIX]
+        if include_snacks:
+            patches += [Patches.SNACK_REWARD_FIX]
 
         with open(iso, "rb+") as stream:
             # write patches

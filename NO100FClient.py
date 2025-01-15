@@ -2655,10 +2655,10 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 96): (b'B004', Snacks.SS2.value),
     (base_id + 400 + 97): (b'B004', Snacks.SS3.value),
     (base_id + 400 + 98): (b'B004', Snacks.SNACKBOX5.value),
-    (base_id + 400 + 99): (b'B004', Snacks.SS6.value),
+    (base_id + 400 + 99): (b'B004', Snacks.SS100.value),
     (base_id + 400 + 100): (b'B004', Snacks.SS9.value),
     (base_id + 400 + 101): (b'B004', Snacks.SS10.value),
-    (base_id + 400 + 102): (b'B004', Snacks.SNACK10.value),  #Soap Area
+    (base_id + 400 + 102): (b'B004', Snacks.SNACK10.value),  # Soap Area
     (base_id + 400 + 103): (b'B004', Snacks.SNACK12.value),
     (base_id + 400 + 104): (b'B004', Snacks.SNACK14.value),
     (base_id + 400 + 105): (b'B004', Snacks.SNACK16.value),
@@ -3257,7 +3257,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 691): (b'E001', Snacks.SNACK__071.value),
     (base_id + 400 + 692): (b'E001', Snacks.SNACK__070.value),
     (base_id + 400 + 693): (b'E001', Snacks.SNACK__07.value),
-    (base_id + 400 + 694): (b'E001', Snacks.SNACKBOX__1.value),
+    (base_id + 400 + 694): (b'E001', Snacks.SNACKBOX__2.value),
     (base_id + 400 + 695): (b'E001', Snacks.SNACK__23.value),
     (base_id + 400 + 696): (b'E001', Snacks.SNACK__08.value),
     (base_id + 400 + 697): (b'E001', Snacks.SNACK__09.value),
@@ -3353,7 +3353,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 790): (b'E002', Snacks.SNACK295.value),
     (base_id + 400 + 791): (b'E002', Snacks.SNACK294.value),
     (base_id + 400 + 792): (b'E002', Snacks.SNACK293.value),
-    (base_id + 400 + 793): (b'E002', Snacks.SNACK292.value),
+    (base_id + 400 + 793): (b'E002', Snacks.SNACK__292.value),
     (base_id + 400 + 794): (b'E002', Snacks.SNACK291.value),
     (base_id + 400 + 795): (b'E002', Snacks.SNACK290.value),
     (base_id + 400 + 796): (b'E002', Snacks.SNACK29.value),
@@ -4218,9 +4218,9 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 1743): (b'F006', Snacks.SS07.value),
     (base_id + 400 + 1744): (b'F006', Snacks.SS09.value),
     (base_id + 400 + 1745): (b'F006', Snacks.SS10.value),
-    (base_id + 400 + 1746): (b'F006', Snacks.SS10B.value),
-    (base_id + 400 + 1747): (b'F006', Snacks.SS10C.value),
-    (base_id + 400 + 1748): (b'F006', Snacks.SS10D.value),
+    (base_id + 400 + 1746): (b'F006', Snacks.S10B.value),
+    (base_id + 400 + 1747): (b'F006', Snacks.S10C.value),
+    (base_id + 400 + 1748): (b'F006', Snacks.S10D.value),
     (base_id + 400 + 1749): (b'F006', Snacks.SS11.value),
     (base_id + 400 + 1750): (b'F006', Snacks.SS12.value),
     (base_id + 400 + 1751): (b'F006', Snacks.SS13.value),
@@ -4229,13 +4229,13 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 1754): (b'F006', Snacks.SS16.value),
     (base_id + 400 + 1755): (b'F006', Snacks.SS17.value),
     (base_id + 400 + 1756): (b'F006', Snacks.SS18.value),
-    (base_id + 400 + 1757): (b'F006', Snacks.SS18B.value),
+    (base_id + 400 + 1757): (b'F006', Snacks.S18B.value),
     (base_id + 400 + 1758): (b'F006', Snacks.SS19.value),
-    (base_id + 400 + 1759): (b'F006', Snacks.SS19B.value),
+    (base_id + 400 + 1759): (b'F006', Snacks.S19B.value),
     (base_id + 400 + 1760): (b'F006', Snacks.SS20.value),
-    (base_id + 400 + 1761): (b'F006', Snacks.SS20B.value),
-    (base_id + 400 + 1762): (b'F006', Snacks.SS20C.value),
-    (base_id + 400 + 1763): (b'F006', Snacks.SS20D.value),
+    (base_id + 400 + 1761): (b'F006', Snacks.S20B.value),
+    (base_id + 400 + 1762): (b'F006', Snacks.S20C.value),
+    (base_id + 400 + 1763): (b'F006', Snacks.S20D.value),
     (base_id + 400 + 1764): (b'F006', Snacks.SS21.value),
     (base_id + 400 + 1765): (b'F006', Snacks.SS22.value),
     (base_id + 400 + 1766): (b'F006', Snacks.SS210.value),
@@ -4271,8 +4271,6 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 1796): (b'F006', Snacks.SS22218.value),
     (base_id + 400 + 1797): (b'F006', Snacks.SSBOX01.value),
     (base_id + 400 + 1798): (b'F006', Snacks.SSBOX02.value),
-
-    (base_id + 400 + 1799): (b'F007', Snacks.SSBOX02.value),
 
     (base_id + 400 + 1799): (b'F007', Snacks.S010.value),
     (base_id + 400 + 1800): (b'F007', Snacks.S011.value),
@@ -7927,66 +7925,108 @@ class NO100FCommandProcessor(ClientCommandProcessor):
         """Displays current key counts and the number expected in a room"""
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) % 0x10
+        if count > 1:
+            count = 1
         logger.info(f"Clamor 1 Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) // 0x10
+        if count > 1:
+            count = 1
         logger.info(f"Hedge Maze Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) % 0x10
+        if count > 1:
+            count = 1
         logger.info(f"Fishing Village Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) // 0x10
+        if count > 3:
+            count = 3
         logger.info(f"Cellar 2 Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) % 0x10
+        if count > 4:
+            count = 4
         logger.info(f"Cellar 3 Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) // 0x10
+        if count > 4:
+            count = 4
         logger.info(f"Cavein Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) % 0x10
+        if count > 4:
+            count = 4
         logger.info(f"Fishy Clues Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) // 0x10
+        if count > 3:
+            count = 3
         logger.info(f"Graveplot Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) % 0x10
+        if count > 1:
+            count = 1
         logger.info(f"Tomb 1 Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) // 0x10
+        if count > 2:
+            count = 2
         logger.info(f"Tomb 3 Keys {count}/2")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) % 0x10
+        if count > 1:
+            count = 1
         logger.info(f"Clamor 4 Keys {count}/1")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) // 0x10
+        if count > 4:
+            count = 4
         logger.info(f"MYM Keys {count}/4")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) % 0x10
+        if count > 4:
+            count = 4
         logger.info(f"Coast Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) // 0x10
+        if count > 3:
+            count = 3
         logger.info(f"Attic Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) % 0x10
+        if count > 4:
+            count = 4
         logger.info(f"Knight Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) // 0x10
+        if count > 5:
+            count = 5
         logger.info(f"Creepy 2 Keys {count}/5")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) % 0x10
+        if count > 3:
+            count = 3
         logger.info(f"Creepy 3 Keys {count}/3")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) // 0x10
+        if count > 1:
+            count = 1
         logger.info(f"Gusts 1 Keys {count}/1")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) % 0x10
+        if count > 4:
+            count = 4
         logger.info(f"Gusts 2 Keys {count}/4")
 
-        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) / 0x10
+        count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) // 0x10
+        if count > 3:
+            count = 3
         logger.info(f"DLD Keys {count}/3")
 
         count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10) % 0x10
+        if count > 4:
+            count = 4
         logger.info(f"Shiver Keys {count}/4")
 
 
@@ -8220,14 +8260,14 @@ def _give_monstertoken(ctx: NO100FContext):
 
 def _give_key(ctx: NO100FContext, offset: int):
 
-    cur_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + offset / 2)
+    cur_count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + offset // 2)
 
     if (offset % 2) > 0:    # The Key is in an Odd Position in Memory
         cur_count += 0x10
     else:
         cur_count += 1
 
-    dolphin_memory_engine.write_byte(KEY_COUNT_ADDR + offset / 2, cur_count)
+    dolphin_memory_engine.write_byte(KEY_COUNT_ADDR + offset // 2, cur_count)
 
 def _give_keyring(ctx: NO100FContext, offset: int):
     i = 6
@@ -8776,67 +8816,67 @@ async def apply_key_fixes(ctx: NO100FContext):
 
 
 async def update_key_items(ctx: NO100FContext):
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) % 10
     ctx.CitM1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) // 10
     ctx.hedge_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) % 10
     ctx.fish_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) // 10
     ctx.WYitC2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) % 10
     ctx.WYitC3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) // 10
     ctx.MCaC_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) % 10
     ctx.FCfS_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) // 10
     ctx.TSfaGP_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) % 10
     ctx.GDDitT1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) // 10
     ctx.GDDitT3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) % 10
     ctx.CitM4_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) // 10
     ctx.MyM2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) % 10
     ctx.CfsG1_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) // 10
     ctx.PitA2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) % 10
     ctx.ADaSK2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) // 10
     ctx.CCitH2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) % 10
     ctx.CCitH3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) // 10
     ctx.GAU1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) % 10
     ctx.GAU2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) // 10
     ctx.DLDS2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10)
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10) % 10
     ctx.SYTS1_keys = count
 
 
@@ -9119,7 +9159,7 @@ async def apply_level_fixes(ctx: NO100FContext):
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, upgrades)
 
     if scene == b'h001':
-        if ctx.use_warpgates:
+        if ctx.use_warpgates and not ctx.use_snacks:
             cur_snacks = dolphin_memory_engine.read_word(SNACK_COUNT_ADDR)
             if cur_snacks == 0:
                 dolphin_memory_engine.write_word(SNACK_COUNT_ADDR, 400)
@@ -9128,7 +9168,7 @@ async def apply_level_fixes(ctx: NO100FContext):
 
         # Clear Monster Gallery Snack Gate
         fix_ptr = _find_obj_in_obj_table(0x7E8E16F5, ptr, size)
-        if not fix_ptr == None:
+        if not fix_ptr == None and not ctx.use_snacks:
             _set_platform_state(ctx, fix_ptr, 0)
             fix_ptr = _find_obj_in_obj_table(0xD7924F8A, ptr, size)
             _set_trigger_state(ctx, fix_ptr, 0x1f)
