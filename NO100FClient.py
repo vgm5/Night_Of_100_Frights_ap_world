@@ -3546,7 +3546,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 982): (b'E004', Snacks.SNACK192.value),
     (base_id + 400 + 983): (b'E004', Snacks.SNACK193.value),
 
-    (base_id + 400 + 983): (b'E005', Snacks.SNACK__01.value),
+    (base_id + 400 + 5344): (b'E005', Snacks.SNACK__01.value),
     (base_id + 400 + 984): (b'E005', Snacks.SNACK__010.value),
     (base_id + 400 + 985): (b'E005', Snacks.SNACK__011.value),
     (base_id + 400 + 986): (b'E005', Snacks.SNACK__012.value),

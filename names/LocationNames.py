@@ -1210,7 +1210,7 @@ e004_SNACK191 = f"{RegionNames.e004}: Scooby Snack Pickup #981"
 e004_SNACK192 = f"{RegionNames.e004}: Scooby Snack Pickup #982"
 e004_SNACK193 = f"{RegionNames.e004}: Scooby Snack Pickup #983"
 
-e005_SNACK__01 = f"{RegionNames.e005}: Scooby Snack Pickup #983"
+e005_SNACK__01 = f"{RegionNames.e005}: Scooby Snack Pickup #5344"
 e005_SNACK__010 = f"{RegionNames.e005}: Scooby Snack Pickup #984"
 e005_SNACK__011 = f"{RegionNames.e005}: Scooby Snack Pickup #985"
 e005_SNACK__012 = f"{RegionNames.e005}: Scooby Snack Pickup #986"

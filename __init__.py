@@ -68,7 +68,7 @@ class NightOf100FrightsWorld(World):
         itempool += [ItemNames.SoapAmmoUpgrade] * 8
         itempool += [ItemNames.GumAmmoUpgrade] * 7
         if self.options.include_snacks:
-            itempool += [ItemNames.Snack] * 4993
+            itempool += [ItemNames.Snack] * 4994
             itempool += [ItemNames.SnackBox] * 350
         if self.options.include_monster_tokens:
             itempool += [ItemNames.MT_PROGRESSIVE] * 21
@@ -162,7 +162,7 @@ class NightOf100FrightsWorld(World):
                                                  f"{self.multiworld.get_out_file_name_base(self.player)}{NO100FDeltaPatch.patch_file_ending}"),
                                player=self.player,
                                player_name=self.multiworld.get_player_name(self.player),
-                               include_snacks=bool(self.options.include_snacks),
+                               include_snacks=bool(self.options.include_snacks.value),
                                include_keys=bool(self.options.include_keys.value),
                                include_monster_tokens=bool(self.options.include_monster_tokens.value),
                                include_warpgates=bool(self.options.include_warpgates.value),
