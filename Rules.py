@@ -179,9 +179,9 @@ upgrade_rules = [
                 LocationNames.key_g007: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
 
                 # Passage
-                LocationNames.key1_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1),
-                LocationNames.key2_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1),
-                LocationNames.key3_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1),
+                LocationNames.key1_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.PoundPower),
+                LocationNames.key2_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.PoundPower),
+                LocationNames.key3_p003: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.GumPower, player, 1) and state.has(ItemNames.PoundPower),
                 LocationNames.key_p004: lambda player: lambda state: state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
                 LocationNames.key1_p005: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
                 LocationNames.key2_p005: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
