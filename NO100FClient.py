@@ -195,10 +195,10 @@ class Snacks(Enum):
     CRATE__3__PRIZE                  = 0x0B8B2D18
     CRATE__PRIZE__1                  = 0x29CED7DE
     CRATE__PRIZE__10                 = 0x64D876CA
-    CRATE__SNACKBOX__1               = 0x90B3757E
-    CRATE__SNACKBOX__2               = 0x90B3757F
-    CRATE__SNACKBOX__3               = 0x90B37580
-    CRATE__SNACKBOX__4               = 0x90B37581
+    CRATE__SNACKBOX__1               = 0x90B3757F
+    CRATE__SNACKBOX__2               = 0x90B37570
+    CRATE__SNACKBOX__3               = 0x90B37581
+    CRATE__SNACKBOX__4               = 0x90B37582
     CRATE02__SNACKBOX                = 0x94DF954C
     CRATE03__SNACKBOX                = 0x68B636AF
     CRATE04__SNACKBOX                = 0x3C8CD812
