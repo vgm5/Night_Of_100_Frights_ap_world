@@ -2947,8 +2947,11 @@ def _give_warp(ctx: NO100FContext, offset: int):
 
 
 def _give_death(ctx: NO100FContext):
+    PauseRead1 = dolphin_memory_engine.read_byte(0x80234DCF)
+    PauseRead2 = dolphin_memory_engine.read_byte(0x80234E80)
+    isPaused = (PauseRead1 == 0 and PauseRead2 == 0)
     if ctx.slot and dolphin_memory_engine.is_hooked() and ctx.dolphin_status == CONNECTION_CONNECTED_STATUS \
-            and check_ingame(ctx) and check_control_owner(ctx, lambda owner: owner == 1):
+            and check_ingame(ctx) and check_control_owner(ctx, lambda owner: owner == 1) and not isPaused:
         dolphin_memory_engine.write_word(HEALTH_ADDR, 0)
 
 
