@@ -1647,6 +1647,8 @@ f001_BP_SSBOX03 = f"{RegionNames.f001}: Scooby Snack Pickup #1511"
 f001_SSBOX01 = f"{RegionNames.f001}: Scooby Snack Pickup #1512"
 f001_SSBOX02 = f"{RegionNames.f001}: Scooby Snack Pickup #1513"
 f001_SSBOX08 = f"{RegionNames.f001}: Scooby Snack Pickup #1514"
+f001_FOOD11 = f"{RegionNames.f001}: Scooby Snack Pickup #5345"
+f001_FOOD12 = f"{RegionNames.f001}: Scooby Snack Pickup #5346"
 
 f003_SS18 = f"{RegionNames.f003}: Scooby Snack Pickup #1515"
 f003_SS181 = f"{RegionNames.f003}: Scooby Snack Pickup #1516"

@@ -237,6 +237,8 @@ class Snacks(Enum):
     EX__CLUE__SNACKBOX4              = 0x1BB638E9
     EX__CLUE__SNACKBOX5              = 0x1BB638EA
     EXCLUE__SNACKBOX__1              = 0xED64A6B6
+    FOOD11                           = 0x3B8FBEEE
+    FOOD12                           = 0x3B8FBEEF
     HIGH__SNACK__BOX                 = 0x4EB043B5
     HIGH__SNACKBOX__1                = 0xA542AA10
     HIGH__SNACKBOX__10               = 0x911D0660

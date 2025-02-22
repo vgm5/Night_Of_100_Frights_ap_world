@@ -5418,6 +5418,8 @@ snack_location_table = {
     LocationNames.w027_SSRP041: base_id + 400 + 5341,
     LocationNames.w027_SSRP05: base_id + 400 + 5342,
     LocationNames.w027_SSRP051: base_id + 400 + 5343,
+    LocationNames.f001_FOOD11: base_id + 400 + 5345,
+    LocationNames.f001_FOOD12: base_id + 400 + 5346,
 }
 
 location_table: typing.Dict[str, typing.Optional[int]] = {
@@ -5425,7 +5427,7 @@ location_table: typing.Dict[str, typing.Optional[int]] = {
     **monstertoken_location_table,  # 100 - 120
     **key_location_table,           # 200 - 259
     **warpgate_location_table,      # 300 - 325
-    **snack_location_table,         # 400 - 5743
+    **snack_location_table,         # 400 - 5745
     LocationNames.Credits: None
 }
 
