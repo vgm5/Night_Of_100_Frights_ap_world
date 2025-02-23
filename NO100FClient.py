@@ -237,6 +237,7 @@ class Snacks(Enum):
     EX__CLUE__SNACKBOX4              = 0x1BB638E9
     EX__CLUE__SNACKBOX5              = 0x1BB638EA
     EXCLUE__SNACKBOX__1              = 0xED64A6B6
+    FOOD1                            = 0xD76A9FBF
     FOOD11                           = 0x3B8FBEEE
     FOOD12                           = 0x3B8FBEEF
     HIGH__SNACK__BOX                 = 0x4EB043B5
@@ -591,16 +592,16 @@ class Snacks(Enum):
     SN6800                           = 0xEC5D2461
     SN69                             = 0x0B33B1DA
     SN7                              = 0x0015E40C
-    SN70                             = 0x0B33B259
-    SN71                             = 0x0B33B25A
-    SN72                             = 0x0B33B25B
-    SN73                             = 0x0B33B25C
-    SN74                             = 0x0B33B25D
-    SN75                             = 0x0B33B25E
-    SN76                             = 0x0B33B25F
-    SN77                             = 0x0B33B260
-    SN78                             = 0x0B33B261
-    SN79                             = 0x0B33B262
+    SN70                             = 0x0B33B254
+    SN71                             = 0x0B33B255
+    SN72                             = 0x0B33B256
+    SN73                             = 0x0B33B257
+    SN74                             = 0x0B33B258
+    SN75                             = 0x0B33B259
+    SN76                             = 0x0B33B25A
+    SN77                             = 0x0B33B25B
+    SN78                             = 0x0B33B25C
+    SN79                             = 0x0B33B25D
     SN8                              = 0x0015E40D
     SN80                             = 0x0B33B2D7
     SN81                             = 0x0B33B2D8
@@ -6586,7 +6587,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 4070): (b'P005', Snacks.SS113.value),
     (base_id + 400 + 4071): (b'P005', Snacks.SS114.value),
 
-    (base_id + 400 + 4072): (b'R001', Snacks.CRATE__1__PRIZE.value),
+    #(base_id + 400 + 4072): (b'R001', Snacks.CRATE__1__PRIZE.value),   This is evidently not a snack, oops
     (base_id + 400 + 4073): (b'R001', Snacks.CRATE__2__PRIZE.value),
     (base_id + 400 + 4074): (b'R001', Snacks.SNACKBOX1.value),
     (base_id + 400 + 4075): (b'R001', Snacks.SNACKBOX2.value),
@@ -7875,6 +7876,59 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 5342): (b'W027', Snacks.SSRP05.value),
     (base_id + 400 + 5343): (b'W027', Snacks.SSRP051.value),
 
+    #Missed Initial Snacks, cleanup later and reorder
+    (base_id + 400 + 5344): (b'E005', Snacks.SNACK__01.value),
+    (base_id + 400 + 5345): (b'F001', Snacks.FOOD11),
+    (base_id + 400 + 5346): (b'F001', Snacks.FOOD12),
+    (base_id + 400 + 5347): (b'I006', Snacks.FOOD1),
+    (base_id + 400 + 5348): (b'O001', Snacks.SN10.value),
+    (base_id + 400 + 5349): (b'O001', Snacks.SN11.value),
+    (base_id + 400 + 5350): (b'O001', Snacks.SN12.value),
+    (base_id + 400 + 5351): (b'O001', Snacks.SN13.value),
+    (base_id + 400 + 5352): (b'O001', Snacks.SN14.value),
+    (base_id + 400 + 5353): (b'O001', Snacks.SN15.value),
+    (base_id + 400 + 5354): (b'O001', Snacks.SN17.value),
+    (base_id + 400 + 5355): (b'O001', Snacks.SN18.value),
+    (base_id + 400 + 5356): (b'O001', Snacks.SN19.value),
+    (base_id + 400 + 5357): (b'O001', Snacks.SN20.value),
+    (base_id + 400 + 5358): (b'O001', Snacks.SN21.value),
+    (base_id + 400 + 5359): (b'O001', Snacks.SN22.value),
+    (base_id + 400 + 5360): (b'O001', Snacks.SN23.value),
+    (base_id + 400 + 5361): (b'O001', Snacks.SN24.value),
+    (base_id + 400 + 5362): (b'O001', Snacks.SN25.value),
+    (base_id + 400 + 5363): (b'O001', Snacks.SN26.value),
+    (base_id + 400 + 5364): (b'O001', Snacks.SN27.value),
+    (base_id + 400 + 5365): (b'O001', Snacks.SN28.value),
+    (base_id + 400 + 5366): (b'O001', Snacks.SN29.value),
+    (base_id + 400 + 5367): (b'O001', Snacks.SN30.value),
+    (base_id + 400 + 5368): (b'O001', Snacks.SN31.value),
+    (base_id + 400 + 5369): (b'O001', Snacks.SN32.value),
+    (base_id + 400 + 5370): (b'O001', Snacks.SN33.value),
+    (base_id + 400 + 5371): (b'O001', Snacks.SN34.value),
+    (base_id + 400 + 5372): (b'O001', Snacks.SN35.value),
+    (base_id + 400 + 5373): (b'O001', Snacks.SN36.value),
+    (base_id + 400 + 5374): (b'O001', Snacks.SN37.value),
+    (base_id + 400 + 5375): (b'O001', Snacks.SN38.value),
+    (base_id + 400 + 5376): (b'O001', Snacks.SN39.value),
+    (base_id + 400 + 5377): (b'O001', Snacks.SN40.value),
+    (base_id + 400 + 5378): (b'O001', Snacks.SN41.value),
+    (base_id + 400 + 5379): (b'O001', Snacks.SN42.value),
+    (base_id + 400 + 5380): (b'O001', Snacks.SN43.value),
+    (base_id + 400 + 5381): (b'O001', Snacks.SN44.value),
+    (base_id + 400 + 5382): (b'O001', Snacks.SN45.value),
+    (base_id + 400 + 5383): (b'O001', Snacks.SN46.value),
+    (base_id + 400 + 5384): (b'O001', Snacks.SN47.value),
+    (base_id + 400 + 5385): (b'O001', Snacks.SN49.value),
+    (base_id + 400 + 5386): (b'O001', Snacks.SN52.value),
+    (base_id + 400 + 5387): (b'O001', Snacks.SN57.value),
+    (base_id + 400 + 5388): (b'O001', Snacks.SN60.value),
+    (base_id + 400 + 5389): (b'O001', Snacks.SN70.value),
+    (base_id + 400 + 5390): (b'O001', Snacks.SN8.value),
+    (base_id + 400 + 5391): (b'O001', Snacks.SN9.value),
+    (base_id + 400 + 5392): (b'O001', Snacks.SSBOX01.value),
+    (base_id + 400 + 5393): (b'O001', Snacks.SSBOX02.value),
+    (base_id + 400 + 5394): (b'O001', Snacks.SSBOX03.value),
+    (base_id + 400 + 5395): (b'O001', Snacks.SSBOX04.value),
 }
 
 valid_scenes = [
@@ -8109,6 +8163,8 @@ class NO100FContext(CommonContext):
                 self.boss_count = args['slot_data']['boss_count']
             if 'token_count' in args['slot_data']:
                 self.token_count = args['slot_data']['token_count']
+            if 'snack_count' in args['slot_data']:
+                self.snack_count = args['slot_data']['snack_count']
         if cmd == 'ReceivedItems':
             if args["index"] >= self.last_rev_index:
                 self.last_rev_index = args["index"]
@@ -8334,27 +8390,33 @@ def _give_item(ctx: NO100FContext, item_id: int):
 
 
 def _set_platform_state(ctx: NO100FContext, ptr, state):
-    dolphin_memory_engine.write_byte(ptr + 0x14, state)
+    if not ptr == None:
+        dolphin_memory_engine.write_byte(ptr + 0x14, state)
 
 
 def _set_platform_collision_state(ctx: NO100FContext, ptr, state):
-    dolphin_memory_engine.write_byte(ptr + 0x28, state)
+    if not ptr == None:
+        dolphin_memory_engine.write_byte(ptr + 0x28, state)
 
 
 def _check_platform_state(ctx: NO100FContext, ptr):
-    return dolphin_memory_engine.read_byte(ptr + 0x14)
+    if not ptr == None:
+        return dolphin_memory_engine.read_byte(ptr + 0x14)
 
 
 def _set_trigger_state(ctx: NO100FContext, ptr, state):
-    dolphin_memory_engine.write_byte(ptr + 0x7, state)
+    if not ptr == None:
+        dolphin_memory_engine.write_byte(ptr + 0x7, state)
 
 
 def _set_counter_value(ctx: NO100FContext, ptr, count):
-    dolphin_memory_engine.write_byte(ptr + 0x15, count)
+    if not ptr == None:
+        dolphin_memory_engine.write_byte(ptr + 0x15, count)
 
 
 def _set_pickup_active(ctx: NO100FContext, ptr, state):
-    dolphin_memory_engine.write_byte(ptr + 0x7, state)
+    if not ptr == None:
+        dolphin_memory_engine.write_byte(ptr + 0x7, state)
 
 
 async def apply_key_fixes(ctx: NO100FContext):
@@ -9221,32 +9283,40 @@ async def apply_level_fixes(ctx: NO100FContext):
                     _set_trigger_state(ctx, fix_ptr, 0x1e)
 
                 conditions_met = False
+                bossesKilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
+                tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
+                snacks = dolphin_memory_engine.read_word(STORED_SNACK_ADDR)
+                sum_tokens = 0
+                for i in range(21):
+                    if tokens & 2 ** i == 2 ** i:
+                        sum_tokens += 1
+
                 if ctx.completion_goal == 1:    #Fixes for all bosses
-                    bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
-                    if bosseskilled >= ctx.boss_count:
+                    if bossesKilled >= ctx.boss_count:
                         conditions_met = True
 
                 if ctx.completion_goal == 2:
-                    tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
-
-                    sum_tokens = 0
-                    for i in range(21):
-                        if tokens & 2 ** i == 2 ** i:
-                            sum_tokens += 1
-
                     if sum_tokens >= ctx.token_count:
                         conditions_met = True
 
                 if ctx.completion_goal == 3:
-                    bosseskilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
-                    tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
+                    if bossesKilled >= ctx.boss_count and sum_tokens >= ctx.token_count:
+                        conditions_met = True
 
-                    sum_tokens = 0
-                    for i in range(21):
-                        if tokens & 2 ** i == 2 ** i:
-                            sum_tokens += 1
+                if ctx.completion_goal == 4:
+                    if snacks >= ctx.snack_count:
+                        conditions_met = True
 
-                    if bosseskilled >= ctx.boss_count and sum_tokens >= ctx.token_count:
+                if ctx.completion_goal == 5:
+                    if snacks >= ctx.snack_count and bossesKilled >= ctx.boss_count:
+                        conditions_met = True
+
+                if ctx.completion_goal == 6:
+                    if snacks >= ctx.snack_count and sum_tokens >= ctx.token_count:
+                        conditions_met = True
+
+                if ctx.completion_goal == 7:
+                    if bossesKilled >= ctx.boss_count and sum_tokens >= ctx.token_count and snacks >= ctx.snack_count:
                         conditions_met = True
 
                 if conditions_met and in_arena == 0x1d and cutscene_played == 0:

@@ -230,8 +230,7 @@ class NightOf100FrightsWorld(World):
         itempool += [ItemNames.SoapAmmoUpgrade] * 8
         itempool += [ItemNames.GumAmmoUpgrade] * 7
         if self.options.include_snacks:
-            itempool += [ItemNames.Snack] * 4994
-            itempool += [ItemNames.SnackBox] * 352
+            itempool += [ItemNames.Snack] * 5288
         if self.options.include_monster_tokens:
             itempool += [ItemNames.MT_PROGRESSIVE] * 21
         if self.options.include_keys == 1:
@@ -291,6 +290,7 @@ class NightOf100FrightsWorld(World):
             "completion_goal": self.options.completion_goal.value,
             "boss_count": self.options.boss_count.value,
             "token_count": self.options.token_count.value,
+            "snack_count": self.options.snack_count.value,
             "advanced_logic": self.options.advanced_logic.value,
             "expert_logic": self.options.expert_logic.value,
             "creepy_early": self.options.creepy_early.value,
@@ -304,12 +304,9 @@ class NightOf100FrightsWorld(World):
 
         if name == ItemNames.Snack:
             self.snack_counter += 1
-            if self.snack_counter > 850:
+            if self.snack_counter > 850 >= self.options.snack_count:
                 classification = ItemClassification.filler
-
-        if name == ItemNames.SnackBox:
-            self.snack_counter += 5
-            if self.snack_counter > 850:
+            elif self.snack_counter > self.options.snack_count:
                 classification = ItemClassification.filler
 
         item = NO100FItem(name, classification, item_data.id, self.player)
