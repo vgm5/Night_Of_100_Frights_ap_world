@@ -1622,7 +1622,7 @@ class Snacks(Enum):
     SS1023                           = 0x437418B0
     SS10230                          = 0x8468A240
     SS10231                          = 0x8468A241
-    SS103                            = 0xBC1E3200
+    SS103                            = 0xBC1E3302
     SS1030                           = 0x8468A240
     SS1031                           = 0x8468A241
     SS104                            = 0xBC1E3301

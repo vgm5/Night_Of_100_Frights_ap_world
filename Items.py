@@ -119,7 +119,7 @@ item_table = {
 
     ItemNames.FillerSnack        : ItemData(base_id + 104, ItemClassification.filler),
 
-    ItemNames.Snack              : ItemData(base_id + 105, ItemClassification.progression),
+    ItemNames.Snack              : ItemData(base_id + 105, ItemClassification.progression_skip_balancing),
     ItemNames.SnackBox           : ItemData(base_id + 106, ItemClassification.progression),
 
     # events

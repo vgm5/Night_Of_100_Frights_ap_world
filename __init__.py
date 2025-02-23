@@ -304,10 +304,13 @@ class NightOf100FrightsWorld(World):
 
         if name == ItemNames.Snack:
             self.snack_counter += 1
-            if self.snack_counter > 850 >= self.options.snack_count:
-                classification = ItemClassification.filler
-            elif self.snack_counter > self.options.snack_count:
-                classification = ItemClassification.filler
+            if self.options.include_snacks and self.options.snack_count.value > 850 and self.options.completion_goal > 3:
+                if self.snack_counter > self.options.snack_count:
+                    classification = ItemClassification.filler
+
+            else:
+                if self.snack_counter > 850:
+                    classification = ItemClassification.filler
 
         item = NO100FItem(name, classification, item_data.id, self.player)
 

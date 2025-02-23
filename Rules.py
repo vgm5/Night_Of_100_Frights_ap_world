@@ -498,6 +498,9 @@ snack_rules = [
             LocationNames.e007_SNACK__194: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
             LocationNames.e007_SNACK__195: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
 
+            LocationNames.e008_SNACK__300: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
+            LocationNames.e008_SNACK__301: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
+            LocationNames.e008_SNACK__302: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
             LocationNames.e008_SNACK__090: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
             LocationNames.e008_SNACK__091: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
             LocationNames.e008_SNACK__092: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
@@ -1630,6 +1633,7 @@ snack_rules = [
 
 
             LocationNames.i003_EX__CLUE__SNACKBOX4: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.i003_SNACK__BOX__10: lambda player: lambda state: state.can_reach(RegionNames.i004, "Region", player) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
             LocationNames.i003_SN52: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
             LocationNames.i003_SN53: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
             LocationNames.i003_SN54: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
@@ -2327,12 +2331,12 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
 
     goal = options.completion_goal.value
     if goal == 0:
-        add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1))
+        add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.can_reach(RegionNames.s004, "Region", player))
     if goal == 1:
-        add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
+        add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
     if goal == 2:
         if options.include_monster_tokens.value:
-            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count))
+            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count) and state.can_reach(RegionNames.s004, "Region", player))
         else:
             add_rule(multiworld.get_location(LocationNames.Credits, player),lambda state: state.can_reach(RegionNames.o001, "Region", player) and
                 state.can_reach(RegionNames.w022, "Region", player) and state.can_reach(RegionNames.l013, "Region", player) and
@@ -2346,11 +2350,11 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
                 state.can_reach(RegionNames.e003, "Region", player) and state.can_reach(RegionNames.r020, "Region", player) and
                 state.can_reach(RegionNames.e001, "Region", player) and state.can_reach(RegionNames.g002, "Region", player) and
                 state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SoapPower, player, 1) and
-                state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1))
+                state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and state.can_reach(RegionNames.s004, "Region", player))
     if goal == 3:
         if options.include_monster_tokens.value:
             add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count) and
-                state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
+                state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
         else:
             add_rule(multiworld.get_location(LocationNames.Credits, player),lambda state: state.can_reach(RegionNames.o001, "Region", player) and
                 state.can_reach(RegionNames.w022, "Region", player) and state.can_reach(RegionNames.l013, "Region", player) and
@@ -2366,25 +2370,25 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
                 state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SoapPower, player, 1) and
                 state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and
                 state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and
-                state.can_reach(LocationNames.gumpower_w028, "Location", player))
+                state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
     if goal == 4:
         if options.include_snacks.value:
-            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.Snack, player, options.snack_count))
+            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.Snack, player, options.snack_count) and state.can_reach(RegionNames.s004, "Region", player))
         else:
-            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1))
+            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.PoundPower, player, 1) and state.has(ItemNames.HelmetPower, player, 1) and state.can_reach(RegionNames.s004, "Region", player))
     if goal == 5:
         if options.include_snacks.value:
             add_rule(multiworld.get_location(LocationNames.Credits, player),
                      lambda state: state.has(ItemNames.Snack, player, options.snack_count) and state.can_reach(LocationNames.boots_o008, "Location", player) and
-                                   state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
+                                   state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
         else:
-            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
+            add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
     if goal == 6:
         if options.include_monster_tokens.value:
             if options.include_snacks.value:
-                add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count) and state.has(ItemNames.Snack, player, options.snack_count))
+                add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count) and state.has(ItemNames.Snack, player, options.snack_count) and state.can_reach(RegionNames.s004, "Region", player))
             else:
-                add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count))
+                add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count) and state.can_reach(RegionNames.s004, "Region", player))
 
         else:
             if options.include_snacks.value:
@@ -2402,7 +2406,7 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
                     state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SoapPower, player, 1) and
                     state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and
                     state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and
-                    state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.has(ItemNames.Snack, player, options.snack_count))
+                    state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.has(ItemNames.Snack, player, options.snack_count) and state.can_reach(RegionNames.s004, "Region", player))
             else:
                 add_rule(multiworld.get_location(LocationNames.Credits, player),lambda state: state.can_reach(RegionNames.o001, "Region", player) and
                     state.can_reach(RegionNames.w022, "Region", player) and state.can_reach(RegionNames.l013, "Region", player) and
@@ -2418,15 +2422,15 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
                     state.has(ItemNames.ProgressiveJump, player, 2) and state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.SoapPower, player, 1) and
                     state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and
                     state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and
-                    state.can_reach(LocationNames.gumpower_w028, "Location", player))
+                    state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
     if goal == 7:
         if options.include_monster_tokens.value:
             if options.include_snacks.value:
                 add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count) and state.has(ItemNames.Snack, player, options.snack_count) and
-                         state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
+                         state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
             else:
                 add_rule(multiworld.get_location(LocationNames.Credits, player), lambda state: state.has(ItemNames.MT_PROGRESSIVE, player, options.token_count) and
-                state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
+                state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
 
         else:
             if options.include_snacks.value:
@@ -2445,7 +2449,7 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
                     state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and
                     state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and
                     state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.has(ItemNames.Snack, player, options.snack_count) and
-                    state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
+                    state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
             else:
                 add_rule(multiworld.get_location(LocationNames.Credits, player),lambda state: state.can_reach(RegionNames.o001, "Region", player) and
                     state.can_reach(RegionNames.w022, "Region", player) and state.can_reach(RegionNames.l013, "Region", player) and
@@ -2462,7 +2466,7 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
                     state.has(ItemNames.PlungerPower, player, 1) and state.has(ItemNames.BootsPower, player, 1) and
                     state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and
                     state.can_reach(LocationNames.gumpower_w028, "Location", player) and
-                    state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player))
+                    state.can_reach(LocationNames.boots_o008, "Location", player) and state.can_reach(LocationNames.umbrella_g009, "Location", player) and state.can_reach(LocationNames.gumpower_w028, "Location", player) and state.can_reach(RegionNames.s004, "Region", player))
 
     if ItemNames.Keys not in allowed_loc_types:
         if ItemNames.MonsterTokens in allowed_loc_types:
