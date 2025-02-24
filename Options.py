@@ -24,10 +24,10 @@ class IncludeWarpGates(Toggle):
     display_name = "Include Warp Gates"
     default = 0
 
-#class IncludeSnacks(Toggle):
-#    """Include Snacks as AP Locations/Items (WIP)"""
-#    display_name = "Include Snacks"
-#    default = 0
+class IncludeSnacks(Toggle):
+    """Include Snacks as AP Locations/Items"""
+    display_name = "Include Snacks"
+    default = 0
 
 
 class CompletionGoal(Choice):
@@ -37,13 +37,22 @@ class CompletionGoal(Choice):
     1 = Bosses
     2 = Monster Tokens
     3 = Bosses/Tokens
+    4 = Scooby Snacks
+    5 = Snacks/Bosses
+    6 = Snacks/Tokens
+    7 = Bosses/Tokens/Snacks
     For Non-Vanilla options, Mastermind still needs to be defeated - you just can't fight him until the goal has been met
+    Snack Clear Conditions will only work with Snacksanity Enabled
     """
     display_name = "Completion Goal"
     option_vanilla = 0
     option_bosses = 1
     option_tokens = 2
-    option_both = 3
+    option_bosses_tokens = 3
+    option_snacks = 4
+    option_bosses_snacks = 5
+    option_tokens_snacks = 6
+    option_bosses_tokens_snacks = 7
     default = 0
 
 class BossesCount(Range):
@@ -60,6 +69,12 @@ class MonsterTokensCount(Range):
     range_end = 21
     default = 21
 
+class SnackCount(Range):
+    """Sets the number of tokens needed if Token Completion Goal is being used"""
+    display_name = "Snack Count"
+    range_start = 1
+    range_end = 5287
+    default = 850
 class AdvancedLogic(Toggle):
     """Changes generation to expect certain tricks to be performed, intended for experienced players"""
     display_name = "Advanced Logic"
@@ -90,11 +105,12 @@ class NO100FOptions(PerGameCommonOptions):
     include_monster_tokens: IncludeMonsterTokens
     include_keys: IncludeKeys
     include_warpgates: IncludeWarpGates
-    #  include_snacks: IncludeSnacks
+    include_snacks: IncludeSnacks
     death_link: DeathLink
     completion_goal: CompletionGoal
     boss_count: BossesCount
     token_count: MonsterTokensCount
+    snack_count: SnackCount
     advanced_logic: AdvancedLogic
     expert_logic: ExpertLogic
     creepy_early: CreepyEarly

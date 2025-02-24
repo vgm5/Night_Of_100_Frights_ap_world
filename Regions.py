@@ -2,7 +2,8 @@ from typing import List, Dict
 
 from . import NO100FOptions
 from .Locations import NO100FLocation, location_table, \
-    upgrade_location_table, monstertoken_location_table, key_location_table, warpgate_location_table
+    upgrade_location_table, monstertoken_location_table, key_location_table, warpgate_location_table, \
+    snack_location_table
 from .names import ConnectionNames, LevelNames, RegionNames, LocationNames
 
 from BaseClasses import MultiWorld, Region, Entrance
@@ -34,6 +35,8 @@ def _get_locations_for_region(options: NO100FOptions, name: str) -> List[str]:
         result += [k for k in key_location_table if f"{name}:" in k]
     if options.include_warpgates.value:
         result += [k for k in warpgate_location_table if f"{name}:" in k]
+    if options.include_snacks.value:
+        result += [k for k in snack_location_table if f"{name}:" in k]
     return result
 
 
@@ -122,7 +125,7 @@ exit_table: Dict[str, List[str]] = {
     RegionNames.l015: [ConnectionNames.l015_l014, ConnectionNames.l015_l018, ConnectionNames.l015_l017,
                        ConnectionNames.l015_l019, ConnectionNames.l015_w020],
     RegionNames.l017: [ConnectionNames.l017_l015, ConnectionNames.l017_l018],
-    RegionNames.l018: [ConnectionNames.l018_l015, ConnectionNames.l018_l019, ConnectionNames.l018_p001],
+    RegionNames.l018: [ConnectionNames.l018_l015, ConnectionNames.l018_p001],
     RegionNames.l019: [ConnectionNames.l019_l015, ConnectionNames.l019_l018],
 
     # R(O)oftops
