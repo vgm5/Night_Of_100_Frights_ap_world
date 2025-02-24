@@ -957,12 +957,12 @@ class Snacks(Enum):
     SNACK__260                       = 0x5F6EB86E
     SNACK__2610                      = 0xD5A860FD
     SNACK__2612                      = 0xD5A860FF
-    SNACK__2614                      = 0xD5A86001
-    SNACK__2616                      = 0xD5A86003
-    SNACK__2618                      = 0xD5A86005
+    SNACK__2614                      = 0xD5A86101
+    SNACK__2616                      = 0xD5A86103
+    SNACK__2618                      = 0xD5A86105
     SNACK__262                       = 0x5F6EB870
-    SNACK__2620                      = 0xD5A86103
-    SNACK__2622                      = 0xD5A86105
+    SNACK__2620                      = 0xD5A86180
+    SNACK__2622                      = 0xD5A86182
     SNACK__264                       = 0x5F6EB872
     SNACK__266                       = 0x5F6EB874
     SNACK__268                       = 0x5F6EB876
@@ -7618,7 +7618,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 5086): (b'W025', Snacks.SS091.value),
     (base_id + 400 + 5087): (b'W025', Snacks.SS092.value),
     (base_id + 400 + 5088): (b'W025', Snacks.SS093.value),
-    (base_id + 400 + 5089): (b'W025', Snacks.SS10.value),
+    #(base_id + 400 + 5089): (b'W025', Snacks.SS10.value), This is a Sandwich
     (base_id + 400 + 5090): (b'W025', Snacks.SS100.value),
     (base_id + 400 + 5091): (b'W025', Snacks.SS101.value),
     (base_id + 400 + 5092): (b'W025', Snacks.SS104.value),
@@ -7878,9 +7878,9 @@ SNACK_PICKUP_IDS = {
 
     #Missed Initial Snacks, cleanup later and reorder
     (base_id + 400 + 5344): (b'E005', Snacks.SNACK__01.value),
-    (base_id + 400 + 5345): (b'F001', Snacks.FOOD11),
-    (base_id + 400 + 5346): (b'F001', Snacks.FOOD12),
-    (base_id + 400 + 5347): (b'I006', Snacks.FOOD1),
+    (base_id + 400 + 5345): (b'F001', Snacks.FOOD11.value),
+    (base_id + 400 + 5346): (b'F001', Snacks.FOOD12.value),
+    (base_id + 400 + 5347): (b'I006', Snacks.FOOD1.value),
     (base_id + 400 + 5348): (b'O001', Snacks.SN10.value),
     (base_id + 400 + 5349): (b'O001', Snacks.SN11.value),
     (base_id + 400 + 5350): (b'O001', Snacks.SN12.value),
@@ -8767,21 +8767,21 @@ async def apply_key_fixes(ctx: NO100FContext):
                 _set_platform_collision_state(ctx, fix_ptr, 0)
                 _set_platform_state(ctx, fix_ptr, 0)
                 fix_ptr = _find_obj_in_obj_table(0x4ac3ac06, ptr, size)
-                _set_trigger_state(ctx, fix_ptr, 0x1c)
+                _set_trigger_state(ctx, fix_ptr, 0x1e)
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
             fix_ptr = _find_obj_in_obj_table(0x0a1efb96, ptr, size)
             if ctx.CCitH2_keys >= 5:
-                _set_pickup_active(ctx, fix_ptr, 0x1d)
+                _set_pickup_active(ctx, fix_ptr, 0x1f)
                 fix_ptr = _find_obj_in_obj_table(0xE7196749, ptr, size)
                 _set_platform_collision_state(ctx, fix_ptr, 0)
                 _set_platform_state(ctx, fix_ptr, 0)
-
+    
                 fix_ptr = _find_obj_in_obj_table(0xE719674B, ptr, size)
                 _set_platform_collision_state(ctx, fix_ptr, 0)
                 _set_platform_state(ctx, fix_ptr, 0)
             else:
-                _set_pickup_active(ctx, fix_ptr, 0x1c)
+                _set_pickup_active(ctx, fix_ptr, 0x1e)
 
     if scene == b'P003':
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)
@@ -8880,67 +8880,67 @@ async def apply_key_fixes(ctx: NO100FContext):
 
 
 async def update_key_items(ctx: NO100FContext):
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) % 0x10
     ctx.CitM1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR) // 0x10
     ctx.hedge_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) % 0x10
     ctx.fish_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 1) // 0x10
     ctx.WYitC2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) % 0x10
     ctx.WYitC3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 2) // 0x10
     ctx.MCaC_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) % 0x10
     ctx.FCfS_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 3) // 0x10
     ctx.TSfaGP_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) % 0x10
     ctx.GDDitT1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 4) // 0x10
     ctx.GDDitT3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) % 0x10
     ctx.CitM4_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 5) // 0x10
     ctx.MyM2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) % 0x10
     ctx.CfsG1_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 6) // 0x10
     ctx.PitA2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) % 0x10
     ctx.ADaSK2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 7) // 0x10
     ctx.CCitH2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) % 0x10
     ctx.CCitH3_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 8) // 0x10
     ctx.GAU1_key = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) % 0x10
     ctx.GAU2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) // 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 9) // 0x10
     ctx.DLDS2_keys = count
 
-    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10) % 10
+    count = dolphin_memory_engine.read_byte(KEY_COUNT_ADDR + 10) % 0x10
     ctx.SYTS1_keys = count
 
 
@@ -8987,7 +8987,7 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
         for i in range(1, len(v)):
             obj_ptr = _find_obj_in_obj_table(v[i], ptr, size)
             if obj_ptr is None: break
-            if obj_ptr == -1: continue
+            if obj_ptr == -1: continue  
 
             # Shovel Fix
             if v[1] == Upgrades.ShovelPower.value:  # Only do this for the Shovel Power Up in H001
@@ -9062,6 +9062,16 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                     boss_kills = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
                     boss_kills += 1
                     dolphin_memory_engine.write_byte(BOSS_KILLS_ADDR, boss_kills)
+
+            # Creepy 2 Pickup Fix
+           #if v[0] == b'P002':
+           #    fix_ptr = _find_obj_in_obj_table(v[1], ptr, size)
+           #    if not fix_ptr == None:
+           #        if not _check_pickup_state(ctx, fix_ptr == 0x48):
+           #            _set_pickup_active(ctx, fix_ptr, 0x1d)
+           #            _set_platform_state(ctx, fix_ptr, 1)
+           #            _set_pickup_state(ctx, fix_ptr, 0x41)
+           #        else: locations_checked.add(k)
 
             if check_cb(ctx, obj_ptr):
                 locations_checked.add(k)

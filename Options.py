@@ -73,7 +73,7 @@ class SnackCount(Range):
     """Sets the number of tokens needed if Token Completion Goal is being used"""
     display_name = "Snack Count"
     range_start = 1
-    range_end = 5288
+    range_end = 5287
     default = 850
 class AdvancedLogic(Toggle):
     """Changes generation to expect certain tricks to be performed, intended for experienced players"""

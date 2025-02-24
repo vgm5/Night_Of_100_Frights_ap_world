@@ -1065,6 +1065,9 @@ snack_rules = [
             LocationNames.f007_SS03: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
             LocationNames.f007_SSBOX03: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
             LocationNames.f007_SSBOX04: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
+            LocationNames.f007_SSBOX01: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
+            LocationNames.f007_SSBOX02: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
+            LocationNames.f007_SS05: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
 
             LocationNames.f008_S031: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
             LocationNames.f008_S16: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
@@ -2047,6 +2050,23 @@ snack_rules = [
             LocationNames.b004_DRYER__SNACKBOX__1: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
             LocationNames.b004_DRYER__SNACKBOX__2: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
 
+            LocationNames.b004_SS6: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS7: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS70: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS24: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SNACKBOX3: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS5: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS1: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS8: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS2400: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS4: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS2: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS3: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SNACKBOX5: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS100: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS9: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+            LocationNames.b004_SS10: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1) and state.can_reach(RegionNames.b003, "Region", player) and state.has(ItemNames.HelmetPower, player, 1),
+
             # Secret Lab
             LocationNames.s002_SS26: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
             LocationNames.s002_SS261: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.HelmetPower, player, 1),
@@ -2100,6 +2120,7 @@ snack_rules = [
             LocationNames.s003_SNACK13: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
             LocationNames.s003_SNACK15: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
             LocationNames.s003_SNACK17: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
+            LocationNames.s003_SNACKBOX: lambda player: lambda state: state.has(ItemNames.PoundPower, player, 1),
 
         },
 
