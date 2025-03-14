@@ -2,20 +2,17 @@
 
 ## Required Software
 
-- [Archipelago](https://github.com/ArchipelagoMW/Archipelago/releases) v0.4.1 or higher. Make sure to install the
-  Generator.
+- [Archipelago](https://github.com/ArchipelagoMW/Archipelago/releases) v0.5.1 or higher. Make sure to install the Generator.
 - [This AP world](https://github.com/vgm5/Night_Of_100_Frights_ap_world/releases)
 - Microsoft .NET Framework 4.8 or higher
 - [Dolphin](https://dolphin-emu.org/download/)
-- Your US Version of Night of 100 Frights Revision 0(The original 1.0 release), probably
-  named ``Scooby-Doo! Night of 100 Frights.iso``.
+- Your US Version of Night of 100 Frights Revision 0 (The original 1.0 release), probably named ``Scooby-Doo! Night of 100 Frights.iso``.
 
 ## Installation Procedures
 
-- Place ``no100f.apworld`` in ``lib/worlds/`` of your AP installation.
+- Place ``no100f.apworld`` in ``custom_worlds/`` of your AP installation.
 - Place the included ``.pyd`` files and the ``dolphin_memory_engine`` folder into ``lib/`` of your AP installation. (Depending on your version of AP this might be different depending on which version of python is being used, the default file in the dolphin_memory_engine folder should be the correct one for the current release of AP, the other files are for backwards compatibility for any user using a non python 3.12 setup)
-- Place the Uncompressed ISO in the root folder of your AP installation and make sure it's
-  named ``Scooby-Doo! Night of 100 Frights.iso``.  (Using an invalid version of the game [Rev1 or Compressed .ciso] will likely result in the necessary game patches breaking)
+- Place the Uncompressed ISO in the root folder of your AP installation and make sure it's named ``Scooby-Doo! Night of 100 Frights.iso``.  (Using an invalid version of the game [Rev1 or Compressed .ciso] will likely result in the necessary game patches breaking)
 
 Note: If you have previously setup the Wind Waker AP and you get exceptions relation to the Dolphine Memory Engine/DME .pyd files you may need to just clear the entire folder and just use the .pyds included with this release.
 
