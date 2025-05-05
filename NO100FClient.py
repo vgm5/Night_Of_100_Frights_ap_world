@@ -257,7 +257,7 @@ class Snacks(Enum):
     PLAT06_SS010                     = 0xBBEBC98D
     PLAT06_SS011                     = 0xBBEBC98E
     PLAT06_SS012                     = 0xBBEBC98F
-    PLAT06_SS013                     = 0xBBEBC980
+    PLAT06_SS013                     = 0xBBEBC990
     REEF_SS01                        = 0x3F115974
     REEF_SS02                        = 0x3F115975
     REEF_SS03                        = 0x3F115976
@@ -289,8 +289,8 @@ class Snacks(Enum):
     S023                             = 0x0B2BD4BA
     S024                             = 0x0B2BD4BB
     S025                             = 0x0B2BD4BC
-    S027                             = 0x0B2BD4BD
-    S029                             = 0x0B2BD4BE
+    S027                             = 0x0B2BD4BE
+    S029                             = 0x0B2BD4C0
     S02_AIR                          = 0x39304038
     S03                              = 0x0015D4AE
     S030                             = 0x0B2BD53A
@@ -476,10 +476,10 @@ class Snacks(Enum):
     SLOPE_SS01                       = 0xC961F215
     SLOPE_SS02                       = 0xC961F216
     SLOPE_SS03                       = 0xC961F217
-    SLOPE_SS05                       = 0xC961F218
-    SLOPE_SS06                       = 0xC961F219
-    SLOPE_SS07                       = 0xC961F21A
-    SLOPE_SS09                       = 0xC961F21B
+    SLOPE_SS05                       = 0xC961F219
+    SLOPE_SS06                       = 0xC961F21A
+    SLOPE_SS07                       = 0xC961F21B
+    SLOPE_SS09                       = 0xC961F21D
     SLOPE_SS10                       = 0xC961F297
     SLOPE_SSBOX04                    = 0xCAFAF16F
     SLOPE_SSBOX08                    = 0xCAFAF173
@@ -2172,11 +2172,11 @@ class Snacks(Enum):
     SS9911                           = 0x4488E054
     SS9912                           = 0x4488E055
     SS9913                           = 0x4488E056
-    SS9915                           = 0x4488E057
-    SS9916                           = 0x4488E058
-    SS9918                           = 0x4488E059
+    SS9915                           = 0x4488E058
+    SS9916                           = 0x4488E059
+    SS9918                           = 0x4488E05B
     SS99181                          = 0x120ACEC2
-    SS9919                           = 0x4488E05A
+    SS9919                           = 0x4488E05C
     SS992                            = 0xBC204FE2
     SS9921                           = 0x4488E0D7
     SS9923                           = 0x4488E0D9
@@ -2359,8 +2359,8 @@ class Snacks(Enum):
     UPPER_SS04                       = 0x4EC52DF1
     UPPER_SS05                       = 0x4EC52DF2
     UPPER_SS06                       = 0x4EC52DF3
-    UPPER_SS08                       = 0x4EC52DF4
-    UPPER_SS09                       = 0x4EC52DF5
+    UPPER_SS08                       = 0x4EC52DF5
+    UPPER_SS09                       = 0x4EC52DF6
     UPPER_SS10                       = 0x4EC52E70
     URN__1__PRIZE                    = 0x1D62FF04
     URN__2__PRIZE                    = 0xD2159ADD
@@ -3973,7 +3973,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 1499): (b'F001', Snacks.SS114_COUNT70.value),
     (base_id + 400 + 1500): (b'F001', Snacks.SS1163.value),
     (base_id + 400 + 1501): (b'F001', Snacks.SS_BP04.value),
-    (base_id + 400 + 1472): (b'F001', Snacks.SS_BP09.value),
+    (base_id + 400 + 1502): (b'F001', Snacks.SS_BP09.value),
     (base_id + 400 + 1503): (b'F001', Snacks.SS_BP14.value),
     (base_id + 400 + 1504): (b'F001', Snacks.SS_BP26.value),
     (base_id + 400 + 1505): (b'F001', Snacks.SS_BP28.value),
@@ -4212,30 +4212,30 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 1735): (b'F005', Snacks.SSBOX01.value),
     (base_id + 400 + 1736): (b'F005', Snacks.SSBOX02.value),
 
-    (base_id + 400 + 1737): (b'F006', Snacks.SS01.value),
-    (base_id + 400 + 1738): (b'F006', Snacks.SS02.value),
-    (base_id + 400 + 1739): (b'F006', Snacks.SS03.value),
-    (base_id + 400 + 1740): (b'F006', Snacks.SS04.value),
-    (base_id + 400 + 1741): (b'F006', Snacks.SS05.value),
-    (base_id + 400 + 1742): (b'F006', Snacks.SS06.value),
-    (base_id + 400 + 1743): (b'F006', Snacks.SS07.value),
-    (base_id + 400 + 1744): (b'F006', Snacks.SS09.value),
-    (base_id + 400 + 1745): (b'F006', Snacks.SS10.value),
+    (base_id + 400 + 1737): (b'F006', Snacks.S01.value),
+    (base_id + 400 + 1738): (b'F006', Snacks.S02.value),
+    (base_id + 400 + 1739): (b'F006', Snacks.S03.value),
+    (base_id + 400 + 1740): (b'F006', Snacks.S04.value),
+    (base_id + 400 + 1741): (b'F006', Snacks.S05.value),
+    (base_id + 400 + 1742): (b'F006', Snacks.S06.value),
+    (base_id + 400 + 1743): (b'F006', Snacks.S07.value),
+    (base_id + 400 + 1744): (b'F006', Snacks.S09.value),
+    (base_id + 400 + 1745): (b'F006', Snacks.S10.value),
     (base_id + 400 + 1746): (b'F006', Snacks.S10B.value),
     (base_id + 400 + 1747): (b'F006', Snacks.S10C.value),
     (base_id + 400 + 1748): (b'F006', Snacks.S10D.value),
-    (base_id + 400 + 1749): (b'F006', Snacks.SS11.value),
-    (base_id + 400 + 1750): (b'F006', Snacks.SS12.value),
-    (base_id + 400 + 1751): (b'F006', Snacks.SS13.value),
-    (base_id + 400 + 1752): (b'F006', Snacks.SS14.value),
-    (base_id + 400 + 1753): (b'F006', Snacks.SS15.value),
-    (base_id + 400 + 1754): (b'F006', Snacks.SS16.value),
-    (base_id + 400 + 1755): (b'F006', Snacks.SS17.value),
-    (base_id + 400 + 1756): (b'F006', Snacks.SS18.value),
+    (base_id + 400 + 1749): (b'F006', Snacks.S11.value),
+    (base_id + 400 + 1750): (b'F006', Snacks.S12.value),
+    (base_id + 400 + 1751): (b'F006', Snacks.S13.value),
+    (base_id + 400 + 1752): (b'F006', Snacks.S14.value),
+    (base_id + 400 + 1753): (b'F006', Snacks.S15.value),
+    (base_id + 400 + 1754): (b'F006', Snacks.S16.value),
+    (base_id + 400 + 1755): (b'F006', Snacks.S17.value),
+    (base_id + 400 + 1756): (b'F006', Snacks.S18.value),
     (base_id + 400 + 1757): (b'F006', Snacks.S18B.value),
-    (base_id + 400 + 1758): (b'F006', Snacks.SS19.value),
+    (base_id + 400 + 1758): (b'F006', Snacks.S19.value),
     (base_id + 400 + 1759): (b'F006', Snacks.S19B.value),
-    (base_id + 400 + 1760): (b'F006', Snacks.SS20.value),
+    (base_id + 400 + 1760): (b'F006', Snacks.S20.value),
     (base_id + 400 + 1761): (b'F006', Snacks.S20B.value),
     (base_id + 400 + 1762): (b'F006', Snacks.S20C.value),
     (base_id + 400 + 1763): (b'F006', Snacks.S20D.value),
@@ -8773,6 +8773,7 @@ async def apply_key_fixes(ctx: NO100FContext):
                 _set_trigger_state(ctx, fix_ptr, 0x1e)
             else:
                 _set_counter_value(ctx, fix_ptr, 4)
+
             fix_ptr = _find_obj_in_obj_table(0x0a1efb96, ptr, size)
             if ctx.CCitH2_keys >= 5:
                 _set_pickup_active(ctx, fix_ptr, 0x1f)
@@ -8977,6 +8978,10 @@ def _set_pickup_state(ctx: NO100FContext, obj_ptr: int, state: int):
 
 async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_table: dict, check_cb: Callable):
     scene = dolphin_memory_engine.read_bytes(CUR_SCENE_ADDR, 0x4)
+
+    if scene == b'h001':
+        scene = b'H001'
+
     ptr = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_PTR_ADDR)
     if not _is_ptr_valid(ptr):
         return
@@ -9065,16 +9070,6 @@ async def _check_objects_by_id(ctx: NO100FContext, locations_checked: set, id_ta
                     boss_kills = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
                     boss_kills += 1
                     dolphin_memory_engine.write_byte(BOSS_KILLS_ADDR, boss_kills)
-
-            # Creepy 2 Pickup Fix
-           #if v[0] == b'P002':
-           #    fix_ptr = _find_obj_in_obj_table(v[1], ptr, size)
-           #    if not fix_ptr == None:
-           #        if not _check_pickup_state(ctx, fix_ptr == 0x48):
-           #            _set_pickup_active(ctx, fix_ptr, 0x1d)
-           #            _set_platform_state(ctx, fix_ptr, 1)
-           #            _set_pickup_state(ctx, fix_ptr, 0x41)
-           #        else: locations_checked.add(k)
 
             if check_cb(ctx, obj_ptr):
                 locations_checked.add(k)

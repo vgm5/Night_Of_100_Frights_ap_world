@@ -1575,7 +1575,7 @@ snack_location_table = {
     LocationNames.f001_SS114_COUNT70: base_id + 400 + 1499,
     LocationNames.f001_SS1163: base_id + 400 + 1500,
     LocationNames.f001_SS_BP04: base_id + 400 + 1501,
-    LocationNames.f001_SS_BP09: base_id + 400 + 1472,
+    LocationNames.f001_SS_BP09: base_id + 400 + 1502,
     LocationNames.f001_SS_BP14: base_id + 400 + 1503,
     LocationNames.f001_SS_BP26: base_id + 400 + 1504,
     LocationNames.f001_SS_BP28: base_id + 400 + 1505,
