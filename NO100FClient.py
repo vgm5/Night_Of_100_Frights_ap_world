@@ -8784,8 +8784,6 @@ async def apply_key_fixes(ctx: NO100FContext):
                 fix_ptr = _find_obj_in_obj_table(0xE719674B, ptr, size)
                 _set_platform_collision_state(ctx, fix_ptr, 0)
                 _set_platform_state(ctx, fix_ptr, 0)
-            else:
-                _set_pickup_active(ctx, fix_ptr, 0x1e)
 
     if scene == b'P003':
         fix_ptr = _find_obj_in_obj_table(0x060e343c, ptr, size)

@@ -38,7 +38,7 @@ NO100F_HASH = "6f078c687c81e26b8e81127ba4b747ba"
 
 class NO100FContainer(APContainer, metaclass=AutoPatchRegister):
     hash = NO100F_HASH
-    game = "Night of 100 Frights"
+    game = "Scooby-Doo! Night of 100 Frights"
     patch_file_ending: str = ".apno100f"
     result_file_ending: str = ".gcm"
     zip_version: int = 1
