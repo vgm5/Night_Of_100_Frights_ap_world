@@ -1,0 +1,18 @@
+name: Test APWorld
+on:
+  push:
+    branches: [main, ci]
+  pull_request:
+    branches: [main]
+
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Eijebong/ap-actions/ap-tests@main
+        with:
+          apworld-path: .
+          apworld-name: no100f
+          ap-version: '0.6.1'
+          python-version: '3.12'
