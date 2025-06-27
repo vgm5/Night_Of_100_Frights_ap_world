@@ -1226,7 +1226,7 @@ class Snacks(Enum):
     SNACK119                         = 0x43304983
     SNACK12                          = 0xB640DB6F
     SNACK120                         = 0x433049FD
-    SNACK1200                        = 0x615BDCA7
+    SNACK1200                        = 0x61B5DCA7
     SNACK12010                       = 0x000FEA28
     SNACK12012                       = 0x000FEA2A
     SNACK12014                       = 0x000FEA2C
@@ -1622,7 +1622,7 @@ class Snacks(Enum):
     SS1023                           = 0x437418B0
     SS10230                          = 0x8468A240
     SS10231                          = 0x8468A241
-    SS103                            = 0xBC1E3302
+    SS103                            = 0xBC1E3300
     SS1030                           = 0x8468A240
     SS1031                           = 0x8468A241
     SS104                            = 0xBC1E3301
@@ -1764,7 +1764,7 @@ class Snacks(Enum):
     SS163                            = 0xBC1E3612
     SS164                            = 0xBC1E3613
     SS165                            = 0xBC1E3614
-    SS167                            = 0xBC1E3615
+    SS167                            = 0xBC1E3616
     SS17                             = 0x0B34FE76
     SS170                            = 0xBC1E3692
     SS1700                           = 0x4375ECE6
@@ -1773,7 +1773,7 @@ class Snacks(Enum):
     SS173                            = 0xBC1E3695
     SS174                            = 0xBC1E3696
     SS175                            = 0xBC1E3697
-    SS177                            = 0xBC1E3698
+    SS177                            = 0xBC1E3699
     SS18                             = 0x0B34FE77
     SS180                            = 0xBC1E3715
     SS181                            = 0xBC1E3716
