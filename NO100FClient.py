@@ -1,18 +1,17 @@
 import asyncio
-import collections
 import os.path
 import shutil
 import subprocess
+import sys
 import time
 import traceback
 import zipfile
 from enum import Enum
 from enum import Flag
-from queue import SimpleQueue
-from typing import Callable, Optional, Any, Dict, Tuple
+from typing import Callable, Optional, Any, Dict
 
 from worlds.no100f import NO100FContainer
-from .inc.packages import dolphin_memory_engine
+import dolphin_memory_engine
 
 import Utils
 from CommonClient import CommonContext, server_loop, gui_enabled, ClientCommandProcessor, logger, \
@@ -40,9 +39,9 @@ SCENE_OBJ_LIST_SIZE_ADDR = 0x8025e5ac
 CUR_SCENE_ADDR = 0x8025f0d0
 
 HEALTH_ADDR = 0x80234DC8
-SNACK_COUNT_ADDR = 0x80235094  #4 Bytes
-UPGRADE_INVENTORY_ADDR = 0x80235098  #4 Bytes
-MONSTER_TOKEN_INVENTORY_ADDR = 0x8023509C  #4 Bytes
+SNACK_COUNT_ADDR = 0x80235094  # 4 Bytes
+UPGRADE_INVENTORY_ADDR = 0x80235098  # 4 Bytes
+MONSTER_TOKEN_INVENTORY_ADDR = 0x8023509C  # 4 Bytes
 MAX_GUM_COUNT_ADDR = 0x802350A8
 MAX_SOAP_COUNT_ADDR = 0x802350AC
 PLAYER_CONTROL_OWNER = 0x80234e90
@@ -66,27 +65,27 @@ SAVED_SLOT_NAME_ADDR = 0x817f0020
 SAVED_SEED_ADDR = SAVED_SLOT_NAME_ADDR + 0x40
 
 
-class Upgrades(Enum):              #Bit assigned at 0x80235098
-    GumPower = 0xD4FD7D3C          #xxxx xxxx xxxx xxxx x000 0000 0000 0001
-    SoapPower = 0xE8A3B45F         #xxxx xxxx xxxx xxxx x000 0000 0000 0010
-    BootsPower = 0x9133CECD        #xxxx xxxx xxxx xxxx x000 0000 0000 0100
-    PlungerPower = 0xDA82A36C      #xxxx xxxx xxxx xxxx x000 0000 0000 1000
-    SlippersPower = 0x9AD0813E     #xxxx xxxx xxxx xxxx x000 0000 0001 0000
-    LampshadePower = 0x6FAFFB01    #xxxx xxxx xxxx xxxx x000 0000 0010 0000
-    BlackKnightPower = 0xB00E719E  #xxxx xxxx xxxx xxxx x000 0000 0100 0000
-    SpringPower = 0xD88133D6       #xxxx xxxx xxxx xxxx x000 0010 0000 0000
-    PoundPower = 0x84D3E950        #xxxx xxxx xxxx xxxx x000 0100 0000 0000
-    HelmetPower = 0x2F03BFDC       #xxxx xxxx xxxx xxxx x000 1000 0000 0000
-    UmbrellaPower = 0xC889BB9E     #xxxx xxxx xxxx xxxx x001 0000 0000 0000
-    ShovelPower = 0x866C5887       #xxxx xxxx xxxx xxxx x010 0000 0000 0000
-    ShockwavePower = 0x1B0ADE07    #xxxx xxxx xxxx xxxx x100 0000 0000 0000
-    GumOverAcid2 = 0xEAF330FE      #Gum upgrades increment 0x802350A8 by 5.
+class Upgrades(Enum):              # Bit assigned at 0x80235098
+    GumPower = 0xD4FD7D3C          # xxxx xxxx xxxx xxxx x000 0000 0000 0001
+    SoapPower = 0xE8A3B45F         # xxxx xxxx xxxx xxxx x000 0000 0000 0010
+    BootsPower = 0x9133CECD        # xxxx xxxx xxxx xxxx x000 0000 0000 0100
+    PlungerPower = 0xDA82A36C      # xxxx xxxx xxxx xxxx x000 0000 0000 1000
+    SlippersPower = 0x9AD0813E     # xxxx xxxx xxxx xxxx x000 0000 0001 0000
+    LampshadePower = 0x6FAFFB01    # xxxx xxxx xxxx xxxx x000 0000 0010 0000
+    BlackKnightPower = 0xB00E719E  # xxxx xxxx xxxx xxxx x000 0000 0100 0000
+    SpringPower = 0xD88133D6       # xxxx xxxx xxxx xxxx x000 0010 0000 0000
+    PoundPower = 0x84D3E950        # xxxx xxxx xxxx xxxx x000 0100 0000 0000
+    HelmetPower = 0x2F03BFDC       # xxxx xxxx xxxx xxxx x000 1000 0000 0000
+    UmbrellaPower = 0xC889BB9E     # xxxx xxxx xxxx xxxx x001 0000 0000 0000
+    ShovelPower = 0x866C5887       # xxxx xxxx xxxx xxxx x010 0000 0000 0000
+    ShockwavePower = 0x1B0ADE07    # xxxx xxxx xxxx xxxx x100 0000 0000 0000
+    GumOverAcid2 = 0xEAF330FE      # Gum upgrades increment 0x802350A8 by 5.
     GumPack = 0xFFD0E61E
     GumMaxAmmo = 0xFFFD7A85
     Gum_Upgrade = 0x362E34B4
     GumUpgrade = 0x7EDE8BAD
     BubblePack = 0xBF9B5D09
-    Soap__Box = 0xD656A182         #Soap upgrades increment 0x802350AC by 5
+    Soap__Box = 0xD656A182         # Soap upgrades increment 0x802350AC by 5
     SoapBox1 = 0x3550C423
     SoapOverAcid2 = 0x0C7A534E
     Soap_Box = 0xDEC7BAA7
@@ -94,28 +93,28 @@ class Upgrades(Enum):              #Bit assigned at 0x80235098
     SoapPack = 0xDCC4E558
 
 
-class MonsterTokens(Enum):       #Bit assigned at 0x8023509C
-    MT_BLACKKNIGHT = 0x3A6FCC38  #xxxx xxxx xxx0 0000 0000 0000 0000 0001
-    MT_MOODY = 0xDC98824E        #xxxx xxxx xxx0 0000 0000 0000 0000 0010
-    MT_CAVEMAN = 0x56400EF1      #xxxx xxxx xxx0 0000 0000 0000 0000 0100
-    MT_CREEPER = 0xDFA0C15E      #xxxx xxxx xxx0 0000 0000 0000 0000 1000
-    MT_GARGOYLE = 0xFBBC715F     #xxxx xxxx xxx0 0000 0000 0000 0001 0000
-    MT_GERONIMO = 0x94C56BF0     #xxxx xxxx xxx0 0000 0000 0000 0010 0000
-    MT_GHOST = 0x74004B8A        #xxxx xxxx xxx0 0000 0000 0000 0100 0000
-    MT_GHOSTDIVER = 0x2ACB9327   #xxxx xxxx xxx0 0000 0000 0000 1000 0000
-    MT_GREENGHOST = 0xF077B0E1   #xxxx xxxx xxx0 0000 0000 0001 0000 0000
-    MT_HEADLESS = 0x52CE630A     #xxxx xxxx xxx0 0000 0000 0010 0000 0000
-    MT_MASTERMIND = 0x08D04C9B   #xxxx xxxx xxx0 0000 0000 0100 0000 0000
-    MT_ROBOT = 0x699623C9        #xxxx xxxx xxx0 0000 0000 1000 0000 0000
-    MT_REDBEARD = 0x0F7F79CB     #xxxx xxxx xxx0 0000 0001 0000 0000 0000
-    MT_SCARECROW = 0xAB19F726    #xxxx xxxx xxx0 0000 0010 0000 0000 0000
-    MT_SEACREATURE = 0x6CC29412  #xxxx xxxx xxx0 0000 0100 0000 0000 0000
-    MT_SPACEKOOK = 0xFC42FAAC    #xxxx xxxx xxx0 0000 1000 0000 0000 0000
-    MT_TARMONSTER = 0x2E849EB9   #xxxx xxxx xxx0 0001 0000 0000 0000 0000
-    MT_WITCH = 0x8CFF4526        #xxxx xxxx xxx0 0010 0000 0000 0000 0000
-    MT_WITCHDOC = 0x55794316     #xxxx xxxx xxx0 0100 0000 0000 0000 0000
-    MT_WOLFMAN = 0x51D4A7D2      #xxxx xxxx xxx0 1000 0000 0000 0000 0000
-    MT_ZOMBIE = 0x818F2933       #xxxx xxxx xxx1 0000 0000 0000 0000 0000
+class MonsterTokens(Enum):       # Bit assigned at 0x8023509C
+    MT_BLACKKNIGHT = 0x3A6FCC38  # xxxx xxxx xxx0 0000 0000 0000 0000 0001
+    MT_MOODY = 0xDC98824E        # xxxx xxxx xxx0 0000 0000 0000 0000 0010
+    MT_CAVEMAN = 0x56400EF1      # xxxx xxxx xxx0 0000 0000 0000 0000 0100
+    MT_CREEPER = 0xDFA0C15E      # xxxx xxxx xxx0 0000 0000 0000 0000 1000
+    MT_GARGOYLE = 0xFBBC715F     # xxxx xxxx xxx0 0000 0000 0000 0001 0000
+    MT_GERONIMO = 0x94C56BF0     # xxxx xxxx xxx0 0000 0000 0000 0010 0000
+    MT_GHOST = 0x74004B8A        # xxxx xxxx xxx0 0000 0000 0000 0100 0000
+    MT_GHOSTDIVER = 0x2ACB9327   # xxxx xxxx xxx0 0000 0000 0000 1000 0000
+    MT_GREENGHOST = 0xF077B0E1   # xxxx xxxx xxx0 0000 0000 0001 0000 0000
+    MT_HEADLESS = 0x52CE630A     # xxxx xxxx xxx0 0000 0000 0010 0000 0000
+    MT_MASTERMIND = 0x08D04C9B   # xxxx xxxx xxx0 0000 0000 0100 0000 0000
+    MT_ROBOT = 0x699623C9        # xxxx xxxx xxx0 0000 0000 1000 0000 0000
+    MT_REDBEARD = 0x0F7F79CB     # xxxx xxxx xxx0 0000 0001 0000 0000 0000
+    MT_SCARECROW = 0xAB19F726    # xxxx xxxx xxx0 0000 0010 0000 0000 0000
+    MT_SEACREATURE = 0x6CC29412  # xxxx xxxx xxx0 0000 0100 0000 0000 0000
+    MT_SPACEKOOK = 0xFC42FAAC    # xxxx xxxx xxx0 0000 1000 0000 0000 0000
+    MT_TARMONSTER = 0x2E849EB9   # xxxx xxxx xxx0 0001 0000 0000 0000 0000
+    MT_WITCH = 0x8CFF4526        # xxxx xxxx xxx0 0010 0000 0000 0000 0000
+    MT_WITCHDOC = 0x55794316     # xxxx xxxx xxx0 0100 0000 0000 0000 0000
+    MT_WOLFMAN = 0x51D4A7D2      # xxxx xxxx xxx0 1000 0000 0000 0000 0000
+    MT_ZOMBIE = 0x818F2933       # xxxx xxxx xxx1 0000 0000 0000 0000 0000
 
 
 class Keys(Enum):
@@ -151,7 +150,7 @@ class Warpgates(Enum):
     WARPGATE_POWERUP = 0xD399D40F
 
 
-#Snacks are notated nearly exactly as they are in the game, but Space characters are replaced with "__"
+# Snacks are notated nearly exactly as they are in the game, but Space characters are replaced with "__"
 class Snacks(Enum):
     BOX__O__SNACKS__UNDER__SWINGER   = 0x3DC34C5A
     BOX__O__SNACKS__UNDER__SWINGER0  = 0x9AF0123E
@@ -2707,7 +2706,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 144): (b'C001', Snacks.SS1040.value),
     (base_id + 400 + 145): (b'C001', Snacks.SS1041.value),
     (base_id + 400 + 146): (b'C001', Snacks.SS1042.value),
-    (base_id + 400 + 147): (b'C001', Snacks.SS1043.value),  #Helmet
+    (base_id + 400 + 147): (b'C001', Snacks.SS1043.value),  # Helmet
     (base_id + 400 + 148): (b'C001', Snacks.SS550.value),
     (base_id + 400 + 149): (b'C001', Snacks.SS551.value),
     (base_id + 400 + 150): (b'C001', Snacks.SS552.value),
@@ -2811,7 +2810,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 247): (b'C002', Snacks.SNACK__2530.value),
     (base_id + 400 + 248): (b'C002', Snacks.SNACK__2531.value),
     (base_id + 400 + 249): (b'C002', Snacks.SNACK__2532.value),
-    (base_id + 400 + 250): (b'C002', Snacks.SNACK__067.value),  #Umbrella
+    (base_id + 400 + 250): (b'C002', Snacks.SNACK__067.value),  # Umbrella
     (base_id + 400 + 251): (b'C002', Snacks.SNACK__060.value),
     (base_id + 400 + 252): (b'C002', Snacks.SNACK__061.value),
     (base_id + 400 + 253): (b'C002', Snacks.SNACK__062.value),
@@ -4026,7 +4025,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 1551): (b'F003', Snacks.BOX1.value),
     (base_id + 400 + 1552): (b'F003', Snacks.SSBOX05.value),
     (base_id + 400 + 1553): (b'F003', Snacks.SSBOX06.value),
-    (base_id + 400 + 1554): (b'F003', Snacks.S8.value),         #Barrel Snack
+    (base_id + 400 + 1554): (b'F003', Snacks.S8.value),         # Barrel Snack
     (base_id + 400 + 1555): (b'F003', Snacks.SSBOX01.value),
     (base_id + 400 + 1556): (b'F003', Snacks.SSBOX02.value),
     (base_id + 400 + 1557): (b'F003', Snacks.SSBOX03_AIR.value),
@@ -6587,7 +6586,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 4070): (b'P005', Snacks.SS113.value),
     (base_id + 400 + 4071): (b'P005', Snacks.SS114.value),
 
-    #(base_id + 400 + 4072): (b'R001', Snacks.CRATE__1__PRIZE.value),   This is evidently not a snack, oops
+    # (base_id + 400 + 4072): (b'R001', Snacks.CRATE__1__PRIZE.value),   This is evidently not a snack, oops
     (base_id + 400 + 4073): (b'R001', Snacks.CRATE__2__PRIZE.value),
     (base_id + 400 + 4074): (b'R001', Snacks.SNACKBOX1.value),
     (base_id + 400 + 4075): (b'R001', Snacks.SNACKBOX2.value),
@@ -7618,7 +7617,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 5086): (b'W025', Snacks.SS091.value),
     (base_id + 400 + 5087): (b'W025', Snacks.SS092.value),
     (base_id + 400 + 5088): (b'W025', Snacks.SS093.value),
-    #(base_id + 400 + 5089): (b'W025', Snacks.SS10.value), This is a Sandwich
+    # (base_id + 400 + 5089): (b'W025', Snacks.SS10.value), This is a Sandwich
     (base_id + 400 + 5090): (b'W025', Snacks.SS100.value),
     (base_id + 400 + 5091): (b'W025', Snacks.SS101.value),
     (base_id + 400 + 5092): (b'W025', Snacks.SS104.value),
@@ -7876,7 +7875,7 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 5342): (b'W027', Snacks.SSRP05.value),
     (base_id + 400 + 5343): (b'W027', Snacks.SSRP051.value),
 
-    #Missed Initial Snacks, cleanup later and reorder
+    # Missed Initial Snacks, cleanup later and reorder
     (base_id + 400 + 5344): (b'E005', Snacks.SNACK__01.value),
     (base_id + 400 + 5345): (b'F001', Snacks.FOOD11.value),
     (base_id + 400 + 5346): (b'F001', Snacks.FOOD12.value),
@@ -7972,7 +7971,7 @@ class NO100FCommandProcessor(ClientCommandProcessor):
         if dolphin_memory_engine.is_hooked():
             dolphin_memory_engine.write_word(MONSTER_TOKEN_INVENTORY_ADDR, 0x0000)
             dolphin_memory_engine.write_word(UPGRADE_INVENTORY_ADDR, 0x0000)
-            for i in range (0,21):
+            for i in range(0, 21):
                 dolphin_memory_engine.write_word(KEY_COUNT_ADDR + i, 0x0)
             dolphin_memory_engine.write_word(EXPECTED_INDEX_ADDR, 0x0000)
             logger.info("Resending Inventory")
@@ -8097,7 +8096,6 @@ class NO100FContext(CommonContext):
         self.dolphin_sync_task = None
         self.dolphin_status = CONNECTION_INITIAL_STATUS
         self.awaiting_rom = False
-        #self.snack_count = 0
         self.LAST_STATE = [bytes([0, 0]), bytes([0, 0]), bytes([0, 0])]
         self.last_rev_index = -1
         self.has_send_death = False
@@ -8177,14 +8175,10 @@ class NO100FContext(CommonContext):
         super().on_deathlink(data)
         _give_death(self)
 
-    #def _update_item_counts(self, args: dict):
-    #self.snack_count = len([item for item in self.items_received if item.item == base_id + 0])
-
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
             logger.info('Enter the password required to join this game:')
             self.password = await self.console_input()
-            return self.password
         if not self.auth:
             if self.awaiting_rom:
                 return
@@ -8242,7 +8236,7 @@ def _find_obj_in_obj_table(id: int, ptr: Optional[int] = None, size: Optional[in
             # if the id matches, we are at the right entry
             if obj_id == id:
                 break
-            # the returns NULL if it encounters id 0, so just skip if we do
+            # returns NULL if it encounters id 0, so just skip if we do
             if obj_id == 0:
                 break
             # we are not at the right entry so look at the next
@@ -8439,8 +8433,6 @@ async def apply_key_fixes(ctx: NO100FContext):
                 _set_trigger_state(ctx, fix_ptr, 0x1d)
 
             if ctx.CitM1_key == 0:  # The Key is not collected, block door from opening
-              #  fix_ptr = _find_obj_in_obj_table(0x1e1157c3, ptr, size)
-              #  _set_trigger_state(ctx, fix_ptr, 0x1c)
                 fix_ptr = _find_obj_in_obj_table(0x586E19B9, ptr, size)
                 _set_trigger_state(ctx, fix_ptr, 0x1c)
 
@@ -9512,7 +9504,6 @@ async def dolphin_sync_task(ctx: NO100FContext):
 
                     await asyncio.sleep(.1)
                     continue
-                # _print_player_info(ctx)
                 if ctx.slot:
                     if not validate_save(ctx):
                         logger.info(CONNECTION_REFUSED_SAVE_STATUS)
@@ -9615,7 +9606,11 @@ async def patch_and_run_game(ctx: NO100FContext, patch_file):
         await NO100FContainer.apply_binary_changes(zipfile.ZipFile(patch_file, 'r'), result_path)
 
         logger.info('--patching success--')
-        os.startfile(result_path)
+        if sys.platform == "win32":
+            os.startfile(result_path)
+        else:
+            opener = "open" if sys.platform == "darwin" else "xdg-open"
+            subprocess.call([opener, result_path])
 
     except Exception as msg:
         logger.info(msg, extra={'compact_gui': True})
@@ -9626,8 +9621,6 @@ async def patch_and_run_game(ctx: NO100FContext, patch_file):
 def main(connect=None, password=None, patch_file=None):
     # Text Mode to use !hint and such with games that have no text entry
     Utils.init_logging("NO100FClient")
-
-    # logger.warning(f"starting {connect}, {password}, {patch_file}")
 
     async def _main(connect, password, patch_file):
         ctx = NO100FContext(connect, password)
@@ -9643,7 +9636,11 @@ def main(connect=None, password=None, patch_file=None):
                 logger.info("apNO100F file supplied, beginning patching process...")
                 ctx.patch_task = asyncio.create_task(patch_and_run_game(ctx, patch_file), name="PatchGame")
             elif ext == NO100FContainer.result_file_ending:
-                os.startfile(patch_file)
+                if sys.platform == "win32":
+                    os.startfile(patch_file)
+                else:
+                    opener = "open" if sys.platform == "darwin" else "xdg-open"
+                    subprocess.call([opener, patch_file])
             else:
                 logger.warning(f"Unknown patch file extension {ext}")
 

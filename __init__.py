@@ -5,13 +5,12 @@ import os
 import zipfile
 import typing
 from multiprocessing import Process
-from typing import TextIO
 
 import Utils
 from BaseClasses import Item, Tutorial, ItemClassification
 from worlds.AutoWorld import World, WebWorld
-from worlds.LauncherComponents import Component, components, Type, SuffixIdentifier
-from worlds.Files import APContainer, AutoPatchRegister
+from worlds.LauncherComponents import Component, components, Type, SuffixIdentifier, icon_paths
+from worlds.Files import APPlayerContainer, AutoPatchRegister
 from . import Patches
 from .Events import create_events
 from .Items import item_table, NO100FItem
@@ -31,12 +30,20 @@ def run_client():
     p.start()
 
 
-components.append(Component("Scooby-Doo! NO100F Client", func=run_client, component_type=Type.CLIENT,
-                            file_identifier=SuffixIdentifier('.apno100f')))
+components.append(
+    Component("Scooby-Doo! NO100F Client",
+              func=run_client,
+              component_type=Type.CLIENT,
+              file_identifier=SuffixIdentifier('.apno100f'),
+              icon="Scooby-Doo! Night of 100 Frights",
+              )
+)
+icon_paths["Scooby-Doo! Night of 100 Frights"] = "ap:worlds.no100f/Assets/icon.png"
 
 NO100F_HASH = "6f078c687c81e26b8e81127ba4b747ba"
 
-class NO100FContainer(APContainer, metaclass=AutoPatchRegister):
+
+class NO100FContainer(APPlayerContainer, metaclass=AutoPatchRegister):
     hash = NO100F_HASH
     game = "Scooby-Doo! Night of 100 Frights"
     patch_file_ending: str = ".apno100f"
@@ -70,10 +77,10 @@ class NO100FContainer(APContainer, metaclass=AutoPatchRegister):
                                 compress_type=zipfile.ZIP_STORED)
         opened_zipfile.writestr("include_keys",
                                 self.include_keys.to_bytes(1, "little"),
-                               compress_type=zipfile.ZIP_STORED)
+                                compress_type=zipfile.ZIP_STORED)
         opened_zipfile.writestr("include_warpgates",
                                 self.include_warpgates.to_bytes(1, "little"),
-                               compress_type=zipfile.ZIP_STORED)
+                                compress_type=zipfile.ZIP_STORED)
         opened_zipfile.writestr("completion_goal",
                                 self.completion_goal.to_bytes(1, "little"),
                                 compress_type=zipfile.ZIP_STORED)
@@ -147,7 +154,7 @@ class NO100FContainer(APContainer, metaclass=AutoPatchRegister):
                     else:
                         stream.write(val.to_bytes(0x4, "big"))
             # write slot name
-            cls.logger.debug(f"writing slot_name {slot_name} to 0x{slot_name_offset:x} ({slot_name_bytes})")
+            cls.logger.debug(f"writing slot_name to 0x{slot_name_offset:x} ({slot_name_bytes})")
             stream.seek(slot_name_offset, 0)
             stream.write(slot_name_bytes)
             cls.logger.debug(f"writing seed_hash {seed_hash} to 0x{seed_hash_offset:x}")
@@ -158,11 +165,13 @@ class NO100FContainer(APContainer, metaclass=AutoPatchRegister):
     @classmethod
     def get_rom_path(cls) -> str:
         return get_base_rom_path()
+
     @classmethod
     def check_hash(cls):
         if not validate_hash():
             Exception(f"Supplied Base Rom does not match known MD5 for Scooby Doo! Night of 100 Frights.iso. "
                       "Get the correct game and version.")
+
     @classmethod
     def check_version(cls, opened_zipfile: zipfile.ZipFile) -> bool:
         version_bytes = opened_zipfile.read("zip_version")
@@ -175,9 +184,7 @@ class NO100FContainer(APContainer, metaclass=AutoPatchRegister):
 
 
 def get_base_rom_path(file_name: str = "") -> str:
-    options: Utils.OptionsType = Utils.get_options()
     if not file_name:
-        # file_name = options["no100f_options"]["rom_file"]
         file_name = "Scooby-Doo! Night of 100 Frights.iso"
     if not os.path.exists(file_name):
         file_name = Utils.user_path(file_name)
@@ -192,10 +199,11 @@ def validate_hash(file_name: str = ""):
     basemd5.update(base_rom_bytes)
     return NO100FContainer == basemd5.hexdigest()
 
+
 class NO100FWeb(WebWorld):
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
-        "A guide to setting up the integration for Archipelago multiworld games.",
+        "A guide to playing the Scooby-Doo! Night of 100 Frights Randomizer.",
         "English",
         "setup_en.md",
         "setup/en",
@@ -203,10 +211,15 @@ class NO100FWeb(WebWorld):
     )]
 
 
-
 class NightOf100FrightsWorld(World):
     """
-    Scooby-Doo! Night of 100 Frights
+    Scooby-Doo! Night of 100 Frights is a MetroidVania 3D Platformer game
+    made by Heavy Iron Studios and published by THQ.
+
+    The Mystery Gang are invited to the Mystic Manor by Holly, but shortly after arriving Scooby-Doo
+    gets separated from the rest of the crew, Scooby must navigate a wide variety of levels to collect new inventions
+    and scooby snacks so that he can explore new areas and look for his friends, while
+    he fights off his old foes along the way.
     """
     game = "Scooby-Doo! Night of 100 Frights"
     options_dataclass = NO100FOptions
@@ -217,8 +230,8 @@ class NightOf100FrightsWorld(World):
     location_name_to_id = location_table
     web = NO100FWeb()
 
-    def __init__(self, multiworld: "MultiWorld", player: int):
-        super().__init__(multiworld, player)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.snack_counter: int = 0
 
     def get_items(self):
@@ -240,14 +253,18 @@ class NightOf100FrightsWorld(World):
             itempool += [ItemNames.Cellar2_Key, ItemNames.Graveplot_Key, ItemNames.Attic_Key, ItemNames.Creepy3_Key,
                          ItemNames.DLD_Key] * 3  # Triple Keys
             itempool += [ItemNames.Cellar3_Key, ItemNames.Cavein_Key, ItemNames.FishyClues_Key, ItemNames.MYM_Key,
-                         ItemNames.Coast_Key, ItemNames.Knight_Key, ItemNames.Gusts2_Key, ItemNames.Shiver_Key] * 4  # Quad Keys
+                         ItemNames.Coast_Key, ItemNames.Knight_Key,
+                         ItemNames.Gusts2_Key, ItemNames.Shiver_Key] * 4  # Quad Keys
             itempool += [ItemNames.Creepy2_Key] * 5  # Penta Keys
         if self.options.include_keys == 2:
-            itempool+=[ItemNames.Hedge_Key, ItemNames.Fishing_Key, ItemNames.Clamor1_Key, ItemNames.Clamor4_Key,
-                         ItemNames.Gusts1_KeyRing, ItemNames.Tomb1_KeyRing, ItemNames.Tomb3_KeyRing, ItemNames.Cellar2_KeyRing,
+            itempool += [ItemNames.Hedge_Key, ItemNames.Fishing_Key, ItemNames.Clamor1_Key, ItemNames.Clamor4_Key,
+                         ItemNames.Gusts1_KeyRing, ItemNames.Tomb1_KeyRing, ItemNames.Tomb3_KeyRing,
+                         ItemNames.Cellar2_KeyRing,
                          ItemNames.Graveplot_KeyRing, ItemNames.Attic_KeyRing, ItemNames.Creepy3_KeyRing,
-                         ItemNames.DLD_KeyRing, ItemNames.Cellar3_KeyRing, ItemNames.Cavein_KeyRing, ItemNames.FishyClues_KeyRing, ItemNames.MYM_KeyRing,
-                         ItemNames.Coast_KeyRing, ItemNames.Knight_KeyRing, ItemNames.Gusts2_KeyRing, ItemNames.Shiver_KeyRing, ItemNames.Creepy2_KeyRing]
+                         ItemNames.DLD_KeyRing, ItemNames.Cellar3_KeyRing, ItemNames.Cavein_KeyRing,
+                         ItemNames.FishyClues_KeyRing, ItemNames.MYM_KeyRing,
+                         ItemNames.Coast_KeyRing, ItemNames.Knight_KeyRing, ItemNames.Gusts2_KeyRing,
+                         ItemNames.Shiver_KeyRing, ItemNames.Creepy2_KeyRing]
             itempool += [ItemNames.FillerSnack] * 39
         if self.options.include_warpgates:
             itempool += [ItemNames.Cellar4_Warp, ItemNames.Cliff4_Warp, ItemNames.Hedge4_Warp, ItemNames.Hedge6_Warp,
@@ -259,11 +276,9 @@ class NightOf100FrightsWorld(World):
                          ItemNames.MG_Warp]
 
         # adjust for starting inv prog. items
-        k = 0
         for item in self.multiworld.precollected_items[self.player]:
             if item.name in itempool and item.advancement:
                 itempool.remove(item.name)
-                k = k + 1
 
         # Convert itempool into real items
         itempool = list(map(lambda name: self.create_item(name), itempool))
@@ -272,10 +287,12 @@ class NightOf100FrightsWorld(World):
     def create_items(self):
         self.multiworld.itempool += self.get_items()
 
+    def get_filler_item_name(self) -> str:
+        return self.random.choice(["Scooby Snack", "Scooby Snack Box"])
+
     def set_rules(self):
         create_events(self.multiworld, self.player)
-        if(self.options.no_logic == 0):
-            set_rules(self.multiworld, self.options, self.player)
+        set_rules(self.multiworld, self.options, self.player)
 
     def create_regions(self):
         create_regions(self.multiworld, self.options, self.player)
@@ -294,7 +311,6 @@ class NightOf100FrightsWorld(World):
             "advanced_logic": self.options.advanced_logic.value,
             "expert_logic": self.options.expert_logic.value,
             "creepy_early": self.options.creepy_early.value,
-            "no_logic": self.options.no_logic.value,
             "speedster": self.options.speedster.value,
         }
 
@@ -304,7 +320,8 @@ class NightOf100FrightsWorld(World):
 
         if name == ItemNames.Snack:
             self.snack_counter += 1
-            if self.options.include_snacks and self.options.snack_count.value > 850 and self.options.completion_goal > 3:
+            if (self.options.include_snacks and self.options.snack_count.value > 850 and
+                    self.options.completion_goal > 3):
                 if self.snack_counter > self.options.snack_count:
                     classification = ItemClassification.filler
 
@@ -316,19 +333,17 @@ class NightOf100FrightsWorld(World):
 
         return item
 
-    def write_spoiler(self, spoiler_handle: TextIO) -> None:
-        return
-
     def generate_output(self, output_directory: str) -> None:
         patch = NO100FContainer(path=os.path.join(output_directory,
-                                                 f"{self.multiworld.get_out_file_name_base(self.player)}{NO100FContainer.patch_file_ending}"),
-                               player=self.player,
-                               player_name=self.multiworld.get_player_name(self.player),
-                               include_monster_tokens=bool(self.options.include_monster_tokens.value),
-                               include_snacks=bool(self.options.include_snacks.value),
-                               include_keys=bool(self.options.include_keys.value),
-                               include_warpgates=bool(self.options.include_warpgates.value),
-                               completion_goal=bool(self.options.completion_goal.value),
-                               seed=self.multiworld.seed_name.encode('utf-8'),
-                               )
+                                f"{self.multiworld.get_out_file_name_base(self.player)}"
+                                f"{NO100FContainer.patch_file_ending}"),
+                                player=self.player,
+                                player_name=self.player_name,
+                                include_monster_tokens=bool(self.options.include_monster_tokens.value),
+                                include_snacks=bool(self.options.include_snacks.value),
+                                include_keys=bool(self.options.include_keys.value),
+                                include_warpgates=bool(self.options.include_warpgates.value),
+                                completion_goal=bool(self.options.completion_goal.value),
+                                seed=self.multiworld.seed_name.encode('utf-8'),
+                                )
         patch.write()
