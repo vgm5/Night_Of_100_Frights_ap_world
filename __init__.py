@@ -283,6 +283,7 @@ class NightOf100FrightsWorld(World):
         for item in self.multiworld.precollected_items[self.player]:
             if item.name in itempool and item.advancement:
                 itempool.remove(item.name)
+                itempool+=[self.get_filler_item_name()]
 
         # Convert itempool into real items
         itempool = list(map(lambda name: self.create_item(name), itempool))
