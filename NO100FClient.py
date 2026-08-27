@@ -8106,6 +8106,45 @@ class NO100FCommandProcessor(ClientCommandProcessor):
         logger.info(f"Shiver Keys {count}/4")
 
 
+    def _cmd_clearconditions(self):
+       """Displays current clear condition counts and the number expected to beat the Mastermind
+       \n NOTE: Bosses Killed only count if you leave the room in a standard way,  loading a savestate will not let you keep the boss kill"""
+
+       bossesKilled = dolphin_memory_engine.read_byte(BOSS_KILLS_ADDR)
+       tokens = dolphin_memory_engine.read_word(MONSTER_TOKEN_INVENTORY_ADDR)
+       snacks = dolphin_memory_engine.read_word(STORED_SNACK_ADDR)
+       sum_tokens = 0
+       for i in range(21):
+           if tokens & 2 ** i == 2 ** i:
+               sum_tokens += 1
+       if isinstance(self.ctx, NO100FContext):
+          if self.ctx.completion_goal == 1:
+             logger.info(f"Boss Kills: {bossesKilled}/{self.ctx.boss_count}")
+
+          if self.ctx.completion_goal == 2:
+              logger.info(f"Token Count: {sum_tokens}/{self.ctx.token_count}")
+
+          if self.ctx.completion_goal == 3:
+              logger.info(f"Boss Kills: {bossesKilled}/{self.ctx.boss_count}")
+              logger.info(f"Token Count: {sum_tokens}/{self.ctx.token_count}")
+
+          if self.ctx.completion_goal == 4:
+              logger.info(f"Snacks Collected: {snacks}/{self.ctx.snack_count}")
+
+          if self.ctx.completion_goal == 5:
+              logger.info(f"Boss Kills: {bossesKilled}/{self.ctx.boss_count}")
+              logger.info(f"Snacks Collected: {snacks}/{self.ctx.snack_count}")
+
+          if self.ctx.completion_goal == 6:
+              logger.info(f"Token Count: {sum_tokens}/{self.ctx.token_count}")
+              logger.info(f"Snacks Collected: {snacks}/{self.ctx.snack_count}")
+
+          if self.ctx.completion_goal == 7:
+              logger.info(f"Boss Kills: {bossesKilled}/{self.ctx.boss_count}")
+              logger.info(f"Token Count: {sum_tokens}/{self.ctx.token_count}")
+              logger.info(f"Snacks Collected: {snacks}/{self.ctx.snack_count}")
+
+
 class NO100FContext(CommonContext):
     command_processor = NO100FCommandProcessor
     game = "Scooby-Doo! Night of 100 Frights"
@@ -9228,6 +9267,26 @@ async def apply_level_fixes(ctx: NO100FContext):
     size = dolphin_memory_engine.read_word(SCENE_OBJ_LIST_SIZE_ADDR)
 
     dolphin_memory_engine.write_word(MAP_ADDR, 0x1)  # Force the Map Into Inventory
+
+    if scene == b'O001':
+        upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+        if not upgrades & 2 ** 11:  # Player does not have the helmet, block entry to Black Knight
+            fix_ptr = _find_obj_in_obj_table(0xDEE3B081, ptr, size)  # O008 Loading Trigger Disabled
+            _set_trigger_state(ctx, fix_ptr, 0x1c)
+        else:
+            fix_ptr = _find_obj_in_obj_table(0xDEE3B081, ptr, size)  # O008 Loading Trigger Enabled
+            _set_trigger_state(ctx, fix_ptr, 0x1d)
+
+    if scene == b'O006':
+        upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
+        if not upgrades & 2 ** 11:  # Player does not have the helmet, block entry to Black Knight
+            fix_ptr = _find_obj_in_obj_table(0xD1AE493B, ptr, size)  # O008 Loading Trigger Disabled
+            _set_trigger_state(ctx, fix_ptr, 0x1c)
+        else:
+            fix_ptr = _find_obj_in_obj_table(0xD1AE493B, ptr, size)  # O008 Loading Trigger Enabled
+            _set_trigger_state(ctx, fix_ptr, 0x1d)
+
+
     if scene == b'I001':
         upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
         if not upgrades & 2 ** 13:  # Player does not have the shovel, give them a fake
@@ -9450,7 +9509,6 @@ async def check_locations(ctx: NO100FContext):
             {"cmd": "LocationChecks",
              "locations": locations_checked}
         ])
-        print([ctx.location_names[location] for location in locations_checked])
 
 
 async def check_alive(ctx: NO100FContext):
