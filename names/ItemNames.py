@@ -98,6 +98,8 @@ MG_Warp = "Monster Gallery Warp"
 
 FillerSnack = "Spare Snack"
 
+Food = "Food"
+
 Snack = "Scooby Snack"
 SnackBox = "Scooby Snack Box"
 

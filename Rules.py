@@ -232,6 +232,44 @@ monster_token_rules = [
     {}
 ]
 
+food_rules = [
+    # connections
+    {},
+    # locations
+    {
+        ItemNames.Upgrades:
+            {
+                # Basement
+                LocationNames.b001_FOOD3: lambda player: lambda state: state.can_reach(RegionNames.b003, "Region", player) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1))
+                LocationNames.b003_FOOD6: lambda player: lambda state: state.had(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.b003_FOOD1: lambda player: lambda state: state.had(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.b003_FOOD2: lambda player: lambda state: state.had(ItemNames.HelmetPower, player, 1),
+                LocationNames.b003_FOOD3: lambda player: lambda state: state.had(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.b004_FOOD1: lambda player: lambda state: state.can_reach(ConnectionNames.b003_b004, "Entrance", player),
+                LocationNames.b004_FOOD4: lambda player: lambda state: state.can_reach(ConnectionNames.b003_b004, "Entrance", player),
+                LocationNames.b004_FOOD5: lambda player: lambda state: state.can_reach(ConnectionNames.b003_b004, "Entrance", player),
+                LocationNames.b004_FOOD3: lambda player: lambda state: state.can_reach(ConnectionNames.b004_i003, "Entrance", player) or state.can_reach(ConnectionNames.i003_b004, "Entrance", player),
+                LocationNames.b004_FOOD2: lambda player: lambda state:  state.has(ItemNames.PoundPower, player, 1) and (state.can_reach(ConnectionNames.b004_i003, "Entrance", player) or state.can_reach(ConnectionNames.i003_b004, "Entrance", player)),
+                LocationNames.b004_FOOD2__IN__DRYER: lambda player: lambda state:  state.has(ItemNames.PoundPower, player, 1) and (state.can_reach(ConnectionNames.b004_i003, "Entrance", player) or state.can_reach(ConnectionNames.i003_b004, "Entrance", player)),
+
+                # Cliffs
+                LocationNames.c001_FOOD__1: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.c001_FOOD__2: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.c004_FOOD__4: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.c004_FOOD__03: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 2),
+                LocationNames.c006_FOOD__3: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+                LocationNames.c007_FOOD__1: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.c007_FOOD__2: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.c007_CRATE__PRIZE__11: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.c007_CRATE__PRIZE__12: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+                LocationNames.e001_FOOD__FROM__DIG: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
+                LocationNames.e001_FOOD__2: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.e001_FOOD__HIDDEN: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.can_reach(RegionNames.e009, "Region", player),
+
+            },
+    }
+]
+
 key_rules = [
 # connections
     {
@@ -261,7 +299,7 @@ key_rules = [
         # Fishing Village
         ConnectionNames.f005_f006: lambda player: lambda state: state.has(ItemNames.FishyClues_Key, player, 4) or state.has(ItemNames.FishyClues_KeyRing, player, 1),
 
-        # Coast
+        # Cliffs
         ConnectionNames.c005_c006: lambda player: lambda state: (state.has(ItemNames.Cavein_Key, player, 4) or state.has(ItemNames.Cavein_KeyRing, player, 1)) and state.has(ItemNames.PlungerPower, player, 1),
 
         # Passage
@@ -2394,6 +2432,8 @@ def set_rules(multiworld: MultiWorld, options: NO100FOptions, player: int):
         _add_rules(multiworld, player, warpgate_rules, allowed_loc_types)
     if options.include_snacks.value:
         _add_rules(multiworld, player, snack_rules, allowed_loc_types)
+    if options.include_food.value:
+        _add_rules(multiworld, player, food_rules, allowed_loc_types)
 
     goal = options.completion_goal.value
     if goal == 0:

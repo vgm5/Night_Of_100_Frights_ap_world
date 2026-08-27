@@ -5469,13 +5469,18 @@ snack_location_table = {
     LocationNames.w027_SSBOX_GD02B: base_id + 400 + 5287,
 }
 
+food_location_table = {
+
+}
+
 
 location_table: typing.Dict[str, typing.Optional[int]] = {
     **upgrade_location_table,       # 0 - 27
     **monstertoken_location_table,  # 100 - 120
     **key_location_table,           # 200 - 259
     **warpgate_location_table,      # 300 - 325
-    **snack_location_table,         # 400 - 5795
+    **snack_location_table,         # 400 - 5687
+    **food_location_table,          # 5700 - X
     LocationNames.Credits: None
 }
 

@@ -2367,6 +2367,24 @@ class Snacks(Enum):
     CRATE_SANDWICH                   = 0x6049890F
     LOW__BOX                         = 0x3E5DA6E7
 
+class Food(Enum):
+    # Series of HEX IDs for Food Locations
+    FOOD__01 = 0x7A8A3FDF
+    FOOD__02 = 0x7A8A3FE0
+    FOOD__03 = 0x7A8A3FE1
+    FOOD__1 = 0x3B8FB63B
+    FOOD__2 = 0x3B8FB63C
+    FOOD__4 = 0x3B8FB63E
+    FOOD__5 = 0x3B8FB63F
+    FOOD1 = 0xD76A9FBF
+    FOOD2 = 0xD76A9FC0
+    FOOD3 = 0xD76A9FC1
+    FOOD4 = 0xD76A9FC2
+    FOOD5 = 0xD76A9FC3
+    FOOD6 = 0xD76A9FC4
+    FOOD2__IN__DRYER = 0x890DA3ED
+    CRATE__PRIZE__11 = 0x64D876CB
+    CRATE__PRIZE__12 = 0x64D876CC
 
 base_id = 1495000
 
@@ -7929,6 +7947,10 @@ SNACK_PICKUP_IDS = {
     (base_id + 400 + 5287): (b'W027', Snacks.SSBOX_GD02B.value),
 }
 
+FOOD_PICKUP_IDS = {
+    (base_id + 5700 + 0): (b'B001', Food.abc.value),
+}
+
 valid_scenes = [
     b'B001', b'B002', b'B003', b'B004',
     b'C001', b'C002', b'C003', b'C004', b'C005', b'C006', b'C007',
@@ -8107,6 +8129,7 @@ class NO100FContext(CommonContext):
         self.use_warpgates = False
         self.use_speedster = False
         self.use_snacks = False
+        self.use_food = False
         self.current_scene = None
         self.previous_scene = None
         self.CitM1_key = 0
@@ -8152,6 +8175,8 @@ class NO100FContext(CommonContext):
                 self.use_warpgates = True
             if 'include_snacks' in args['slot_data'] and args['slot_data']['include_snacks']:
                 self.use_snacks = True
+            if 'include_food' in args['slot_data'] and args['slot_data']['include_food']:
+                self.use_food = True
             if 'speedster' in args['slot_data'] and args['slot_data']['speedster']:
                 self.use_speedster = True
             if 'completion_goal' in args['slot_data']:
@@ -8264,6 +8289,12 @@ def _give_snack(ctx: NO100FContext, offset: int):
 
     dolphin_memory_engine.write_word(STORED_SNACK_ADDR, cur_snack_count)
 
+def _give_food(ctx: NO100FContext):
+    cur_health = dolphin_memory_engine.read_word(HEALTH_ADDR)
+    if cur_health <= 5:
+        cur_health += 1
+
+    dolphin_memory_engine.write_word(HEALTH_ADDR, cur_health)
 
 def _give_powerup(ctx: NO100FContext, bit: int):
     cur_upgrades = dolphin_memory_engine.read_word(UPGRADE_INVENTORY_ADDR)
@@ -8351,7 +8382,7 @@ def _check_cur_scene(ctx: NO100FContext, scene_id: bytes, scene_ptr: Optional[in
 
 def _give_item(ctx: NO100FContext, item_id: int):
     true_id = item_id - base_id  # Use item_id to generate offset for use with functions
-    if 0 <= true_id <= 106:  # ID is expected value
+    if 0 <= true_id <= 107:  # ID is expected value
 
         if true_id < 7:
             _give_powerup(ctx, true_id)
@@ -8382,6 +8413,9 @@ def _give_item(ctx: NO100FContext, item_id: int):
 
         if 105 <= true_id <= 106:
             _give_snack(ctx, true_id - 105)
+
+        if true_id == 107:
+            _give_food(ctx)
 
     else:
         logger.warning(f"Received unknown item with id {item_id}")

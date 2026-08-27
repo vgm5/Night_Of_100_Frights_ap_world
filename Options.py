@@ -28,6 +28,10 @@ class IncludeSnacks(Toggle):
     """Include Snacks as AP Locations/Items"""
     display_name = "Include Snacks"
 
+class IncludeFood(Toggle):
+    """Include Stationary Food (Non-enemy drops) as AP Locations/Items"""
+    display_name = "Include Food"
+
 
 class CompletionGoal(Choice):
     """
@@ -111,6 +115,7 @@ class NO100FOptions(PerGameCommonOptions):
     include_keys: IncludeKeys
     include_warpgates: IncludeWarpGates
     include_snacks: IncludeSnacks
+    include_food: IncludeFood
     death_link: DeathLink
     completion_goal: CompletionGoal
     boss_count: BossesCount

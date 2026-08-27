@@ -122,6 +122,8 @@ item_table = {
     ItemNames.Snack: ItemData(base_id + 105, ItemClassification.progression_skip_balancing),
     ItemNames.SnackBox: ItemData(base_id + 106, ItemClassification.progression),
 
+    ItemNames.Food: ItemData(base_id + 107, ItemClassification.filler),
+
     # events
     ItemNames.victory: ItemData(None, ItemClassification.progression)
 }

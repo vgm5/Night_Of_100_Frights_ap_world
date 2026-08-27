@@ -55,12 +55,14 @@ class NO100FContainer(APPlayerContainer, metaclass=AutoPatchRegister):
         if 'seed' in kwargs:
             self.include_monster_tokens: int = kwargs['include_monster_tokens']
             self.include_snacks: int = kwargs['include_snacks']
+            self.include_food: int = kwargs['include_food']
             self.include_keys: int = kwargs['include_keys']
             self.include_warpgates: int = kwargs['include_warpgates']
             self.completion_goal: int = kwargs['completion_goal']
             self.seed: bytes = kwargs['seed']
             del kwargs['include_monster_tokens']
             del kwargs['include_snacks']
+            del kwargs['include_food']
             del kwargs['include_keys']
             del kwargs['include_warpgates']
             del kwargs['completion_goal']
@@ -74,6 +76,9 @@ class NO100FContainer(APPlayerContainer, metaclass=AutoPatchRegister):
                                 compress_type=zipfile.ZIP_STORED)
         opened_zipfile.writestr("include_snacks",
                                 self.include_snacks.to_bytes(1, "little"),
+                                compress_type=zipfile.ZIP_STORED)
+        opened_zipfile.writestr("include_food",
+                                self.include_food.to_bytes(1, "little"),
                                 compress_type=zipfile.ZIP_STORED)
         opened_zipfile.writestr("include_keys",
                                 self.include_keys.to_bytes(1, "little"),
@@ -265,7 +270,7 @@ class NightOf100FrightsWorld(World):
                          ItemNames.FishyClues_KeyRing, ItemNames.MYM_KeyRing,
                          ItemNames.Coast_KeyRing, ItemNames.Knight_KeyRing, ItemNames.Gusts2_KeyRing,
                          ItemNames.Shiver_KeyRing, ItemNames.Creepy2_KeyRing]
-            itempool += [ItemNames.FillerSnack] * 39
+            itempool += [ItemNames.Food] * 39
         if self.options.include_warpgates:
             itempool += [ItemNames.Cellar4_Warp, ItemNames.Cliff4_Warp, ItemNames.Hedge4_Warp, ItemNames.Hedge6_Warp,
                          ItemNames.Hedge9_Warp, ItemNames.Fish3_Warp, ItemNames.Fish7_Warp, ItemNames.Balc1_Warp,
@@ -274,6 +279,9 @@ class NightOf100FrightsWorld(World):
                          ItemNames.LH15_Warp, ItemNames.LH18_Warp, ItemNames.SP3_Warp, ItemNames.SP5_Warp,
                          ItemNames.Roof3_Warp, ItemNames.SL2_Warp, ItemNames.Wreck22_Warp, ItemNames.Wreck26_Warp,
                          ItemNames.MG_Warp]
+        if self.opptions.include_food:
+            #Determine total food to include later
+            itempool += ItemNames.Food
 
         # adjust for starting inv prog. items
         for item in self.multiworld.precollected_items[self.player]:
@@ -304,6 +312,7 @@ class NightOf100FrightsWorld(World):
             "include_keys": self.options.include_keys.value,
             "include_warpgates": self.options.include_warpgates.value,
             "include_snacks": self.options.include_snacks.value,
+            "include_food": self.options.include_food.value,
             "completion_goal": self.options.completion_goal.value,
             "boss_count": self.options.boss_count.value,
             "token_count": self.options.token_count.value,
@@ -343,6 +352,7 @@ class NightOf100FrightsWorld(World):
                                 include_snacks=bool(self.options.include_snacks.value),
                                 include_keys=bool(self.options.include_keys.value),
                                 include_warpgates=bool(self.options.include_warpgates.value),
+                                include_food=bool(self.options.include_food.value),
                                 completion_goal=bool(self.options.completion_goal.value),
                                 seed=self.multiworld.seed_name.encode('utf-8'),
                                 )
