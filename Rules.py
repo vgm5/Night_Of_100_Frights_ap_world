@@ -242,7 +242,7 @@ food_rules = [
         ItemNames.Upgrades:
             {
                 # Basement
-                LocationNames.b001_FOOD3: lambda player: lambda state: state.can_reach(RegionNames.b003, "Region", player) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1))
+                LocationNames.b001_FOOD3: lambda player: lambda state: state.can_reach(RegionNames.b003, "Region", player) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
                 LocationNames.b003_FOOD6: lambda player: lambda state: state.had(ItemNames.ProgressiveJump, player, 1),
                 LocationNames.b003_FOOD1: lambda player: lambda state: state.had(ItemNames.ProgressiveJump, player, 1),
                 LocationNames.b003_FOOD2: lambda player: lambda state: state.had(ItemNames.HelmetPower, player, 1),
@@ -264,9 +264,37 @@ food_rules = [
                 LocationNames.c007_FOOD__2: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
                 LocationNames.c007_CRATE__PRIZE__11: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
                 LocationNames.c007_CRATE__PRIZE__12: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PoundPower, player, 1),
+
+                # Hedge
                 LocationNames.e001_FOOD__FROM__DIG: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
                 LocationNames.e001_FOOD__2: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
                 LocationNames.e001_FOOD__HIDDEN: lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1) and state.can_reach(RegionNames.e009, "Region", player),
+
+                LocationNames.e002_DIG__1__POWERUP: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
+                LocationNames.e002_FOOD__2: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PlungerPower, player, 1),
+                LocationNames.e002_FOOD__3: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PlungerPower, player, 1),
+                LocationNames.e002_FOOD__4: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and state.has(ItemNames.PlungerPower, player, 1),
+
+                LocationNames.e003_DIG__1__POWERUP: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
+
+                LocationNames.e005_FOOD__1 : lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+                LocationNames.e005_FOOD__4 : lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+
+                LocationNames.e007_DIG__1__POWERUP: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
+                LocationNames.e007_FOOD__2 : lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
+                LocationNames.e007_FOOD__4 : lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
+
+                LocationNames.e008_FOOD__2: lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1) and (state.has(ItemNames.GumPower, player, 1) or state.has(ItemNames.SoapPower, player, 1)),
+                LocationNames.e008_DIG__1__POWERUP: lambda player: lambda state: state.has(ItemNames.ShovelPower, player, 1),
+
+                LocationNames.f001_FOOD04 : lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.f001_FOOD13 : lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.f001_FOOD14 : lambda player: lambda state: state.has(ItemNames.ProgressiveJump, player, 1),
+                LocationNames.f001_B16_FOOD : lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+                LocationNames.f001_B17_FOOD : lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+                LocationNames.f001_B18_FOOD : lambda player: lambda state: state.has(ItemNames.HelmetPower, player, 1),
+
+
 
             },
     }

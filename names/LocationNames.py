@@ -5591,38 +5591,101 @@ w027_SSBOX_GD02B = f"{RegionNames.w027}: Ghost Divers and Wheel: Snack Boxes in 
 b001_FOOD1 = f"{RegionNames.b001}: Main Room: Left Sandwich"
 b001_FOOD2 = f"{RegionNames.b001}: Main Room: Right Sandwich"
 b001_FOOD3 = f"{RegionNames.b001}: Token Room: Sandwich"
+
 b002_FOOD2 = f"{RegionNames.b002}: Air: Sandwich"
+
 b003_FOOD6 = f"{RegionNames.b003}: Side Room: First Sandwich"
 b003_FOOD1 = f"{RegionNames.b003}: Side Path: Second Sandwich"
 b003_FOOD2 = f"{RegionNames.b003}: Key Room: Sandwich"
 b003_FOOD3 = f"{RegionNames.b003}: Creeper Room: Sandwich"
+
 b004_FOOD1 = f"{RegionNames.b004}: Cold Storage: Sandwich"
 b004_FOOD4 = f"{RegionNames.b004}: Cold Storage: Left Ice Block Sandwich"
 b004_FOOD5 = f"{RegionNames.b004}: Cold Storage: Right Ice Block Sandwich"
 b004_FOOD3 = f"{RegionNames.b004}: Laundry Room: Back Left Sandwich"
 b004_FOOD2 = f"{RegionNames.b004}: Laundry Room: First Dryer Sandwich"
 b004_FOOD2__IN__DRYER = f"{RegionNames.b004}: Laundry Room: Second Dryer Sandwich"
+
 c001_FOOD__1 = f"{RegionNames.c001}: South Mid Level: Sandwich"
 c001_FOOD__2 = f"{RegionNames.c001}: South Upper Level: Sandwich"
+
 c002_FOOD__02 = f"{RegionNames.c002}: First Sandwich"
 c002_FOOD__1 = f"{RegionNames.c002}: Second Sandwich"
+
 c003_FOOD__1 = f"{RegionNames.c003}: Side Sandwich"
 c003_FOOD__2 = f"{RegionNames.c003}: Trampoline Sandwich"
+
 c004_FOOD__01 = f"{RegionNames.c004}: Tar Monster Sandwich"
 c004_FOOD__02 = f"{RegionNames.c004}: Tunnel Sandwich"
 c004_FOOD__03 = f"{RegionNames.c004}: Upper Level Sandwich (Using Umbrella)"
 c004_FOOD__4 = f"{RegionNames.c004}: Submerged Sandwich"
 c004_FOOD__5 = f"{RegionNames.c004}: Lower Level Sandwich (Entry)"
+
 c005_FOOD__1 = f"{RegionNames.c005}: Lower Level Sandwich"
 c005_FOOD__2 = f"{RegionNames.c005}: Upper Level Sandwich"
+
 c006_FOOD__1 = f"{RegionNames.c006}: Entry Sandwich"
 c006_FOOD__2 = f"{RegionNames.c006}: Upper Level Sandwich"
 c006_FOOD__3 = f"{RegionNames.c006}: Exit Sandwich"
+
 c007_FOOD__1 = f"{RegionNames.c007}: First Sandwich"
 c007_FOOD__2 = f"{RegionNames.c007}: Second Sandwich"
 c007_CRATE__PRIZE__11 = f"{RegionNames.c007}: First Crate Sandwich"
 c007_CRATE__PRIZE__12 = f"{RegionNames.c007}: Second Crate Sandwich"
+
 e001_FOOD = f"{RegionNames.e001}: Wolfman Sandwich"
 e001_FOOD__2 = f"{RegionNames.e001}: High Up Sandwich"
 e001_FOOD__HIDDEN = f"{RegionNames.e001}: Shortcut Sandwich"
 e001_FOOD__FROM__DIG = f"{RegionNames.e001}: Buried Sandwich"
+e001_EXTRA__LIFE = f"{RegionNames.e001}: Sand.....Witch"
+
+e002_FOOD = f"{RegionNames.e002}: Zombie Sandwich"
+e002_FOOD__1 = f"{RegionNames.e002}: Double Wolfman Sandwich"
+e002_FOOD__2 = f"{RegionNames.e002}: End of Gusty Path Sandwich"
+e002_FOOD__3 = f"{RegionNames.e002}: Upper Path Sandwich"
+e002_FOOD__4 = f"{RegionNames.e002}: Past Gusty Gap Sandwich"
+e002_DIG__1__POWERUP = f"{RegionNames.e002}: Buried Sandwich"
+
+e003_DIG__1__POWERUP = f"{RegionNames.e003}: Buried Sandwich"
+e003_FOOD__1 = f"{RegionNames.e003}: Open Sandwich"
+
+e004_FOOD__1 = f"{RegionNames.e004_sn}: Right Seesaw Sandwich"
+e004_FOOD__2 = f"{RegionNames.e004_sn}: Bridge Sandwich"
+e004_FOOD__3 = f"{RegionNames.e004_sn}: Left Seesaw Sandwich"
+
+e005_FOOD__1 = f"{RegionNames.e005}: Column Corridor Sandwich"
+e005_FOOD__2 = f"{RegionNames.e005}: Sand....Witch"
+e005_FOOD__3 = f"{RegionNames.e005}: Shooting Range Sandwich"
+e005_FOOD__4 = f"{RegionNames.e005}: Behind Boxes Sandwich"
+
+e006_FOOD__1 = f"{RegionNames.e006}: Sandwich"
+
+e007_FOOD__1 = f"{RegionNames.e007}: Hill Sandwich"
+e007_FOOD__2 = f"{RegionNames.e007}: On Tree Sandwich #2"
+e007_FOOD__3 = f"{RegionNames.e007}: Under Tree Sandwich"
+e007_FOOD__4 = f"{RegionNames.e007}: On Tree Sandwich #1"
+e007_FOOD__5 = f"{RegionNames.e007}: Cauldron Sandwich"
+e007_DIG__1__POWERUP = f"{RegionNames.e007}: Buried Sandwich"
+
+e008_FOOD__1 = f"{RegionNames.e008}: After First Table Sandwich"
+e008_FOOD__2 = f"{RegionNames.e008}: Tilted Towers Sandwich"
+e008_FOOD__3 = f"{RegionNames.e008}: Beginning Sandwich"
+e008_DIG__1__POWERUP = f"{RegionNames.e008}: Buried Sandwich"
+
+f001_FOOD01 = f"{RegionNames.f001}: Route Sandwich #1"
+f001_FOOD02 = f"{RegionNames.f001}: Route Sandwich #2"
+f001_FOOD04 = f"{RegionNames.f001}: Right Roof Sandwich"
+f001_FOOD05 = f"{RegionNames.f001}: Route Sandwich #3"
+f001_FOOD06 = f"{RegionNames.f001}: Route Sandwich #4"
+f001_FOOD08 = f"{RegionNames.f001}: Route Sandwich #6"
+f001_FOOD09 = f"{RegionNames.f001}: Route Sandwich #5"
+f001_FOOD10 = f"{RegionNames.f001}: Route Sandwich #7"
+f001_FOOD13 = f"{RegionNames.f001}: Center Roof Sandwich"
+f001_FOOD14 = f"{RegionNames.f001}: Left Roof Sandwich"
+f001_BP_FOOD01 = f"{RegionNames.f001}: Pelican Sandwich #1"
+f001_BP_FOOD02 = f"{RegionNames.f001}: Pelican Sandwich #2"
+f001_BP_FOOD03 = f"{RegionNames.f001}: Pelican Sandwich #3"
+f001_BP_FOOD04 = f"{RegionNames.f001}: Pelican Sandwich #4"
+f001_B16_FOOD = f"{RegionNames.f001}: Barrel Sandwich #2"
+f001_B17_FOOD = f"{RegionNames.f001}: Barrel Sandwich #1"
+f001_B18_FOOD = f"{RegionNames.f001}: Barrel Sandwich #3"
