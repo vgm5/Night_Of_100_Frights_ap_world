@@ -3,7 +3,7 @@
 ## Required Software
 
 - [Dolphin](https://dolphin-emu.org/download/)
-- Your US Version of Night of 100 Frights Revision 0 (The original 1.0 release), probably named ``Scooby-Doo! Night of 100 Frights.iso``.
+- Your US Version of Night of 100 Frights, named ``Scooby-Doo! Night of 100 Frights.iso``.
 
 ## Create a Config (.yaml) File
 
